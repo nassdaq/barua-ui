@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Barua UI — Mobile
+   Mobile Header, Mobile Navigation/Menu, Mobile Toolbar, Swipe Actions,
+   Pull to Refresh. (Bottom Sheet in overlays.css; Bottom Tab Bar in nav.css;
+   Touch Target & Safe Area in utilities.css.)
+   ========================================================================== */
+
+@layer components {
+  /* ---- Mobile Header (large-title collapse pattern) ------------------------- */
+  .b-mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--b-z-topbar);
+    background: var(--b-material-chrome-bg);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border-bottom: 1px solid var(--b-hairline);
+    padding-top: env(safe-area-inset-top);
+  }
+  .b-mobile-header__bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: var(--b-topbar-h);
+    padding-inline: var(--b-space-3);
+  }
+  .b-mobile-header__title {
+    grid-column: 2;
+    font-size: var(--b-text-body);
+    font-weight: var(--b-weight-semibold);
+    text-align: center;
+  }
+  .b-mobile-header__action--start { justify-self: start; }
+  .b-mobile-header__action--end { justify-self: end; grid-column: 3; }
+  .b-mobile-header__large-title {
+    padding: 0 var(--b-space-4) var(--b-space-2);
+    font-size: var(--b-text-large-title);
+    font-weight: var(--b-weight-bold);
+    letter-spacing: var(--b-tracking-tight);
+  }
+  .b-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: var(--b-color-accent-text);
+    font-size: var(--b-text-body);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--b-space-1);
+  }
+  .b-back-btn::before { content: "‹"; font-size: 1.5em; line-height: 1; }
+
+  /* Collapsing large title (NavigationStack behavior): barua.js toggles
+     .is-collapsed on scroll; the bar title fades in as the large one shrinks */
+  .b-mobile-header__title {
+    opacity: 0;
+    transition: opacity var(--b-duration-fast) var(--b-ease-standard);
+  }
+  .b-mobile-header.is-collapsed .b-mobile-header__title { opacity: 1; }
+  .b-mobile-header__large-title {
+    transition: font-size var(--b-duration-normal) var(--b-ease-standard),
+                opacity var(--b-duration-fast) var(--b-ease-standard),
+                padding var(--b-duration-normal) var(--b-ease-standard);
+    interpolate-size: allow-keywords;
+  }
+  .b-mobile-header.is-collapsed .b-mobile-header__large-title {
+    font-size: 0px;
+    opacity: 0;
+    padding-block: 0;
+  }
+
+  /* ---- Mobile Menu (full sheet list) ----------------------------------------- */
+  .b-mobile-menu {
+    list-style: none;
+    margin: 0;
+    padding: var(--b-space-2);
+    display: flex;
+    flex-direction: column;
+  }
+  .b-mobile-menu a, .b-mobile-menu button {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-3);
+    width: 100%;
+    min-height: var(--b-touch-target);
+    padding: var(--b-space-3);
+    font-size: var(--b-text-body);
+    font-weight: var(--b-weight-medium);
+    color: var(--b-text);
+    background: none;
+    border: none;
+    border-radius: var(--b-radius-md);
+    cursor: pointer;
+    text-align: start;
+  }
+  .b-mobile-menu :is(a, button):hover { background: var(--b-fill-tertiary); text-decoration: none; }
+  .b-mobile-menu .is-active { color: var(--b-color-accent-text); background: var(--b-color-accent-soft); }
+
+  /* ---- Mobile Toolbar (bottom action bar) --------------------------------------- */
+  .b-mobile-toolbar {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: var(--b-z-topbar);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--b-space-2);
+    padding: var(--b-space-2) var(--b-space-4);
+    padding-bottom: max(var(--b-space-2), env(safe-area-inset-bottom));
+    background: var(--b-material-chrome-bg);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border-top: 1px solid var(--b-hairline);
+  }
+  .b-mobile-toolbar .b-icon-btn { width: var(--b-control-h-lg); height: var(--b-control-h-lg); }
+
+  /* ---- Swipe Actions --------------------------------------------------------------
+     <div class="b-swipe"> <div class="b-swipe__content">row</div>
+       <div class="b-swipe__actions">buttons</div> </div>
+     Scroll horizontally (touch) to reveal; snaps via scroll-snap.
+  ----------------------------------------------------------------------------------- */
+  .b-swipe {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    border-radius: var(--b-radius-md);
+  }
+  .b-swipe::-webkit-scrollbar { display: none; }
+  .b-swipe__content {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    background: var(--b-surface);
+  }
+  .b-swipe__actions {
+    display: flex;
+    scroll-snap-align: end;
+  }
+  .b-swipe__actions button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-width: 4.5rem;
+    padding-inline: var(--b-space-3);
+    font-size: var(--b-text-caption);
+    font-weight: var(--b-weight-medium);
+    color: #fff;
+    background: var(--b-gray-1);
+    border: none;
+    cursor: pointer;
+  }
+  .b-swipe__actions button svg { width: 1.25rem; height: 1.25rem; }
+  .b-swipe__actions .is-flag { background: var(--b-color-orange); }
+  .b-swipe__actions .is-danger { background: var(--b-color-danger); }
+  .b-swipe__actions .is-primary { background: var(--b-color-accent); }
+
+  /* ---- Pull to Refresh (visual affordance) --------------------------------------- */
+  .b-ptr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--b-space-2);
+    height: 0;
+    overflow: hidden;
+    color: var(--b-text-tertiary);
+    font-size: var(--b-text-footnote);
+    transition: height var(--b-duration-normal) var(--b-ease-spring);
+  }
+  .b-ptr.is-pulling, .b-ptr.is-refreshing { height: 3.25rem; }
+  .b-ptr__arrow { transition: rotate var(--b-duration-fast); }
+  .b-ptr.is-ready .b-ptr__arrow { rotate: 180deg; }
+  .b-ptr.is-refreshing .b-ptr__arrow { display: none; }
+}

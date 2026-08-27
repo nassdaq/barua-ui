@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analytics — Barua UI</title>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* Wallpaper only — every visible material below is a Barua component. */
+    body.analytics {
+      min-height: 100dvh;
+      padding-block: var(--b-space-6) var(--b-space-8);
+      background: var(--b-bg);
+    }
+  </style>
+</head>
+<body class="analytics b-stage">
+  <main class="b-container b-container--xl b-stack b-gap-4">
+    <header class="b-hstack b-stack--wrap b-gap-3">
+      <div class="b-grow">
+        <div class="b-overline">Sema · 17–23 Aug 2026</div>
+        <h1 class="b-title1">Sema Analytics</h1>
+      </div>
+      <div class="b-segmented" role="group" aria-label="Range">
+        <button class="b-segmented__item">Today</button>
+        <button class="b-segmented__item is-active">Week</button>
+        <button class="b-segmented__item">Month</button>
+        <button class="b-segmented__item">Quarter</button>
+      </div>
+      <button class="b-btn b-btn--ghost">
+        <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5v9M6.5 9.5l3.5 3 3.5-3M4 16.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Export
+      </button>
+    </header>
+
+    <div class="b-scroll-area b-stack b-gap-4">
+    <div class="b-dashboard">
+      <article class="b-card b-span-3">
+        <div class="b-card__body">
+          <div class="b-stat">
+            <span class="b-stat__label">Calls answered</span>
+            <span class="b-stat__value">10,728</span>
+            <span class="b-stat__delta is-up">↑ 8.4% vs last week</span>
+            <svg class="b-sparkline" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 18 L12 15 L24 16 L36 11 L48 13 L60 8 L72 10 L84 5 L100 3"/>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-span-3">
+        <div class="b-card__body">
+          <div class="b-stat">
+            <span class="b-stat__label">SMS delivered</span>
+            <span class="b-stat__value">48,112</span>
+            <span class="b-stat__delta is-up">↑ 3.1% vs last week</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-span-3">
+        <div class="b-card__body">
+          <div class="b-stat">
+            <span class="b-stat__label">First-call resolution</span>
+            <span class="b-stat__value">61.4%</span>
+            <span class="b-stat__delta is-up">↑ 2.4 pts vs last week</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-span-3">
+        <div class="b-card__body">
+          <div class="b-stat">
+            <span class="b-stat__label">Airtime spend (TZS)</span>
+            <span class="b-stat__value">2.41M</span>
+            <span class="b-stat__delta is-down">↓ 5.2% vs last week</span>
+            <svg class="b-sparkline" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true" style="--b-chart-color: var(--b-chart-4)">
+              <path d="M0 5 L12 8 L24 6 L36 11 L48 9 L60 14 L72 12 L84 17 L100 19"/>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-span-8">
+        <div class="b-card__header">
+          <div>
+            <div class="b-card__title">Calls by day</div>
+            <div class="b-card__subtitle">Answered vs resolved on first call · 17–23 Aug</div>
+          </div>
+        </div>
+        <div class="b-card__body">
+          <div class="b-chart" role="img" aria-label="Column chart: calls answered per day from 17 to 23 August, peaking Friday at 2,304; about six in ten resolved on the first call.">
+            <div style="display: grid; grid-template-columns: max-content 1fr; gap: var(--b-space-3)">
+              <div class="b-axis b-axis--y" style="padding-block-end: 1.4rem" aria-hidden="true">
+                <span>2.4k</span><span>1.2k</span><span>0</span>
+              </div>
+              <div class="b-chart__canvas">
+                <div class="b-gridlines" style="inset-block-end: 1.4rem" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="b-columns" style="--b-chart-h: 11rem">
+                  <div class="b-columns__bar" style="--v: 72%" data-label="Mon"><i style="--v: 44%"></i></div>
+                  <div class="b-columns__bar" style="--v: 58%" data-label="Tue"><i style="--v: 34%"></i></div>
+                  <div class="b-columns__bar" style="--v: 66%" data-label="Wed"><i style="--v: 40%"></i></div>
+                  <div class="b-columns__bar" style="--v: 81%" data-label="Thu"><i style="--v: 50%"></i></div>
+                  <div class="b-columns__bar" style="--v: 96%" data-label="Fri"><i style="--v: 58%"></i></div>
+                  <div class="b-columns__bar" style="--v: 44%" data-label="Sat"><i style="--v: 26%"></i></div>
+                  <div class="b-columns__bar" style="--v: 30%" data-label="Sun"><i style="--v: 18%"></i></div>
+                </div>
+              </div>
+            </div>
+            <ul class="b-legend">
+              <li><span class="b-legend__swatch"></span>Answered</li>
+              <li><span class="b-legend__swatch" style="background: var(--b-chart-2)"></span>Resolved first call</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-span-4">
+        <div class="b-card__header">
+          <div class="b-card__title">Service level</div>
+          <span class="b-badge b-badge--success b-badge--dot">On target</span>
+        </div>
+        <div class="b-card__body b-stack b-gap-4">
+          <div class="b-hstack b-gap-4">
+            <div class="b-circular-wrap">
+              <div class="b-circular" role="progressbar" aria-label="Calls answered within 20 seconds" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 92; --b-circular-size: 4.5rem"></div>
+              <span class="b-circular__label">92%</span>
+            </div>
+            <div class="b-stat">
+              <span class="b-stat__label">Answered in 20s</span>
+              <span class="b-stat__value">92%</span>
+              <span class="b-stat__delta is-up">↑ 1.8 pts vs last week</span>
+            </div>
+          </div>
+          <div>
+            <div class="b-list__header">Queues</div>
+            <div class="b-labeled"><span class="b-labeled__label">Abandon rate</span><span class="b-labeled__value">3.1%</span></div>
+            <div class="b-labeled"><span class="b-labeled__label">Avg wait</span><span class="b-labeled__value">18s</span></div>
+            <div class="b-labeled"><span class="b-labeled__label">Callbacks queued</span><span class="b-labeled__value">14</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-span-4">
+        <div class="b-card__header">
+          <div class="b-card__title">Calls by hour</div>
+          <span class="b-badge">EAT</span>
+        </div>
+        <div class="b-card__body b-stack b-gap-3">
+          <div class="b-chart">
+            <div class="b-heatmap" style="--b-heatmap-cols: 12" aria-hidden="true">
+            <i style="--v: 0.1"></i><i style="--v: 0.2"></i><i style="--v: 0.4"></i><i style="--v: 0.6"></i><i style="--v: 0.8"></i><i style="--v: 0.9"></i><i style="--v: 0.7"></i><i style="--v: 0.8"></i><i style="--v: 0.6"></i><i style="--v: 0.4"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i>
+            <i style="--v: 0.2"></i><i style="--v: 0.3"></i><i style="--v: 0.5"></i><i style="--v: 0.7"></i><i style="--v: 0.9"></i><i style="--v: 1"></i><i style="--v: 0.8"></i><i style="--v: 0.9"></i><i style="--v: 0.7"></i><i style="--v: 0.5"></i><i style="--v: 0.3"></i><i style="--v: 0.1"></i>
+            <i style="--v: 0.1"></i><i style="--v: 0.2"></i><i style="--v: 0.4"></i><i style="--v: 0.5"></i><i style="--v: 0.7"></i><i style="--v: 0.8"></i><i style="--v: 0.9"></i><i style="--v: 0.7"></i><i style="--v: 0.5"></i><i style="--v: 0.3"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i>
+            <i style="--v: 0"></i><i style="--v: 0.1"></i><i style="--v: 0.3"></i><i style="--v: 0.4"></i><i style="--v: 0.6"></i><i style="--v: 0.7"></i><i style="--v: 0.6"></i><i style="--v: 0.5"></i><i style="--v: 0.4"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i><i style="--v: 0"></i>
+            </div>
+            <div class="b-axis" aria-hidden="true">
+              <span>06:00</span><span>12:00</span><span>18:00</span>
+            </div>
+          </div>
+          <p class="b-footnote b-text-secondary">
+            One row per week of August. Load peaks between 10:00 and 14:00 on
+            weekdays and eases after 15:00 on Fridays.
+          </p>
+        </div>
+      </article>
+
+      <article class="b-card b-span-4">
+        <div class="b-card__header">
+          <div>
+            <div class="b-card__title">Answered by region</div>
+            <div class="b-card__subtitle">Top five regions · this week</div>
+          </div>
+        </div>
+        <div class="b-card__body">
+          <div class="b-bars" style="--b-bars-label-w: 7.5rem">
+            <div class="b-bars__row">
+              <span class="b-bars__label">Dar es Salaam</span>
+              <div class="b-bars__track"><i style="--v: 92%"></i></div>
+              <span class="b-bars__value">3,905</span>
+            </div>
+            <div class="b-bars__row">
+              <span class="b-bars__label">Mwanza</span>
+              <div class="b-bars__track"><i style="--v: 58%"></i></div>
+              <span class="b-bars__value">2,480</span>
+            </div>
+            <div class="b-bars__row">
+              <span class="b-bars__label">Arusha</span>
+              <div class="b-bars__track"><i style="--v: 41%"></i></div>
+              <span class="b-bars__value">1,730</span>
+            </div>
+            <div class="b-bars__row">
+              <span class="b-bars__label">Dodoma</span>
+              <div class="b-bars__track"><i style="--v: 33%"></i></div>
+              <span class="b-bars__value">1,405</span>
+            </div>
+            <div class="b-bars__row">
+              <span class="b-bars__label">Zanzibar</span>
+              <div class="b-bars__track"><i style="--v: 21%"></i></div>
+              <span class="b-bars__value">908</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-span-4">
+        <div class="b-card__header">
+          <div>
+            <div class="b-card__title">Campaign delivery</div>
+            <div class="b-card__subtitle">Reached of targeted · August</div>
+          </div>
+        </div>
+        <div class="b-card__body">
+          <div class="b-progress-chart">
+            <div class="b-progress-chart__row">
+              <div class="b-progress-chart__head"><span>Karibu welcome series</span><span>98%</span></div>
+              <div class="b-progress"><div class="b-progress__fill" style="--b-progress: 98%"></div></div>
+            </div>
+            <div class="b-progress-chart__row">
+              <div class="b-progress-chart__head"><span>Lipa kwa Simu reminders</span><span>94%</span></div>
+              <div class="b-progress"><div class="b-progress__fill" style="--b-progress: 94%"></div></div>
+            </div>
+            <div class="b-progress-chart__row">
+              <div class="b-progress-chart__head"><span>Bima ya Afya renewals</span><span>87%</span></div>
+              <div class="b-progress"><div class="b-progress__fill" style="--b-progress: 87%"></div></div>
+            </div>
+            <div class="b-progress-chart__row">
+              <div class="b-progress-chart__head"><span>Mvua alert · Pwani</span><span>24%</span></div>
+              <div class="b-progress"><div class="b-progress__fill" style="--b-progress: 24%"></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-span-4">
+        <div class="b-card__header">
+          <div class="b-card__title">Airtime &amp; credits</div>
+          <span class="b-badge b-badge--warning">Top up soon</span>
+        </div>
+        <div class="b-card__body b-stack b-gap-4">
+          <div class="b-stack b-stack--center">
+            <div style="padding-block-end: 1.75rem">
+              <div class="b-gauge" style="--b-progress: 72" role="img" aria-label="Gauge: 72% of August SMS credits used.">
+                <div class="b-gauge__value">72%</div>
+                <div class="b-gauge__label">SMS credits used</div>
+              </div>
+            </div>
+          </div>
+          <div class="b-gauge-linear">
+            <div class="b-gauge-linear__track"><span class="b-gauge-linear__marker" style="--v: 34%"></span></div>
+            <div class="b-gauge-linear__labels"><span>TZS 0</span><span>TZS 1.2M</span></div>
+          </div>
+          <div>
+            <div class="b-labeled"><span class="b-labeled__label">Wallet balance</span><span class="b-labeled__value">TZS 408,000</span></div>
+            <div class="b-labeled"><span class="b-labeled__label">Credits left</span><span class="b-labeled__value">70,000 SMS</span></div>
+            <div class="b-labeled"><span class="b-labeled__label">Renews</span><span class="b-labeled__value">1 Sep</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="b-card b-card--flush b-span-8">
+        <div class="b-card__header">
+          <div>
+            <div class="b-card__title">Top campaigns</div>
+            <div class="b-card__subtitle">Sema outbound · 1–23 Aug</div>
+          </div>
+          <span class="b-badge b-badge--accent">2 running</span>
+        </div>
+        <div class="b-card__body">
+          <div class="b-table-wrap">
+            <table class="b-table b-table--hover">
+              <thead>
+                <tr>
+                  <th scope="col" aria-sort="ascending"><button class="b-table__sort is-asc">Campaign</button></th>
+                  <th scope="col"><button class="b-table__sort">Channel</button></th>
+                  <th scope="col" class="b-table__num">Sent</th>
+                  <th scope="col" class="b-table__num">Cost (TZS)</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bima ya Afya renewals</td>
+                  <td>Voice</td>
+                  <td class="b-table__num">5,120</td>
+                  <td class="b-table__num">199,700</td>
+                  <td><span class="b-badge b-badge--warning">Paused</span></td>
+                </tr>
+                <tr>
+                  <td>Karibu welcome series</td>
+                  <td>SMS</td>
+                  <td class="b-table__num">12,410</td>
+                  <td class="b-table__num">486,000</td>
+                  <td><span class="b-badge b-badge--accent">Running</span></td>
+                </tr>
+                <tr>
+                  <td>Kilimo Bora tips</td>
+                  <td>SMS</td>
+                  <td class="b-table__num">3,842</td>
+                  <td class="b-table__num">148,200</td>
+                  <td><span class="b-badge b-badge--success">Completed</span></td>
+                </tr>
+                <tr class="is-selected">
+                  <td>Lipa kwa Simu reminders</td>
+                  <td>Voice</td>
+                  <td class="b-table__num">8,264</td>
+                  <td class="b-table__num">322,400</td>
+                  <td><span class="b-badge b-badge--success">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>Mvua alert · Pwani</td>
+                  <td>SMS</td>
+                  <td class="b-table__num">1,206</td>
+                  <td class="b-table__num">47,000</td>
+                  <td><span class="b-badge b-badge--danger">Failed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <footer class="b-card__footer">
+          <a class="b-link" href="#">All campaigns</a>
+          <span class="b-spacer"></span>
+          <span class="b-caption b-text-tertiary">Updated 09:41 EAT</span>
+        </footer>
+      </article>
+    </div>
+  </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Productivity — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Patterns</div>
+        <h1>Productivity</h1>
+        <p class="docs-hero__lede">
+          App-shell chrome and work surfaces — dashboards, kanban boards,
+          calendars and panels. Everything here composes from the same cards,
+          lists and glass chrome as the rest of the system, so a whole
+          workspace re-tints from a single accent token. The examples follow
+          one fictional product: the Sema dashboard, a call-center console.
+        </p>
+      </header>
+
+      <section class="docs-section" id="workspace-shell">
+        <h2>Workspace Shell</h2>
+        <p>
+          <code>.b-workspace</code> is a full-height CSS grid with four named
+          areas: <code>topbar</code> spanning the top, then
+          <code>sidebar&nbsp;/&nbsp;main&nbsp;/&nbsp;inspector</code> below.
+          Children slot in by class — a <code>.b-topnav</code> takes the topbar,
+          a <code>.b-sidebar</code> (or <code>.b-rail</code>) takes the sidebar,
+          <code>.b-workspace__main</code> is the one scrolling work surface, and
+          an optional <code>.b-inspector</code> docks on the trailing edge.
+          Drop the inspector and main simply stretches. The shell defaults to
+          <code>100dvh</code>; the demo constrains it to a miniature.
+        </p>
+        <p>
+          An optional <code>.b-statusbar</code> as a direct child pins to a
+          statusbar slot along the bottom — part of the fixed chrome, never
+          part of the scroll.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div style="height: 18rem; overflow: hidden; border: 1px solid var(--b-separator); border-radius: var(--b-radius-xl);">
+            <div class="b-workspace" style="height: 100%">
+              <header class="b-topnav">
+                <span class="b-topnav__brand">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Sema
+                </span>
+                <span class="b-spacer"></span>
+                <span class="b-status b-status--online">Live</span>
+                <span class="b-avatar b-avatar--xs">AH</span>
+              </header>
+              <aside class="b-sidebar b-sidebar--surface" style="width: 10rem" aria-label="Workspace">
+                <nav class="b-sidebar__group">
+                  <a class="b-sidebar__item is-active" href="#workspace-shell">Overview</a>
+                  <a class="b-sidebar__item" href="#workspace-shell">Campaigns</a>
+                  <a class="b-sidebar__item" href="#workspace-shell">Tickets</a>
+                </nav>
+              </aside>
+              <main class="b-workspace__main">
+                <article class="b-card">
+                  <div class="b-card__body">
+                    <div class="b-stat">
+                      <span class="b-stat__label">Calls today</span>
+                      <span class="b-stat__value">214</span>
+                      <span class="b-stat__delta is-up">▲ 9%</span>
+                    </div>
+                  </div>
+                </article>
+              </main>
+              <aside class="b-inspector" style="--b-inspector-w: 10.5rem" aria-label="Inspector">
+                <div class="b-inspector__header">Inspector</div>
+                <div class="b-inspector__section">
+                  <h6>Call</h6>
+                  <dl class="b-dl b-dl--stacked">
+                    <dt>Agent</dt>
+                    <dd>Asha H.</dd>
+                  </dl>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+        <p>
+          The inspector width is a variable API:
+          <code>--b-inspector-w</code> (default <code>19rem</code>) — the demo
+          narrows it to fit the miniature.
+        </p>
+        <div class="docs-guidance">
+          <div class="docs-do">
+            Keep one primary work surface per window.
+            <code>.b-workspace__main</code> is where the work happens; the
+            sidebar and inspector support it — they never compete with it.
+          </div>
+          <div class="docs-dont">
+            Don't nest scrollbars more than two deep (window → main, or main →
+            one panel). A scrolling panel inside a scrolling main inside a
+            scrolling page is seasickness.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="dashboard">
+        <h2>Dashboard</h2>
+        <p>
+          <code>.b-dashboard</code> is a 12-column grid. Cards claim width with
+          <code>.b-span-3/4/6/8/9</code> from <code>768px</code> up and stack to
+          a single column below. Compose it from <code>.b-card</code> +
+          <code>.b-stat</code> for KPIs and the CSS charts from
+          <a href="data-viz.html">Data Visualization</a> for trends.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-dashboard">
+            <article class="b-card b-span-4">
+              <div class="b-card__body">
+                <div class="b-stat">
+                  <span class="b-stat__label">Calls handled</span>
+                  <span class="b-stat__value">4,182</span>
+                  <span class="b-stat__delta is-up">▲ 12% vs last week</span>
+                </div>
+                <svg class="b-sparkline" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 19 14 15 28 17 42 10 56 12 70 7 84 9 100 4"/></svg>
+              </div>
+            </article>
+            <article class="b-card b-span-4">
+              <div class="b-card__body">
+                <div class="b-stat">
+                  <span class="b-stat__label">Tickets resolved</span>
+                  <span class="b-stat__value">318</span>
+                  <span class="b-stat__delta is-up">▲ 6% vs last week</span>
+                </div>
+              </div>
+            </article>
+            <article class="b-card b-span-4">
+              <div class="b-card__body">
+                <div class="b-stat">
+                  <span class="b-stat__label">Avg. handle time</span>
+                  <span class="b-stat__value">3m 42s</span>
+                  <span class="b-stat__delta is-down">▼ 21s over target</span>
+                </div>
+              </div>
+            </article>
+            <article class="b-card b-span-8">
+              <div class="b-card__body">
+                <div class="b-chart">
+                  <div class="b-chart__title">Calls per day</div>
+                  <div class="b-columns" style="--b-chart-h: 9rem">
+                    <div class="b-columns__bar" style="--v: 44%" data-label="Mon"></div>
+                    <div class="b-columns__bar" style="--v: 62%" data-label="Tue"></div>
+                    <div class="b-columns__bar" style="--v: 78%" data-label="Wed"></div>
+                    <div class="b-columns__bar" style="--v: 58%" data-label="Thu"></div>
+                    <div class="b-columns__bar" style="--v: 92%" data-label="Fri"></div>
+                    <div class="b-columns__bar" style="--v: 36%" data-label="Sat"></div>
+                    <div class="b-columns__bar" style="--v: 22%" data-label="Sun"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="b-card b-span-4">
+              <div class="b-card__header">
+                <div class="b-card__title">Activity</div>
+              </div>
+              <ul class="b-list b-list--plain">
+                <li class="b-list-item">
+                  <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">AH</span></span>
+                  <div class="b-list-item__content">
+                    <div class="b-list-item__title">Asha resolved #4821</div>
+                    <div class="b-list-item__subtitle">Billing escalation</div>
+                  </div>
+                  <span class="b-list-item__trailing">2m</span>
+                </li>
+                <li class="b-list-item">
+                  <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">BO</span></span>
+                  <div class="b-list-item__content">
+                    <div class="b-list-item__title">Baraka deployed USSD v3</div>
+                    <div class="b-list-item__subtitle">Staging</div>
+                  </div>
+                  <span class="b-list-item__trailing">18m</span>
+                </li>
+                <li class="b-list-item">
+                  <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">JK</span></span>
+                  <div class="b-list-item__content">
+                    <div class="b-list-item__title">Joseph pushed 240 leads</div>
+                    <div class="b-list-item__subtitle">Nane Nane campaign</div>
+                  </div>
+                  <span class="b-list-item__trailing">1h</span>
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="command-center">
+        <h2>Command Center</h2>
+        <p>
+          A search-first hero for the top of a workspace:
+          <code>.b-command-center</code> centers a big
+          <code>.b-input-group</code> (capped at <code>34rem</code>) with a row
+          of quick-action <code>.b-chip</code>s underneath. It answers "where
+          do I start?" before the user has picked a surface.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-command-center">
+            <h3>Good morning, Asha</h3>
+            <p>Search across calls, tickets and campaigns — or jump straight in.</p>
+            <div class="b-input-group b-search">
+              <span class="b-input-affix b-input-affix--start">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+              <input class="b-input" type="search" placeholder="Search Sema…" aria-label="Search Sema">
+              <span class="b-input-affix b-input-affix--end"><kbd>⌘K</kbd></span>
+            </div>
+            <div class="b-hstack b-stack--wrap b-gap-2" style="justify-content: center">
+              <button class="b-chip">New campaign</button>
+              <button class="b-chip">Push leads</button>
+              <button class="b-chip">Open queue</button>
+              <button class="b-chip">Today's report</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="kanban-board">
+        <h2>Kanban Board</h2>
+        <p>
+          <code>.b-kanban</code> is a horizontally scrolling row of
+          <code>.b-kanban-col</code> columns, each with a
+          <code>__header</code> (title + <code>__count</code>) and a
+          <code>__list</code> of <a href="#task-and-task-list">task cards</a>.
+          During drag, mark the grabbed card <code>.is-dragging</code> and the
+          hovered column <code>.is-dropover</code> — shown frozen mid-drag
+          below, with a card leaving "In Progress" for "Done".
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-kanban">
+            <section class="b-kanban-col">
+              <header class="b-kanban-col__header">Backlog <span class="b-kanban-col__count">3</span></header>
+              <ul class="b-kanban-col__list" style="list-style: none; padding: 0;">
+                <li class="b-task">
+                  <div class="b-task__title">Wire USSD flow</div>
+                  <div class="b-task__meta">
+                    <span class="b-badge b-badge--accent">USSD</span>
+                    <span>Sep 2</span>
+                    <span class="b-avatar">AH</span>
+                  </div>
+                </li>
+                <li class="b-task">
+                  <div class="b-task__title">Localise IVR prompts</div>
+                  <div class="b-task__meta">
+                    <span class="b-badge">Voice</span>
+                    <span>Sep 5</span>
+                    <span class="b-avatar">BO</span>
+                  </div>
+                </li>
+                <li class="b-task">
+                  <div class="b-task__title">Draft agent onboarding doc</div>
+                  <div class="b-task__meta">
+                    <span class="b-badge">Docs</span>
+                    <span>Sep 9</span>
+                    <span class="b-avatar">JK</span>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="b-kanban-col">
+              <header class="b-kanban-col__header">In Progress <span class="b-kanban-col__count">2</span></header>
+              <ul class="b-kanban-col__list" style="list-style: none; padding: 0;">
+                <li class="b-task is-dragging">
+                  <div class="b-task__title">Fix webhook retries</div>
+                  <div class="b-task__meta">
+                    <span class="b-badge b-badge--danger">Bug</span>
+                    <span>Aug 28</span>
+                    <span class="b-avatar">JK</span>
+                  </div>
+                </li>
+                <li class="b-task">
+                  <div class="b-task__title">Instrument call analytics</div>
+                  <div class="b-task__meta">
+                    <span class="b-badge b-badge--accent">Data</span>
+                    <span>Aug 30</span>
+                    <span class="b-avatar">AH</span>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="b-kanban-col is-dropover">
+              <header class="b-kanban-col__header">Done <span class="b-kanban-col__count">2</span></header>
+              <ul class="b-kanban-col__list" style="list-style: none; padding: 0;">
+                <li class="b-task">
+                  <div class="b-task__title">Ship agent console v1</div>
+                  <div class="b-task__meta">
+                    <span class="b-badge b-badge--success">Release</span>
+                    <span>Aug 21</span>
+                    <span class="b-avatar">BO</span>
+                  </div>
+                </li>
+                <li class="b-task">
+                  <div class="b-task__title">Enable call recording</div>
+                  <div class="b-task__meta">
+                    <span class="b-badge">Voice</span>
+                    <span>Aug 18</span>
+                    <span class="b-avatar">AH</span>
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Each column's
+          <code>__list</code> is a real <code>&lt;ul&gt;</code> with cards as
+          <code>&lt;li&gt;</code>, so screen readers announce "list, 3 items"
+          per column. Pointer drag must have a keyboard alternative — a
+          "Move to…" action menu on every card or <kbd>⌘</kbd>+arrow
+          shortcuts — and moves should be announced through a live region
+          ("Fix webhook retries moved to Done, position 1 of 3").</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="task-and-task-list">
+        <h2>Task &amp; Task List</h2>
+        <p>
+          <code>.b-task</code> is the draggable unit of work: a
+          <code>__title</code> plus a <code>__meta</code> row of badge, due
+          date and an avatar that auto-shrinks and pushes to the trailing edge.
+          It lifts on hover and tilts while <code>.is-dragging</code>.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-task" style="width: 16rem">
+            <div class="b-task__title">Wire USSD flow</div>
+            <div class="b-task__meta">
+              <span class="b-badge b-badge--accent">USSD</span>
+              <span>Sep 2</span>
+              <span class="b-avatar">AH</span>
+            </div>
+          </div>
+          <div class="b-task is-dragging" style="width: 16rem">
+            <div class="b-task__title">Fix webhook retries</div>
+            <div class="b-task__meta">
+              <span class="b-badge b-badge--danger">Bug</span>
+              <span>Aug 28</span>
+              <span class="b-avatar">JK</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="task-list">Task list</h3>
+        <p>
+          For dense flat lists, <code>.b-task-list</code> stacks
+          <code>.b-task-row</code>s: checkbox, <code>__title</code>,
+          <code>__due</code>. Mark finished rows <code>.is-done</code> and
+          late dates <code>.is-overdue</code>.
+        </p>
+        <div class="docs-demo">
+          <div class="b-task-list">
+            <div class="b-task-row">
+              <label class="b-checkbox"><input type="checkbox" aria-label="Mark 'Wire USSD flow' done"></label>
+              <span class="b-task-row__title">Wire USSD flow</span>
+              <span class="b-task-row__due">Sep 2</span>
+            </div>
+            <div class="b-task-row">
+              <label class="b-checkbox"><input type="checkbox" aria-label="Mark 'Fix webhook retries' done"></label>
+              <span class="b-task-row__title">Fix webhook retries</span>
+              <span class="b-task-row__due is-overdue">Aug 20</span>
+            </div>
+            <div class="b-task-row">
+              <label class="b-checkbox"><input type="checkbox" aria-label="Mark 'QA Swahili voice prompts' done"></label>
+              <span class="b-task-row__title">QA Swahili voice prompts</span>
+              <span class="b-task-row__due">Sep 4</span>
+            </div>
+            <div class="b-task-row is-done">
+              <label class="b-checkbox"><input type="checkbox" checked aria-label="Mark 'Ship agent console v1' done"></label>
+              <span class="b-task-row__title">Ship agent console v1</span>
+              <span class="b-task-row__due">Aug 21</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="calendar-view">
+        <h2>Calendar View</h2>
+        <p>
+          <code>.b-calview</code> is a 7-column month grid: one
+          <code>__head</code> cell per weekday, then a <code>__cell</code> per
+          day holding a <code>__date</code> and stacked <code>.b-event</code>
+          pills (<code>--green</code>, <code>--orange</code>,
+          <code>--purple</code> recolor them). <code>.is-today</code> fills the
+          date disc with accent; <code>.is-other-month</code> dims spillover
+          days. Two weeks are enough to show the pattern — a real month just
+          repeats the same cells.
+        </p>
+        <div class="docs-demo">
+          <div class="b-calview">
+            <div class="b-calview__head">Mon</div>
+            <div class="b-calview__head">Tue</div>
+            <div class="b-calview__head">Wed</div>
+            <div class="b-calview__head">Thu</div>
+            <div class="b-calview__head">Fri</div>
+            <div class="b-calview__head">Sat</div>
+            <div class="b-calview__head">Sun</div>
+            <div class="b-calview__cell">
+              <span class="b-calview__date">24</span>
+              <span class="b-event">Standup</span>
+            </div>
+            <div class="b-calview__cell">
+              <span class="b-calview__date">25</span>
+              <span class="b-event b-event--purple">USSD demo</span>
+            </div>
+            <div class="b-calview__cell is-today">
+              <span class="b-calview__date">26</span>
+              <span class="b-event">Sprint review</span>
+              <span class="b-event b-event--green">1:1 Asha</span>
+            </div>
+            <div class="b-calview__cell">
+              <span class="b-calview__date">27</span>
+            </div>
+            <div class="b-calview__cell">
+              <span class="b-calview__date">28</span>
+              <span class="b-event b-event--orange">Campaign launch</span>
+            </div>
+            <div class="b-calview__cell">
+              <span class="b-calview__date">29</span>
+            </div>
+            <div class="b-calview__cell">
+              <span class="b-calview__date">30</span>
+            </div>
+            <div class="b-calview__cell">
+              <span class="b-calview__date">31</span>
+              <span class="b-event">Retro</span>
+            </div>
+            <div class="b-calview__cell is-other-month">
+              <span class="b-calview__date">1</span>
+            </div>
+            <div class="b-calview__cell is-other-month">
+              <span class="b-calview__date">2</span>
+              <span class="b-event b-event--purple">Board prep</span>
+            </div>
+            <div class="b-calview__cell is-other-month">
+              <span class="b-calview__date">3</span>
+            </div>
+            <div class="b-calview__cell is-other-month">
+              <span class="b-calview__date">4</span>
+            </div>
+            <div class="b-calview__cell is-other-month">
+              <span class="b-calview__date">5</span>
+            </div>
+            <div class="b-calview__cell is-other-month">
+              <span class="b-calview__date">6</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="gantt-view">
+        <h2>Gantt View</h2>
+        <p>
+          <code>.b-gantt</code> pairs a <code>__label</code> column with
+          <code>__row</code> tracks. Each <code>.b-gantt__bar</code> is placed
+          with two variables — <code>--start</code> and <code>--len</code> —
+          and an inner <code>&lt;i&gt;</code> fills to <code>--done</code> for
+          progress. Recolor per bar with <code>--b-chart-color</code>. The
+          background grid divides into <code>--b-gantt-units</code> columns
+          (default <code>12</code>) — set it on the container to match your
+          timescale.
+        </p>
+        <div class="docs-demo">
+          <div class="b-gantt" style="--b-gantt-units: 8">
+            <div class="b-gantt__label">Wire USSD flow</div>
+            <div class="b-gantt__row">
+              <div class="b-gantt__bar" style="--start: 0%; --len: 30%"><i style="--done: 70%"></i></div>
+            </div>
+            <div class="b-gantt__label">IVR prompts</div>
+            <div class="b-gantt__row">
+              <div class="b-gantt__bar" style="--start: 22%; --len: 32%; --b-chart-color: var(--b-chart-3)"><i style="--done: 45%"></i></div>
+            </div>
+            <div class="b-gantt__label">Agent console</div>
+            <div class="b-gantt__row">
+              <div class="b-gantt__bar" style="--start: 48%; --len: 38%; --b-chart-color: var(--b-chart-4)"><i style="--done: 20%"></i></div>
+            </div>
+            <div class="b-gantt__label">Campaign launch</div>
+            <div class="b-gantt__row">
+              <div class="b-gantt__bar" style="--start: 82%; --len: 14%; --b-chart-color: var(--b-chart-6)"><i style="--done: 0%"></i></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="activity-panel">
+        <h2>Activity Panel</h2>
+        <p>
+          There is no dedicated activity component — compose an inspector-style
+          card from <code>.b-card</code> and the
+          <a href="content.html">Content</a> page's <code>.b-timeline</code>:
+          time, title, body per event, with <code>.is-complete</code> /
+          <code>.is-active</code> dots marking progress.
+        </p>
+        <div class="docs-demo">
+          <div class="b-card" style="max-width: 24rem">
+            <div class="b-card__header">
+              <div class="b-card__title">Activity</div>
+              <span class="b-badge">Today</span>
+            </div>
+            <div class="b-card__body">
+              <ol class="b-timeline">
+                <li class="is-complete">
+                  <div class="b-timeline__time">09:14</div>
+                  <div class="b-timeline__title">Ticket #4821 resolved</div>
+                  <div class="b-timeline__body">Asha closed the billing escalation after a callback.</div>
+                </li>
+                <li class="is-active">
+                  <div class="b-timeline__time">11:02</div>
+                  <div class="b-timeline__title">USSD flow v3 deployed</div>
+                  <div class="b-timeline__body">Baraka pushed the new menu tree to staging.</div>
+                </li>
+                <li>
+                  <div class="b-timeline__time">13:40</div>
+                  <div class="b-timeline__title">Campaign queued</div>
+                  <div class="b-timeline__body">Nane Nane follow-ups scheduled for 15:00.</div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="inspector-and-properties-panel">
+        <h2>Inspector &amp; Properties Panel</h2>
+        <p>
+          <code>.b-inspector</code> is the trailing panel of the
+          <a href="#workspace-shell">workspace shell</a>: a sticky
+          <code>__header</code> with a close button, then stacked
+          <code>__section</code>s each led by an <code>&lt;h6&gt;</code>.
+          Inside, <code>.b-props</code> lays out label-control rows
+          (<code>__key</code> at a fixed <code>6rem</code>; inputs and selects
+          auto-shrink to the small control height). Shown standalone here —
+          inside a shell it docks with only a hairline start border.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <aside class="b-inspector" style="height: 20rem; border: 1px solid var(--b-separator); border-radius: var(--b-radius-xl);" aria-label="Inspector">
+            <header class="b-inspector__header">
+              Inspector
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Close inspector">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </header>
+            <div class="b-inspector__section">
+              <h6>Properties</h6>
+              <div class="b-props">
+                <div class="b-props__row">
+                  <label class="b-props__key" for="insp-name">Name</label>
+                  <input class="b-input" id="insp-name" value="Wire USSD flow">
+                </div>
+                <div class="b-props__row">
+                  <label class="b-props__key" for="insp-status">Status</label>
+                  <select class="b-select" id="insp-status">
+                    <option>Backlog</option>
+                    <option selected>In progress</option>
+                    <option>Done</option>
+                  </select>
+                </div>
+                <div class="b-props__row">
+                  <label class="b-props__key" for="insp-width">Width</label>
+                  <input class="b-slider" id="insp-width" type="range" min="0" max="100" value="64" style="--b-slider-fill: 64%">
+                </div>
+                <div class="b-props__row">
+                  <label class="b-props__key" for="insp-height">Height</label>
+                  <input class="b-slider" id="insp-height" type="range" min="0" max="100" value="32" style="--b-slider-fill: 32%">
+                </div>
+              </div>
+            </div>
+            <div class="b-inspector__section">
+              <h6>Details</h6>
+              <dl class="b-dl">
+                <dt>Created</dt><dd>Aug 12</dd>
+                <dt>Owner</dt><dd>Asha H.</dd>
+                <dt>Sprint</dt><dd>Sprint 24</dd>
+              </dl>
+            </div>
+          </aside>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Panels are landmarks: render the
+          inspector as <code>&lt;aside aria-label="Inspector"&gt;</code> and
+          the work surface as <code>&lt;main&gt;</code> so screen-reader users
+          can jump between them. Give every <code>__section</code> a real
+          heading (the <code>&lt;h6&gt;</code> here), label each control with a
+          <code>&lt;label for&gt;</code>, and give the icon-only close button
+          an <code>aria-label</code>.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="detail-view-and-master-detail">
+        <h2>Detail View &amp; Master-Detail</h2>
+        <p>
+          <code>.b-master-detail</code> splits a <code>__list</code> (a
+          <code>.b-list</code> of interactive rows, one
+          <code>.is-selected</code>) from a <code>__detail</code> pane. Below
+          <code>768px</code> the panes collapse to one at a time: the list
+          shows by default, and toggling <code>.is-detail-open</code> on the
+          container swaps in the detail — pair it with a back button in the
+          detail header.
+        </p>
+        <div class="docs-demo">
+          <div class="b-master-detail">
+            <div class="b-master-detail__list">
+              <ul class="b-list b-list--plain">
+                <li class="b-list-item b-list-item--interactive">
+                  <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">AH</span></span>
+                  <div class="b-list-item__content">
+                    <div class="b-list-item__title">#4821 — Billing escalation</div>
+                    <div class="b-list-item__subtitle">Resolved · Asha</div>
+                  </div>
+                  <span class="b-list-item__trailing">2h</span>
+                </li>
+                <li class="b-list-item b-list-item--interactive is-selected">
+                  <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">BO</span></span>
+                  <div class="b-list-item__content">
+                    <div class="b-list-item__title">#4832 — USSD menu loops</div>
+                    <div class="b-list-item__subtitle">Open · Baraka</div>
+                  </div>
+                  <span class="b-list-item__trailing">35m</span>
+                </li>
+                <li class="b-list-item b-list-item--interactive">
+                  <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">JK</span></span>
+                  <div class="b-list-item__content">
+                    <div class="b-list-item__title">#4835 — Recording missing</div>
+                    <div class="b-list-item__subtitle">Open · Joseph</div>
+                  </div>
+                  <span class="b-list-item__trailing">12m</span>
+                </li>
+              </ul>
+            </div>
+            <div class="b-master-detail__detail">
+              <h4>#4832 — USSD menu loops</h4>
+              <p>Caller reports the airtime menu returns to the root after option 3. Reproduced on the staging shortcode; likely a session-state regression in flow v3.</p>
+              <dl class="b-dl">
+                <dt>Status</dt><dd><span class="b-badge b-badge--warning">Open</span></dd>
+                <dt>Assignee</dt><dd>Baraka O.</dd>
+                <dt>Due</dt><dd>Aug 28</dd>
+              </dl>
+              <div class="b-hstack" style="margin-block-start: var(--b-space-4)">
+                <button class="b-btn b-btn--primary">Mark resolved</button>
+                <button class="b-btn">Reassign</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="split-pane">
+        <h2>Split Pane</h2>
+        <p>
+          Resizable side-by-side panels are covered in
+          <a href="layout.html">Layout</a> — <code>.b-split</code> +
+          <code>.b-panel</code> with a <code>.b-resize-handle</code> between
+          them, the leading panel made draggable via <code>.b-resizable</code>.
+        </p>
+        <div class="docs-demo">
+          <div class="b-split" style="height: 9rem">
+            <div class="b-panel b-resizable" style="flex: 0 0 38%; padding: var(--b-space-4);">Queue</div>
+            <div class="b-resize-handle" role="separator" aria-orientation="vertical" aria-label="Resize panels"></div>
+            <div class="b-panel" style="flex: 1; padding: var(--b-space-4);">Transcript</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="dock">
+        <h2>Dock</h2>
+        <p>
+          A macOS-style app switcher. In production the glass
+          <code>.b-dock__tray</code> sits inside <code>.b-dock</code>, which
+          fixes it to the bottom of the viewport — shown statically here.
+          Items magnify and lift on hover (<code>scale&nbsp;1.28</code> with a
+          bounce ease) and <code>.is-active</code> draws the running-app dot.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div class="b-dock__tray">
+            <button class="b-dock__item is-active" aria-label="Calls">📞</button>
+            <button class="b-dock__item" aria-label="Inbox">📥</button>
+            <button class="b-dock__item" aria-label="Contacts">👥</button>
+            <button class="b-dock__item" aria-label="Reports">📊</button>
+            <button class="b-dock__item" aria-label="Settings">⚙️</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="toolbar">
+        <h2>Toolbar</h2>
+        <p>
+          The toolbar family lives in <a href="actions.html#toolbar">Actions</a>;
+          in a workspace it floats over the board as
+          <code>.b-toolbar--glass</code> with the view's bulk actions at the
+          trailing end.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div class="b-toolbar b-toolbar--glass" role="toolbar" aria-label="Board tools">
+            <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Add task">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+            <button class="b-btn b-btn--ghost b-btn--sm">Filter</button>
+            <button class="b-btn b-btn--ghost b-btn--sm">Group</button>
+            <hr class="b-divider b-divider--vertical">
+            <button class="b-btn b-btn--tinted b-btn--sm">Share board</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="app-grid">
+        <h2>App Grid</h2>
+        <p>
+          The iOS home screen: squircle icons with their names beneath, in an
+          auto-filling grid. <code>.is-soon</code> dims an unreleased tile;
+          <code>__hint</code> carries a quiet second line.
+        </p>
+        <div class="docs-demo">
+          <ul class="b-app-grid" style="max-width: 26rem">
+            <li><a class="b-app-tile" href="#app-grid">
+              <span class="b-app-tile__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="4" fill="currentColor" opacity="0.25"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="b-app-tile__label">Mail</span>
+            </a></li>
+            <li><a class="b-app-tile" href="#app-grid">
+              <span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-teal), var(--b-color-cyan))"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M3.5 5.5A1.5 1.5 0 0 1 5 4h3l1.5 2H15a1.5 1.5 0 0 1 1.5 1.5V14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+              <span class="b-app-tile__label">Drive</span>
+            </a></li>
+            <li><a class="b-app-tile" href="#app-grid">
+              <span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-indigo), var(--b-color-purple))"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 10h13M10 3.5c2 2 2 11 0 13-2-2-2-11 0-13Z" stroke="currentColor" stroke-width="1.3"/></svg></span>
+              <span class="b-app-tile__label">Domains</span>
+            </a></li>
+            <li><span class="b-app-tile is-soon">
+              <span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-green), var(--b-color-mint))"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="4" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="11" width="14" height="4" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg></span>
+              <span class="b-app-tile__label">Hosting</span>
+              <span class="b-app-tile__hint">Soon</span>
+            </span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="docs-section" id="ornament">
+        <h2>Ornament</h2>
+        <p>
+          visionOS's ornament, translated: a floating glass control cluster
+          hanging half-off a panel's edge. Wrap the panel in
+          <code>.b-ornament-host</code>; the ornament names its edge —
+          <code>--bottom</code>, <code>--top</code>, <code>--start</code>,
+          <code>--end</code>.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center" style="padding-block: var(--b-space-12)">
+          <div class="b-ornament-host b-card" style="width: min(26rem, 100%)">
+            <div class="b-card__body" style="min-height: 9rem">
+              <div class="b-card__title">Q3 research.pdf</div>
+              <div class="b-card__subtitle">Page 4 of 18</div>
+            </div>
+            <div class="b-ornament b-ornament--bottom" role="toolbar" aria-label="Document controls">
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Previous page">‹</button>
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Zoom out">−</button>
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Zoom in">+</button>
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Next page">›</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="status-bar">
+        <h2>Status Bar</h2>
+        <p>
+          <code>.b-statusbar</code> is the thin strip along the bottom of a
+          shell: tabular-numeral <code>__item</code> entries with a hairline
+          top border. Pair it with a <code>.b-status</code> dot for connection
+          state and a <code>.b-spacer</code> to split leading from trailing
+          items.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-statusbar">
+            <span class="b-statusbar__item">
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" aria-hidden="true"><circle cx="4.5" cy="3.5" r="1.6" stroke="currentColor" stroke-width="1.3"/><circle cx="4.5" cy="12.5" r="1.6" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 5.1v5.8M11.5 6.1a5 5 0 0 1-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              main
+            </span>
+            <span class="b-statusbar__item"><span class="b-status b-status--online">Synced</span></span>
+            <span class="b-spacer"></span>
+            <span class="b-statusbar__item">Ln 42, Col 7</span>
+            <span class="b-statusbar__item">UTF-8</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="control-center">
+        <h2>Control Center</h2>
+        <p>
+          The iOS-style glass tile grid — <code>.b-cc</code> — for quick
+          settings, connectivity, and media. Tiles span the 4-column grid
+          (<code>--2x2</code>, <code>--2x1</code>, <code>--4x1</code>,
+          <code>--round</code>); toggle pills flip with
+          <code>.b-cc__icon.is-on</code>, and the chunky
+          <code>__range</code> sliders hide a real
+          <code>&lt;input type="range"&gt;</code> for keyboard and screen-reader
+          access. Best floated over wallpaper-grade color.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center" style="padding-block: var(--b-space-10)">
+          <div class="b-cc">
+            <div class="b-cc__tile b-cc__tile--2x2">
+              <div class="b-cc__pill">
+                <button class="b-cc__icon is-on" aria-pressed="true" aria-label="Wi-Fi on">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M2.5 8a11 11 0 0 1 15 0M5 11a7.3 7.3 0 0 1 10 0M7.6 13.8a3.6 3.6 0 0 1 4.8 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="16.2" r="1.1" fill="currentColor"/></svg>
+                </button>
+                <span class="b-cc__meta"><span class="b-cc__label">Wi-Fi</span><br><span class="b-cc__status">Ghala</span></span>
+              </div>
+              <div class="b-cc__pill">
+                <button class="b-cc__icon is-on" aria-pressed="true" aria-label="Bluetooth on">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M6 6.5 14 13l-4 3.5v-13L14 7l-8 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <span class="b-cc__meta"><span class="b-cc__label">Bluetooth</span><br><span class="b-cc__status">On</span></span>
+              </div>
+              <div class="b-cc__pill">
+                <button class="b-cc__icon" aria-pressed="false" aria-label="AirDrop">
+                  <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 13.5a5 5 0 0 1 0-7M13.5 6.5a5 5 0 0 1 0 7M4.4 15.6a8 8 0 0 1 0-11.2M15.6 4.4a8 8 0 0 1 0 11.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                </button>
+                <span class="b-cc__meta"><span class="b-cc__label">AirDrop</span><br><span class="b-cc__status">Everyone</span></span>
+              </div>
+            </div>
+
+            <div class="b-cc__tile b-cc__tile--2x2">
+              <span class="b-cc__art" aria-hidden="true"></span>
+              <span class="b-cc__meta"><span class="b-cc__label">Not Playing</span></span>
+              <div class="b-cc__transport">
+                <button aria-label="Previous"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 4h2v12H4zM16 4l-9 6 9 6V4Z"/></svg></button>
+                <button aria-label="Play"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 4l10 6-10 6V4Z"/></svg></button>
+                <button aria-label="Next"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M14 4h2v12h-2zM4 4l9 6-9 6V4Z"/></svg></button>
+              </div>
+            </div>
+
+            <button class="b-cc__tile b-cc__tile--round b-cc__icon is-on--white" aria-pressed="true" aria-label="Dark mode">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M16 12.5A7 7 0 0 1 7.5 4a7 7 0 1 0 8.5 8.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="b-cc__tile b-cc__tile--round b-cc__icon" aria-pressed="false" aria-label="Screen mirroring">
+              <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 17h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="b-cc__tile b-cc__tile--2x1">
+              <div class="b-cc__pill">
+                <button class="b-cc__icon is-on" aria-pressed="true" aria-label="Do Not Disturb on" style="background: var(--b-color-indigo)">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M15.5 12A6.5 6.5 0 0 1 8 4.5 6.5 6.5 0 1 0 15.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </button>
+                <span class="b-cc__meta"><span class="b-cc__label">Do Not Disturb</span><br><span class="b-cc__status">On</span></span>
+              </div>
+            </div>
+
+            <div class="b-cc__tile b-cc__tile--4x1">
+              <span class="b-cc__label">Display</span>
+              <div class="b-cc__range" style="--v: 62%">
+                <i></i>
+                <span class="b-cc__range-icon b-cc__range-icon--start"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.4"/><path d="M10 3v1.5M10 15.5V17M3 10h1.5M15.5 10H17M5 5l1 1M14 14l1 1M15 5l-1 1M6 14l-1 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+                <input type="range" min="0" max="100" value="62" aria-label="Display brightness">
+              </div>
+            </div>
+
+            <div class="b-cc__tile b-cc__tile--4x1">
+              <span class="b-cc__label">Sound</span>
+              <div class="b-cc__range" style="--v: 45%">
+                <i></i>
+                <span class="b-cc__range-icon b-cc__range-icon--start"><svg viewBox="0 0 20 20" fill="none"><path d="M4 8v4h3l4 3V5L7 8H4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+                <span class="b-cc__range-icon b-cc__range-icon--end"><svg viewBox="0 0 20 20" fill="none"><path d="M4 8v4h3l4 3V5L7 8H4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M13.5 7.5a3.5 3.5 0 0 1 0 5M15.5 5.5a6.5 6.5 0 0 1 0 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+                <input type="range" min="0" max="100" value="45" aria-label="Sound volume">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Every tile control is a real
+          <code>&lt;button&gt;</code> with <code>aria-pressed</code> state and a
+          label; the sliders overlay an invisible native
+          <code>&lt;input type="range"&gt;</code>, so keyboard arrows and
+          VoiceOver work exactly like the system Control Center.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="liquid-glass">
+        <h2>Liquid Glass Objects</h2>
+        <p>
+          Decorative-grade glass primitives in the Apple Developer "liquid"
+          style — a refractive <code>.b-lens</code> button, a
+          <code>.b-liquid-toggle</code> with a colored core inside a glass
+          capsule, and a <code>.b-liquid-bar</code> gradient slider with a
+          glass cap. Drawn entirely in CSS: layered radial highlights, inset
+          rims, and backdrop blur.
+        </p>
+        <p>
+          Barua glass has three tiers. Tier 1 — blur, tint and specular edges —
+          works in every modern browser. Tier 2 is <strong>real refraction</strong>:
+          on Chromium, <code>barua.js</code> injects an SVG displacement-map
+          filter (<code>#b-refract</code>) and adds <code>.b-refract</code> to
+          <code>&lt;html&gt;</code>, so these objects optically bend whatever
+          sits behind them through <code>backdrop-filter: url()</code> — put
+          one over strong color and the backdrop visibly warps at the rim.
+          Safari and Firefox keep Tier 1 automatically. Tier 3 (WebGL) is
+          deliberately not shipped; Tier 2 covers the optics without a render
+          pipeline.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--row" style="justify-content: center; gap: var(--b-space-10); padding-block: var(--b-space-12)">
+          <button class="b-liquid-toggle" aria-pressed="true" aria-label="Liquid toggle"
+            onclick="this.setAttribute('aria-pressed', this.getAttribute('aria-pressed')==='true'?'false':'true')"></button>
+          <button class="b-lens" aria-label="Add">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="b-liquid-bar" style="--v: 64%" role="img" aria-label="Gradient level indicator at 64%"><i></i><b></b></div>
+          <span class="b-liquid-capsule" aria-hidden="true" style="--b-capsule-w: 8rem; --b-capsule-h: 4rem"></span>
+          <div class="b-liquid-bar b-liquid-bar--accent" style="--v: 46%; --b-liquid-bar-w: 11rem" role="img" aria-label="Level indicator at 46%"><i></i></div>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="system.html">← System Pages</a>
+        <a class="b-btn b-btn--ghost" href="interaction.html">Interaction →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

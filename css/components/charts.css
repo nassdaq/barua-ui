@@ -1,0 +1,358 @@
+/* ==========================================================================
+   Barua UI — Data Visualization
+   Chart frame, Legend, Axis, CSS bar/column charts, pie/donut/gauge via
+   conic-gradient, heatmap, sparkline & SVG line/area/scatter/radar styling,
+   progress chart, chart tooltip.
+   Series colors: --b-chart-1 … --b-chart-6.
+   ========================================================================== */
+
+@layer components {
+  :root {
+    --b-chart-1: var(--b-color-accent);
+    --b-chart-2: var(--b-color-teal);
+    --b-chart-3: var(--b-color-purple);
+    --b-chart-4: var(--b-color-orange);
+    --b-chart-5: var(--b-color-pink);
+    --b-chart-6: var(--b-color-green);
+  }
+
+  /* ---- Chart frame -------------------------------------------------------- */
+  .b-chart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-3);
+  }
+  .b-chart__title { font-size: var(--b-text-subheadline); font-weight: var(--b-weight-semibold); }
+  .b-chart__canvas { position: relative; }
+
+  /* ---- Legend ------------------------------------------------------------- */
+  .b-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--b-space-2) var(--b-space-4);
+    font-size: var(--b-text-caption);
+    color: var(--b-text-secondary);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .b-legend li { display: inline-flex; align-items: center; gap: var(--b-space-1); }
+  .b-legend__swatch {
+    width: 0.6rem; height: 0.6rem;
+    border-radius: 2px;
+    background: var(--b-chart-1);
+    flex: none;
+  }
+
+  /* ---- Axis --------------------------------------------------------------- */
+  .b-axis {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--b-text-caption2);
+    color: var(--b-text-tertiary);
+    font-variant-numeric: tabular-nums;
+  }
+  .b-axis--y {
+    flex-direction: column;
+    text-align: end;
+    justify-content: space-between;
+  }
+  .b-gridlines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  .b-gridlines > i { border-top: 1px dashed var(--b-separator); }
+
+  /* ---- Column chart (vertical bars) ---------------------------------------
+     <div class="b-columns" style="--b-chart-h: 10rem">
+       <div class="b-columns__bar" style="--v: 62%" data-label="Mon"></div>…
+  --------------------------------------------------------------------------- */
+  .b-columns {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--b-space-2);
+    height: var(--b-chart-h, 10rem);
+    padding-block-end: 1.4rem;
+    position: relative;
+  }
+  .b-columns__bar {
+    position: relative;
+    flex: 1;
+    height: var(--v, 50%);
+    min-width: 0.5rem;
+    background: var(--b-chart-color, var(--b-chart-1));
+    border-radius: var(--b-radius-xs) var(--b-radius-xs) 0 0;
+    transition: height var(--b-duration-slow) var(--b-ease-out),
+                opacity var(--b-duration-fast);
+  }
+  .b-columns__bar:hover { opacity: 0.85; }
+  .b-columns__bar::after {
+    content: attr(data-label);
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    inset-inline: 0;
+    text-align: center;
+    font-size: var(--b-text-caption2);
+    color: var(--b-text-tertiary);
+    white-space: nowrap;
+  }
+  .b-columns--rounded .b-columns__bar { border-radius: var(--b-radius-full); min-width: 0.625rem; }
+
+  /* Stacked segment inside a column */
+  .b-columns__bar > i {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: var(--v, 30%);
+    background: var(--b-chart-color, var(--b-chart-2));
+    border-radius: inherit;
+  }
+
+  /* ---- Bar chart (horizontal) ----------------------------------------------
+     <div class="b-bars">
+       <div class="b-bars__row"><span class="b-bars__label">Kenya</span>
+         <div class="b-bars__track"><i style="--v: 80%"></i></div>
+         <span class="b-bars__value">80%</span></div>…
+  --------------------------------------------------------------------------- */
+  .b-bars { display: flex; flex-direction: column; gap: var(--b-space-2); }
+  .b-bars__row {
+    display: grid;
+    grid-template-columns: var(--b-bars-label-w, 6rem) 1fr max-content;
+    align-items: center;
+    gap: var(--b-space-3);
+    font-size: var(--b-text-caption);
+  }
+  .b-bars__label { color: var(--b-text-secondary); text-align: end; }
+  .b-bars__track {
+    height: 0.625rem;
+    background: var(--b-fill-quaternary);
+    border-radius: var(--b-radius-full);
+    overflow: hidden;
+  }
+  .b-bars__track > i {
+    display: block;
+    height: 100%;
+    width: var(--v, 50%);
+    background: var(--b-chart-color, var(--b-chart-1));
+    border-radius: inherit;
+    transition: width var(--b-duration-slow) var(--b-ease-out);
+  }
+  .b-bars__value { font-variant-numeric: tabular-nums; color: var(--b-text-secondary); }
+
+  /* ---- Pie / Donut ----------------------------------------------------------
+     <div class="b-pie" style="--b-pie:
+       var(--b-chart-1) 0 45%, var(--b-chart-2) 45% 78%, var(--b-chart-3) 78% 100%">
+  --------------------------------------------------------------------------- */
+  .b-pie {
+    width: var(--b-pie-size, 9rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(var(--b-pie));
+  }
+  .b-donut {
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  .b-donut > .b-pie {
+    -webkit-mask: radial-gradient(farthest-side, transparent var(--b-donut-hole, 62%),
+      #000 calc(var(--b-donut-hole, 62%) + 0.5px));
+    mask: radial-gradient(farthest-side, transparent var(--b-donut-hole, 62%),
+      #000 calc(var(--b-donut-hole, 62%) + 0.5px));
+    grid-area: 1 / 1;
+  }
+  .b-donut__center {
+    grid-area: 1 / 1;
+    text-align: center;
+  }
+  .b-donut__center .b-stat__value { font-size: var(--b-text-title2); }
+
+  /* ---- Gauge (half donut) ---------------------------------------------------- */
+  .b-gauge {
+    position: relative;
+    width: var(--b-gauge-size, 10rem);
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+  }
+  .b-gauge::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 -100% 0;
+    border-radius: 50%;
+    background: conic-gradient(from -90deg,
+      var(--b-chart-color, var(--b-chart-1)) calc(var(--b-progress, 60) * 0.5%),
+      var(--b-fill-tertiary) 0 50%,
+      transparent 50%);
+    -webkit-mask: radial-gradient(farthest-side, transparent 64%, #000 64.5%);
+    mask: radial-gradient(farthest-side, transparent 64%, #000 64.5%);
+  }
+  .b-gauge__value {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    text-align: center;
+    font-size: var(--b-text-title2);
+    font-weight: var(--b-weight-bold);
+    font-variant-numeric: tabular-nums;
+  }
+  .b-gauge__label {
+    position: absolute;
+    inset-inline: 0;
+    bottom: -1.4rem;
+    text-align: center;
+    font-size: var(--b-text-caption);
+    color: var(--b-text-secondary);
+  }
+
+  /* ---- Heatmap ---------------------------------------------------------------
+     <div class="b-heatmap" style="--b-heatmap-cols: 12">
+       <i style="--v: 0.4"></i>…      (v: 0–1 intensity)
+  --------------------------------------------------------------------------- */
+  .b-heatmap {
+    display: grid;
+    grid-template-columns: repeat(var(--b-heatmap-cols, 7), 1fr);
+    gap: 3px;
+  }
+  .b-heatmap > i {
+    aspect-ratio: 1;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--b-chart-color, var(--b-chart-1))
+      calc(var(--v, 0) * 100%), var(--b-fill-quaternary));
+    transition: scale var(--b-duration-fast) var(--b-ease-standard);
+  }
+  .b-heatmap > i:hover { scale: 1.2; }
+
+  /* ---- Sparkline & SVG chart styling ------------------------------------------ */
+  .b-sparkline { width: 100%; height: 2rem; overflow: visible; }
+  .b-sparkline path, .b-line-svg path.b-series {
+    fill: none;
+    stroke: var(--b-chart-color, var(--b-chart-1));
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .b-line-svg, .b-area-svg, .b-scatter-svg, .b-radar-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .b-area-fill {
+    fill: color-mix(in srgb, var(--b-chart-color, var(--b-chart-1)) 18%, transparent);
+    stroke: none;
+  }
+  .b-svg-grid { stroke: var(--b-separator); stroke-dasharray: 3 4; stroke-width: 1; }
+  .b-svg-axis-label {
+    fill: var(--b-text-tertiary);
+    font-size: 0.625rem;
+    font-family: var(--b-font-sans);
+  }
+  .b-dot {
+    fill: var(--b-chart-color, var(--b-chart-1));
+    stroke: var(--b-bg);
+    stroke-width: 1.5;
+    transition: r var(--b-duration-fast);
+  }
+  .b-dot:hover { r: 6; }
+  .b-radar-svg polygon.b-series {
+    fill: color-mix(in srgb, var(--b-chart-color, var(--b-chart-1)) 22%, transparent);
+    stroke: var(--b-chart-color, var(--b-chart-1));
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  .b-radar-svg polygon.b-web, .b-radar-svg line.b-web {
+    fill: none;
+    stroke: var(--b-separator);
+    stroke-width: 1;
+  }
+
+  /* ---- Progress chart (multi progress rows) ------------------------------------ */
+  .b-progress-chart { display: flex; flex-direction: column; gap: var(--b-space-3); }
+  .b-progress-chart__row { display: flex; flex-direction: column; gap: var(--b-space-1); }
+  .b-progress-chart__head {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--b-text-caption);
+    color: var(--b-text-secondary);
+  }
+
+  /* ---- Rule mark (Swift Charts RuleMark) — a goal/threshold line ----------- */
+  .b-rule {
+    position: absolute;
+    inset-inline: 0;
+    border-top: 1.5px dashed var(--b-color-danger);
+    pointer-events: none;
+  }
+  .b-rule--accent { border-top-color: var(--b-color-accent); }
+  .b-rule__label {
+    position: absolute;
+    inset-inline-end: 0;
+    translate: 0 -100%;
+    padding: 0 var(--b-space-1);
+    font-size: var(--b-text-caption2);
+    font-weight: var(--b-weight-semibold);
+    color: inherit;
+    background: var(--b-surface);
+    border-radius: var(--b-radius-xs);
+  }
+  .b-rule { color: var(--b-color-danger); }
+  .b-rule--accent { color: var(--b-color-accent-text); }
+
+  /* ---- Linear gauge (SwiftUI Gauge, linear style) --------------------------- */
+  .b-gauge-linear { display: flex; flex-direction: column; gap: var(--b-space-1); }
+  .b-gauge-linear__track {
+    position: relative;
+    height: 0.375rem;
+    border-radius: var(--b-radius-full);
+    background: linear-gradient(90deg, var(--b-color-green), var(--b-color-yellow), var(--b-color-red));
+  }
+  .b-gauge-linear__track--plain { background: var(--b-fill-tertiary); }
+  .b-gauge-linear__marker {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: var(--v, 50%);
+    translate: -50% -50%;
+    width: 0.85rem;
+    height: 0.85rem;
+    background: light-dark(#fff, #f5f6fa);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+  }
+  .b-gauge-linear__labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--b-text-caption2);
+    color: var(--b-text-tertiary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- Chart Tooltip (data point) ----------------------------------------------- */
+  .b-chart-tip {
+    position: absolute;
+    z-index: var(--b-z-tooltip);
+    padding: var(--b-space-1) var(--b-space-2);
+    font-size: var(--b-text-caption);
+    font-weight: var(--b-weight-medium);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: light-dark(#fff, #0c0c10);
+    background: light-dark(rgba(24, 26, 34, 0.92), rgba(245, 246, 250, 0.95));
+    border-radius: var(--b-radius-sm);
+    box-shadow: var(--b-shadow-sm);
+    translate: -50% calc(-100% - 6px);
+    pointer-events: none;
+  }
+  .b-chart-tip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    border: 4px solid transparent;
+    border-top-color: light-dark(rgba(24, 26, 34, 0.92), rgba(245, 246, 250, 0.95));
+  }
+}

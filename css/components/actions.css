@@ -1,0 +1,371 @@
+/* ==========================================================================
+   Barua UI — Actions
+   Button, Icon Button, FAB, Button Group, Split Button, Toggle Button,
+   Link, Link Group, Toolbar, Action Menu trigger.
+   ========================================================================== */
+
+@layer components {
+  /* ---- Button ------------------------------------------------------------ */
+  .b-btn {
+    --b-disabled-pointer: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--b-space-2);
+    height: var(--b-control-h-md);
+    padding-inline: var(--b-space-4);
+    font-size: var(--b-text-subheadline);
+    font-weight: var(--b-weight-semibold);
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--b-text);
+    background: var(--b-fill-secondary);
+    border: none;
+    border-radius: var(--b-radius-md);
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background var(--b-duration-fast) var(--b-ease-standard),
+                color var(--b-duration-fast) var(--b-ease-standard),
+                box-shadow var(--b-duration-fast) var(--b-ease-standard),
+                scale var(--b-duration-instant) var(--b-ease-standard);
+  }
+  .b-btn:hover { background: var(--b-fill); text-decoration: none; }
+  .b-btn:active, .b-btn.is-pressed { scale: 0.97; }
+  .b-btn svg { width: 1.1em; height: 1.1em; flex: none; }
+
+  /* Variants */
+  .b-btn--primary {
+    color: var(--b-color-on-accent);
+    background: var(--b-color-accent);
+    box-shadow: var(--b-shadow-xs);
+  }
+  .b-btn--primary:hover { background: var(--b-color-accent-hover); }
+  .b-btn--primary.is-active { background: var(--b-color-accent-active); }
+
+  .b-btn--tinted {
+    color: var(--b-color-accent-text);
+    background: var(--b-color-accent-soft);
+  }
+  .b-btn--tinted:hover {
+    background: color-mix(in srgb, var(--b-color-accent) 22%, transparent);
+  }
+
+  /* Liquid glass primary — glossy accent pane with a light-catch */
+  .b-btn--liquid {
+    color: var(--b-color-on-accent);
+    background:
+      radial-gradient(120% 140% at 30% 12%, rgba(255, 255, 255, 0.38), transparent 42%),
+      var(--b-color-accent);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 0 0 1px color-mix(in srgb, var(--b-color-accent) 55%, transparent),
+      var(--b-shadow-accent);
+  }
+  .b-btn--liquid:hover {
+    background:
+      radial-gradient(120% 140% at 30% 12%, rgba(255, 255, 255, 0.45), transparent 44%),
+      var(--b-color-accent-hover);
+  }
+  .b-btn--liquid.is-loading::after {
+    border-color: rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+  }
+
+  .b-btn--outline {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--b-border-strong);
+  }
+  .b-btn--outline:hover { background: var(--b-fill-quaternary); }
+
+  .b-btn--ghost { background: transparent; }
+  .b-btn--ghost:hover { background: var(--b-fill-tertiary); }
+
+  .b-btn--glass {
+    position: relative;
+    background: var(--b-material-thin-bg);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    box-shadow: var(--b-glass-shadow);
+    overflow: hidden;
+    transition: background var(--b-duration-fast) var(--b-ease-standard),
+                box-shadow var(--b-duration-fast) var(--b-ease-standard),
+                scale var(--b-duration-instant) var(--b-ease-standard),
+                translate var(--b-duration-fast) var(--b-ease-standard);
+  }
+  .b-btn--glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+  .b-btn--glass:hover {
+    background: var(--b-material-regular-bg);
+    box-shadow: var(--b-glass-lensing), var(--b-glass-ambient);
+  }
+  .b-btn--glass:active {
+    scale: 0.97;
+    background: var(--b-material-thick-bg);
+    box-shadow: var(--b-glass-lensing);
+  }
+  /* Shimmer sweep on press */
+  .b-btn--glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--b-glass-shimmer);
+    background-size: 250% 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--b-duration-fast);
+  }
+  .b-btn--glass:active::after {
+    opacity: 1;
+    animation: b-glass-shimmer var(--b-glass-shimmer-duration) var(--b-ease-out) forwards;
+  }
+
+  /* Clear variant — more transparent, for media-rich backgrounds */
+  .b-btn--glass-clear {
+    position: relative;
+    background: light-dark(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+    -webkit-backdrop-filter: blur(var(--b-blur-md)) saturate(1.5);
+    backdrop-filter: blur(var(--b-blur-md)) saturate(1.5);
+    box-shadow: var(--b-glass-shadow);
+    overflow: hidden;
+  }
+  .b-btn--glass-clear::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+  .b-btn--glass-clear:hover {
+    background: light-dark(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.10));
+  }
+  .b-btn--glass-clear:active {
+    scale: 0.97;
+    background: light-dark(rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.14));
+  }
+  .b-btn--glass-clear::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--b-glass-shimmer);
+    background-size: 250% 100%;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .b-btn--glass-clear:active::after {
+    opacity: 1;
+    animation: b-glass-shimmer var(--b-glass-shimmer-duration) var(--b-ease-out) forwards;
+  }
+
+  /* Glass prominent — tinted accent glass for primary actions */
+  .b-btn--glass-prominent {
+    position: relative;
+    background: var(--b-glass-tint-strong);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    box-shadow: var(--b-glass-shadow);
+    overflow: hidden;
+  }
+  .b-btn--glass-prominent::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+  .b-btn--glass-prominent:hover {
+    background: light-dark(rgba(10, 122, 255, 0.18), rgba(10, 132, 255, 0.26));
+  }
+  .b-btn--glass-prominent:active {
+    scale: 0.97;
+    background: light-dark(rgba(10, 122, 255, 0.24), rgba(10, 132, 255, 0.32));
+  }
+  .b-btn--glass-prominent::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--b-glass-shimmer);
+    background-size: 250% 100%;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .b-btn--glass-prominent:active::after {
+    opacity: 1;
+    animation: b-glass-shimmer var(--b-glass-shimmer-duration) var(--b-ease-out) forwards;
+  }
+
+  .b-btn--danger { color: var(--b-color-on-accent); background: var(--b-color-danger); }
+  .b-btn--danger:hover { background: color-mix(in srgb, var(--b-color-danger) 85%, black); }
+  .b-btn--danger-tinted { color: var(--b-color-danger); background: var(--b-color-danger-soft); }
+  .b-btn--danger-tinted:hover { background: color-mix(in srgb, var(--b-color-red) 22%, transparent); }
+  .b-btn--success { color: var(--b-color-on-accent); background: var(--b-color-success); }
+  .b-btn--success:hover { background: color-mix(in srgb, var(--b-color-success) 85%, black); }
+
+  /* Sizes */
+  .b-btn--xs { height: var(--b-control-h-xs); padding-inline: var(--b-space-2); font-size: var(--b-text-caption); border-radius: var(--b-radius-sm); }
+  .b-btn--sm { height: var(--b-control-h-sm); padding-inline: var(--b-space-3); font-size: var(--b-text-footnote); border-radius: var(--b-radius-sm); }
+  .b-btn--lg { height: var(--b-control-h-lg); padding-inline: var(--b-space-5); font-size: var(--b-text-callout); border-radius: var(--b-radius-lg); }
+  .b-btn--xl { height: var(--b-control-h-xl); padding-inline: var(--b-space-6); font-size: var(--b-text-body); border-radius: var(--b-radius-lg); }
+  .b-btn--pill { border-radius: var(--b-radius-full); }
+  .b-btn--block { display: flex; width: 100%; }
+
+  /* Loading */
+  .b-btn.is-loading { position: relative; color: transparent !important; pointer-events: none; }
+  .b-btn.is-loading::after {
+    content: "";
+    position: absolute;
+    width: 1em; height: 1em;
+    border: 2px solid color-mix(in srgb, currentColor 0%, var(--b-text-tertiary));
+    border-top-color: var(--b-text);
+    border-radius: 50%;
+    animation: b-spin 0.7s linear infinite;
+  }
+  .b-btn--primary.is-loading::after,
+  .b-btn--danger.is-loading::after {
+    border-color: rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+  }
+
+  /* ---- Icon Button ------------------------------------------------------- */
+  .b-icon-btn {
+    aspect-ratio: 1;
+    padding-inline: 0;
+    width: var(--b-control-h-md);
+  }
+  .b-icon-btn.b-btn--xs { width: var(--b-control-h-xs); }
+  .b-icon-btn.b-btn--sm { width: var(--b-control-h-sm); }
+  .b-icon-btn.b-btn--lg { width: var(--b-control-h-lg); }
+  .b-icon-btn.b-btn--xl { width: var(--b-control-h-xl); }
+  .b-icon-btn svg { width: 1.25em; height: 1.25em; }
+
+  /* ---- Floating Action Button ------------------------------------------- */
+  .b-fab {
+    position: fixed;
+    inset-block-end: max(var(--b-space-6), env(safe-area-inset-bottom));
+    inset-inline-end: var(--b-space-6);
+    z-index: var(--b-z-sticky);
+    width: 3.5rem; height: 3.5rem;
+    border-radius: var(--b-radius-full);
+    color: var(--b-color-on-accent);
+    background: var(--b-color-accent);
+    box-shadow: var(--b-shadow-lg), var(--b-shadow-accent);
+  }
+  .b-fab:hover { background: var(--b-color-accent-hover); translate: 0 -2px; }
+  .b-fab--extended { width: auto; padding-inline: var(--b-space-5); gap: var(--b-space-2); }
+
+  /* ---- Button Group ------------------------------------------------------ */
+  .b-btn-group {
+    display: inline-flex;
+    isolation: isolate;
+  }
+  .b-btn-group > .b-btn { border-radius: 0; }
+  .b-btn-group > .b-btn:first-child {
+    border-start-start-radius: var(--b-radius-md);
+    border-end-start-radius: var(--b-radius-md);
+  }
+  .b-btn-group > .b-btn:last-child {
+    border-start-end-radius: var(--b-radius-md);
+    border-end-end-radius: var(--b-radius-md);
+  }
+  .b-btn-group > .b-btn + .b-btn { margin-inline-start: 1px; }
+  .b-btn-group--attached > .b-btn + .b-btn {
+    margin-inline-start: 0;
+    box-shadow: inset 1px 0 0 var(--b-hairline);
+  }
+
+  /* ---- Split Button ------------------------------------------------------ */
+  .b-split-btn { display: inline-flex; isolation: isolate; }
+  .b-split-btn > .b-btn:first-child {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+  .b-split-btn > .b-btn:last-child {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    margin-inline-start: 1px;
+    padding-inline: var(--b-space-2);
+  }
+
+  /* ---- Toggle Button ----------------------------------------------------- */
+  .b-toggle-btn[aria-pressed="true"], .b-btn.is-active {
+    color: var(--b-color-accent-text);
+    background: var(--b-color-accent-soft);
+  }
+  .b-toggle-btn[aria-pressed="true"]:hover {
+    background: color-mix(in srgb, var(--b-color-accent) 22%, transparent);
+  }
+
+  /* ---- Link & Link Group ------------------------------------------------- */
+  .b-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--b-space-1);
+    color: var(--b-color-accent-text);
+    font-weight: var(--b-weight-medium);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .b-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .b-link--muted { color: var(--b-text-secondary); }
+  .b-link--muted:hover { color: var(--b-text); }
+  .b-link--danger { color: var(--b-color-danger); }
+  .b-link svg { width: 1em; height: 1em; }
+  .b-link-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--b-space-2) var(--b-space-4);
+  }
+  .b-link-group--divided > * + *::before {
+    content: "·";
+    color: var(--b-text-quaternary);
+    margin-inline-end: var(--b-space-4);
+  }
+
+  /* ---- Share (SwiftUI ShareLink) — wire with data-b-share via barua.js ----- */
+  .b-share svg { width: 1.05em; height: 1.05em; }
+
+  /* ---- Toolbar ----------------------------------------------------------- */
+  .b-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-1);
+    padding: var(--b-space-1);
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-lg);
+  }
+  .b-toolbar--glass {
+    background: var(--b-material-regular-bg);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border-color: light-dark(rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.05));
+    box-shadow: var(--b-glass-shadow);
+    position: relative;
+  }
+  .b-toolbar--glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+  .b-toolbar .b-divider--vertical { margin-inline: var(--b-space-1); min-height: 1.25rem; }
+  .b-toolbar .b-btn { height: var(--b-control-h-sm); }
+  .b-toolbar .b-icon-btn { width: var(--b-control-h-sm); }
+
+  @keyframes b-spin { to { rotate: 360deg; } }
+}

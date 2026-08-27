@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Visualization — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Components</div>
+        <h1>Data Visualization</h1>
+        <p class="docs-hero__lede">
+          Lightweight charts built from CSS and inline SVG — no charting
+          library, no build step. Bars, pies, gauges and heatmaps are pure CSS
+          driven by custom properties; lines, areas, scatters and radars are
+          hand-written SVG that the stylesheet colors for you. Every series
+          pulls from the <code>--b-chart-1…6</code> tokens, and every chart
+          pairs with <code>.b-legend</code> and <code>.b-axis</code>.
+        </p>
+      </header>
+
+      <section class="docs-section" id="chart-anatomy">
+        <h2>Chart Anatomy</h2>
+        <p>
+          <code>.b-chart</code> is the frame: a titled column that stacks
+          <code>.b-chart__title</code>, a <code>.b-chart__canvas</code>
+          (position-relative, so gridlines and tooltips can float inside it),
+          and a <code>.b-legend</code>. Axes sit beside or below the canvas.
+          Everything below is this one recipe, swapping the middle.
+        </p>
+        <div class="docs-demo">
+          <figure class="b-chart" style="max-width: 30rem; width: 100%; margin: 0" role="img" aria-label="Column chart: messages delivered per day last week, peaking Thursday at 4,120.">
+            <figcaption class="b-chart__title">Messages delivered — last 7 days</figcaption>
+            <div style="display: grid; grid-template-columns: max-content 1fr; gap: var(--b-space-3)">
+              <div class="b-axis b-axis--y" style="padding-block-end: 1.4rem" aria-hidden="true">
+                <span>4k</span><span>2k</span><span>0</span>
+              </div>
+              <div class="b-chart__canvas">
+                <div class="b-gridlines" style="inset-block-end: 1.4rem" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="b-columns">
+                  <div class="b-columns__bar" style="--v: 62%" data-label="Mon"></div>
+                  <div class="b-columns__bar" style="--v: 48%" data-label="Tue"></div>
+                  <div class="b-columns__bar" style="--v: 71%" data-label="Wed"></div>
+                  <div class="b-columns__bar" style="--v: 88%" data-label="Thu"></div>
+                  <div class="b-columns__bar" style="--v: 76%" data-label="Fri"></div>
+                  <div class="b-columns__bar" style="--v: 34%" data-label="Sat"></div>
+                  <div class="b-columns__bar" style="--v: 26%" data-label="Sun"></div>
+                </div>
+              </div>
+            </div>
+            <ul class="b-legend">
+              <li><span class="b-legend__swatch"></span>Delivered</li>
+            </ul>
+          </figure>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> A chart is an image to assistive
+          tech. Give the composed figure <code>role="img"</code> with a concise
+          <code>aria-label</code> that states the takeaway (&ldquo;peaking
+          Thursday at 4,120&rdquo;), or use <code>&lt;figure&gt;</code> +
+          <code>&lt;figcaption&gt;</code>. For data people need to act on,
+          follow the chart with a <code>.b-sr-only</code> (or disclosed) table
+          of the numbers, and mark decorative internals — gridlines, axes,
+          sparklines — with <code>aria-hidden="true"</code>.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="column-chart">
+        <h2>Column Chart</h2>
+        <p>
+          <code>.b-columns</code> lays vertical bars on a flex baseline. Each
+          <code>.b-columns__bar</code> takes its height from
+          <code>--v</code> (a percentage of the chart height,
+          <code>--b-chart-h</code>, default 10rem) and its x-label from
+          <code>data-label</code>. Recolor any bar with
+          <code>--b-chart-color</code> — here Thursday's peak.
+        </p>
+        <div class="docs-demo">
+          <div class="b-columns" style="max-width: 30rem; width: 100%">
+            <div class="b-columns__bar" style="--v: 62%" data-label="Mon"></div>
+            <div class="b-columns__bar" style="--v: 45%" data-label="Tue"></div>
+            <div class="b-columns__bar" style="--v: 70%" data-label="Wed"></div>
+            <div class="b-columns__bar" style="--v: 84%; --b-chart-color: var(--b-chart-4)" data-label="Thu"></div>
+            <div class="b-columns__bar" style="--v: 58%" data-label="Fri"></div>
+            <div class="b-columns__bar" style="--v: 32%" data-label="Sat"></div>
+            <div class="b-columns__bar" style="--v: 24%" data-label="Sun"></div>
+          </div>
+        </div>
+
+        <h3 id="column-chart-rounded">Rounded</h3>
+        <p>
+          <code>.b-columns--rounded</code> turns bars into capsules — the
+          Screen Time look. Best with generous gaps and a dozen bars or fewer.
+        </p>
+        <div class="docs-demo">
+          <div class="b-columns b-columns--rounded" style="max-width: 30rem; width: 100%; --b-chart-h: 8rem">
+            <div class="b-columns__bar" style="--v: 40%" data-label="W1"></div>
+            <div class="b-columns__bar" style="--v: 55%" data-label="W2"></div>
+            <div class="b-columns__bar" style="--v: 48%" data-label="W3"></div>
+            <div class="b-columns__bar" style="--v: 72%" data-label="W4"></div>
+            <div class="b-columns__bar" style="--v: 65%" data-label="W5"></div>
+            <div class="b-columns__bar" style="--v: 90%" data-label="W6"></div>
+          </div>
+        </div>
+
+        <h3 id="column-chart-stacked">Stacked segments</h3>
+        <p>
+          Nest an <code>&lt;i&gt;</code> inside a bar for a bottom-aligned
+          segment: the bar is the total, the segment its share. The segment
+          defaults to <code>--b-chart-2</code>; both accept
+          <code>--b-chart-color</code>.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-chart" style="max-width: 30rem; width: 100%">
+            <div class="b-columns" style="--b-chart-h: 9rem">
+              <div class="b-columns__bar" style="--v: 76%" data-label="Mon"><i style="--v: 42%"></i></div>
+              <div class="b-columns__bar" style="--v: 60%" data-label="Tue"><i style="--v: 30%"></i></div>
+              <div class="b-columns__bar" style="--v: 82%" data-label="Wed"><i style="--v: 48%"></i></div>
+              <div class="b-columns__bar" style="--v: 92%" data-label="Thu"><i style="--v: 56%"></i></div>
+              <div class="b-columns__bar" style="--v: 68%" data-label="Fri"><i style="--v: 34%"></i></div>
+            </div>
+            <ul class="b-legend">
+              <li><span class="b-legend__swatch"></span>Sent</li>
+              <li><span class="b-legend__swatch" style="background: var(--b-chart-2)"></span>Opened</li>
+            </ul>
+          </div>
+        </div>
+        <div class="docs-guidance">
+          <div class="docs-do">Start bar and column value axes at zero. Length
+          is the encoding — a truncated axis turns a 4% difference into a
+          visual cliff. If small deltas matter, plot the delta itself.</div>
+          <div class="docs-dont">Don't pour more than ~5 slices into a pie.
+          Thin wedges are unreadable and uncomparable; reach for a horizontal
+          <code>.b-bars</code> chart instead, which ranks and compares
+          precisely.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="bar-chart">
+        <h2>Bar Chart</h2>
+        <p>
+          Horizontal bars for ranked categories with long labels. Each
+          <code>.b-bars__row</code> is a three-column grid: label, track,
+          value. Fill width comes from <code>--v</code>; widen the label
+          column with <code>--b-bars-label-w</code> when city names need room.
+        </p>
+        <div class="docs-demo">
+          <div class="b-bars" style="max-width: 30rem; width: 100%; --b-bars-label-w: 7.5rem">
+            <div class="b-bars__row">
+              <span class="b-bars__label">Dar es Salaam</span>
+              <div class="b-bars__track"><i style="--v: 90%"></i></div>
+              <span class="b-bars__value">$120k</span>
+            </div>
+            <div class="b-bars__row">
+              <span class="b-bars__label">Nairobi</span>
+              <div class="b-bars__track"><i style="--v: 75%"></i></div>
+              <span class="b-bars__value">$100k</span>
+            </div>
+            <div class="b-bars__row">
+              <span class="b-bars__label">Kampala</span>
+              <div class="b-bars__track"><i style="--v: 54%"></i></div>
+              <span class="b-bars__value">$72k</span>
+            </div>
+            <div class="b-bars__row">
+              <span class="b-bars__label">Kigali</span>
+              <div class="b-bars__track"><i style="--v: 42%"></i></div>
+              <span class="b-bars__value">$56k</span>
+            </div>
+            <div class="b-bars__row">
+              <span class="b-bars__label">Zanzibar</span>
+              <div class="b-bars__track"><i style="--v: 27%"></i></div>
+              <span class="b-bars__value">$36k</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="line-chart">
+        <h2>Line Chart</h2>
+        <p>
+          Lines are plain inline SVG — you own the coordinates, the stylesheet
+          owns the look. Give the polyline path <code>class="b-series"</code>
+          inside an <code>svg.b-line-svg</code>; add dashed
+          <code>.b-svg-grid</code> lines and <code>.b-svg-axis-label</code>
+          texts. The stroke stays 2px at any size thanks to
+          <code>vector-effect: non-scaling-stroke</code>.
+        </p>
+        <div class="docs-demo">
+          <div class="b-chart" style="max-width: 30rem; width: 100%">
+            <div class="b-chart__title">New subscribers — six months</div>
+            <svg class="b-line-svg" viewBox="0 0 300 120" role="img" aria-label="Line chart: new subscribers rising from about 1,200 in March to 4,800 in August, with a dip in May.">
+              <line class="b-svg-grid" x1="0" y1="10" x2="300" y2="10"/>
+              <line class="b-svg-grid" x1="0" y1="50" x2="300" y2="50"/>
+              <line class="b-svg-grid" x1="0" y1="90" x2="300" y2="90"/>
+              <path class="b-series" d="M10 84 L66 66 L122 72 L178 40 L234 48 L290 14"/>
+              <text class="b-svg-axis-label" x="10" y="112" text-anchor="middle">Mar</text>
+              <text class="b-svg-axis-label" x="66" y="112" text-anchor="middle">Apr</text>
+              <text class="b-svg-axis-label" x="122" y="112" text-anchor="middle">May</text>
+              <text class="b-svg-axis-label" x="178" y="112" text-anchor="middle">Jun</text>
+              <text class="b-svg-axis-label" x="234" y="112" text-anchor="middle">Jul</text>
+              <text class="b-svg-axis-label" x="290" y="112" text-anchor="middle">Aug</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="area-chart">
+        <h2>Area Chart</h2>
+        <p>
+          An <code>svg.b-area-svg</code> with two paths: a closed
+          <code>.b-area-fill</code> underneath (same points, dropped to the
+          baseline) and the <code>.b-series</code> stroke on top. The fill is
+          an 18% tint of the series color, so one
+          <code>--b-chart-color</code> on the <code>&lt;svg&gt;</code> retints
+          both.
+        </p>
+        <div class="docs-demo">
+          <div class="b-chart" style="max-width: 30rem; width: 100%">
+            <div class="b-chart__title">Weekly active readers</div>
+            <svg class="b-area-svg" viewBox="0 0 300 120" style="--b-chart-color: var(--b-chart-2)" role="img" aria-label="Area chart: weekly active readers growing from 3,100 in March to 7,400 in August.">
+              <line class="b-svg-grid" x1="0" y1="10" x2="300" y2="10"/>
+              <line class="b-svg-grid" x1="0" y1="50" x2="300" y2="50"/>
+              <line class="b-svg-grid" x1="0" y1="90" x2="300" y2="90"/>
+              <path class="b-area-fill" d="M10 78 L66 62 L122 68 L178 36 L234 44 L290 16 L290 90 L10 90 Z"/>
+              <path class="b-series" d="M10 78 L66 62 L122 68 L178 36 L234 44 L290 16"/>
+              <text class="b-svg-axis-label" x="10" y="112" text-anchor="middle">Mar</text>
+              <text class="b-svg-axis-label" x="122" y="112" text-anchor="middle">May</text>
+              <text class="b-svg-axis-label" x="234" y="112" text-anchor="middle">Jul</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="pie-chart">
+        <h2>Pie Chart</h2>
+        <p>
+          A single div and a <code>conic-gradient</code>. Pass color stops
+          through <code>--b-pie</code> as
+          <code>color start end</code> triplets covering 0–100%; size it with
+          <code>--b-pie-size</code> (default 9rem). Always pair with a legend
+          — the wedges carry no text of their own.
+        </p>
+        <div class="docs-demo docs-demo--row" style="align-items: center; gap: var(--b-space-6)">
+          <div class="b-pie" style="--b-pie: var(--b-chart-1) 0 45%, var(--b-chart-2) 45% 78%, var(--b-chart-3) 78% 100%" role="img" aria-label="Pie chart: mobile 45%, desktop 33%, tablet 22%."></div>
+          <ul class="b-legend" style="flex-direction: column">
+            <li><span class="b-legend__swatch"></span>Mobile · 45%</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-2)"></span>Desktop · 33%</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-3)"></span>Tablet · 22%</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="docs-section" id="donut-chart">
+        <h2>Donut Chart</h2>
+        <p>
+          Wrap a <code>.b-pie</code> in <code>.b-donut</code>: a radial mask
+          punches the hole and <code>.b-donut__center</code> stacks on the
+          same grid cell for a headline stat. The hole radius is
+          <code>--b-donut-hole</code>, default 62% — raise it for a thinner
+          ring.
+        </p>
+        <div class="docs-demo docs-demo--row" style="align-items: center; gap: var(--b-space-6)">
+          <div class="b-donut">
+            <div class="b-pie" style="--b-pie: var(--b-chart-1) 0 52%, var(--b-chart-4) 52% 81%, var(--b-chart-6) 81% 100%" role="img" aria-label="Donut chart of 18,200 sends: newsletter 52%, product updates 29%, digests 19%."></div>
+            <div class="b-donut__center">
+              <div class="b-stat__value">18.2k</div>
+              <div class="b-stat__label">sends</div>
+            </div>
+          </div>
+          <ul class="b-legend" style="flex-direction: column">
+            <li><span class="b-legend__swatch"></span>Newsletter · 52%</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-4)"></span>Product updates · 29%</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-6)"></span>Digests · 19%</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="docs-section" id="scatter-plot">
+        <h2>Scatter Plot</h2>
+        <p>
+          An <code>svg.b-scatter-svg</code> full of <code>circle.b-dot</code>
+          elements — you supply <code>cx</code>, <code>cy</code> and
+          <code>r</code>. Dots default to <code>--b-chart-1</code>; put
+          <code>--b-chart-color</code> on individual circles for a second
+          series. Session length against pages read, mobile vs desktop:
+        </p>
+        <div class="docs-demo">
+          <div class="b-chart" style="max-width: 30rem; width: 100%">
+            <div class="b-chart__title">Session length vs pages read</div>
+            <svg class="b-scatter-svg" viewBox="0 0 300 140" role="img" aria-label="Scatter plot: desktop sessions read more pages than mobile at every session length.">
+              <line class="b-svg-grid" x1="0" y1="20" x2="300" y2="20"/>
+              <line class="b-svg-grid" x1="0" y1="70" x2="300" y2="70"/>
+              <line class="b-svg-grid" x1="0" y1="120" x2="300" y2="120"/>
+              <circle class="b-dot" cx="30" cy="110" r="4"/>
+              <circle class="b-dot" cx="55" cy="96" r="4"/>
+              <circle class="b-dot" cx="80" cy="100" r="4"/>
+              <circle class="b-dot" cx="110" cy="78" r="4"/>
+              <circle class="b-dot" cx="140" cy="84" r="4"/>
+              <circle class="b-dot" cx="170" cy="62" r="4"/>
+              <circle class="b-dot" cx="60" cy="72" r="4" style="--b-chart-color: var(--b-chart-4)"/>
+              <circle class="b-dot" cx="95" cy="56" r="4" style="--b-chart-color: var(--b-chart-4)"/>
+              <circle class="b-dot" cx="130" cy="46" r="4" style="--b-chart-color: var(--b-chart-4)"/>
+              <circle class="b-dot" cx="180" cy="34" r="4" style="--b-chart-color: var(--b-chart-4)"/>
+              <circle class="b-dot" cx="220" cy="40" r="4" style="--b-chart-color: var(--b-chart-4)"/>
+              <circle class="b-dot" cx="260" cy="22" r="4" style="--b-chart-color: var(--b-chart-4)"/>
+              <text class="b-svg-axis-label" x="0" y="136">0 min</text>
+              <text class="b-svg-axis-label" x="150" y="136" text-anchor="middle">15 min</text>
+              <text class="b-svg-axis-label" x="300" y="136" text-anchor="end">30 min</text>
+            </svg>
+            <ul class="b-legend">
+              <li><span class="b-legend__swatch"></span>Mobile</li>
+              <li><span class="b-legend__swatch" style="background: var(--b-chart-4)"></span>Desktop</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 id="data-points">Data points</h3>
+        <p>
+          <code>.b-dot</code> is reusable on any SVG chart — drop circles onto
+          a line chart to mark readings. Dots wear a hairline ring of
+          <code>var(--b-bg)</code> so they cut cleanly out of gridlines, and
+          grow from <code>r="4"</code> to 6 on hover as a pointer affordance.
+          Actual hit-testing and value display is app-side wiring — see
+          <a href="#chart-tooltip">Chart Tooltip</a>.
+        </p>
+      </section>
+
+      <section class="docs-section" id="radar-chart">
+        <h2>Radar Chart</h2>
+        <p>
+          Concentric <code>polygon.b-web</code> rings and
+          <code>line.b-web</code> spokes form the web; the filled
+          <code>polygon.b-series</code> plots the values. Five axes on a
+          200×200 viewBox, center (100,100), outer radius 80.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div style="max-width: 14rem; width: 100%">
+            <svg class="b-radar-svg" viewBox="0 0 200 200" role="img" aria-label="Radar chart of team coverage: design 90%, code 75%, data 60%, ops 80%, docs 70%.">
+              <polygon class="b-web" points="100,20 176,75 147,165 53,165 24,75"/>
+              <polygon class="b-web" points="100,60 138,88 124,132 76,132 62,88"/>
+              <line class="b-web" x1="100" y1="100" x2="100" y2="20"/>
+              <line class="b-web" x1="100" y1="100" x2="176" y2="75"/>
+              <line class="b-web" x1="100" y1="100" x2="147" y2="165"/>
+              <line class="b-web" x1="100" y1="100" x2="53" y2="165"/>
+              <line class="b-web" x1="100" y1="100" x2="24" y2="75"/>
+              <polygon class="b-series" points="100,28 157,81 128,139 62,152 47,83"/>
+              <text class="b-svg-axis-label" x="100" y="12" text-anchor="middle">Design</text>
+              <text class="b-svg-axis-label" x="182" y="72" text-anchor="start">Code</text>
+              <text class="b-svg-axis-label" x="152" y="180" text-anchor="middle">Data</text>
+              <text class="b-svg-axis-label" x="48" y="180" text-anchor="middle">Ops</text>
+              <text class="b-svg-axis-label" x="18" y="72" text-anchor="end">Docs</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="heatmap">
+        <h2>Heatmap</h2>
+        <p>
+          A CSS grid of <code>&lt;i&gt;</code> cells. Column count comes from
+          <code>--b-heatmap-cols</code>; each cell's <code>--v</code> is an
+          intensity from 0 to 1, mixed into the series color with
+          <code>color-mix()</code> — 0 renders the empty fill, 1 the full
+          <code>--b-chart-color</code>. Twelve months of commits, one row per
+          week of the month:
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-chart" style="max-width: 26rem; width: 100%">
+            <div class="b-heatmap" style="--b-heatmap-cols: 12">
+              <i style="--v: 0.1"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i><i style="--v: 0.3"></i><i style="--v: 0.4"></i><i style="--v: 0.5"></i><i style="--v: 0.7"></i><i style="--v: 0.8"></i><i style="--v: 0.6"></i><i style="--v: 0.4"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i>
+              <i style="--v: 0.2"></i><i style="--v: 0.1"></i><i style="--v: 0.3"></i><i style="--v: 0.4"></i><i style="--v: 0.6"></i><i style="--v: 0.7"></i><i style="--v: 0.9"></i><i style="--v: 1"></i><i style="--v: 0.7"></i><i style="--v: 0.5"></i><i style="--v: 0.3"></i><i style="--v: 0.1"></i>
+              <i style="--v: 0"></i><i style="--v: 0.2"></i><i style="--v: 0.2"></i><i style="--v: 0.5"></i><i style="--v: 0.5"></i><i style="--v: 0.8"></i><i style="--v: 0.8"></i><i style="--v: 0.9"></i><i style="--v: 0.6"></i><i style="--v: 0.4"></i><i style="--v: 0.2"></i><i style="--v: 0"></i>
+              <i style="--v: 0.1"></i><i style="--v: 0.3"></i><i style="--v: 0.4"></i><i style="--v: 0.4"></i><i style="--v: 0.7"></i><i style="--v: 0.6"></i><i style="--v: 1"></i><i style="--v: 0.8"></i><i style="--v: 0.5"></i><i style="--v: 0.3"></i><i style="--v: 0.1"></i><i style="--v: 0.2"></i>
+            </div>
+            <div class="b-axis">
+              <span>Jan</span><span>Jun</span><span>Dec</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="gauge">
+        <h2>Gauge</h2>
+        <p>
+          A half-donut for a single 0–100 reading. Set
+          <code>--b-progress</code> as a unitless number (here 68 — note the
+          linear <a href="#progress-chart">progress bar</a> takes a
+          percentage instead), size with <code>--b-gauge-size</code>, and
+          recolor with <code>--b-chart-color</code>. The label hangs below
+          the arc, so leave it some room.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div style="padding-block-end: 1.75rem">
+            <div class="b-gauge" style="--b-progress: 68" role="img" aria-label="Gauge: storage 68% used.">
+              <div class="b-gauge__value">68%</div>
+              <div class="b-gauge__label">Storage used</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="sparkline">
+        <h2>Sparkline</h2>
+        <p>
+          A word-sized trend for stat cards and table cells:
+          <code>svg.b-sparkline</code> stretches its single path across a
+          2rem-tall box (<code>preserveAspectRatio="none"</code> lets it fill;
+          the stroke never distorts). Purely decorative — keep it
+          <code>aria-hidden</code> and let the stat carry the numbers.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-card" style="width: 100%; max-width: 14rem">
+            <div class="b-card__body">
+              <div class="b-stat">
+                <span class="b-stat__label">Messages sent</span>
+                <span class="b-stat__value">12,480</span>
+                <span class="b-stat__delta is-up">↑ 8.2% this week</span>
+                <svg class="b-sparkline" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M0 18 L12 15 L24 16 L36 11 L48 13 L60 8 L72 10 L84 5 L100 3"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="b-card" style="width: 100%; max-width: 14rem">
+            <div class="b-card__body">
+              <div class="b-stat">
+                <span class="b-stat__label">Open rate</span>
+                <span class="b-stat__value">38.4%</span>
+                <span class="b-stat__delta is-down">↓ 2.1 pts this week</span>
+                <svg class="b-sparkline" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true" style="--b-chart-color: var(--b-chart-4)">
+                  <path d="M0 5 L12 8 L24 6 L36 11 L48 9 L60 14 L72 12 L84 17 L100 19"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="progress-chart">
+        <h2>Progress Chart</h2>
+        <p>
+          Stacked <code>.b-progress-chart__row</code>s, each a
+          <code>__head</code> (label left, value right) over a standard
+          <code>.b-progress</code> bar from
+          <a href="feedback.html">Feedback</a>. Here
+          <code>--b-progress</code> is a width percentage on the fill —
+          <code>96%</code>, unit included.
+        </p>
+        <div class="docs-demo">
+          <div class="b-progress-chart" style="max-width: 24rem; width: 100%">
+            <div class="b-progress-chart__row">
+              <div class="b-progress-chart__head"><span>Newsletter</span><span>96%</span></div>
+              <div class="b-progress"><div class="b-progress__fill" style="--b-progress: 96%"></div></div>
+            </div>
+            <div class="b-progress-chart__row">
+              <div class="b-progress-chart__head"><span>Product updates</span><span>88%</span></div>
+              <div class="b-progress"><div class="b-progress__fill" style="--b-progress: 88%"></div></div>
+            </div>
+            <div class="b-progress-chart__row">
+              <div class="b-progress-chart__head"><span>Onboarding series</span><span>72%</span></div>
+              <div class="b-progress"><div class="b-progress__fill" style="--b-progress: 72%"></div></div>
+            </div>
+            <div class="b-progress-chart__row">
+              <div class="b-progress-chart__head"><span>Win-back</span><span>41%</span></div>
+              <div class="b-progress"><div class="b-progress__fill" style="--b-progress: 41%"></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="legend">
+        <h2>Legend</h2>
+        <p>
+          A wrapping <code>ul.b-legend</code> of swatch + label pairs. The
+          <code>.b-legend__swatch</code> defaults to
+          <code>--b-chart-1</code>; set the others inline. The six series
+          tokens resolve to accent blue, teal, purple, orange, pink and green
+          — and re-tune automatically in dark mode.
+        </p>
+        <div class="docs-demo">
+          <ul class="b-legend">
+            <li><span class="b-legend__swatch"></span>Email</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-2)"></span>Push</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-3)"></span>In-app</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-4)"></span>SMS</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-5)"></span>Social</li>
+            <li><span class="b-legend__swatch" style="background: var(--b-chart-6)"></span>Webhooks</li>
+          </ul>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Never let color be the only
+          channel. Keep the legend adjacent to the chart, print values
+          directly on rows and slices where space allows, and order legend
+          items to match the visual order of the series. The six chart tokens
+          are chosen to differ in lightness, not just hue — but a swatch plus
+          a text label is what actually guarantees the mapping for everyone.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="axis-gridlines">
+        <h2>Axis &amp; Gridlines</h2>
+        <p>
+          <code>.b-axis</code> spreads tick labels across a row in tabular
+          figures; <code>.b-axis--y</code> stacks them beside a canvas.
+          <code>.b-gridlines</code> floats dashed rules through a
+          position-relative canvas — one <code>&lt;i&gt;</code> per line.
+          Columns reserve a 1.4rem label strip at the bottom, so give the
+          gridlines <code>inset-block-end: 1.4rem</code> and the y-axis the
+          same bottom padding to keep &ldquo;0&rdquo; on the baseline.
+        </p>
+        <div class="docs-demo">
+          <div class="b-chart" style="max-width: 30rem; width: 100%">
+            <div style="display: grid; grid-template-columns: max-content 1fr; gap: var(--b-space-3)">
+              <div class="b-axis b-axis--y" style="padding-block-end: 1.4rem" aria-hidden="true">
+                <span>600</span><span>300</span><span>0</span>
+              </div>
+              <div class="b-chart__canvas">
+                <div class="b-gridlines" style="inset-block-end: 1.4rem" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="b-columns">
+                  <div class="b-columns__bar" style="--v: 55%" data-label="Mon"></div>
+                  <div class="b-columns__bar" style="--v: 40%" data-label="Tue"></div>
+                  <div class="b-columns__bar" style="--v: 70%" data-label="Wed"></div>
+                  <div class="b-columns__bar" style="--v: 85%" data-label="Thu"></div>
+                  <div class="b-columns__bar" style="--v: 65%" data-label="Fri"></div>
+                  <div class="b-columns__bar" style="--v: 30%" data-label="Sat"></div>
+                  <div class="b-columns__bar" style="--v: 20%" data-label="Sun"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>
+          The horizontal axis also works standalone — under heatmaps, area
+          charts or timeline strips:
+        </p>
+        <div class="docs-demo">
+          <div class="b-axis" style="max-width: 30rem; width: 100%">
+            <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="chart-tooltip">
+        <h2>Chart Tooltip</h2>
+        <p>
+          <code>.b-chart-tip</code> is a floating value bubble for the nearest
+          data point: absolutely positioned inside the relative
+          <code>.b-chart__canvas</code>, self-centered above its anchor via
+          <code>translate</code>, with a small caret. Barua ships the look
+          only — tracking the pointer, picking the point and setting
+          <code>left</code>/<code>top</code> is app-side JavaScript. Shown
+          pinned over Thursday:
+        </p>
+        <div class="docs-demo">
+          <div class="b-chart" style="max-width: 30rem; width: 100%">
+            <div class="b-chart__canvas">
+              <div class="b-chart-tip" style="left: 50%; top: 14%">Thu · 4,120</div>
+              <div class="b-columns">
+                <div class="b-columns__bar" style="--v: 62%" data-label="Mon"></div>
+                <div class="b-columns__bar" style="--v: 45%" data-label="Tue"></div>
+                <div class="b-columns__bar" style="--v: 70%" data-label="Wed"></div>
+                <div class="b-columns__bar" style="--v: 84%" data-label="Thu"></div>
+                <div class="b-columns__bar" style="--v: 58%" data-label="Fri"></div>
+                <div class="b-columns__bar" style="--v: 32%" data-label="Sat"></div>
+                <div class="b-columns__bar" style="--v: 24%" data-label="Sun"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="rule-mark">
+        <h2>Rule Mark</h2>
+        <p>
+          Swift Charts' <code>RuleMark</code>: a dashed goal or threshold line
+          laid over any chart canvas. Position with <code>bottom</code> as a
+          percentage of the scale; <code>--accent</code> recolors it for
+          targets rather than limits.
+        </p>
+        <div class="docs-demo">
+          <div class="b-columns" style="--b-chart-h: 9rem; max-width: 26rem; position: relative">
+            <div class="b-rule" style="bottom: calc(1.4rem + (9rem - 1.4rem) * 0.7)"><span class="b-rule__label">SLA 70%</span></div>
+            <div class="b-columns__bar" style="--v: 48%" data-label="Mon"></div>
+            <div class="b-columns__bar" style="--v: 64%" data-label="Tue"></div>
+            <div class="b-columns__bar" style="--v: 82%" data-label="Wed"></div>
+            <div class="b-columns__bar" style="--v: 58%" data-label="Thu"></div>
+            <div class="b-columns__bar" style="--v: 74%" data-label="Fri"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="linear-gauge">
+        <h2>Linear Gauge</h2>
+        <p>
+          SwiftUI's linear <code>Gauge</code> style: a graded track with a
+          marker at the current value (<code>--v</code>) and min/max labels
+          beneath. Use <code>__track--plain</code> for a neutral track.
+        </p>
+        <div class="docs-demo docs-demo--stack" style="max-width: 22rem">
+          <div class="b-gauge-linear">
+            <div class="b-gauge-linear__track"><span class="b-gauge-linear__marker" style="--v: 68%"></span></div>
+            <div class="b-gauge-linear__labels"><span>0 GB</span><span>15 GB</span></div>
+          </div>
+          <div class="b-gauge-linear">
+            <div class="b-gauge-linear__track b-gauge-linear__track--plain"><span class="b-gauge-linear__marker" style="--v: 35%"></span></div>
+            <div class="b-gauge-linear__labels"><span>Min</span><span>Max</span></div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="overlays.html">← Overlays</a>
+        <a class="b-btn b-btn--ghost" href="media.html">Media →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ambient example — Barua UI</title>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* Wallpaper only — every visible material below is a Barua component. */
+    body.ambient {
+      min-height: 100dvh;
+      padding: var(--b-space-5) var(--b-space-6) 7rem;
+      background: url("assets/ambient-bg.svg") center / cover no-repeat fixed #0c1713;
+    }
+  </style>
+</head>
+<body class="ambient b-stage">
+  <div class="b-container b-container--xl b-stack b-gap-4">
+  <header class="b-hstack b-stack--wrap b-gap-3">
+    <div class="b-notification" role="status">
+      <span class="b-avatar b-avatar--square" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="var(--b-color-indigo)"/><path d="M16 15A5.5 5.5 0 0 1 9 8a5.5 5.5 0 1 0 7 7Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="m16 6 .6 1.4L18 8l-1.4.6L16 10l-.6-1.4L14 8l1.4-.6L16 6Z" fill="white"/></svg>
+      </span>
+      <div class="b-notification__body">
+        <div class="b-notification__app">Sleep</div>
+        <div class="b-notification__title">Awake for 5 h 36 m</div>
+        <div class="b-notification__desc">Last sleep 11 h · quality 92%</div>
+      </div>
+      <span class="b-notification__time">now</span>
+    </div>
+    <span class="b-spacer"></span>
+    <div class="b-stack b-stack--end b-gap-1">
+      <span class="b-large-title b-tabular-nums">12:37</span>
+      <span class="b-overline b-text-secondary">Sat 14 Dec</span>
+    </div>
+    <details class="b-dropdown b-dropdown--end">
+      <summary class="b-profile-trigger">
+        <span class="b-avatar b-avatar--sm b-avatar--online" aria-hidden="true">AL</span>
+        Alistair
+        <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="b-menu">
+        <div class="b-account-switcher">
+          <button class="b-account is-active" type="button">
+            <span class="b-avatar" aria-hidden="true">AL</span>
+            <div class="b-account__meta">
+              <div class="b-account__name">Alistair</div>
+              <div class="b-account__email">Driver profile</div>
+            </div>
+            <span class="b-account__check" aria-hidden="true">✓</span>
+          </button>
+          <button class="b-account" type="button">
+            <span class="b-avatar" aria-hidden="true">AN</span>
+            <div class="b-account__meta">
+              <div class="b-account__name">Andrea</div>
+              <div class="b-account__email">Passenger</div>
+            </div>
+          </button>
+        </div>
+        <hr class="b-menu__separator">
+        <button class="b-menu__item">Manage people<span class="b-menu__shortcut">⌘P</span></button>
+      </div>
+    </details>
+  </header>
+
+  <main class="b-dashboard">
+    <article class="b-card b-card--glass b-card--compact b-span-4">
+      <div class="b-card__header">
+        <div class="b-card__title">Radar</div>
+        <span class="b-badge b-badge--warning">40% rain</span>
+      </div>
+      <div class="b-card__body b-stack b-gap-3">
+        <div class="b-heatmap" style="--b-heatmap-cols: 12; --b-chart-color: var(--b-color-teal)" aria-hidden="true">
+          <i style="--v: 0.1"></i><i style="--v: 0.2"></i><i style="--v: 0.5"></i><i style="--v: 0.7"></i><i style="--v: 0.4"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i><i style="--v: 0"></i><i style="--v: 0.1"></i><i style="--v: 0.3"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i>
+          <i style="--v: 0.2"></i><i style="--v: 0.4"></i><i style="--v: 0.8"></i><i style="--v: 0.9"></i><i style="--v: 0.6"></i><i style="--v: 0.3"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i><i style="--v: 0.2"></i><i style="--v: 0.4"></i><i style="--v: 0.3"></i><i style="--v: 0.2"></i>
+          <i style="--v: 0.1"></i><i style="--v: 0.3"></i><i style="--v: 0.6"></i><i style="--v: 0.7"></i><i style="--v: 0.5"></i><i style="--v: 0.2"></i><i style="--v: 0.1"></i><i style="--v: 0.1"></i><i style="--v: 0.3"></i><i style="--v: 0.5"></i><i style="--v: 0.4"></i><i style="--v: 0.2"></i>
+        </div>
+        <p class="b-footnote b-text-secondary">
+          Partly cloudy. Winds northwest 20–30 km/h, easing by evening.
+        </p>
+      </div>
+      <footer class="b-card__footer">
+        <a class="b-link" href="#">Open full radar</a>
+        <span class="b-spacer"></span>
+        <span class="b-caption b-text-tertiary">Updated 4 min ago</span>
+      </footer>
+    </article>
+
+    <article class="b-card b-card--glass b-card--compact b-span-4">
+      <div class="b-card__header">
+        <div>
+          <div class="b-card__title">Media</div>
+          <div class="b-card__subtitle">AirPlay · Sena&rsquo;s room</div>
+        </div>
+        <button class="b-btn b-btn--ghost b-btn--sm">Browse</button>
+      </div>
+      <div class="b-card__body b-stack b-gap-3">
+        <div>
+          <ul class="b-app-grid">
+            <li><a class="b-app-tile" href="#"><span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-red), var(--b-color-pink))">N</span><span class="b-app-tile__label">Nova</span></a></li>
+            <li><a class="b-app-tile" href="#"><span class="b-app-tile__icon" style="background: #10121a">SEN</span><span class="b-app-tile__label">SEN</span></a></li>
+            <li><a class="b-app-tile" href="#"><span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-teal), var(--b-color-cyan))">R</span><span class="b-app-tile__label">Radio</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="b-list__header">News briefing</div>
+          <ul class="b-list b-list--plain b-list--inset-divider">
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M6 7.5h4.5v3.5H6zM13 7.5h1M13 11h1M6 13.5h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">ABC News Briefing</span></span>
+              <span class="b-list-item__trailing"><span class="b-list-item__chevron">›</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="b-card b-card--glass b-card--compact b-span-4">
+      <div class="b-card__header">
+        <div class="b-card__title">Now Playing</div>
+        <span class="b-badge b-badge--success">Live</span>
+      </div>
+      <div class="b-card__body b-stack b-gap-4">
+        <div class="b-stack b-stack--center">
+          <span class="b-thumb" aria-hidden="true" style="--b-thumb-size: 5.5rem; background: linear-gradient(150deg, var(--b-color-green), #143c2b 55%, #0c2018)"></span>
+        </div>
+        <div class="b-audio b-audio--glass">
+          <div class="b-audio__art" style="background: linear-gradient(150deg, var(--b-color-green), #0c2018)"></div>
+          <div class="b-audio__meta">
+            <div class="b-audio__title">Mesmerised</div>
+            <div class="b-audio__artist">LEISURE</div>
+            <div class="b-waveform" aria-hidden="true">
+              <i style="--v: 0.25" class="is-played"></i><i style="--v: 0.45" class="is-played"></i><i style="--v: 0.7" class="is-played"></i><i style="--v: 0.55" class="is-played"></i><i style="--v: 0.85" class="is-played"></i><i style="--v: 1" class="is-played"></i><i style="--v: 0.7" class="is-played"></i><i style="--v: 0.5" class="is-played"></i><i style="--v: 0.65" class="is-played"></i><i style="--v: 0.35" class="is-played"></i><i style="--v: 0.55"></i><i style="--v: 0.8"></i><i style="--v: 0.6"></i><i style="--v: 0.4"></i><i style="--v: 0.75"></i><i style="--v: 0.95"></i><i style="--v: 0.6"></i><i style="--v: 0.45"></i><i style="--v: 0.3"></i><i style="--v: 0.55"></i><i style="--v: 0.7"></i><i style="--v: 0.4"></i><i style="--v: 0.3"></i><i style="--v: 0.2"></i>
+            </div>
+          </div>
+          <div class="b-audio__controls">
+            <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Previous track">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 4.5v11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15 5.6v8.8a.6.6 0 0 1-.93.5L7.6 10.5a.6.6 0 0 1 0-1l6.47-4.4a.6.6 0 0 1 .93.5Z" fill="currentColor"/></svg>
+            </button>
+            <button class="b-btn b-icon-btn b-btn--primary" aria-label="Play">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7 4.9v10.2a.6.6 0 0 0 .92.5l8-5.1a.6.6 0 0 0 0-1l-8-5.1a.6.6 0 0 0-.92.5Z"/></svg>
+            </button>
+            <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Next track">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M14.5 4.5v11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 5.6v8.8a.6.6 0 0 0 .93.5l6.47-4.4a.6.6 0 0 0 0-1L5.93 5.1a.6.6 0 0 0-.93.5Z" fill="currentColor"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="b-card b-card--glass b-card--compact b-span-3">
+      <div class="b-card__header">
+        <div class="b-card__title">Home</div>
+        <span class="b-badge b-badge--success">G1</span>
+      </div>
+      <div class="b-card__body b-stack b-gap-4">
+        <div class="b-hstack b-gap-4">
+          <div class="b-circular-wrap">
+            <div class="b-circular" role="progressbar" aria-label="Charge" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 77; --b-circular-size: 3.5rem"></div>
+            <span class="b-circular__label">77%</span>
+          </div>
+          <div class="b-stat">
+            <span class="b-stat__label">Range</span>
+            <span class="b-stat__value">689 km</span>
+            <span class="b-stat__delta">275 km since filled</span>
+          </div>
+        </div>
+        <div class="b-field">
+          <label class="b-label" for="amb-cabin">Cabin · 21.5°</label>
+          <input class="b-slider" id="amb-cabin" type="range" min="16" max="28" step="0.5" value="21.5">
+        </div>
+        <div class="b-hstack b-gap-2">
+          <button class="b-btn b-icon-btn b-btn--glass b-tooltip-host" data-tooltip="Climate" aria-label="Climate"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 3v14M5 6l10 8M15 6 5 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <button class="b-btn b-icon-btn b-btn--glass b-tooltip-host" data-tooltip="Locked" aria-label="Locked" aria-pressed="true"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><rect x="5" y="9" width="10" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="b-btn b-icon-btn b-btn--glass b-tooltip-host" data-tooltip="Hazards" aria-label="Hazards"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M10 3.5 18 17H2L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="b-card b-card--glass b-card--compact b-span-3">
+      <div class="b-card__header"><div class="b-card__title">Recent Activity</div></div>
+      <div class="b-card__body">
+        <ul class="b-list b-list--plain b-list--inset-divider">
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-thumb b-thumb--video" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #1f3d2c, #0d1f16)"><span class="b-thumb__duration">0:12</span></span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Vehicle seen in driveway</span>
+              <span class="b-list-item__subtitle">16:11 · Saturday 14 Dec</span>
+            </span>
+          </li>
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-thumb b-thumb--video" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #24333d, #101a20)"><span class="b-thumb__duration">0:31</span></span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Vehicles in driveway</span>
+              <span class="b-list-item__subtitle">12:34 · Saturday 14 Dec</span>
+            </span>
+          </li>
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-thumb b-thumb--video" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #3d3524, #201b10)"><span class="b-thumb__duration">0:08</span></span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Person at parcel box</span>
+              <span class="b-list-item__subtitle">11:16 · Saturday 14 Dec</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="b-card b-card--glass b-card--compact b-span-3">
+      <div class="b-card__header"><div class="b-card__title">Health</div></div>
+      <div class="b-card__body b-stack b-gap-3">
+        <div class="b-segmented">
+          <button class="b-segmented__item is-active">Alistair</button>
+          <button class="b-segmented__item">Andrea</button>
+        </div>
+        <div class="b-hstack b-stack--between">
+          <div class="b-stat">
+            <span class="b-stat__label">Sleep</span>
+            <span class="b-stat__value">8h 6m</span>
+            <span class="b-stat__delta is-up">↑ 42m vs average</span>
+          </div>
+          <div class="b-circular-wrap">
+            <div class="b-circular" role="progressbar" aria-label="Readiness" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 77; --b-circular-size: 3.25rem"></div>
+            <span class="b-circular__label">77</span>
+          </div>
+        </div>
+        <div>
+          <div class="b-labeled"><span class="b-labeled__label">Heart min</span><span class="b-labeled__value">56 bpm</span></div>
+          <div class="b-labeled"><span class="b-labeled__label">Heart max</span><span class="b-labeled__value">79 bpm</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="b-card b-card--glass b-card--compact b-span-3">
+      <div class="b-card__header">
+        <div class="b-card__title">Shopping List</div>
+        <span class="b-badge">5</span>
+      </div>
+      <div class="b-card__body">
+        <div class="b-task-list">
+          <div class="b-task-row">
+            <label class="b-checkbox"><input type="checkbox" aria-label="Mark 'Bananas' done"></label>
+            <span class="b-task-row__title">Bananas</span>
+          </div>
+          <div class="b-task-row">
+            <label class="b-checkbox"><input type="checkbox" aria-label="Mark 'Tonic water' done"></label>
+            <span class="b-task-row__title">Tonic water</span>
+          </div>
+          <div class="b-task-row is-done">
+            <label class="b-checkbox"><input type="checkbox" checked aria-label="Mark 'Soda water' done"></label>
+            <span class="b-task-row__title">Soda water</span>
+          </div>
+          <div class="b-task-row">
+            <label class="b-checkbox"><input type="checkbox" aria-label="Mark 'Soap' done"></label>
+            <span class="b-task-row__title">Soap</span>
+          </div>
+          <div class="b-task-row">
+            <label class="b-checkbox"><input type="checkbox" aria-label="Mark 'Tomatoes' done"></label>
+            <span class="b-task-row__title">Tomatoes</span>
+            <span class="b-task-row__due is-overdue">Low</span>
+          </div>
+
+        </div>
+      </div>
+    </article>
+  </main>
+  </div>
+
+  <footer class="b-dock">
+    <div class="b-dock__tray">
+      <button class="b-dock__item b-tooltip-host" data-tooltip="Lights · 8 on" aria-label="Lights, 8 on">
+        <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M10 3a5 5 0 0 0-2.5 9.3V14a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1.7A5 5 0 0 0 10 3ZM8.5 17h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <button class="b-dock__item b-tooltip-host" data-tooltip="Heating · House" aria-label="Heating, house">
+        <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M10 3c-2.5 3-4.5 5.2-4.5 7.4a4.5 4.5 0 0 0 9 0C14.5 8.2 12.5 6 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="b-dock__item is-active b-tooltip-host" data-tooltip="Mesmerised · LEISURE" aria-label="Now playing: Mesmerised by LEISURE">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="22" height="22"><path d="M6 4l10 6-10 6V4Z"/></svg>
+      </button>
+      <button class="b-dock__item b-tooltip-host" data-tooltip="Garage · Closed" aria-label="Garage, closed">
+        <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M3 9.5 10 4l7 5.5M5 8.5V16h10V8.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="b-dock__item b-tooltip-host" data-tooltip="Assist" aria-label="Assist">
+        <svg viewBox="0 0 20 20" fill="none" width="22" height="22"><path d="M10 3v9M6.5 8.5v3M13.5 7v6M3 10v1M17 9.5v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </footer>
+</body>
+</html>

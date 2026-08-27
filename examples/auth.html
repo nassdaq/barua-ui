@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in — Barua UI</title>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+</head>
+<body class="b-auth b-stage">
+  <main class="b-scroll-area b-stack b-gap-4">
+
+    <!-- Sign in · docs/authentication.html#sign-in -->
+    <div class="b-auth-card" style="max-width: 24rem; margin-inline: auto">
+      <div class="b-auth-card__logo" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2.75" y="4.75" width="18.5" height="14.5" rx="3.25" stroke="currentColor" stroke-width="1.7"/><path d="m4.75 8.25 7.25 5.25 7.25-5.25" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 class="b-auth-card__title">Welcome back</h2>
+      <p class="b-auth-card__subtitle">Sign in to your Neurotech workspace.</p>
+      <button class="b-btn b-btn--provider b-btn--block" type="button">
+        <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.27c0-.85-.08-1.66-.22-2.45H12v4.64h6.46a5.53 5.53 0 0 1-2.4 3.62v3h3.88c2.27-2.09 3.56-5.17 3.56-8.81Z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.94-2.91l-3.88-3c-1.08.72-2.45 1.15-4.06 1.15-3.13 0-5.78-2.11-6.72-4.95H1.27v3.1A12 12 0 0 0 12 24Z"/><path fill="#FBBC05" d="M5.28 14.29a7.2 7.2 0 0 1 0-4.58v-3.1H1.27a12 12 0 0 0 0 10.78l4.01-3.1Z"/><path fill="#EA4335" d="M12 4.77c1.76 0 3.34.6 4.59 1.8l3.44-3.44A11.97 11.97 0 0 0 12 0 12 12 0 0 0 1.27 6.61l4.01 3.1C6.22 6.88 8.87 4.77 12 4.77Z"/></svg>
+        Continue with Google
+      </button>
+      <div class="b-divider--label">or</div>
+      <div class="b-field">
+        <label class="b-label" for="signin-email">Email</label>
+        <input class="b-input" id="signin-email" name="email" type="email" autocomplete="email" placeholder="amina@neurotech.africa">
+      </div>
+      <div class="b-field">
+        <div class="b-hstack b-stack--between">
+          <label class="b-label" for="signin-password">Password</label>
+          <a class="b-link" href="#">Forgot?</a>
+        </div>
+        <input class="b-input" id="signin-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••">
+      </div>
+      <button class="b-btn b-btn--primary b-btn--block" type="button">Sign in</button>
+      <p class="b-auth-card__footer">New to Neurotech? <a href="#">Create an account</a></p>
+    </div>
+
+    <div class="b-hstack b-stack--wrap b-gap-4">
+
+      <!-- Two-factor code · docs/authentication.html#two-factor-authentication -->
+      <div class="b-stack b-stack--center b-gap-3">
+        <span class="b-overline b-text-secondary">Step 2 · Verify</span>
+        <div class="b-auth-card" style="max-width: 24rem; margin-inline: auto">
+          <h2 class="b-auth-card__title">Two-factor code</h2>
+          <p class="b-auth-card__subtitle">Enter the 6-digit code we sent to +255&nbsp;754&nbsp;•••&nbsp;219.</p>
+          <div class="b-otp" data-b-otp role="group" aria-label="Two-factor code">
+            <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 1">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+          </div>
+          <label class="b-switch">
+            <input type="checkbox" checked>
+            Remember this device for 30 days
+          </label>
+          <button class="b-btn b-btn--primary b-btn--block" type="button">Verify</button>
+          <p class="b-auth-card__footer">Lost your phone? <a href="#">Use a recovery code</a></p>
+        </div>
+      </div>
+
+      <!-- Account switcher · docs/authentication.html#account-switcher -->
+      <div class="b-stack b-stack--center b-gap-3">
+        <span class="b-overline b-text-secondary">Quick switch</span>
+        <div class="b-menu" style="width: 18rem">
+          <div class="b-account-switcher">
+            <button class="b-account is-active" type="button">
+              <span class="b-avatar" aria-hidden="true">AH</span>
+              <div class="b-account__meta">
+                <div class="b-account__name">Amina Hassan</div>
+                <div class="b-account__email">amina@neurotech.africa</div>
+              </div>
+              <span class="b-account__check" aria-hidden="true">✓</span>
+            </button>
+            <button class="b-account" type="button">
+              <span class="b-avatar" aria-hidden="true">BM</span>
+              <div class="b-account__meta">
+                <div class="b-account__name">Baraka Mushi</div>
+                <div class="b-account__email">baraka@neurotech.africa</div>
+              </div>
+            </button>
+            <button class="b-account" type="button">
+              <span class="b-avatar" aria-hidden="true">NS</span>
+              <div class="b-account__meta">
+                <div class="b-account__name">Neurotech Support</div>
+                <div class="b-account__email">support@neurotech.africa</div>
+              </div>
+            </button>
+            <hr class="b-menu__separator">
+            <button class="b-account" type="button">
+              <span class="b-avatar" aria-hidden="true">+</span>
+              <div class="b-account__meta">
+                <div class="b-account__name">Add account</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="b-footnote b-text-tertiary b-text-center">© 2026 Neurotech Africa · Ohio Street, Dar es Salaam</p>
+  </main>
+</body>
+</html>

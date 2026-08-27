@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Barua UI — Base
+   Reset, document defaults, typography elements, focus, selection,
+   interaction-state conventions.
+   ========================================================================== */
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  * { margin: 0; }
+  /* The universal reset above would defeat the UA's centering of dialogs
+     and popovers (both center via `margin: auto` in the top layer). */
+  dialog, [popover] { margin: auto; }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+  }
+
+  body {
+    font-family: var(--b-font-sans);
+    font-size: var(--b-text-body);
+    line-height: var(--b-leading-body);
+    letter-spacing: var(--b-tracking-text);
+    color: var(--b-text);
+    background: var(--b-bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100dvh;
+  }
+
+  img, picture, video, canvas, svg { display: block; max-width: 100%; }
+  input, button, textarea, select { font: inherit; color: inherit; letter-spacing: inherit; }
+  p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+
+  /* ---- Typographic elements -------------------------------------------- */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--b-weight-semibold);
+    line-height: var(--b-leading-tight);
+    letter-spacing: var(--b-tracking-tight);
+    text-wrap: balance;
+  }
+  h1 { font-size: var(--b-text-large-title); font-weight: var(--b-weight-bold); }
+  h2 { font-size: var(--b-text-title1); }
+  h3 { font-size: var(--b-text-title2); }
+  h4 { font-size: var(--b-text-title3); }
+  h5 { font-size: var(--b-text-headline); }
+  h6 { font-size: var(--b-text-subheadline); text-transform: uppercase;
+       letter-spacing: var(--b-tracking-wide); color: var(--b-text-secondary); }
+
+  small { font-size: var(--b-text-footnote); color: var(--b-text-secondary); }
+  strong, b { font-weight: var(--b-weight-semibold); }
+
+  a {
+    color: var(--b-color-accent-text);
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+
+  code, kbd, samp, pre { font-family: var(--b-font-mono); font-size: 0.875em; }
+  code {
+    background: var(--b-fill-tertiary);
+    border-radius: var(--b-radius-xs);
+    padding: 0.125em 0.375em;
+  }
+  pre {
+    overflow: auto;
+    padding: var(--b-space-4);
+    background: var(--b-surface-2);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-md);
+    line-height: var(--b-leading-snug);
+  }
+  pre code { background: none; padding: 0; border-radius: 0; font-size: var(--b-text-footnote); }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--b-separator);
+    margin: var(--b-space-6) 0;
+  }
+
+  blockquote {
+    border-inline-start: 3px solid var(--b-color-accent);
+    padding: var(--b-space-1) var(--b-space-4);
+    color: var(--b-text-secondary);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--b-color-accent) 28%, transparent);
+  }
+
+  /* ---- Focus ring (Focus Ring component) -------------------------------- */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--b-focus-ring);
+    border-radius: var(--b-radius-xs);
+  }
+  .b-focus-ring:focus-visible,
+  button:focus-visible, [href]:focus-visible,
+  input:focus-visible, select:focus-visible, textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: none;
+    box-shadow: var(--b-focus-ring);
+  }
+
+  /* ---- Interaction-state conventions ------------------------------------
+     Every interactive component honours:
+       :hover / .is-hover        — hover affordance
+       :active / .is-pressed     — pressed
+       .is-active                — current / toggled-on
+       .is-selected              — selection
+       .is-dragging              — mid-drag
+       :disabled / .is-disabled  — non-interactive
+  ------------------------------------------------------------------------- */
+  :disabled, .is-disabled {
+    opacity: var(--b-opacity-disabled);
+    cursor: not-allowed !important;
+    pointer-events: var(--b-disabled-pointer, auto);
+  }
+  .is-dragging { opacity: 0.55; cursor: grabbing !important; }
+
+  [draggable="true"] { cursor: grab; }
+
+  /* ---- Scrollbars (subtle, macOS-like) ---------------------------------- */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--b-fill) transparent;
+  }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb {
+    background: var(--b-fill);
+    border-radius: var(--b-radius-full);
+  }
+  *::-webkit-scrollbar-track { background: transparent; }
+
+  /* ---- Reduced motion ---------------------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ---- Screen-reader-only ------------------------------------------------ */
+  .b-sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Skip link — appears on focus */
+  .b-skip-link {
+    position: fixed;
+    inset-block-start: var(--b-space-2);
+    inset-inline-start: var(--b-space-2);
+    z-index: var(--b-z-tooltip);
+    padding: var(--b-space-2) var(--b-space-4);
+    background: var(--b-elevated);
+    border-radius: var(--b-radius-md);
+    box-shadow: var(--b-elevation-4);
+    font-weight: var(--b-weight-semibold);
+    translate: 0 calc(-100% - var(--b-space-4));
+    transition: translate var(--b-duration-fast) var(--b-ease-out);
+  }
+  .b-skip-link:focus-visible { translate: 0 0; }
+
+  /* ---- Keyboard shortcut (kbd) ------------------------------------------ */
+  kbd, .b-kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.4em;
+    padding: 0.1em 0.45em;
+    font-family: var(--b-font-sans);
+    font-size: var(--b-text-caption);
+    font-weight: var(--b-weight-medium);
+    color: var(--b-text-secondary);
+    background: var(--b-fill-tertiary);
+    border: 1px solid var(--b-border);
+    border-bottom-width: 2px;
+    border-radius: var(--b-radius-sm);
+  }
+}
+
+/* UNLAYERED on purpose — must beat every layer. Closed dialogs and closed
+   popovers stay hidden even when a component class sets `display` (author
+   styles otherwise override the UA's hiding rules). `allow-discrete`
+   transitions on components still animate the exit before display flips. */
+dialog:not([open]) { display: none; }
+[popover]:not(:popover-open) { display: none; }
+
+/* View Transitions (SwiftUI matchedGeometry energy) — OPT-IN: set
+   data-vt on <html> and same-origin navigations cross-fade with the
+   system's motion tokens. Reduced motion disables it automatically. */
+@view-transition { navigation: auto; }
+html:not([data-vt])::view-transition-old(root),
+html:not([data-vt])::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+[data-vt]::view-transition-old(root) { animation-duration: 180ms; }
+[data-vt]::view-transition-new(root) { animation-duration: 220ms; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}

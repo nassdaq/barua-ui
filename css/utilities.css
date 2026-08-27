@@ -1,0 +1,488 @@
+/* ==========================================================================
+   Barua UI — Utilities & Layout primitives
+   Container, Stack/HStack/VStack, Grid, Flex, Spacer, Divider, Scroll Area,
+   materials, text styles, safe area.
+   ========================================================================== */
+
+@layer utilities {
+  /* ---- Container --------------------------------------------------------- */
+  .b-container {
+    width: 100%;
+    max-width: var(--b-container-lg);
+    margin-inline: auto;
+    padding-inline: var(--b-space-4);
+  }
+  .b-container--sm { max-width: var(--b-container-sm); }
+
+  /* Wallpaper-driven scheme: a surface pinned to a known-bright or
+     known-dark backdrop resolves every light-dark() token that way, so text,
+     glass and fills answer to the picture rather than to the app theme.
+     Set [data-wall-scheme] on <html>; mark the surface .b-wallpaper-scope. */
+  [data-wall-scheme="light"] .b-wallpaper-scope,
+  [data-wall-scheme="dark"]  .b-wallpaper-scope {
+    /* Re-anchor the ink inside the scope: text colour is resolved further up
+       and inherited down, so without this the scheme would flip the glass but
+       not the words sitting on it. */
+    color: var(--b-text);
+  }
+  [data-wall-scheme="light"] .b-wallpaper-scope { color-scheme: light; }
+  [data-wall-scheme="dark"]  .b-wallpaper-scope { color-scheme: dark; }
+
+  /* Stage — a full-viewport, non-scrolling surface (ambient walls, kiosks,
+     TV/CarPlay-style screens). Desktop locks to the viewport and clips;
+     below md it behaves as a normal scrolling page. */
+  @media (min-width: 768px) {
+    .b-stage {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      overflow: clip;
+    }
+    .b-stage > .b-container,
+    .b-stage > main { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+    .b-stage .b-scroll-area { flex: 1; min-height: 0; }
+    .b-stage > .b-container > .b-dashboard,
+    .b-stage > .b-container > main.b-dashboard,
+    .b-stage > main > .b-dashboard { flex: 1; min-height: 0; grid-auto-rows: minmax(0, 1fr); }
+    .b-stage > .b-container > .b-dashboard > .b-card,
+    .b-stage > .b-container > main.b-dashboard > .b-card,
+    .b-stage > main > .b-dashboard > .b-card { min-height: 0; overflow: hidden; }
+  }
+  .b-container--md { max-width: var(--b-container-md); }
+  .b-container--xl { max-width: var(--b-container-xl); }
+  .b-container--fluid { max-width: none; }
+
+  /* ---- Stack (VStack default, HStack modifier) --------------------------- */
+  .b-stack, .b-vstack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-gap, var(--b-space-4));
+  }
+  .b-hstack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--b-gap, var(--b-space-3));
+  }
+  .b-stack--start   { align-items: flex-start; }
+  .b-stack--center  { align-items: center; }
+  .b-stack--end     { align-items: flex-end; }
+  .b-stack--stretch { align-items: stretch; }
+  .b-stack--between { justify-content: space-between; }
+  .b-stack--wrap    { flex-wrap: wrap; }
+  .b-gap-0 { --b-gap: 0; }
+  .b-gap-1 { --b-gap: var(--b-space-1); }
+  .b-gap-2 { --b-gap: var(--b-space-2); }
+  .b-gap-3 { --b-gap: var(--b-space-3); }
+  .b-gap-4 { --b-gap: var(--b-space-4); }
+  .b-gap-6 { --b-gap: var(--b-space-6); }
+  .b-gap-8 { --b-gap: var(--b-space-8); }
+
+  /* ---- Spacer ------------------------------------------------------------ */
+  .b-spacer { flex: 1 1 0%; min-width: 0; min-height: 0; }
+
+  /* ---- Grid -------------------------------------------------------------- */
+  .b-grid {
+    display: grid;
+    gap: var(--b-gap, var(--b-space-4));
+    grid-template-columns: repeat(var(--b-cols, 12), minmax(0, 1fr));
+  }
+  .b-grid--2  { --b-cols: 2; }
+  .b-grid--3  { --b-cols: 3; }
+  .b-grid--4  { --b-cols: 4; }
+  .b-grid--6  { --b-cols: 6; }
+  .b-grid--auto {
+    grid-template-columns: repeat(auto-fill, minmax(var(--b-col-min, 16rem), 1fr));
+  }
+  .b-col-span-2  { grid-column: span 2; }
+  .b-col-span-3  { grid-column: span 3; }
+  .b-col-span-4  { grid-column: span 4; }
+  .b-col-span-6  { grid-column: span 6; }
+  .b-col-span-full { grid-column: 1 / -1; }
+
+  /* Card Grid & Masonry */
+  .b-card-grid {
+    display: grid;
+    gap: var(--b-space-4);
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  }
+  .b-masonry {
+    columns: var(--b-masonry-cols, 3) 16rem;
+    column-gap: var(--b-space-4);
+  }
+  .b-masonry > * { break-inside: avoid; margin-block-end: var(--b-space-4); }
+
+  /* ---- Flex shorthand ---------------------------------------------------- */
+  .b-flex { display: flex; gap: var(--b-gap, var(--b-space-3)); }
+  .b-flex--center { align-items: center; justify-content: center; }
+  .b-flex--between { align-items: center; justify-content: space-between; }
+  .b-flex--wrap { flex-wrap: wrap; }
+  .b-grow { flex-grow: 1; min-width: 0; }
+  .b-shrink-0 { flex-shrink: 0; }
+
+  /* ---- Divider ----------------------------------------------------------- */
+  .b-divider {
+    border: none;
+    border-top: 1px solid var(--b-separator);
+    margin: 0;
+    align-self: stretch;
+  }
+  .b-divider--vertical {
+    border-top: none;
+    border-inline-start: 1px solid var(--b-separator);
+    width: 0;
+    min-height: 1em;
+  }
+  .b-divider--inset { margin-inline-start: var(--b-space-12); }
+  .b-divider--label {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-3);
+    border: none;
+    color: var(--b-text-tertiary);
+    font-size: var(--b-text-footnote);
+  }
+  .b-divider--label::before,
+  .b-divider--label::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--b-separator);
+  }
+
+  /* ---- Scroll Area ------------------------------------------------------- */
+  .b-scroll-area {
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+  /* A scroll pane's content keeps its own height: as a flex parent it would
+     otherwise compress its children to fit and nothing would ever scroll. */
+  .b-scroll-area > * { flex-shrink: 0; }
+  .b-scroll-area--x { overflow: auto hidden; }
+  .b-scroll-area--y { overflow: hidden auto; }
+  .b-scroll-area--fade {
+    mask-image: linear-gradient(to bottom, transparent, black var(--b-space-4),
+                black calc(100% - var(--b-space-4)), transparent);
+  }
+
+  /* ---- Split view / resizable panels ------------------------------------- */
+  .b-split {
+    display: flex;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .b-split > .b-panel { min-width: 0; overflow: auto; }
+  .b-panel {
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-lg);
+  }
+  .b-panel--plain { background: none; border: none; border-radius: 0; }
+  .b-resizable { resize: horizontal; overflow: auto; min-width: 12rem; max-width: 70%; }
+  .b-resizable--vertical { resize: vertical; min-height: 6rem; max-height: 80vh; }
+  .b-resize-handle {
+    flex: 0 0 auto;
+    width: 9px;
+    margin-inline: -4px;
+    cursor: col-resize;
+    position: relative;
+    z-index: var(--b-z-raised);
+  }
+  .b-resize-handle::after {
+    content: "";
+    position: absolute;
+    inset: 0 4px;
+    background: var(--b-separator);
+    transition: background var(--b-duration-fast) var(--b-ease-standard);
+  }
+  .b-resize-handle:hover::after,
+  .b-resize-handle.is-active::after { background: var(--b-color-accent); inset: 0 3px; border-radius: 2px; }
+
+  /* ---- Section ----------------------------------------------------------- */
+  .b-section { padding-block: var(--b-space-10); }
+  .b-section--tight { padding-block: var(--b-space-6); }
+
+  /* ---- Materials (Liquid Glass) -------------------------------------------
+     Multi-layer glass material utilities. Each level composes:
+     background tint + backdrop-filter + specular edge + depth shadow.
+     ---------------------------------------------------------------------- */
+  .b-material-ultrathin, .b-material-thin, .b-material-regular,
+  .b-material-thick, .b-material-chrome, .b-material-accent {
+    position: relative;
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border: 1px solid light-dark(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+    box-shadow: var(--b-glass-ambient);
+    overflow: hidden;
+  }
+  .b-material-ultrathin::before, .b-material-thin::before,
+  .b-material-regular::before, .b-material-thick::before,
+  .b-material-chrome::before, .b-material-accent::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+  .b-material-ultrathin { background: var(--b-material-ultrathin-bg);
+    -webkit-backdrop-filter: var(--b-glass-light); backdrop-filter: var(--b-glass-light); }
+  .b-material-thin    { background: var(--b-material-thin-bg); }
+  .b-material-regular { background: var(--b-material-regular-bg); }
+  .b-material-thick   { background: var(--b-material-thick-bg);
+    -webkit-backdrop-filter: var(--b-glass-heavy); backdrop-filter: var(--b-glass-heavy); }
+  .b-material-chrome  { background: var(--b-material-chrome-bg); }
+  .b-material-accent  { background: var(--b-material-accent-bg); }
+
+  /* Clear variant — permanently transparent, for media-rich backgrounds.
+     Needs dimming layer for legibility. Only use when:
+     1. Element is on top of media-rich content
+     2. Content layer won't be negatively impacted by dimming
+     3. Content above is bold and bright */
+  .b-material-clear {
+    position: relative;
+    background: light-dark(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+    -webkit-backdrop-filter: blur(var(--b-blur-md)) saturate(1.5);
+    backdrop-filter: blur(var(--b-blur-md)) saturate(1.5);
+    border: 1px solid light-dark(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.04));
+    box-shadow: var(--b-glass-shadow);
+    overflow: hidden;
+  }
+  .b-material-clear::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+  /* Dimming layer for clear variant — ensures legibility over media */
+  .b-material-clear--dimmed::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: light-dark(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.22));
+    pointer-events: none;
+  }
+
+  /* Prominent variant — tinted accent glass for primary navigation/actions */
+  .b-material-prominent {
+    position: relative;
+    background: var(--b-glass-tint-strong);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border: 1px solid light-dark(rgba(10, 122, 255, 0.12), rgba(10, 132, 255, 0.16));
+    box-shadow: var(--b-glass-shadow);
+    overflow: hidden;
+  }
+  .b-material-prominent::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+
+  /* ---- Glass Container ---------------------------------------------------
+     Groups multiple glass elements so they blend shapes and morph together.
+     Similar to Apple's GlassEffectContainer. Children with glass effects
+     will merge their shapes when within the container's spacing.
+     ---------------------------------------------------------------------- */
+  .b-glass-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--b-glass-spacing, var(--b-space-2));
+    isolation: isolate;
+  }
+  .b-glass-container--col { flex-direction: column; }
+
+  /* ---- Glass Morph Transitions -------------------------------------------
+     Use these on elements inside a .b-glass-container to enable
+     fluid morphing between glass shapes during transitions.
+     ---------------------------------------------------------------------- */
+  .b-glass-morph {
+    transition: scale var(--b-duration-normal) var(--b-ease-spring),
+                opacity var(--b-duration-normal) var(--b-ease-out),
+                translate var(--b-duration-normal) var(--b-ease-spring);
+  }
+  .b-glass-morph-enter {
+    animation: b-glass-materialize var(--b-duration-slow) var(--b-ease-spring) both;
+  }
+  .b-glass-morph-exit {
+    animation: b-glass-materialize var(--b-duration-slow) var(--b-ease-spring) reverse both;
+  }
+
+  /* ---- Glass Interactive -------------------------------------------------
+     Adds Apple's "energize" effect — scale, bounce, and shimmer on press.
+     Apply to any glass element that should respond to touch/pointer.
+     ---------------------------------------------------------------------- */
+  .b-glass-interactive {
+    cursor: pointer;
+    transition: scale var(--b-duration-instant) var(--b-ease-standard),
+                background var(--b-duration-fast) var(--b-ease-standard),
+                box-shadow var(--b-duration-fast) var(--b-ease-standard);
+  }
+  .b-glass-interactive:hover {
+    scale: 1.02;
+  }
+  .b-glass-interactive:active {
+    scale: 0.97;
+  }
+
+  /* ---- Scroll Edge Effect ------------------------------------------------
+     Dissolves content that scrolls beneath a glass element, maintaining
+     legibility. Apply to the scrollable container, with the glass element
+     as a sticky sibling.
+     ---------------------------------------------------------------------- */
+  .b-scroll-edge {
+    --b-scroll-edge-h: 3rem;
+    position: relative;
+  }
+  .b-scroll-edge::before,
+  .b-scroll-edge::after {
+    content: "";
+    position: sticky;
+    display: block;
+    inset-inline: 0;
+    height: var(--b-scroll-edge-h);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .b-scroll-edge::before {
+    top: 0;
+    background: linear-gradient(to bottom,
+      var(--b-material-chrome-bg) 0%,
+      transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  }
+  .b-scroll-edge::after {
+    bottom: 0;
+    background: linear-gradient(to top,
+      var(--b-material-chrome-bg) 0%,
+      transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+  }
+
+  /* ---- Text styles (Apple type roles) ------------------------------------ */
+  .b-large-title { font-size: var(--b-text-large-title); font-weight: var(--b-weight-bold); line-height: var(--b-leading-tight); letter-spacing: var(--b-tracking-tight); }
+  .b-title1 { font-size: var(--b-text-title1); font-weight: var(--b-weight-bold); line-height: var(--b-leading-tight); letter-spacing: var(--b-tracking-tight); }
+  .b-title2 { font-size: var(--b-text-title2); font-weight: var(--b-weight-semibold); line-height: var(--b-leading-tight); }
+  .b-title3 { font-size: var(--b-text-title3); font-weight: var(--b-weight-semibold); line-height: var(--b-leading-snug); }
+  .b-headline { font-size: var(--b-text-headline); font-weight: var(--b-weight-semibold); }
+  .b-body { font-size: var(--b-text-body); }
+  .b-callout { font-size: var(--b-text-callout); }
+  .b-subheadline { font-size: var(--b-text-subheadline); }
+  .b-footnote { font-size: var(--b-text-footnote); }
+  .b-caption { font-size: var(--b-text-caption); }
+  .b-caption2 { font-size: var(--b-text-caption2); }
+  .b-overline { font-size: var(--b-text-caption); font-weight: var(--b-weight-semibold);
+    text-transform: uppercase; letter-spacing: var(--b-tracking-wide); color: var(--b-text-secondary); }
+
+  .b-text-secondary  { color: var(--b-text-secondary); }
+  .b-text-tertiary   { color: var(--b-text-tertiary); }
+  .b-text-accent     { color: var(--b-color-accent-text); }
+  .b-text-success    { color: var(--b-color-success); }
+  .b-text-warning    { color: var(--b-color-warning); }
+  .b-text-danger     { color: var(--b-color-danger); }
+  .b-text-center     { text-align: center; }
+  .b-text-end        { text-align: end; }
+  .b-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .b-line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .b-line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .b-tabular-nums { font-variant-numeric: tabular-nums; }
+
+  /* Icons — inline 20×20 SVGs from the icon library (docs/icons.html) */
+  .b-icon      { width: 1.25rem; height: 1.25rem; flex: none; }
+  .b-icon--sm  { width: 1rem;    height: 1rem; }
+  .b-icon--lg  { width: 1.75rem; height: 1.75rem; }
+
+  /* ---- Elevation / radius / misc helpers --------------------------------- */
+  .b-elevation-0 { box-shadow: var(--b-elevation-0); }
+  .b-elevation-1 { box-shadow: var(--b-elevation-1); }
+  .b-elevation-2 { box-shadow: var(--b-elevation-2); }
+  .b-elevation-3 { box-shadow: var(--b-elevation-3); }
+  .b-elevation-4 { box-shadow: var(--b-elevation-4); }
+  .b-elevation-5 { box-shadow: var(--b-elevation-5); }
+  .b-radius-md { border-radius: var(--b-radius-md); }
+  .b-radius-lg { border-radius: var(--b-radius-lg); }
+  .b-radius-xl { border-radius: var(--b-radius-xl); }
+  .b-radius-full { border-radius: var(--b-radius-full); }
+  .b-hidden { display: none !important; }
+  .b-relative { position: relative; }
+
+  /* ---- Container queries (SwiftUI ViewThatFits) ---------------------------
+     Mark a wrapper .b-cq; children opt into visibility by the CONTAINER's
+     width, not the viewport's. sm ≥24rem, md ≥40rem, lg ≥56rem.
+  --------------------------------------------------------------------------- */
+  .b-cq { container-type: inline-size; }
+  .b-cq-show-sm, .b-cq-show-md, .b-cq-show-lg { display: none; }
+  @container (min-width: 24rem) {
+    .b-cq-show-sm { display: revert; }
+    .b-cq-hide-sm { display: none; }
+  }
+  @container (min-width: 40rem) {
+    .b-cq-show-md { display: revert; }
+    .b-cq-hide-md { display: none; }
+  }
+  @container (min-width: 56rem) {
+    .b-cq-show-lg { display: revert; }
+    .b-cq-hide-lg { display: none; }
+  }
+
+  /* ---- Redacted (SwiftUI .redacted(reason: .placeholder)) ------------------ */
+  .b-redacted, .b-redacted * { color: transparent !important; }
+  .b-redacted {
+    position: relative;
+    pointer-events: none;
+    user-select: none;
+  }
+  .b-redacted img, .b-redacted svg, .b-redacted video { visibility: hidden; }
+  .b-redacted::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--b-radius-sm);
+    background: var(--b-fill-tertiary);
+    animation: b-pulse 1.6s var(--b-ease-standard) infinite;
+  }
+
+  /* ---- Symbol effects (SF Symbols bounce / pulse) -------------------------- */
+  .b-icon--bounce svg, .b-icon--bounce { animation: b-icon-bounce 0.5s var(--b-ease-bounce); }
+  .b-icon--pulse svg, .b-icon--pulse { animation: b-pulse 1.6s var(--b-ease-standard) infinite; }
+  @keyframes b-icon-bounce {
+    30% { translate: 0 -3px; scale: 1.15; }
+    60% { translate: 0 1px; scale: 0.96; }
+  }
+
+  /* ---- Safe area (mobile) ------------------------------------------------ */
+  .b-safe-area {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .b-safe-bottom { padding-bottom: max(var(--b-space-3), env(safe-area-inset-bottom)); }
+
+  /* ---- Touch target ------------------------------------------------------ */
+  .b-touch-target { position: relative; }
+  .b-touch-target::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    width: max(100%, var(--b-touch-target));
+    height: max(100%, var(--b-touch-target));
+  }
+
+  /* ---- Responsive visibility --------------------------------------------- */
+  @media (max-width: 767px) {
+    .b-hide-mobile { display: none !important; }
+  }
+  @media (min-width: 768px) {
+    .b-hide-desktop { display: none !important; }
+  }
+}

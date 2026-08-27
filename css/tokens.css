@@ -1,0 +1,364 @@
+/* ==========================================================================
+   Barua UI — Design Tokens
+   Apple-derived palette & metrics, Barua blue accent, glass materials.
+   Theming: modern `light-dark()` — set data-theme="light|dark" on <html>,
+   or leave unset to follow the system.
+   ========================================================================== */
+
+@layer tokens {
+  :root {
+    color-scheme: light dark;
+
+    /* ------------------------------------------------------------------ *
+     *  Color — accent (Barua blue)
+     * ------------------------------------------------------------------ */
+    --b-blue-50:  #eaf2ff;
+    --b-blue-100: #d7e6ff;
+    --b-blue-200: #adcdff;
+    --b-blue-300: #7db0ff;
+    --b-blue-400: #4293ff;
+    --b-blue-500: #0a7aff;   /* base — Barua blue */
+    --b-blue-600: #0066e0;
+    --b-blue-700: #0052b4;
+    --b-blue-800: #003d87;
+    --b-blue-900: #002a5c;
+
+    --b-color-accent:        light-dark(#0a7aff, #0a84ff);
+    --b-color-accent-hover:  light-dark(#0066e0, #3395ff);
+    --b-color-accent-active: light-dark(#0052b4, #66afff);
+    --b-color-accent-soft:   light-dark(rgba(10, 122, 255, 0.12), rgba(10, 132, 255, 0.18));
+    --b-color-accent-text:   light-dark(#0066e0, #6cb2ff);
+    --b-color-on-accent:     #ffffff;
+
+    /* ------------------------------------------------------------------ *
+     *  Color — Apple system palette
+     * ------------------------------------------------------------------ */
+    --b-color-red:    light-dark(#ff3b30, #ff453a);
+    --b-color-orange: light-dark(#ff9500, #ff9f0a);
+    --b-color-yellow: light-dark(#ffcc00, #ffd60a);
+    --b-color-green:  light-dark(#34c759, #30d158);
+    --b-color-mint:   light-dark(#00c7be, #63e6e2);
+    --b-color-teal:   light-dark(#30b0c7, #40cbe0);
+    --b-color-cyan:   light-dark(#32ade6, #64d2ff);
+    --b-color-blue:   var(--b-color-accent);
+    --b-color-indigo: light-dark(#5856d6, #5e5ce6);
+    --b-color-purple: light-dark(#af52de, #bf5af2);
+    --b-color-pink:   light-dark(#ff2d55, #ff375f);
+    --b-color-brown:  light-dark(#a2845e, #ac8e68);
+
+    --b-color-red-soft:    light-dark(rgba(255, 59, 48, 0.12),  rgba(255, 69, 58, 0.18));
+    --b-color-orange-soft: light-dark(rgba(255, 149, 0, 0.14),  rgba(255, 159, 10, 0.18));
+    --b-color-yellow-soft: light-dark(rgba(255, 204, 0, 0.18),  rgba(255, 214, 10, 0.18));
+    --b-color-green-soft:  light-dark(rgba(52, 199, 89, 0.14),  rgba(48, 209, 88, 0.18));
+    --b-color-indigo-soft: light-dark(rgba(88, 86, 214, 0.12),  rgba(94, 92, 230, 0.18));
+    --b-color-purple-soft: light-dark(rgba(175, 82, 222, 0.12), rgba(191, 90, 242, 0.18));
+    --b-color-pink-soft:   light-dark(rgba(255, 45, 85, 0.12),  rgba(255, 55, 95, 0.18));
+
+    /* Semantic aliases */
+    --b-color-success: var(--b-color-green);
+    --b-color-warning: var(--b-color-orange);
+    --b-color-danger:  var(--b-color-red);
+    --b-color-info:    var(--b-color-accent);
+    --b-color-success-soft: var(--b-color-green-soft);
+    --b-color-warning-soft: var(--b-color-orange-soft);
+    --b-color-danger-soft:  var(--b-color-red-soft);
+    --b-color-info-soft:    var(--b-color-accent-soft);
+
+    /* ------------------------------------------------------------------ *
+     *  Color — grays (Apple systemGray 1–6)
+     * ------------------------------------------------------------------ */
+    --b-gray-1: light-dark(#8e8e93, #8e8e93);
+    --b-gray-2: light-dark(#aeaeb2, #636366);
+    --b-gray-3: light-dark(#c7c7cc, #48484a);
+    --b-gray-4: light-dark(#d1d1d6, #3a3a3c);
+    --b-gray-5: light-dark(#e5e5ea, #2c2c2e);
+    --b-gray-6: light-dark(#f2f2f7, #1c1c1e);
+
+    /* ------------------------------------------------------------------ *
+     *  Color — backgrounds & surfaces
+     * ------------------------------------------------------------------ */
+    --b-bg:            light-dark(#f5f5f9, #101014);   /* app canvas */
+    --b-bg-secondary:  light-dark(#ececf2, #1c1c21);
+    --b-surface:       light-dark(#ffffff, #1c1c21);   /* cards, fields */
+    --b-surface-2:     light-dark(#f6f6fa, #26262c);   /* nested surface */
+    --b-surface-3:     light-dark(#ececf2, #303038);
+    --b-elevated:      light-dark(#ffffff, #2a2a31);   /* overlays, menus */
+    --b-scrim:         light-dark(rgba(16, 18, 26, 0.4), rgba(0, 0, 0, 0.55));
+
+    /* ------------------------------------------------------------------ *
+     *  Color — text (Apple label hierarchy)
+     * ------------------------------------------------------------------ */
+    --b-text:            light-dark(rgba(10, 12, 20, 0.92), rgba(245, 246, 250, 0.96));
+    --b-text-secondary:  light-dark(rgba(20, 24, 38, 0.62), rgba(235, 235, 245, 0.64));
+    --b-text-tertiary:   light-dark(rgba(20, 24, 38, 0.40), rgba(235, 235, 245, 0.42));
+    --b-text-quaternary: light-dark(rgba(20, 24, 38, 0.22), rgba(235, 235, 245, 0.24));
+
+    /* ------------------------------------------------------------------ *
+     *  Color — fills & separators
+     * ------------------------------------------------------------------ */
+    --b-fill:            light-dark(rgba(120, 122, 140, 0.16), rgba(120, 120, 128, 0.30));
+    --b-fill-secondary:  light-dark(rgba(120, 122, 140, 0.12), rgba(120, 120, 128, 0.24));
+    --b-fill-tertiary:   light-dark(rgba(120, 122, 140, 0.08), rgba(118, 118, 128, 0.18));
+    --b-fill-quaternary: light-dark(rgba(120, 122, 140, 0.05), rgba(118, 118, 128, 0.12));
+    --b-border:          light-dark(rgba(20, 24, 38, 0.12), rgba(235, 235, 245, 0.14));
+    --b-border-strong:   light-dark(rgba(20, 24, 38, 0.22), rgba(235, 235, 245, 0.26));
+    --b-separator:       light-dark(rgba(20, 24, 38, 0.09), rgba(235, 235, 245, 0.10));
+    --b-hairline:        light-dark(rgba(20, 24, 38, 0.10), rgba(255, 255, 255, 0.09));
+
+    /* ------------------------------------------------------------------ *
+     *  Materials — Liquid Glass (Apple-inspired multi-layer material)
+     *
+     *  Each glass level composes:
+     *    1. Background tint (the colored glass body)
+     *    2. Backdrop filter (blur + saturation)
+     *    3. Specular edge (top light catch — inset shadow)
+     *    4. Lensing shadow (depth + light concentration)
+     *    5. Ambient rim (subtle outer glow from surrounding content)
+     * ------------------------------------------------------------------ */
+
+    /* Background tints — the glass body color */
+    --b-material-ultrathin-bg: light-dark(rgba(255, 255, 255, 0.22), rgba(30, 30, 36, 0.25));
+    --b-material-thin-bg:      light-dark(rgba(255, 255, 255, 0.38), rgba(30, 30, 36, 0.40));
+    --b-material-regular-bg:   light-dark(rgba(252, 252, 254, 0.55), rgba(30, 30, 36, 0.55));
+    --b-material-thick-bg:     light-dark(rgba(250, 250, 253, 0.72), rgba(28, 28, 34, 0.74));
+    --b-material-chrome-bg:    light-dark(rgba(248, 249, 252, 0.62), rgba(22, 22, 27, 0.66));
+    --b-material-accent-bg:    light-dark(rgba(10, 122, 255, 0.10), rgba(10, 132, 255, 0.14));
+
+    /* Neutral material — the only one that is not theme-locked. A mid-grey
+       veil lightens a dark backdrop and darkens a light one by the same step,
+       so a surface built on it reads correctly over any wallpaper, photo or
+       artwork instead of assuming the page behind it. */
+    --b-material-neutral-bg:   rgba(128, 128, 128, 0.26);
+    --b-material-neutral-edge: rgba(128, 128, 128, 0.40);
+
+    /* Blur + saturation filters */
+    --b-glass:        blur(var(--b-blur-lg)) saturate(1.9);
+    --b-glass-light:  blur(var(--b-blur-sm)) saturate(1.7);
+    --b-glass-heavy:  blur(var(--b-blur-xl)) saturate(2.1);
+
+    /* Specular edge — the bright light catch at the top of a glass pane */
+    --b-glass-edge: inset 0 1px 0 light-dark(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.10)),
+                    inset 0 0 0 1px light-dark(rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.04));
+
+    /* Lensing — deeper shadow that simulates light concentration through glass.
+       The gradient creates a subtle "bent light" effect at the bottom edge. */
+    --b-glass-lensing: inset 0 -1px 2px light-dark(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.12)),
+                       inset 0 1px 0 light-dark(rgba(255, 255, 255, 0.50), rgba(255, 255, 255, 0.06));
+
+    /* Ambient rim — soft outer glow suggesting light spill from surrounding content */
+    --b-glass-ambient: 0 0 0 1px light-dark(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04)),
+                       0 1px 3px light-dark(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.18)),
+                       0 4px 12px light-dark(rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.12));
+
+    /* Composite shadow — combines lensing + ambient for full Liquid Glass depth */
+    --b-glass-shadow: var(--b-glass-lensing), var(--b-glass-ambient);
+
+    /* Tint — vibrant color overlay for accent/prominent glass elements.
+       Mimics Apple's colored glass where content brightness underneath
+       influences the tint tone. */
+    --b-glass-tint: light-dark(rgba(10, 122, 255, 0.08), rgba(10, 132, 255, 0.12));
+    --b-glass-tint-strong: light-dark(rgba(10, 122, 255, 0.14), rgba(10, 132, 255, 0.20));
+
+    /* Shimmer — the light flash on interactive press (Apple's "energize" effect) */
+    --b-glass-shimmer: linear-gradient(
+      105deg,
+      transparent 40%,
+      light-dark(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.10)) 45%,
+      light-dark(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.15)) 50%,
+      light-dark(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.10)) 55%,
+      transparent 60%
+    );
+
+    /* ------------------------------------------------------------------ *
+     *  Typography — SF-first stack, Apple HIG scale
+     * ------------------------------------------------------------------ */
+    --b-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+                   "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --b-font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+                   "Liberation Mono", monospace;
+    --b-font-rounded: ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro Rounded",
+                      "Segoe UI", Roboto, sans-serif;
+
+    --b-text-caption2:     0.6875rem;  /* 11 */
+    --b-text-caption:      0.75rem;    /* 12 */
+    --b-text-footnote:     0.8125rem;  /* 13 */
+    --b-text-subheadline:  0.9375rem;  /* 15 */
+    --b-text-callout:      1rem;       /* 16 */
+    --b-text-body:         1.0625rem;  /* 17 */
+    --b-text-headline:     1.0625rem;  /* 17 / 600 */
+    --b-text-title3:       1.25rem;    /* 20 */
+    --b-text-title2:       1.375rem;   /* 22 */
+    --b-text-title1:       1.75rem;    /* 28 */
+    --b-text-large-title:  2.125rem;   /* 34 */
+    --b-text-display:      3rem;       /* 48 */
+
+    --b-leading-tight: 1.2;
+    --b-leading-snug:  1.35;
+    --b-leading-body:  1.5;
+    --b-leading-loose: 1.65;
+
+    --b-weight-regular:  400;
+    --b-weight-medium:   500;
+    --b-weight-semibold: 600;
+    --b-weight-bold:     700;
+
+    --b-tracking-tight: -0.022em;   /* large titles */
+    --b-tracking-text:  -0.011em;   /* body */
+    --b-tracking-wide:   0.06em;    /* overlines, labels */
+
+    /* ------------------------------------------------------------------ *
+     *  Spacing — 4px base scale
+     * ------------------------------------------------------------------ */
+    --b-space-0: 0;
+    --b-space-1: 0.25rem;   /*  4 */
+    --b-space-2: 0.5rem;    /*  8 */
+    --b-space-3: 0.75rem;   /* 12 */
+    --b-space-4: 1rem;      /* 16 */
+    --b-space-5: 1.25rem;   /* 20 */
+    --b-space-6: 1.5rem;    /* 24 */
+    --b-space-8: 2rem;      /* 32 */
+    --b-space-10: 2.5rem;   /* 40 */
+    --b-space-12: 3rem;     /* 48 */
+    --b-space-16: 4rem;     /* 64 */
+    --b-space-20: 5rem;     /* 80 */
+    --b-space-24: 6rem;     /* 96 */
+
+    /* ------------------------------------------------------------------ *
+     *  Radius — Apple-style continuous feel
+     * ------------------------------------------------------------------ */
+    --b-radius-xs:  0.25rem;   /*  4 */
+    --b-radius-sm:  0.375rem;  /*  6 */
+    --b-radius-md:  0.625rem;  /* 10 */
+    --b-radius-lg:  0.875rem;  /* 14 */
+    --b-radius-xl:  1.25rem;   /* 20 */
+    --b-radius-2xl: 1.75rem;   /* 28 */
+    --b-radius-full: 9999px;
+
+    /* ------------------------------------------------------------------ *
+     *  Elevation — layered soft shadows (+ hairline ring)
+     * ------------------------------------------------------------------ */
+    --b-shadow-color: light-dark(rgba(18, 22, 34, 1), rgba(0, 0, 0, 1));
+    --b-ring: 0 0 0 1px var(--b-hairline);
+    --b-shadow-xs: 0 1px 2px color-mix(in srgb, var(--b-shadow-color) 6%, transparent);
+    --b-shadow-sm: 0 1px 2px color-mix(in srgb, var(--b-shadow-color) 5%, transparent),
+                   0 2px 8px color-mix(in srgb, var(--b-shadow-color) 6%, transparent);
+    --b-shadow-md: 0 2px 6px color-mix(in srgb, var(--b-shadow-color) 5%, transparent),
+                   0 8px 24px color-mix(in srgb, var(--b-shadow-color) 9%, transparent);
+    --b-shadow-lg: 0 4px 12px color-mix(in srgb, var(--b-shadow-color) 6%, transparent),
+                   0 16px 48px color-mix(in srgb, var(--b-shadow-color) 14%, transparent);
+    --b-shadow-xl: 0 8px 24px color-mix(in srgb, var(--b-shadow-color) 8%, transparent),
+                   0 32px 80px color-mix(in srgb, var(--b-shadow-color) 20%, transparent);
+    --b-shadow-accent: 0 4px 16px color-mix(in srgb, var(--b-color-accent) 35%, transparent);
+
+    --b-elevation-0: none;
+    --b-elevation-1: var(--b-ring), var(--b-shadow-xs);
+    --b-elevation-2: var(--b-ring), var(--b-shadow-sm);
+    --b-elevation-3: var(--b-ring), var(--b-shadow-md);
+    --b-elevation-4: var(--b-ring), var(--b-shadow-lg);
+    --b-elevation-5: var(--b-ring), var(--b-shadow-xl);
+
+    /* ------------------------------------------------------------------ *
+     *  Opacity & blur scales
+     * ------------------------------------------------------------------ */
+    --b-opacity-disabled: 0.4;
+    --b-opacity-muted:    0.6;
+    --b-opacity-hover:    0.85;
+    --b-blur-xs: 4px;
+    --b-blur-sm: 8px;
+    --b-blur-md: 16px;
+    --b-blur-lg: 24px;
+    --b-blur-xl: 40px;
+
+    /* ------------------------------------------------------------------ *
+     *  Motion — Apple-feel curves
+     * ------------------------------------------------------------------ */
+    --b-duration-instant: 100ms;
+    --b-duration-fast:    150ms;
+    --b-duration-normal:  250ms;
+    --b-duration-slow:    350ms;
+    --b-duration-slower:  500ms;
+    --b-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --b-ease-out:      cubic-bezier(0.22, 1, 0.36, 1);
+    --b-ease-in:       cubic-bezier(0.55, 0, 1, 0.45);
+    --b-ease-spring:   cubic-bezier(0.32, 0.72, 0, 1);      /* Apple sheet slide */
+    --b-ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);   /* playful overshoot */
+
+    /* ------------------------------------------------------------------ *
+     *  Layers (z-index)
+     * ------------------------------------------------------------------ */
+    --b-z-raised:   10;
+    --b-z-sticky:   100;
+    --b-z-topbar:   200;
+    --b-z-drawer:   300;
+    --b-z-overlay:  400;
+    --b-z-modal:    500;
+    --b-z-popover:  600;
+    --b-z-toast:    700;
+    --b-z-tooltip:  800;
+
+    /* ------------------------------------------------------------------ *
+     *  Component metrics
+     * ------------------------------------------------------------------ */
+    --b-control-h-xs: 1.5rem;    /* 24 */
+    --b-control-h-sm: 1.875rem;  /* 30 */
+    --b-control-h-md: 2.25rem;   /* 36 */
+    --b-control-h-lg: 2.75rem;   /* 44 — default touch target */
+    --b-control-h-xl: 3.25rem;   /* 52 */
+    --b-touch-target: 44px;
+    --b-focus-ring: 0 0 0 3.5px color-mix(in srgb, var(--b-color-accent) 30%, transparent);
+    --b-container-sm: 40rem;
+    --b-container-md: 48rem;
+    --b-container-lg: 64rem;
+    --b-container-xl: 80rem;
+    --b-sidebar-w: 16.25rem;     /* 260 */
+    --b-rail-w: 4.5rem;          /* 72 */
+    --b-topbar-h: 3.25rem;       /* 52 */
+
+    /* Breakpoints (convention — used in @media by value):
+       xs 480px · sm 640px · md 768px · lg 1024px · xl 1280px · 2xl 1536px */
+
+    /* ------------------------------------------------------------------ *
+     *  Glass animations
+     * ------------------------------------------------------------------ */
+    --b-glass-shimmer-duration: 600ms;
+    --b-glass-pulse-duration:   2000ms;
+  }
+
+  /* Explicit theme overrides — win over system preference */
+  [data-theme="light"] { color-scheme: light; }
+  [data-theme="dark"]  { color-scheme: dark; }
+
+  /* Accent re-tinting: <html data-accent="purple"> etc. */
+  [data-accent="indigo"] { --b-color-accent: var(--b-color-indigo); --b-color-accent-hover: color-mix(in srgb, var(--b-color-indigo) 85%, black); --b-color-accent-soft: var(--b-color-indigo-soft); --b-color-accent-text: var(--b-color-indigo); }
+  [data-accent="purple"] { --b-color-accent: var(--b-color-purple); --b-color-accent-hover: color-mix(in srgb, var(--b-color-purple) 85%, black); --b-color-accent-soft: var(--b-color-purple-soft); --b-color-accent-text: var(--b-color-purple); }
+  [data-accent="pink"]   { --b-color-accent: var(--b-color-pink);   --b-color-accent-hover: color-mix(in srgb, var(--b-color-pink) 85%, black);   --b-color-accent-soft: var(--b-color-pink-soft);   --b-color-accent-text: var(--b-color-pink); }
+  [data-accent="teal"]   { --b-color-accent: var(--b-color-teal);   --b-color-accent-hover: color-mix(in srgb, var(--b-color-teal) 85%, black);   --b-color-accent-soft: rgba(48, 176, 199, 0.14);   --b-color-accent-text: var(--b-color-teal); }
+  [data-accent="green"]  { --b-color-accent: var(--b-color-green);  --b-color-accent-hover: color-mix(in srgb, var(--b-color-green) 85%, black);  --b-color-accent-soft: var(--b-color-green-soft);  --b-color-accent-text: var(--b-color-green); }
+
+  /* ---- Glass keyframes (Liquid Glass) ----------------------------------- */
+  /* Shimmer — light flash sweeping across on press/interaction */
+  @keyframes b-glass-shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  /* Ambient pulse — subtle breathing glow for prominent glass elements */
+  @keyframes b-glass-pulse {
+    0%, 100% { opacity: 0.6; }
+    50%      { opacity: 1; }
+  }
+
+  /* Materialize — glass element appearing with depth */
+  @keyframes b-glass-materialize {
+    from {
+      opacity: 0;
+      scale: 0.92;
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+      filter: blur(0px);
+    }
+  }
+}

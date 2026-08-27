@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feedback — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Components</div>
+        <h1>Feedback</h1>
+        <p class="docs-hero__lede">
+          How the interface tells people what the system is doing —
+          confirmations, warnings, failures, waiting and progress. Every
+          feedback component draws from the same semantic color scale,
+          announces itself politely to assistive technology, and always
+          leaves the user a next step.
+        </p>
+      </header>
+
+      <section class="docs-section" id="alert">
+        <h2>Alert</h2>
+        <p>
+          An inline, contextual message that sits in the page flow. The default
+          is informational; add <code>.b-alert--success</code>,
+          <code>.b-alert--warning</code> or <code>.b-alert--danger</code>.
+          A close button with <code>data-b-dismiss</code> removes the alert
+          with zero extra JS.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-alert" role="status">
+            <span class="b-alert__icon">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5m0-8v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <div class="b-alert__content">
+              <div class="b-alert__title">A new version is available</div>
+              <div class="b-alert__desc">Refresh to load Barua UI v0.2 — no data will be lost.</div>
+            </div>
+            <button class="b-alert__close" data-b-dismiss aria-label="Dismiss">
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="b-alert b-alert--success" role="status">
+            <span class="b-alert__icon">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="m6.5 10.3 2.3 2.3 4.7-5.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="b-alert__content">
+              <div class="b-alert__title">Backup complete</div>
+              <div class="b-alert__desc">All 1,284 files are safely stored. Next backup runs tonight at 02:00.</div>
+            </div>
+            <button class="b-alert__close" data-b-dismiss aria-label="Dismiss">
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="b-alert b-alert--warning" role="status">
+            <span class="b-alert__icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 3.5 18 17H2L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8.5v3.5m0 2.2v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <div class="b-alert__content">
+              <div class="b-alert__title">Storage almost full</div>
+              <div class="b-alert__desc">You have used 4.6 GB of 5 GB. Old attachments can be archived in Settings.</div>
+            </div>
+            <button class="b-alert__close" data-b-dismiss aria-label="Dismiss">
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="b-alert b-alert--danger" role="alert">
+            <span class="b-alert__icon">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5m0 3v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <div class="b-alert__content">
+              <div class="b-alert__title">Payment failed</div>
+              <div class="b-alert__desc">Your card ending in 4821 was declined. Update the card to keep your plan active.</div>
+            </div>
+            <button class="b-alert__close" data-b-dismiss aria-label="Dismiss">
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Give error alerts
+          <code>role="alert"</code> so screen readers announce them
+          immediately; info, success and warning alerts should use
+          <code>role="status"</code> for a polite announcement. Never rely on
+          color alone — each variant pairs its tint with an icon and explicit
+          title text. Keep the close button's <code>aria-label</code>.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="banner">
+        <h2>Banner</h2>
+        <p>
+          A full-width announcement pinned above the app chrome. The default
+          wears the accent gradient; <code>.b-banner--neutral</code> sits
+          quietly on a surface color for less urgent notices. The close button
+          uses <code>data-b-dismiss</code>.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-banner" role="status">
+            <span>Barua UI v0.2 ships glass navigation and charts. <a href="#banner">See what's new</a></span>
+            <button class="b-banner__close" data-b-dismiss aria-label="Dismiss announcement">
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="b-banner b-banner--neutral" role="status">
+            <span>Scheduled maintenance Saturday 02:00–04:00 UTC. <a href="#banner">Status page</a></span>
+            <button class="b-banner__close" data-b-dismiss aria-label="Dismiss notice">
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="toast">
+        <h2>Toast</h2>
+        <p>
+          A transient, glassy confirmation that floats in from the bottom
+          corner and dismisses itself. At runtime toasts live inside an
+          auto-created <code>.b-toast-region</code>; the static markup below
+          shows each variant's anatomy — icon, content and an optional
+          trailing action.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-toast" role="status">
+            <span class="b-toast__icon">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5m0-8v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <div class="b-toast__content">
+              <div class="b-toast__title">New sign-in</div>
+              <div class="b-toast__desc">Safari on macOS, Arusha TZ</div>
+            </div>
+          </div>
+          <div class="b-toast b-toast--success" role="status">
+            <span class="b-toast__icon">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="m6.5 10.3 2.3 2.3 4.7-5.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="b-toast__content">
+              <div class="b-toast__title">Saved</div>
+              <div class="b-toast__desc">Profile updated</div>
+            </div>
+          </div>
+          <div class="b-toast b-toast--warning" role="status">
+            <span class="b-toast__icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 3.5 18 17H2L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8.5v3.5m0 2.2v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <div class="b-toast__content">
+              <div class="b-toast__title">Working offline</div>
+              <div class="b-toast__desc">Changes will sync when you reconnect</div>
+            </div>
+          </div>
+          <div class="b-toast b-toast--danger" role="status">
+            <span class="b-toast__icon">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5m0 3v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <div class="b-toast__content">
+              <div class="b-toast__title">Upload failed</div>
+              <div class="b-toast__desc">Network connection lost</div>
+            </div>
+          </div>
+          <div class="b-toast b-toast--success" role="status">
+            <span class="b-toast__icon">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="m6.5 10.3 2.3 2.3 4.7-5.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="b-toast__content">
+              <div class="b-toast__title">Message archived</div>
+            </div>
+            <button class="b-toast__action">Undo</button>
+          </div>
+        </div>
+
+        <h3 id="toast-live">Live triggers</h3>
+        <p>
+          In an app you never write toast markup by hand — call
+          <code>Barua.toast()</code> and the library builds the element,
+          appends it to the shared region and handles timing. Press these:
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn" onclick="Barua.toast({title:'New sign-in',description:'Safari on macOS, Arusha TZ'})">Info toast</button>
+          <button class="b-btn b-btn--tinted" onclick="Barua.toast({title:'Saved',description:'Profile updated',variant:'success'})">Success toast</button>
+          <button class="b-btn" onclick="Barua.toast({title:'Storage almost full',description:'4.6 GB of 5 GB used',variant:'warning'})">Warning toast</button>
+          <button class="b-btn" onclick="Barua.toast({title:'Upload failed',description:'Network connection lost',variant:'danger'})">Danger toast</button>
+          <button class="b-btn b-btn--outline" onclick="Barua.toast({title:'Message archived',variant:'success',action:{label:'Undo',onClick:()=>Barua.toast({title:'Message restored'})}})">With action</button>
+          <button class="b-btn b-btn--ghost" onclick="Barua.toast({title:'Working offline',description:'Changes will sync when you reconnect',variant:'warning',duration:0})">Sticky (duration: 0)</button>
+        </div>
+
+        <h3 id="toast-api">JavaScript API</h3>
+        <p>
+          <code>Barua.toast(options)</code> returns
+          <code>{ dismiss }</code> so you can remove a toast
+          programmatically. Hovering a toast pauses its timer.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>title</code></td><td>string</td><td><code>""</code></td><td>Bold first line.</td></tr>
+              <tr><td><code>description</code></td><td>string</td><td><code>""</code></td><td>Secondary line under the title.</td></tr>
+              <tr><td><code>variant</code></td><td><code>"info" | "success" | "warning" | "danger"</code></td><td><code>"info"</code></td><td>Chooses the icon and its semantic tint.</td></tr>
+              <tr><td><code>action</code></td><td><code>{ label, onClick }</code></td><td><code>null</code></td><td>Trailing action button; the toast dismisses after the handler runs.</td></tr>
+              <tr><td><code>duration</code></td><td>number (ms)</td><td><code>4000</code></td><td>Auto-dismiss delay. Pass <code>0</code> to keep the toast until dismissed.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> The toast region carries
+          <code>aria-live="polite"</code> and each toast gets
+          <code>role="status"</code> — screen readers announce it at the next
+          pause without interrupting. Because toasts vanish on their own,
+          never put information in one that isn't available somewhere
+          persistent, and keep durations at 4 seconds or more.</div>
+        </div>
+        <div class="docs-guidance">
+          <div class="docs-do">
+            Use a toast for transient confirmations of things the user just
+            did — saved, sent, archived, copied. Add a single
+            <code>action</code> like Undo when the operation is reversible.
+          </div>
+          <div class="docs-dont">
+            Don't use a toast for errors that need a decision or a fix — it
+            disappears before the user can act. Use an inline
+            <a href="#alert">Alert</a> next to the problem, or a Dialog from
+            <a href="overlays.html">Overlays</a> for blocking failures.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="snackbar">
+        <h2>Snackbar</h2>
+        <p>
+          A snackbar is the same <code>.b-toast</code> component anchored to
+          the bottom <em>center</em> of the viewport — wrap it in
+          <code>&lt;div class="b-toast-region b-toast-region--center"
+          aria-live="polite"&gt;</code> instead of the default corner region.
+          It usually skips the icon and always offers one action.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div class="b-toast" role="status">
+            <div class="b-toast__content">
+              <div class="b-toast__title">Conversation moved to Trash</div>
+            </div>
+            <button class="b-toast__action">Undo</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="notification">
+        <h2>Notification</h2>
+        <p>
+          A rich, macOS-style notification card: source app, title, body and
+          timestamp beside an avatar or app mark. It shares the toast's glass
+          treatment and works with <code>data-b-dismiss</code> on any child
+          button.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-notification" role="status">
+            <span class="b-avatar">AK</span>
+            <div class="b-notification__body">
+              <div class="b-notification__app">Messages</div>
+              <div class="b-notification__title">Amina Kimaro</div>
+              <div class="b-notification__desc">Uploaded the Q3 launch deck — take a look before standup.</div>
+            </div>
+            <span class="b-notification__time">now</span>
+          </div>
+          <div class="b-notification" role="status">
+            <span class="b-avatar b-avatar--square">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="b-notification__body">
+              <div class="b-notification__app">Barua Mail</div>
+              <div class="b-notification__title">Weekly digest ready</div>
+              <div class="b-notification__desc">12 threads resolved, 3 waiting on you.</div>
+            </div>
+            <span class="b-notification__time">9:41</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="tip">
+        <h2>Tip</h2>
+        <p>
+          A TipKit-style callout: glass card with an icon tile, one-line
+          promise, quiet explanation, inline actions and a dismiss. For
+          teaching a feature in place — once, then it leaves.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-tip" style="max-width: 26rem">
+            <span class="b-tip__icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5v2M4.7 4.7l1.4 1.4M2.5 10h2M15.3 4.7l-1.4 1.4M17.5 10h-2M7.5 15.5h5M8.5 18h3M10 6a4 4 0 0 1 2.5 7.1c-.5.4-.8 1-.8 1.6v.3h-3.4v-.3c0-.6-.3-1.2-.8-1.6A4 4 0 0 1 10 6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="b-tip__content">
+              <span class="b-tip__title">Swipe to archive</span>
+              <span class="b-tip__desc">Drag any conversation left to file it without opening it.</span>
+              <span class="b-tip__actions">
+                <button class="b-link">Try it</button>
+                <button class="b-link b-link--muted">Not now</button>
+              </span>
+            </span>
+            <button class="b-tip__close" aria-label="Dismiss tip" data-b-dismiss>✕</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="status-indicator">
+        <h2>Status Indicator</h2>
+        <p>
+          A dot plus label for presence and system health. Presence modifiers
+          <code>--online</code>, <code>--busy</code> and <code>--away</code>
+          have semantic aliases <code>--success</code>, <code>--danger</code>
+          and <code>--warning</code> for non-people states; add
+          <code>--pulse</code> to animate live activity.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-status">Offline</span>
+          <span class="b-status b-status--online">Online</span>
+          <span class="b-status b-status--away">Away</span>
+          <span class="b-status b-status--busy">Busy</span>
+          <span class="b-status b-status--online b-status--pulse">Live</span>
+          <span class="b-status b-status--success">Operational</span>
+          <span class="b-status b-status--warning">Degraded</span>
+          <span class="b-status b-status--danger">Major outage</span>
+        </div>
+      </section>
+
+      <section class="docs-section" id="progress-bar">
+        <h2>Progress Bar</h2>
+        <p>
+          A determinate track whose fill width comes from the
+          <code>--b-progress</code> custom property, e.g.
+          <code>style="--b-progress: 65%"</code>. The fill animates smoothly
+          when the value changes.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-progress" role="progressbar" aria-label="Upload progress" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 65%">
+            <div class="b-progress__fill"></div>
+          </div>
+        </div>
+
+        <h3 id="progress-bar-sizes">Sizes</h3>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-progress b-progress--sm" role="progressbar" aria-label="Small" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 40%">
+            <div class="b-progress__fill"></div>
+          </div>
+          <div class="b-progress" role="progressbar" aria-label="Medium" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 65%">
+            <div class="b-progress__fill"></div>
+          </div>
+          <div class="b-progress b-progress--lg" role="progressbar" aria-label="Large" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 80%">
+            <div class="b-progress__fill"></div>
+          </div>
+        </div>
+
+        <h3 id="progress-bar-colors">Semantic colors</h3>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-progress b-progress--success" role="progressbar" aria-label="Complete" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 100%">
+            <div class="b-progress__fill"></div>
+          </div>
+          <div class="b-progress b-progress--warning" role="progressbar" aria-label="Storage used" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 85%">
+            <div class="b-progress__fill"></div>
+          </div>
+          <div class="b-progress b-progress--danger" role="progressbar" aria-label="Failed at 30 percent" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 30%">
+            <div class="b-progress__fill"></div>
+          </div>
+        </div>
+
+        <h3 id="progress-bar-indeterminate">Indeterminate</h3>
+        <p>When the total is unknown, drop the value and let the fill sweep.</p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-progress b-progress--indeterminate" role="progressbar" aria-label="Loading">
+            <div class="b-progress__fill"></div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Every bar needs
+          <code>role="progressbar"</code>, an <code>aria-label</code> (or
+          <code>aria-labelledby</code>), and <code>aria-valuenow</code> /
+          <code>aria-valuemin</code> / <code>aria-valuemax</code> kept in sync
+          with <code>--b-progress</code>. Omit <code>aria-valuenow</code> on
+          indeterminate bars — that's how assistive tech knows the duration is
+          unknown.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="circular-progress">
+        <h2>Circular Progress</h2>
+        <p>
+          A conic-gradient ring driven by a <em>unitless</em>
+          <code>--b-progress</code> value from 0–100 set on
+          <code>.b-circular</code>. Wrap it in <code>.b-circular-wrap</code>
+          to center a <code>.b-circular__label</code> in the ring; resize with
+          <code>--b-circular-size</code> and <code>--b-circular-track</code>.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-circular-wrap">
+            <div class="b-circular" role="progressbar" aria-label="Sync" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 72"></div>
+            <span class="b-circular__label">72%</span>
+          </div>
+          <div class="b-circular-wrap">
+            <div class="b-circular" role="progressbar" aria-label="Storage" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 45; --b-circular-size: 4.5rem"></div>
+            <span class="b-circular__label">45%</span>
+          </div>
+          <div class="b-circular-wrap">
+            <div class="b-circular" role="progressbar" aria-label="Goal" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="--b-progress: 90; --b-circular-size: 6rem; --b-circular-track: 6px"></div>
+            <span class="b-circular__label">90%</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="loading-spinner">
+        <h2>Loading Spinner</h2>
+        <p>
+          A lightweight indeterminate ring in three sizes. For buttons, prefer
+          the built-in <code>.b-btn.is-loading</code> state from
+          <a href="actions.html#button-states">Actions</a> — it swaps the
+          label for a spinner while keeping the accessible name.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-spinner b-spinner--sm" role="status" aria-label="Loading"></span>
+          <span class="b-spinner" role="status" aria-label="Loading"></span>
+          <span class="b-spinner b-spinner--lg" role="status" aria-label="Loading"></span>
+          <button class="b-btn b-btn--primary is-loading" aria-busy="true">Saving…</button>
+        </div>
+      </section>
+
+      <section class="docs-section" id="skeleton">
+        <h2>Skeleton</h2>
+        <p>
+          Shimmering placeholders that hold layout while content loads. Four
+          shapes — <code>--text</code>, <code>--title</code>,
+          <code>--circle</code> and <code>--card</code> — compose into a ghost
+          of the real screen.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-skeleton b-skeleton--title"></div>
+          <div class="b-skeleton b-skeleton--text"></div>
+          <div class="b-skeleton b-skeleton--text" style="width: 75%"></div>
+          <div class="b-skeleton b-skeleton--circle" style="width: 3rem"></div>
+          <div class="b-skeleton b-skeleton--card" style="max-width: 18rem"></div>
+        </div>
+
+        <h3 id="skeleton-composed">Composed loading state</h3>
+        <div class="docs-demo">
+          <div class="b-card" style="max-width: 22rem" aria-busy="true">
+            <div class="b-skeleton b-skeleton--card" aria-hidden="true"></div>
+            <div class="b-card__body">
+              <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <div class="b-skeleton b-skeleton--circle" style="width: 2.5rem" aria-hidden="true"></div>
+                <div style="flex: 1">
+                  <div class="b-skeleton b-skeleton--title" style="width: 55%" aria-hidden="true"></div>
+                  <div class="b-skeleton b-skeleton--text" style="width: 35%" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="b-skeleton b-skeleton--text" style="margin-top: 1rem" aria-hidden="true"></div>
+              <div class="b-skeleton b-skeleton--text" aria-hidden="true"></div>
+              <div class="b-skeleton b-skeleton--text" style="width: 60%" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Skeletons are decorative: mark
+          each one <code>aria-hidden="true"</code> and set
+          <code>aria-busy="true"</code> on the loading container so assistive
+          tech waits for real content instead of reading empty boxes. Remove
+          <code>aria-busy</code> when the data arrives.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="result-states">
+        <h2>Result States</h2>
+        <p>
+          A full-panel outcome message for the end of a flow — one component,
+          four modifiers. <code>.b-result--success</code>,
+          <code>.b-result--error</code>, <code>.b-result--warning</code> and
+          <code>.b-result--confirm</code> compose the Success State, Error
+          State, Warning State and Confirmation State patterns from the
+          component list. Each pairs a tinted icon disc with a title,
+          supporting copy and clear next actions.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-result b-result--success">
+            <div class="b-result__icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="m4.5 10.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="b-result__title">Payment complete</div>
+            <div class="b-result__desc">Your receipt is on its way to your inbox. Funds typically arrive within two business days.</div>
+            <div class="b-result__actions">
+              <button class="b-btn b-btn--primary">View receipt</button>
+              <button class="b-btn b-btn--ghost">Done</button>
+            </div>
+          </div>
+          <hr class="b-divider">
+          <div class="b-result b-result--error" role="alert">
+            <div class="b-result__icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="b-result__title">Something went wrong</div>
+            <div class="b-result__desc">We couldn't process the transfer and no money left your account. Try again, or contact support if it keeps happening.</div>
+            <div class="b-result__actions">
+              <button class="b-btn b-btn--primary">Try again</button>
+              <button class="b-btn b-btn--ghost">Contact support</button>
+            </div>
+          </div>
+          <hr class="b-divider">
+          <div class="b-result b-result--warning">
+            <div class="b-result__icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 3 18.5 17.5h-17L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8.5v4m0 2.5v.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="b-result__title">Subscription expiring</div>
+            <div class="b-result__desc">Your plan ends in 3 days. Renew now to keep automatic backups and shared inboxes running.</div>
+            <div class="b-result__actions">
+              <button class="b-btn b-btn--primary">Renew plan</button>
+              <button class="b-btn b-btn--ghost">Remind me later</button>
+            </div>
+          </div>
+          <hr class="b-divider">
+          <div class="b-result b-result--confirm">
+            <div class="b-result__icon">
+              <svg viewBox="0 0 20 20" fill="none"><rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4.5 7 5.5 4 5.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="b-result__title">Check your inbox</div>
+            <div class="b-result__desc">We sent a confirmation link to your address. It expires in 15 minutes.</div>
+            <div class="b-result__actions">
+              <button class="b-btn b-btn--primary">Open mail app</button>
+              <button class="b-btn b-btn--ghost">Resend link</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="redacted">
+        <h2>Redacted</h2>
+        <p>
+          SwiftUI's <code>.redacted(reason: .placeholder)</code>: add
+          <code>.b-redacted</code> to any element and its real content renders
+          as a breathing placeholder block — same box, same layout, no
+          skeleton markup to maintain. Remove the class when data arrives.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-card" style="width: 15rem"><div class="b-card__body">
+            <div class="b-card__title">Amina Hassan</div>
+            <div class="b-card__subtitle">Reconciled 14 invoices</div>
+          </div></div>
+          <div class="b-card" style="width: 15rem"><div class="b-card__body">
+            <div class="b-card__title b-redacted">Amina Hassan</div>
+            <div class="b-card__subtitle b-redacted">Reconciled 14 invoices</div>
+          </div></div>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="content.html">← Content</a>
+        <a class="b-btn b-btn--ghost" href="overlays.html">Overlays →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

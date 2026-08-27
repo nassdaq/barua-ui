@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Authentication — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Patterns</div>
+        <h1>Authentication</h1>
+        <p class="docs-hero__lede">
+          Complete sign-in, sign-up, recovery, one-time-code and passkey flows,
+          composed entirely from Barua primitives on the glass auth card. Every
+          demo ships real autocomplete attributes so password managers, iCloud
+          Keychain and SMS autofill just work.
+        </p>
+      </header>
+
+      <section class="docs-section" id="sign-in">
+        <h2>Sign In</h2>
+        <p>
+          The flagship flow. <code>.b-auth-card</code> is a glass panel that
+          stacks a gradient <code>__logo</code>, <code>__title</code> and
+          <code>__subtitle</code>, a <code>.b-btn--provider</code> social
+          button, a <code>.b-divider--label</code>, standard
+          <code>.b-field</code> rows and a block primary action. The card is
+          shown alone here — in an app, place it inside the
+          <code>.b-auth</code> page wrapper, which centers it over a
+          full-height, aurora-tinted background. Wrap the controls in a real
+          <code>&lt;form&gt;</code> so Enter submits.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-auth-card" style="max-width: 24rem; margin-inline: auto">
+            <div class="b-auth-card__logo" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2.75" y="4.75" width="18.5" height="14.5" rx="3.25" stroke="currentColor" stroke-width="1.7"/><path d="m4.75 8.25 7.25 5.25 7.25-5.25" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h2 class="b-auth-card__title">Welcome back</h2>
+            <p class="b-auth-card__subtitle">Sign in to your Neurotech workspace.</p>
+            <button class="b-btn b-btn--provider b-btn--block" type="button">
+              <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.27c0-.85-.08-1.66-.22-2.45H12v4.64h6.46a5.53 5.53 0 0 1-2.4 3.62v3h3.88c2.27-2.09 3.56-5.17 3.56-8.81Z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.94-2.91l-3.88-3c-1.08.72-2.45 1.15-4.06 1.15-3.13 0-5.78-2.11-6.72-4.95H1.27v3.1A12 12 0 0 0 12 24Z"/><path fill="#FBBC05" d="M5.28 14.29a7.2 7.2 0 0 1 0-4.58v-3.1H1.27a12 12 0 0 0 0 10.78l4.01-3.1Z"/><path fill="#EA4335" d="M12 4.77c1.76 0 3.34.6 4.59 1.8l3.44-3.44A11.97 11.97 0 0 0 12 0 12 12 0 0 0 1.27 6.61l4.01 3.1C6.22 6.88 8.87 4.77 12 4.77Z"/></svg>
+              Continue with Google
+            </button>
+            <div class="b-divider--label">or</div>
+            <div class="b-field">
+              <label class="b-label" for="signin-email">Email</label>
+              <input class="b-input" id="signin-email" name="email" type="email" autocomplete="email" placeholder="amina@neurotech.africa">
+            </div>
+            <div class="b-field">
+              <div class="b-hstack b-stack--between">
+                <label class="b-label" for="signin-password">Password</label>
+                <a class="b-link" href="#forgot-password">Forgot?</a>
+              </div>
+              <input class="b-input" id="signin-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••">
+            </div>
+            <button class="b-btn b-btn--primary b-btn--block" type="button">Sign in</button>
+            <p class="b-auth-card__footer">New to Neurotech? <a href="#sign-up">Create an account</a></p>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Autocomplete.</strong> Every input on this page sets a
+          real token: <code>autocomplete="email"</code> on email fields,
+          <code>current-password</code> here, <code>new-password</code> on
+          sign-up and reset, and <code>one-time-code</code> on the first OTP
+          box. These attributes are what let password managers save, generate
+          and fill credentials — treat them as required, and always pair each
+          input with a visible <code>&lt;label for&gt;</code>.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="sign-up">
+        <h2>Sign Up</h2>
+        <p>
+          Same card, different fields. Keep it to the essentials — name, email,
+          password, terms via <code>.b-checkbox</code> — and defer everything
+          else to onboarding.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-auth-card" style="max-width: 24rem; margin-inline: auto">
+            <h2 class="b-auth-card__title">Create your account</h2>
+            <p class="b-auth-card__subtitle">Start your 14-day Neurotech trial.</p>
+            <div class="b-field">
+              <label class="b-label" for="signup-name">Full name</label>
+              <input class="b-input" id="signup-name" name="name" type="text" autocomplete="name" placeholder="Amina Hassan">
+            </div>
+            <div class="b-field">
+              <label class="b-label" for="signup-email">Work email</label>
+              <input class="b-input" id="signup-email" name="email" type="email" autocomplete="email" placeholder="amina@neurotech.africa">
+            </div>
+            <div class="b-field">
+              <label class="b-label" for="signup-password">Password</label>
+              <input class="b-input" id="signup-password" name="new-password" type="password" autocomplete="new-password" placeholder="8+ characters">
+            </div>
+            <label class="b-checkbox">
+              <input type="checkbox" name="terms">
+              <span>I agree to the <a href="#sign-up">Terms of Service</a> and <a href="#sign-up">Privacy Policy</a></span>
+            </label>
+            <button class="b-btn b-btn--primary b-btn--block" type="button">Create account</button>
+            <p class="b-auth-card__footer">Already have an account? <a href="#sign-in">Sign in</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="forgot-password">
+        <h2>Forgot Password</h2>
+        <p>
+          One field, one action, one way back. Confirm the send generically
+          (&ldquo;If an account exists for that address&hellip;&rdquo;) so the
+          flow never leaks which emails are registered.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-auth-card" style="max-width: 24rem; margin-inline: auto">
+            <h2 class="b-auth-card__title">Reset your password</h2>
+            <p class="b-auth-card__subtitle">We&rsquo;ll email you a secure reset link.</p>
+            <div class="b-field">
+              <label class="b-label" for="forgot-email">Email</label>
+              <input class="b-input" id="forgot-email" name="email" type="email" autocomplete="email" placeholder="amina@neurotech.africa">
+            </div>
+            <button class="b-btn b-btn--primary b-btn--block" type="button">Send reset link</button>
+            <p class="b-auth-card__footer"><a class="b-link b-link--muted" href="#sign-in">← Back to sign in</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="reset-password">
+        <h2>Reset Password</h2>
+        <p>
+          Two password fields plus a <code>.b-help</code> hint about strength.
+          Both inputs use <code>autocomplete="new-password"</code>, which is
+          the cue for password managers to offer a generated password.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-auth-card" style="max-width: 24rem; margin-inline: auto">
+            <h2 class="b-auth-card__title">Choose a new password</h2>
+            <p class="b-auth-card__subtitle">for amina@neurotech.africa</p>
+            <div class="b-field">
+              <label class="b-label" for="reset-new">New password</label>
+              <input class="b-input" id="reset-new" name="new-password" type="password" autocomplete="new-password">
+              <p class="b-help">At least 8 characters with a number and a symbol — a long passphrase is even stronger.</p>
+            </div>
+            <div class="b-field">
+              <label class="b-label" for="reset-confirm">Confirm new password</label>
+              <input class="b-input" id="reset-confirm" name="confirm-password" type="password" autocomplete="new-password">
+            </div>
+            <button class="b-btn b-btn--primary b-btn--block" type="button">Reset password</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="otp-input">
+        <h2>OTP Input</h2>
+        <p>
+          <code>.b-otp</code> is a row of six single-character boxes. Add
+          <code>data-b-otp</code> and <code>barua.js</code> wires the behavior:
+          every box gets <code>inputmode="numeric"</code> and
+          <code>maxlength="1"</code>, typing a digit auto-advances to the next
+          box (toggling <code>.is-filled</code>), Backspace on an empty box
+          steps back, and pasting a copied code distributes the digits across
+          the whole group.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div class="b-otp" data-b-otp role="group" aria-label="One-time code">
+            <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 1" value="7" class="is-filled">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+          </div>
+        </div>
+
+        <h3 id="otp-invalid">Invalid state</h3>
+        <p>
+          Add <code>.is-invalid</code> to the group when verification fails —
+          every box gets a danger border and the row shakes once.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div class="b-otp is-invalid" role="group" aria-label="One-time code, incorrect">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1" value="3" class="is-filled">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2" value="1" class="is-filled">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3" value="4" class="is-filled">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4" value="1" class="is-filled">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5" value="5" class="is-filled">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6" value="9" class="is-filled">
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Labels &amp; keyboards.</strong> The group carries
+          <code>role="group"</code> with an <code>aria-label</code>, and every
+          box has its own label (&ldquo;Digit 1&rdquo;&hellip;&ldquo;Digit
+          6&rdquo;). Ship <code>inputmode="numeric"</code> and
+          <code>maxlength="1"</code> in the markup — <code>barua.js</code>
+          applies them as a fallback, but mobile keyboards should show the
+          digit pad from the very first paint.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="verification">
+        <h2>Verification</h2>
+        <p>
+          The screen after sign-up, built from the result states in
+          <a href="feedback.html">Feedback</a>: <code>.b-result--confirm</code>
+          with a tinted resend action and an escape hatch to correct the
+          address.
+        </p>
+        <div class="docs-demo">
+          <div class="b-result b-result--confirm">
+            <div class="b-result__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="2.75" y="4.75" width="18.5" height="14.5" rx="3.25" stroke="currentColor" stroke-width="1.7"/><path d="m4.75 8.25 7.25 5.25 7.25-5.25" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h2 class="b-result__title">Check your inbox</h2>
+            <p class="b-result__desc">We sent a verification link to <strong>amina@neurotech.africa</strong>. It expires in 24 hours.</p>
+            <div class="b-result__actions">
+              <button class="b-btn b-btn--tinted" type="button">Resend email</button>
+              <a class="b-link b-link--muted" href="#sign-up">Change email address</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="passkey-prompt">
+        <h2>Passkey Prompt</h2>
+        <p>
+          <code>.b-passkey</code> is a focused prompt for WebAuthn sign-in:
+          a soft accent <code>__icon</code>, a one-line pitch, a primary
+          action and a ghost fallback to other methods.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div class="b-passkey" style="max-width: 24rem">
+            <div class="b-passkey__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M7.5 10.5a4.5 4.5 0 0 1 9 0v3a13.5 13.5 0 0 1-.56 3.85" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 10.5v3.25a9.75 9.75 0 0 1-1.4 5.05" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4.5 13.5v-3a7.5 7.5 0 0 1 11.87-6.1M19.5 10.2v3.3c0 1.7-.28 3.33-.8 4.85" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="b-passkey__title">Sign in with a passkey</h3>
+            <p class="b-passkey__desc">Use Face ID, Touch ID or your device PIN. Nothing to remember, nothing to phish.</p>
+            <button class="b-btn b-btn--primary" type="button">Use passkey</button>
+            <button class="b-btn b-btn--ghost" type="button">Other options</button>
+          </div>
+        </div>
+        <div class="docs-guidance">
+          <div class="docs-do">Offer passkeys first when the platform supports
+          them — lead with the passkey prompt and keep password sign-in one tap
+          away behind &ldquo;Other options&rdquo;.</div>
+          <div class="docs-dont">Block paste in password or OTP fields.
+          Password managers depend on paste, and the OTP group&rsquo;s paste
+          handler spreads a copied code across all six boxes.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="two-factor-authentication">
+        <h2>Two-Factor Authentication</h2>
+        <p>
+          Composed, not invented: a <code>.b-auth-card</code> carrying an OTP
+          group, a remember-device <code>.b-switch</code> and a block verify
+          action.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-auth-card" style="max-width: 24rem; margin-inline: auto">
+            <h2 class="b-auth-card__title">Two-factor code</h2>
+            <p class="b-auth-card__subtitle">Enter the 6-digit code from your authenticator app.</p>
+            <div class="b-otp" data-b-otp role="group" aria-label="Two-factor code">
+              <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 1">
+              <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+              <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+              <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+              <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+              <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+            </div>
+            <label class="b-switch">
+              <input type="checkbox" checked>
+              Remember this device for 30 days
+            </label>
+            <button class="b-btn b-btn--primary b-btn--block" type="button">Verify</button>
+            <p class="b-auth-card__footer">Lost your device? <a href="#two-factor-authentication">Use a recovery code</a></p>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Error announcement.</strong> When sign-in or code
+          verification fails, render the message in a live region — a
+          <code>.b-error</code> inside an element with
+          <code>role="alert"</code> — so screen readers announce it
+          immediately; the <code>.is-invalid</code> shake is decorative and
+          silent on its own. Keep focus in the offending field and never clear
+          what the user typed.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="account-switcher">
+        <h2>Account Switcher</h2>
+        <p>
+          <code>.b-account-switcher</code> stacks <code>.b-account</code> rows
+          — initials <code>.b-avatar</code>, <code>__name</code> and
+          <code>__email</code> — inside a <code>.b-menu</code>-shaped glass
+          surface. Mark the signed-in account with <code>.is-active</code> and
+          a <code>__check</code>.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div class="b-menu" style="width: 18rem">
+            <div class="b-account-switcher">
+              <button class="b-account is-active" type="button">
+                <span class="b-avatar" aria-hidden="true">AH</span>
+                <div class="b-account__meta">
+                  <div class="b-account__name">Amina Hassan</div>
+                  <div class="b-account__email">amina@neurotech.africa</div>
+                </div>
+                <span class="b-account__check" aria-hidden="true">✓</span>
+              </button>
+              <button class="b-account" type="button">
+                <span class="b-avatar" aria-hidden="true">BO</span>
+                <div class="b-account__meta">
+                  <div class="b-account__name">Baraka Otieno</div>
+                  <div class="b-account__email">baraka@neurotech.africa</div>
+                </div>
+              </button>
+              <button class="b-account" type="button">
+                <span class="b-avatar" aria-hidden="true">NS</span>
+                <div class="b-account__meta">
+                  <div class="b-account__name">Neurotech Support</div>
+                  <div class="b-account__email">support@neurotech.africa</div>
+                </div>
+              </button>
+              <hr class="b-menu__separator">
+              <button class="b-account" type="button">
+                <span class="b-avatar" aria-hidden="true">+</span>
+                <div class="b-account__meta">
+                  <div class="b-account__name">Add account</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="profile-menu">
+        <h2>Profile Menu</h2>
+        <p>
+          A zero-JS dropdown: <code>details.b-dropdown</code> whose summary is
+          a <code>.b-profile-trigger</code> — avatar, name, chevron — opening
+          a <code>.b-menu</code>. See <a href="navigation.html">Navigation</a>
+          for the full menu family.
+        </p>
+        <div class="docs-demo docs-demo--canvas" style="min-height: 15rem;">
+          <details class="b-dropdown">
+            <summary class="b-profile-trigger">
+              <span class="b-avatar b-avatar--sm" aria-hidden="true">AH</span>
+              Amina Hassan
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <ul class="b-menu">
+              <li><button class="b-menu__item">Profile</button></li>
+              <li><button class="b-menu__item">Settings<span class="b-menu__shortcut">⌘,</span></button></li>
+              <li><hr class="b-menu__separator"></li>
+              <li><button class="b-menu__item b-menu__item--danger">Sign out</button></li>
+            </ul>
+          </details>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="specialized.html">← Specialized</a>
+        <a class="b-btn b-btn--ghost" href="system.html">System Pages →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

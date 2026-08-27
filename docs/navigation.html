@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navigation — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Components</div>
+        <h1>Navigation</h1>
+        <p class="docs-hero__lede">
+          Wayfinding for every surface: glass chrome bars along the edges,
+          sidebars and rails for dense apps, menus and palettes for commands,
+          breadcrumbs and steppers for orientation. Every piece marks the
+          current location from the same accent token — <code>.is-active</code>
+          for looks, <code>aria-current</code> and <code>aria-selected</code>
+          for meaning.
+        </p>
+      </header>
+
+      <section class="docs-section" id="top-navigation">
+        <h2>Top Navigation</h2>
+        <p>
+          <code>.b-topnav</code> is the sticky glass chrome bar you are looking
+          at right now — brand, inline links, and trailing actions separated by
+          a <code>.b-spacer</code>. Reach for it on marketing pages and docs
+          with a handful of destinations; move to a sidebar or rail once the
+          map outgrows one row. Demoed with <code>position: static</code> so it
+          stays in the box.
+        </p>
+        <div class="docs-demo">
+          <header class="b-topnav" style="position: static">
+            <a class="b-topnav__brand" href="#top-navigation">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="var(--b-color-accent)"/><path d="M8 12.5 11 15l5-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Acme
+            </a>
+            <nav class="b-topnav__links" aria-label="Primary">
+              <a class="b-topnav__link is-active" aria-current="page" href="#top-navigation">Overview</a>
+              <a class="b-topnav__link" href="#top-navigation">Projects</a>
+              <a class="b-topnav__link" href="#top-navigation">Activity</a>
+              <a class="b-topnav__link" href="#top-navigation">Docs</a>
+            </nav>
+            <span class="b-spacer"></span>
+            <button class="b-btn b-btn--ghost b-btn--sm">Sign in</button>
+            <button class="b-btn b-btn--primary b-btn--sm">Get started</button>
+          </header>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Navigation lives in landmarks:
+          wrap each link set in <code>&lt;nav&gt;</code> with a unique
+          <code>aria-label</code> ("Primary", "Breadcrumb", "Pagination") so
+          screen-reader users can jump between them. Put a
+          <code>.b-skip-link</code> before the chrome, and pair the visual
+          <code>.is-active</code> class with <code>aria-current="page"</code>
+          on the current link — one paints it, the other announces it.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="sidebar">
+        <h2>Sidebar</h2>
+        <p>
+          <code>.b-sidebar</code> stacks grouped items with uppercase headings —
+          the pattern for apps with many destinations (this docs site uses one).
+          Items take an optional icon and a trailing <code>.b-badge</code> for
+          counts; add <code>.b-sidebar--surface</code> when it needs its own
+          background and end hairline. Boxed here at a fixed height to show the
+          built-in scroll.
+        </p>
+        <div class="docs-demo">
+          <div style="width: fit-content; height: 19rem; border: 1px solid var(--b-separator); border-radius: var(--b-radius-lg); overflow: hidden;">
+            <nav class="b-sidebar" style="height: 100%" aria-label="Mail">
+              <div class="b-sidebar__group">
+                <div class="b-sidebar__heading">Mailboxes</div>
+                <a class="b-sidebar__item is-active" aria-current="page" href="#sidebar">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 11.5 5 5h10l1.5 6.5v2.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.5 11.5h4l1 1.5h3l1-1.5h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Inbox
+                  <span class="b-badge b-badge--accent">24</span>
+                </a>
+                <a class="b-sidebar__item" href="#sidebar">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M17 3.5 3 8.5l5.5 2.5L10.5 16.5 17 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Sent
+                </a>
+                <a class="b-sidebar__item" href="#sidebar">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Drafts
+                  <span class="b-badge">3</span>
+                </a>
+                <a class="b-sidebar__item" href="#sidebar">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4" width="14" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 8v6.5A1.5 1.5 0 0 0 6 16h8a1.5 1.5 0 0 0 1.5-1.5V8M8.5 11h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Archive
+                </a>
+              </div>
+              <div class="b-sidebar__group">
+                <div class="b-sidebar__heading">Smart folders</div>
+                <a class="b-sidebar__item" href="#sidebar">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2.1 4.4 4.7.6-3.5 3.3.9 4.7L10 13.7 5.8 16l.9-4.7L3.2 8l4.7-.6L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Starred
+                </a>
+                <a class="b-sidebar__item" href="#sidebar">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 8.5 9 13a2.1 2.1 0 0 1-3-3l5.5-5.5a3 3 0 0 1 4.2 4.2L10 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Attachments
+                </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="docs-guidance">
+          <div class="docs-do">Pick one primary navigation per layout — top nav
+          for marketing and docs, sidebar or rail for dense apps, bottom nav on
+          phones — and mark the current place with <code>.is-active</code> plus
+          <code>aria-current</code>.</div>
+          <div class="docs-dont">Don't nest primary navigations. A top nav,
+          sidebar and bottom nav all pointing at the same routes multiplies tab
+          stops and leaves screen-reader users guessing which landmark is
+          canonical.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="navigation-rail">
+        <h2>Navigation Rail</h2>
+        <p>
+          <code>.b-rail</code> is the sidebar's compact sibling: icon-first
+          items with tiny labels on a narrow strip. Use it when you have four
+          to seven top-level destinations and want to spend the horizontal
+          space on content — or as the collapsed state of a full sidebar.
+        </p>
+        <div class="docs-demo">
+          <nav class="b-rail" style="height: 17rem" aria-label="Primary">
+            <a class="b-rail__item is-active" aria-current="page" href="#navigation-rail">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 8.5 10 3l6.5 5.5v7a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              <span>Home</span>
+            </a>
+            <a class="b-rail__item" href="#navigation-rail">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Search</span>
+            </a>
+            <a class="b-rail__item" href="#navigation-rail">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 5.5A1.5 1.5 0 0 1 5 4h3l1.5 2H15a1.5 1.5 0 0 1 1.5 1.5V14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              <span>Library</span>
+            </a>
+            <a class="b-rail__item" href="#navigation-rail">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6.5h6m4 0h2M4 13.5h2m4 0h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="13.5" r="1.8" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span>Settings</span>
+            </a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="docs-section" id="bottom-navigation">
+        <h2>Bottom Navigation</h2>
+        <p>
+          <code>.b-bottomnav</code> is the phone-sized counterpart: a fixed
+          glass tab bar with three to five destinations, safe-area padding
+          included. The active item tints accent; the rest stay quiet.
+          Demoed with <code>position: static</code>.
+        </p>
+        <div class="docs-demo">
+          <nav class="b-bottomnav" style="position: static" aria-label="Primary">
+            <a class="b-bottomnav__item is-active" aria-current="page" href="#bottom-navigation">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 8.5 10 3l6.5 5.5v7a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              <span>Home</span>
+            </a>
+            <a class="b-bottomnav__item" href="#bottom-navigation">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Search</span>
+            </a>
+            <a class="b-bottomnav__item" href="#bottom-navigation">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5a4.5 4.5 0 0 1 4.5 4.5c0 3 1 4 1.5 4.5H4c.5-.5 1.5-1.5 1.5-4.5A4.5 4.5 0 0 1 10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15.5a1.5 1.5 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Alerts</span>
+            </a>
+            <a class="b-bottomnav__item" href="#bottom-navigation">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 16.5a5.5 5.5 0 0 1 11 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Profile</span>
+            </a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="docs-section" id="tab-bar">
+        <h2>Tab Bar</h2>
+        <p>
+          <code>.b-segmented</code> is the iOS-style segmented control: pill
+          segments on a recessed fill, the selected one lifted on a white chip.
+          Use it to switch views of the <em>same</em> content (Day / Week /
+          Month); use underline <a href="#tabs">Tabs</a> for page-level
+          sections. <code>.b-segmented--block</code> stretches it full width.
+          Both <code>.is-active</code> and <code>[aria-selected="true"]</code>
+          light a segment.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-segmented" role="group" aria-label="Range">
+            <button class="b-segmented__item is-active">Day</button>
+            <button class="b-segmented__item">Week</button>
+            <button class="b-segmented__item">Month</button>
+            <button class="b-segmented__item">Year</button>
+          </div>
+          <div class="b-segmented b-segmented--block" role="group" aria-label="Message filter">
+            <button class="b-segmented__item is-active">All</button>
+            <button class="b-segmented__item">Unread</button>
+            <button class="b-segmented__item">Flagged</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="tabs">
+        <h2>Tabs</h2>
+        <p>
+          Underline tabs for sectioning a page. Wrap everything in a
+          <code>data-b-tabs</code> container, give triggers
+          <code>role="tab"</code> and panels <code>role="tabpanel"</code>, and
+          mark the initial tab <code>aria-selected="true"</code> —
+          <code>barua.js</code> wires selection, panel visibility and the
+          roving tabindex from there. The tab list scrolls horizontally when it
+          overflows.
+        </p>
+        <div class="docs-demo">
+          <div data-b-tabs>
+            <div class="b-tabs" role="tablist" aria-label="Project sections">
+              <button class="b-tab" id="demo-tab-overview" role="tab" aria-selected="true" aria-controls="demo-panel-overview">Overview</button>
+              <button class="b-tab" id="demo-tab-commits" role="tab" aria-selected="false" aria-controls="demo-panel-commits">Commits</button>
+              <button class="b-tab" id="demo-tab-settings" role="tab" aria-selected="false" aria-controls="demo-panel-settings">Settings</button>
+            </div>
+            <div class="b-tabpanel" id="demo-panel-overview" role="tabpanel" aria-labelledby="demo-tab-overview">
+              A calm summary of the project: readme, recent activity, and the
+              people involved.
+            </div>
+            <div class="b-tabpanel" id="demo-panel-commits" role="tabpanel" aria-labelledby="demo-tab-commits" hidden>
+              128 commits on <code>main</code>, most recently "Polish glass
+              materials".
+            </div>
+            <div class="b-tabpanel" id="demo-panel-settings" role="tabpanel" aria-labelledby="demo-tab-settings" hidden>
+              Rename, transfer or archive the project. Danger lives behind a
+              confirm dialog.
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Tabs follow the roving-tabindex
+          model: only the selected tab sits in the tab order, <kbd>←</kbd> and
+          <kbd>→</kbd> move focus and selection (handled by
+          <code>barua.js</code>), and <kbd>Tab</kbd> jumps from the tab list
+          into the visible panel. Each panel is labelled by its tab via
+          <code>aria-labelledby</code>; hidden panels get the
+          <code>hidden</code> attribute, so they vanish from the accessibility
+          tree too.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="breadcrumbs">
+        <h2>Breadcrumbs</h2>
+        <p>
+          A trail from root to here, separated by hairline chevrons. Use them
+          in hierarchies deeper than two levels; the last crumb is the current
+          page — give it <code>aria-current="page"</code> and no link.
+        </p>
+        <div class="docs-demo">
+          <nav aria-label="Breadcrumb">
+            <ol class="b-breadcrumbs">
+              <li><a href="#breadcrumbs">Home</a></li>
+              <li><a href="#breadcrumbs">Projects</a></li>
+              <li><a href="#breadcrumbs">Barua UI</a></li>
+              <li><span aria-current="page">Navigation</span></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <section class="docs-section" id="pagination">
+        <h2>Pagination</h2>
+        <p>
+          Numbered page controls with tabular figures so widths never jitter.
+          The current page fills accent via <code>.is-active</code> or
+          <code>[aria-current="page"]</code>; collapse long runs with
+          <code>.b-pagination__ellipsis</code>.
+        </p>
+        <div class="docs-demo">
+          <nav aria-label="Pagination">
+            <ul class="b-pagination">
+              <li>
+                <a class="b-pagination__item" href="#pagination" aria-label="Previous page">
+                  <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m12 5-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </li>
+              <li><a class="b-pagination__item" href="#pagination">1</a></li>
+              <li><a class="b-pagination__item" href="#pagination">2</a></li>
+              <li><a class="b-pagination__item" aria-current="page" href="#pagination">3</a></li>
+              <li><a class="b-pagination__item" href="#pagination">4</a></li>
+              <li><span class="b-pagination__ellipsis" aria-hidden="true">…</span></li>
+              <li><a class="b-pagination__item" href="#pagination">12</a></li>
+              <li>
+                <a class="b-pagination__item" href="#pagination" aria-label="Next page">
+                  <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m8 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Wrap pagination in
+          <code>&lt;nav aria-label="Pagination"&gt;</code>, put
+          <code>aria-current="page"</code> on the current page (the CSS lights
+          it up from that attribute alone), label the chevron-only prev/next
+          controls with <code>aria-label</code>, and hide the decorative
+          ellipsis with <code>aria-hidden="true"</code>.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="stepper">
+        <h2>Stepper</h2>
+        <p>
+          <code>.b-steps</code> shows progress through a linear flow. Each
+          <code>li</code> carries its number in <code>data-step</code>;
+          <code>.is-complete</code> swaps it for an accent checkmark and fills
+          the connector, <code>.is-active</code> rings the current step. Keep
+          labels to one or two words.
+        </p>
+        <div class="docs-demo">
+          <ol class="b-steps" aria-label="Checkout progress">
+            <li class="is-complete" data-step="1">Account</li>
+            <li class="is-complete" data-step="2">Shipping</li>
+            <li class="is-active" data-step="3" aria-current="step">Payment</li>
+            <li data-step="4">Review</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="docs-section" id="menu-bar">
+        <h2>Menu Bar</h2>
+        <p>
+          <code>.b-menubar</code> is the desktop-app strip of menu titles.
+          Hover, <code>.is-active</code> and <code>[aria-expanded="true"]</code>
+          all paint the solid accent highlight, so an open dropdown keeps its
+          title lit. Pair each title with a <a href="#dropdown-menu">dropdown
+          menu</a> for the real thing.
+        </p>
+        <div class="docs-demo">
+          <div class="b-menubar" aria-label="Application menu">
+            <button class="b-menubar__item is-active">File</button>
+            <button class="b-menubar__item">Edit</button>
+            <button class="b-menubar__item">View</button>
+            <button class="b-menubar__item">Window</button>
+            <button class="b-menubar__item">Help</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="dropdown-menu">
+        <h2>Dropdown Menu</h2>
+        <p>
+          <code>details.b-dropdown</code> opens a glass <code>.b-menu</code>
+          with zero JavaScript. Menus compose from items with optional
+          <code>.b-menu__shortcut</code> hints, a <code>.b-menu__label</code>,
+          hairline <code>.b-menu__separator</code>s, disabled items, and a
+          <code>.b-menu__item--danger</code> kept last. Add
+          <code>.b-dropdown--end</code> to right-align the panel.
+        </p>
+        <p>
+          Menus are viewport-safe by construction: <code>barua.js</code> flips
+          a menu&rsquo;s alignment when it would clip at either screen edge, and
+          open dropdowns close on outside clicks and <kbd>Esc</kbd>. Give pages
+          a bounded layout (<code>.b-container</code>) so triggers near the
+          screen edge keep a breathing gap.
+        </p>
+        <div class="docs-demo docs-demo--row" style="min-height: 18rem; align-items: flex-start;">
+          <details class="b-dropdown">
+            <summary class="b-btn">
+              Options
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <ul class="b-menu">
+              <li class="b-menu__label">Repository</li>
+              <li><button class="b-menu__item">Clone<span class="b-menu__shortcut">⌘⇧C</span></button></li>
+              <li><button class="b-menu__item">Open in editor<span class="b-menu__shortcut">⌘O</span></button></li>
+              <li><button class="b-menu__item" disabled>Sync fork</button></li>
+              <li><hr class="b-menu__separator"></li>
+              <li><button class="b-menu__item b-menu__item--danger">Delete repository<span class="b-menu__shortcut">⌫</span></button></li>
+            </ul>
+          </details>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> <code>&lt;details&gt;</code>
+          gives you a free accessible disclosure — the summary reports its
+          expanded state. Reserve <code>role="menu"</code> /
+          <code>role="menuitem"</code> for scripted menus that implement the
+          full keyboard grammar (arrow keys, <kbd>Home</kbd>/<kbd>End</kbd>,
+          <kbd>Esc</kbd>, typeahead); plain buttons and links are better than
+          half-implemented menu roles. The <code>.b-menu__shortcut</code> span
+          is a visual hint — expose the real binding with
+          <code>aria-keyshortcuts</code>.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="context-menu">
+        <h2>Context Menu</h2>
+        <p>
+          The same <code>.b-menu</code> component, summoned by right-click
+          instead of a trigger button. In production, listen for
+          <code>contextmenu</code>, show the menu with the
+          <code>popover</code> attribute and position it at the pointer —
+          the glass panel, items and states are identical. Shown here as a
+          static instance.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center" style="min-height: 16rem">
+          <ul class="b-menu">
+            <li><button class="b-menu__item">Reply<span class="b-menu__shortcut">R</span></button></li>
+            <li><button class="b-menu__item">Reply all<span class="b-menu__shortcut">⇧R</span></button></li>
+            <li><button class="b-menu__item">Forward<span class="b-menu__shortcut">F</span></button></li>
+            <li><hr class="b-menu__separator"></li>
+            <li><button class="b-menu__item">Mark as read</button></li>
+            <li><button class="b-menu__item b-menu__item--danger">Move to Trash<span class="b-menu__shortcut">⌫</span></button></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="docs-section" id="command-menu">
+        <h2>Command Menu</h2>
+        <p>
+          <code>.b-cmdk</code> is the ⌘K palette: a search field over a grouped
+          command list on heavy glass. In this docs site it lives in a
+          <code>&lt;dialog data-b-cmdk-root&gt;</code> — any button with
+          <code>data-b-cmdk="#id"</code> opens it, and <code>barua.js</code>
+          binds <kbd>⌘K</kbd> / <kbd>Ctrl K</kbd> globally (try it). Below is a
+          static inline instance showing the anatomy.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center" style="min-height: 20rem">
+          <div class="b-cmdk">
+            <input class="b-cmdk__input" type="search" placeholder="Type a command or search…" aria-label="Command menu">
+            <ul class="b-cmdk__list">
+              <li class="b-cmdk__group-label">Navigate</li>
+              <li>
+                <button class="b-cmdk__item is-active">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 11.5 5 5h10l1.5 6.5v2.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.5 11.5h4l1 1.5h3l1-1.5h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Go to Inbox
+                  <kbd>G I</kbd>
+                </button>
+              </li>
+              <li>
+                <button class="b-cmdk__item">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 5.5A1.5 1.5 0 0 1 5 4h3l1.5 2H15a1.5 1.5 0 0 1 1.5 1.5V14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Go to Projects
+                  <kbd>G P</kbd>
+                </button>
+              </li>
+              <li class="b-cmdk__group-label">Actions</li>
+              <li>
+                <button class="b-cmdk__item">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Compose message
+                  <kbd>C</kbd>
+                </button>
+              </li>
+              <li>
+                <button class="b-cmdk__item">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Toggle theme
+                </button>
+              </li>
+            </ul>
+            <div class="b-cmdk__footer"><span><kbd>↑↓</kbd> navigate</span><span><kbd>↵</kbd> select</span><span><kbd>esc</kbd> close</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="navigation-drawer">
+        <h2>Navigation Drawer</h2>
+        <p>
+          <code>.b-drawer</code> slides a full-height glass panel over the page
+          — the mobile home for a sidebar. The demo uses the native
+          <code>popover</code> attribute with <code>popovertarget</code>
+          buttons: top layer, light dismiss and the spring slide-in for free.
+          Use <code>.b-drawer--end</code> for the trailing edge, or a
+          <code>&lt;dialog&gt;</code> opened via <code>data-b-dialog="#id"</code>
+          when you need a true modal with focus trapping.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn" popovertarget="demo-drawer">Open drawer</button>
+          <nav class="b-drawer" popover id="demo-drawer" aria-label="Drawer">
+            <div class="b-drawer__header">
+              Menu
+              <button class="b-btn b-icon-btn b-btn--ghost" popovertarget="demo-drawer" popovertargetaction="hide" aria-label="Close menu">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+            <div class="b-drawer__body">
+              <div class="b-sidebar">
+                <div class="b-sidebar__group">
+                  <div class="b-sidebar__heading">Browse</div>
+                  <a class="b-sidebar__item is-active" href="#navigation-drawer">Home</a>
+                  <a class="b-sidebar__item" href="#navigation-drawer">Discover</a>
+                  <a class="b-sidebar__item" href="#navigation-drawer">Library</a>
+                </div>
+                <div class="b-sidebar__group">
+                  <div class="b-sidebar__heading">Account</div>
+                  <a class="b-sidebar__item" href="#navigation-drawer">Settings</a>
+                  <a class="b-sidebar__item" href="#navigation-drawer">Sign out</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </section>
+
+      <section class="docs-section" id="menu-submenu">
+        <h2>Submenu</h2>
+        <p>
+          A nested flyout inside any <code>.b-menu</code>: wrap the item and
+          its child menu in <code>.b-menu__sub</code>. The chevron is drawn
+          for you; the flyout opens on hover or keyboard focus.
+        </p>
+        <div class="docs-demo" style="min-height: 15rem">
+          <ul class="b-menu" style="position: relative">
+            <li><button class="b-menu__item">New message</button></li>
+            <li class="b-menu__sub">
+              <button class="b-menu__item" aria-haspopup="menu">Move to</button>
+              <ul class="b-menu">
+                <li><button class="b-menu__item">Archive</button></li>
+                <li><button class="b-menu__item">Receipts</button></li>
+                <li><button class="b-menu__item">Travel</button></li>
+              </ul>
+            </li>
+            <li><hr class="b-menu__separator"></li>
+            <li><button class="b-menu__item b-menu__item--danger">Delete</button></li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="actions.html">← Actions</a>
+        <a class="b-btn b-btn--ghost" href="forms.html">Forms →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,370 @@
+/* ==========================================================================
+   Barua UI — Control Center
+   iOS/macOS Control Center-style glass tile grid: toggle pills, round
+   lens buttons, media tile, chunky sliders. Best over colorful backdrops.
+
+   <div class="b-cc">
+     <div class="b-cc__tile b-cc__tile--2x2"> …pills… </div>
+     <div class="b-cc__tile b-cc__tile--round"> icon </div>
+     …
+   </div>
+   ========================================================================== */
+
+@layer components {
+  .b-cc {
+    --b-cc-tile: light-dark(rgba(250, 250, 253, 0.50), rgba(44, 46, 54, 0.52));
+    --b-cc-fill: light-dark(rgba(120, 122, 140, 0.22), rgba(120, 122, 132, 0.38));
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 4.5rem;
+    gap: var(--b-space-2);
+    width: min(21rem, 100%);
+    padding: var(--b-space-3);
+    background: var(--b-material-ultrathin-bg);
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-2xl);
+    box-shadow: var(--b-glass-edge), var(--b-shadow-md);
+    user-select: none;
+  }
+
+  /* ---- Tiles --------------------------------------------------------------- */
+  .b-cc__tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--b-space-2);
+    padding: var(--b-space-3);
+    background: var(--b-cc-tile);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border: 1px solid light-dark(rgba(255, 255, 255, 0.30), rgba(255, 255, 255, 0.06));
+    border-radius: var(--b-radius-xl);
+    box-shadow: var(--b-glass-edge);
+    overflow: hidden;
+  }
+  .b-cc__tile--2x2 { grid-column: span 2; grid-row: span 2; }
+  .b-cc__tile--2x1 { grid-column: span 2; }
+  .b-cc__tile--4x1 {
+    grid-column: span 4;
+    gap: var(--b-space-1);
+    padding-block: var(--b-space-2);
+  }
+  .b-cc__tile--round {
+    grid-column: span 1;
+    padding: 0;
+    align-items: center;
+    border-radius: var(--b-radius-full);
+    aspect-ratio: 1;
+    place-self: center;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+  .b-cc__tile--plain { background: none; border: none; box-shadow: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+  /* ---- Pill row (Wi-Fi / Bluetooth / AirDrop) ------------------------------- */
+  .b-cc__pill {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    min-height: 0;
+    cursor: pointer;
+  }
+  .b-cc__pill + .b-cc__pill { margin-block-start: var(--b-space-1); }
+
+  .b-cc__icon {
+    display: grid;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    flex: none;
+    color: var(--b-text);
+    background: var(--b-cc-fill);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background var(--b-duration-fast) var(--b-ease-standard),
+                color var(--b-duration-fast) var(--b-ease-standard),
+                scale var(--b-duration-instant);
+  }
+  .b-cc__icon:active { scale: 0.94; }
+  .b-cc__icon svg { width: 1.15rem; height: 1.15rem; }
+  .b-cc__icon.is-on { background: var(--b-color-accent); color: #fff; }
+  .b-cc__icon.is-on--green { background: var(--b-color-green); color: #fff; }
+  .b-cc__icon.is-on--white {
+    background: light-dark(#1c1c21, #ffffff);
+    color: light-dark(#ffffff, #1c1c21);
+  }
+
+  .b-cc__meta { min-width: 0; }
+  .b-cc__label {
+    font-size: var(--b-text-footnote);
+    font-weight: var(--b-weight-semibold);
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .b-cc__status {
+    font-size: var(--b-text-caption);
+    color: var(--b-text-secondary);
+    line-height: 1.25;
+  }
+
+  /* ---- Media tile ------------------------------------------------------------ */
+  .b-cc__art {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: var(--b-radius-md);
+    background: var(--b-cc-fill);
+    object-fit: cover;
+    flex: none;
+  }
+  .b-cc__transport {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--b-space-3);
+  }
+  .b-cc__transport button {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--b-text);
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background var(--b-duration-fast);
+  }
+  .b-cc__transport button:hover { background: var(--b-cc-fill); }
+  .b-cc__transport svg { width: 1.2rem; height: 1.2rem; }
+
+  /* ---- Chunky slider (Display / Sound) ---------------------------------------
+     <div class="b-cc__range" style="--v: 60%">
+       <i></i>
+       <span class="b-cc__range-icon b-cc__range-icon--start">…svg…</span>
+       <span class="b-cc__range-icon b-cc__range-icon--end">…svg…</span>
+       <input type="range" aria-label="Display brightness">
+     </div>
+  ------------------------------------------------------------------------------ */
+  .b-cc__range {
+    position: relative;
+    height: 2.1rem;
+    border-radius: var(--b-radius-full);
+    background: var(--b-cc-fill);
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px light-dark(rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.25));
+  }
+  .b-cc__range > i {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: var(--v, 50%);
+    background: light-dark(#ffffff, #f5f6fa);
+    border-radius: inherit;
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.12);
+    transition: width var(--b-duration-fast) var(--b-ease-standard);
+  }
+  .b-cc__range-icon {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    display: inline-flex;
+    color: light-dark(rgba(20, 24, 38, 0.55), rgba(235, 235, 245, 0.6));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .b-cc__range-icon svg { width: 0.95rem; height: 0.95rem; }
+  .b-cc__range-icon--start { inset-inline-start: var(--b-space-2);
+    color: light-dark(rgba(20, 24, 38, 0.6), rgba(20, 24, 38, 0.6)); }
+  .b-cc__range-icon--end { inset-inline-end: var(--b-space-2); }
+  .b-cc__range input[type="range"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  /* ---- Liquid glass objects ----------------------------------------------------
+     Decorative/interactive glass primitives in the Apple Developer "liquid"
+     style — lens button, glass toggle, gradient slider capsule.
+
+     Glass tiers:
+       1. CSS glass (everywhere)      — blur + tint + specular edges
+       2. Refraction (Blink)          — SVG displacement map in backdrop-filter;
+                                        barua.js injects #b-refract and adds
+                                        `.b-refract` on <html> when supported
+       3. WebGL                       — deliberately NOT shipped; tier 2 covers
+                                        the optics without a render pipeline
+  -------------------------------------------------------------------------------- */
+  .b-refract :is(.b-lens, .b-liquid-capsule, .b-liquid-toggle),
+  .b-refract .b-liquid-bar > b {
+    position: relative;
+    /* the ::before does the sampling; avoid double-filtering */
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .b-refract :is(.b-lens, .b-liquid-capsule, .b-liquid-toggle)::before,
+  .b-refract .b-liquid-bar > b::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    -webkit-backdrop-filter: url(#b-refract) blur(2px) saturate(1.4);
+    backdrop-filter: url(#b-refract) blur(2px) saturate(1.4);
+    pointer-events: none;
+  }
+  /* Clearer bodies in refraction mode — let the bent backdrop show */
+  .b-refract .b-lens {
+    background:
+      radial-gradient(120% 120% at 28% 18%,
+        light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.14)), transparent 44%),
+      radial-gradient(130% 130% at 70% 95%,
+        light-dark(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.06)), transparent 50%),
+      light-dark(rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+  }
+  .b-refract .b-liquid-capsule {
+    background: light-dark(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+  }
+  .b-refract .b-liquid-bar > b {
+    background:
+      radial-gradient(120% 120% at 30% 20%,
+        light-dark(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.2)), transparent 48%),
+      light-dark(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.05));
+  }
+  .b-lens {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--b-lens-size, 4.5rem);
+    aspect-ratio: 1;
+    color: var(--b-text);
+    background:
+      radial-gradient(120% 120% at 28% 18%,
+        light-dark(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.16)), transparent 46%),
+      radial-gradient(130% 130% at 70% 95%,
+        light-dark(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.08)), transparent 50%),
+      light-dark(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+    -webkit-backdrop-filter: blur(var(--b-blur-xs)) saturate(1.4);
+    backdrop-filter: blur(var(--b-blur-xs)) saturate(1.4);
+    border: none;
+    border-radius: 50%;
+    box-shadow:
+      inset 0 0 0 1.5px light-dark(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.18)),
+      inset 0 -8px 14px light-dark(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.05)),
+      inset 0 6px 10px light-dark(rgba(20, 24, 38, 0.05), rgba(0, 0, 0, 0.2)),
+      0 10px 24px light-dark(rgba(20, 24, 38, 0.16), rgba(0, 0, 0, 0.45));
+    cursor: pointer;
+    transition: scale var(--b-duration-fast) var(--b-ease-bounce);
+  }
+  .b-lens:hover { scale: 1.05; }
+  .b-lens:active { scale: 0.96; }
+  .b-lens svg { width: 40%; height: 40%; }
+
+  .b-liquid-toggle {
+    position: relative;
+    width: 6.5rem;
+    height: 3.4rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: var(--b-radius-full);
+    box-shadow:
+      inset 0 0 0 2px light-dark(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.2)),
+      inset 0 -10px 16px light-dark(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.06)),
+      inset 0 8px 12px light-dark(rgba(20, 24, 38, 0.06), rgba(0, 0, 0, 0.22)),
+      0 12px 28px light-dark(rgba(20, 24, 38, 0.18), rgba(0, 0, 0, 0.5));
+    -webkit-backdrop-filter: blur(var(--b-blur-xs)) saturate(1.4);
+    backdrop-filter: blur(var(--b-blur-xs)) saturate(1.4);
+    cursor: pointer;
+  }
+  .b-liquid-toggle::after {
+    content: "";
+    position: absolute;
+    inset: 0.45rem auto 0.45rem 0.45rem;
+    width: calc(50% - 0.45rem);
+    border-radius: var(--b-radius-full);
+    background:
+      radial-gradient(120% 150% at 30% 15%, rgba(255, 255, 255, 0.55), transparent 45%),
+      var(--b-liquid-color, var(--b-gray-2));
+    box-shadow:
+      0 4px 12px color-mix(in srgb, var(--b-liquid-color, var(--b-gray-2)) 55%, transparent),
+      inset 0 -4px 8px rgba(0, 0, 0, 0.18);
+    transition: inset var(--b-duration-normal) var(--b-ease-spring),
+                background var(--b-duration-normal);
+  }
+  .b-liquid-toggle[aria-pressed="true"] {
+    --b-liquid-color: var(--b-color-green);
+  }
+  .b-liquid-toggle[aria-pressed="true"]::after {
+    inset: 0.45rem 0.45rem 0.45rem auto;
+  }
+
+  /* Hollow glass capsule — the empty pane from Apple's Design hero */
+  .b-liquid-capsule {
+    display: inline-block;
+    width: var(--b-capsule-w, 9rem);
+    height: var(--b-capsule-h, 4.5rem);
+    border-radius: var(--b-radius-full);
+    background: light-dark(rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
+    -webkit-backdrop-filter: blur(var(--b-blur-xs)) saturate(1.35);
+    backdrop-filter: blur(var(--b-blur-xs)) saturate(1.35);
+    box-shadow:
+      inset 0 0 0 2px light-dark(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.16)),
+      inset 0 -12px 20px light-dark(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.05)),
+      inset 0 10px 16px light-dark(rgba(20, 24, 38, 0.05), rgba(0, 0, 0, 0.2)),
+      0 14px 34px light-dark(rgba(20, 24, 38, 0.14), rgba(0, 0, 0, 0.4));
+  }
+
+  .b-liquid-bar {
+    position: relative;
+    width: var(--b-liquid-bar-w, 14rem);
+    height: 2.6rem;
+    border-radius: var(--b-radius-full);
+    background: var(--b-fill-secondary);
+    box-shadow: inset 0 2px 6px light-dark(rgba(20, 24, 38, 0.10), rgba(0, 0, 0, 0.3));
+  }
+  .b-liquid-bar > i {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: var(--v, 60%);
+    border-radius: inherit;
+    background: linear-gradient(90deg,
+      var(--b-color-accent), var(--b-color-purple) 55%, var(--b-color-pink) 85%, var(--b-color-orange));
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--b-color-purple) 40%, transparent);
+  }
+  .b-liquid-bar--accent > i {
+    background: var(--b-color-accent);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--b-color-accent) 45%, transparent);
+  }
+  .b-liquid-bar > b {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: var(--v, 60%);
+    translate: -50% -50%;
+    width: 3.4rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(120% 120% at 30% 20%,
+        light-dark(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.25)), transparent 48%),
+      light-dark(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+    -webkit-backdrop-filter: blur(6px) saturate(1.6);
+    backdrop-filter: blur(6px) saturate(1.6);
+    box-shadow:
+      inset 0 0 0 1.5px light-dark(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.25)),
+      inset 0 -6px 10px rgba(255, 255, 255, 0.25),
+      0 10px 22px light-dark(rgba(20, 24, 38, 0.22), rgba(0, 0, 0, 0.5));
+  }
+}

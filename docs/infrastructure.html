@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infrastructure — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">System</div>
+        <h1>Design-System Infrastructure</h1>
+        <p class="docs-hero__lede">
+          The conventions that make Barua predictable — tokens, naming, layers
+          and theming. Every component on every other page follows the rules on
+          this one, so once you know them you can read (and extend) the whole
+          system.
+        </p>
+      </header>
+
+      <section class="docs-section" id="design-tokens">
+        <h2>Design Tokens</h2>
+        <p>
+          Every visual decision is a custom property prefixed <code>--b-</code>,
+          defined once in <code>css/tokens.css</code>. Tokens come in three
+          tiers: <strong>primitives</strong> are raw values
+          (<code>--b-blue-500</code> is Barua blue), <strong>semantic
+          tokens</strong> give values meaning and carry the light/dark pair
+          (<code>--b-color-accent</code>), and <strong>components</strong>
+          consume the semantic tier — never the primitives.
+        </p>
+        <div class="b-code" style="margin-block-start: var(--b-space-4);">
+          <div class="b-code__header"><span>tokens.css → actions.css</span></div>
+          <pre><code>/* 1 · primitive — a raw value */
+--b-blue-500: #0a7aff;                        /* base — Barua blue */
+
+/* 2 · semantic — meaning + light/dark pair */
+--b-color-accent: light-dark(#0a7aff, #0a84ff);
+
+/* 3 · component — consumes the semantic token */
+.b-btn--primary { background: var(--b-color-accent); }</code></pre>
+        </div>
+        <h3 id="token-families">Token families</h3>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Family</th><th>Prefix</th><th>Example</th><th>Defined in</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Color — accent &amp; system palette</td><td><code>--b-color-*</code></td><td><code>--b-color-accent</code>, <code>--b-color-danger-soft</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Color — primitives</td><td><code>--b-blue-*</code>, <code>--b-gray-*</code></td><td><code>--b-blue-500</code>, <code>--b-gray-5</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Backgrounds &amp; surfaces</td><td><code>--b-bg*</code>, <code>--b-surface*</code></td><td><code>--b-surface-2</code>, <code>--b-elevated</code>, <code>--b-scrim</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Text color hierarchy</td><td><code>--b-text*</code></td><td><code>--b-text-secondary</code>, <code>--b-text-quaternary</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Fills, borders &amp; separators</td><td><code>--b-fill*</code>, <code>--b-border*</code></td><td><code>--b-fill-tertiary</code>, <code>--b-separator</code>, <code>--b-hairline</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Materials (glass)</td><td><code>--b-material-*</code>, <code>--b-glass*</code></td><td><code>--b-material-regular-bg</code>, <code>--b-glass-heavy</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Typography</td><td><code>--b-font-*</code>, <code>--b-text-&lt;role&gt;</code>, <code>--b-weight-*</code></td><td><code>--b-text-body</code>, <code>--b-weight-semibold</code>, <code>--b-tracking-wide</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Space (4px scale)</td><td><code>--b-space-*</code></td><td><code>--b-space-4</code> = 1rem</td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Radius</td><td><code>--b-radius-*</code></td><td><code>--b-radius-md</code>, <code>--b-radius-full</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Shadow &amp; elevation</td><td><code>--b-shadow-*</code>, <code>--b-elevation-*</code></td><td><code>--b-elevation-3</code>, <code>--b-ring</code>, <code>--b-shadow-accent</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Blur &amp; opacity</td><td><code>--b-blur-*</code>, <code>--b-opacity-*</code></td><td><code>--b-blur-lg</code>, <code>--b-opacity-disabled</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Motion</td><td><code>--b-duration-*</code>, <code>--b-ease-*</code></td><td><code>--b-duration-normal</code>, <code>--b-ease-spring</code></td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Z-index layers</td><td><code>--b-z-*</code></td><td><code>--b-z-modal</code> = 500, <code>--b-z-tooltip</code> = 800</td><td><code>css/tokens.css</code></td></tr>
+              <tr><td>Control metrics</td><td><code>--b-control-h-*</code>, <code>--b-container-*</code></td><td><code>--b-control-h-md</code>, <code>--b-touch-target</code>, <code>--b-focus-ring</code></td><td><code>css/tokens.css</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Rule.</strong> Components consume <em>semantic</em> tokens
+          only. If you find yourself reaching for <code>--b-blue-500</code> or
+          a raw hex value inside a component, you want
+          <code>--b-color-accent</code> (or a new semantic alias) instead —
+          that is what keeps dark mode and accent re-tinting free.
+        </p>
+      </section>
+
+      <section class="docs-section" id="architecture-layers">
+        <h2>Architecture &amp; Layers</h2>
+        <p>
+          Barua is one stylesheet with a declared cascade.
+          <code>css/barua.css</code> opens with
+          <code>@layer tokens, base, utilities, components;</code> — later
+          layers win, so components can rely on base and utilities without
+          specificity wars. Your own overrides live <strong>unlayered</strong>,
+          and unlayered CSS always beats layered rules: a plain
+          <code>.b-btn { border-radius: 0 }</code> in your app stylesheet wins
+          without <code>!important</code>.
+        </p>
+        <div class="b-code" style="margin-block-start: var(--b-space-4);">
+          <div class="b-code__header"><span>css/</span></div>
+          <pre><code>css/
+├─ barua.css       ← single entry point: @layer order + @import list
+├─ tokens.css      ← every design token            @layer tokens
+├─ base.css        ← reset, type, focus, states    @layer base
+├─ utilities.css   ← layout primitives, text roles @layer utilities
+└─ components/     ← one file per family           @layer components
+   ├─ actions.css       nav.css         forms.css
+   ├─ content.css       feedback.css    overlays.css
+   ├─ charts.css        media.css       specialized.css
+   └─ productivity.css  mobile.css      auth.css</code></pre>
+        </div>
+        <p>
+          Consumers import exactly one file (plus the optional no-dependency JS
+          helpers):
+        </p>
+        <div class="b-code" style="margin-block-start: var(--b-space-4);">
+          <div class="b-code__header"><span>index.html</span><button class="b-code__copy" data-b-copy="#infra-import">Copy</button></div>
+          <pre><code id="infra-import">&lt;link rel="stylesheet" href="css/barua.css"&gt;
+&lt;script defer src="js/barua.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section" id="naming-conventions">
+        <h2>Naming Conventions</h2>
+        <p>
+          BEM with a <code>b-</code> namespace. If a class starts with
+          <code>.b-</code> it ships with Barua; if it starts with
+          <code>.is-</code> it is runtime state; if an attribute starts with
+          <code>data-b-</code> it is a JS behavior hook, never a styling hook.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Kind</th><th>Pattern</th><th>Examples</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Block</td><td><code>.b-&lt;block&gt;</code></td><td><code>.b-card</code>, <code>.b-btn</code>, <code>.b-table</code></td><td>One component, one block, prefixed to avoid collisions.</td></tr>
+              <tr><td>Element</td><td><code>.b-&lt;block&gt;__&lt;element&gt;</code></td><td><code>.b-card__title</code>, <code>.b-menu__item</code></td><td>A part that only makes sense inside its block.</td></tr>
+              <tr><td>Modifier</td><td><code>.b-&lt;block&gt;--&lt;mod&gt;</code></td><td><code>.b-btn--primary</code>, <code>.b-table--striped</code></td><td>Additive; always keep the base class alongside.</td></tr>
+              <tr><td>State</td><td><code>.is-*</code> / <code>aria-*</code></td><td><code>.is-active</code>, <code>.is-selected</code>, <code>[aria-pressed="true"]</code></td><td>Toggled at runtime. Prefer the aria attribute when a semantic one exists.</td></tr>
+              <tr><td>Data hook</td><td><code>data-b-*</code></td><td><code>data-b-dialog</code>, <code>data-b-theme-toggle</code>, <code>data-b-cmdk</code></td><td>Wiring for <code>barua.js</code>; carries no styles.</td></tr>
+              <tr><td>Token</td><td><code>--b-*</code></td><td><code>--b-space-4</code>, <code>--b-color-accent</code></td><td>All custom properties share the same namespace.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="component-variants">
+        <h2>Component Variants</h2>
+        <p>
+          Variants are modifier classes along two standard axes. The
+          <strong>visual axis</strong> sets prominence — primary, tinted,
+          outline, ghost, glass, danger — and reads the same on every component
+          that offers it. Buttons carry the full set:
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn b-btn--primary">Primary</button>
+          <button class="b-btn b-btn--tinted">Tinted</button>
+          <button class="b-btn">Default</button>
+          <button class="b-btn b-btn--outline">Outline</button>
+          <button class="b-btn b-btn--ghost">Ghost</button>
+          <button class="b-btn b-btn--glass">Glass</button>
+          <button class="b-btn b-btn--danger">Danger</button>
+        </div>
+        <p>
+          The <strong>semantic axis</strong> sets tone — success, warning,
+          danger — and maps straight onto the semantic color tokens, so the
+          same modifier names appear on <code>.b-badge</code>,
+          <code>.b-alert</code>, <code>.b-toast</code>, <code>.b-progress</code>
+          and <code>.b-status</code>:
+        </p>
+        <div class="docs-demo docs-demo--row" data-no-code>
+          <span class="b-badge b-badge--success">Success</span>
+          <span class="b-badge b-badge--warning">Warning</span>
+          <span class="b-badge b-badge--danger">Danger</span>
+          <button class="b-btn b-btn--success b-btn--sm">Approve</button>
+          <button class="b-btn b-btn--danger-tinted b-btn--sm">Remove</button>
+        </div>
+        <p>
+          <strong>Rule.</strong> Variants change look, not behavior. A
+          <code>.b-btn--danger</code> is still a button — same height, focus
+          ring, loading spinner and keyboard handling as every other button.
+          Behavior differences deserve a different component, not a variant.
+        </p>
+      </section>
+
+      <section class="docs-section" id="component-states">
+        <h2>Component States</h2>
+        <p>
+          State is expressed twice: an <code>aria-*</code> attribute for
+          assistive technology and, where no semantic attribute exists, an
+          <code>.is-*</code> class for styling. Barua's selectors target both,
+          so setting the aria attribute alone is enough for the components
+          below. The full state language lives in
+          <a href="interaction.html">Interaction</a>.
+        </p>
+        <div class="docs-demo docs-demo--row" data-no-code>
+          <button class="b-btn b-toggle-btn" aria-pressed="true">Watching</button>
+          <button class="b-chip is-selected">Design</button>
+          <button class="b-btn is-active">Active</button>
+          <button class="b-btn b-btn--primary is-loading">Saving…</button>
+          <button class="b-btn" disabled>Disabled</button>
+        </div>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Contract</th><th>Meaning</th><th>Consumed by</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>aria-pressed="true"</code></td><td>Toggle is on</td><td><code>.b-toggle-btn</code>, <code>.b-chip</code></td></tr>
+              <tr><td><code>aria-selected="true"</code></td><td>Selected within a set</td><td><code>.b-tab</code>, <code>.b-segmented__item</code>, <code>.b-combobox__option</code></td></tr>
+              <tr><td><code>aria-current="page"</code></td><td>Current location</td><td><code>.b-breadcrumbs</code> links, <code>.b-pagination__item</code></td></tr>
+              <tr><td><code>aria-expanded="true"</code></td><td>Disclosure / menu open</td><td><code>.b-menubar__item</code> (native <code>&lt;details&gt;</code> uses <code>[open]</code>)</td></tr>
+              <tr><td><code>aria-invalid="true"</code></td><td>Failed validation</td><td>Announced by AT on <code>.b-input</code>; styling comes from <code>.b-field.is-invalid</code> / <code>.b-input.is-invalid</code> / <code>:user-invalid</code></td></tr>
+              <tr><td><code>.is-active</code></td><td>Current or toggled-on (no aria equivalent)</td><td><code>.b-btn</code>, <code>.b-sidebar__item</code>, <code>.b-topnav__link</code>, <code>.b-steps li</code></td></tr>
+              <tr><td><code>.is-selected</code></td><td>Selection</td><td><code>.b-list-item</code>, <code>.b-table tr</code>, <code>.b-tree</code> rows, <code>.b-chip</code></td></tr>
+              <tr><td><code>.is-loading</code></td><td>Busy — pair with <code>aria-busy="true"</code></td><td><code>.b-btn</code></td></tr>
+              <tr><td><code>:disabled</code> / <code>.is-disabled</code></td><td>Non-interactive at 40% opacity</td><td>Every control, globally via <code>base.css</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="component-sizes">
+        <h2>Component Sizes</h2>
+        <p>
+          One height scale for every control, held in the
+          <code>--b-control-h-*</code> tokens. Modifiers are
+          <code>--xs</code>, <code>--sm</code>, medium by default,
+          <code>--lg</code>, <code>--xl</code>; font size and radius step down
+          or up with the height.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-hstack b-stack--wrap">
+            <button class="b-btn b-btn--xs">Extra small</button>
+            <button class="b-btn b-btn--sm">Small</button>
+            <button class="b-btn">Medium</button>
+            <button class="b-btn b-btn--lg">Large</button>
+            <button class="b-btn b-btn--xl">Extra large</button>
+          </div>
+          <div class="b-hstack b-stack--wrap">
+            <input class="b-input b-input--sm" style="max-width: 11rem" placeholder="Small input">
+            <input class="b-input" style="max-width: 11rem" placeholder="Medium input">
+            <input class="b-input b-input--lg" style="max-width: 11rem" placeholder="Large input">
+          </div>
+        </div>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Modifier</th><th>Height token</th><th class="b-table__num">Px</th><th>Font size</th><th>Available on</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--xs</code></td><td><code>--b-control-h-xs</code></td><td class="b-table__num">24</td><td><code>--b-text-caption</code></td><td>Buttons</td></tr>
+              <tr><td><code>--sm</code></td><td><code>--b-control-h-sm</code></td><td class="b-table__num">30</td><td><code>--b-text-footnote</code></td><td>Buttons, inputs</td></tr>
+              <tr><td>(default)</td><td><code>--b-control-h-md</code></td><td class="b-table__num">36</td><td><code>--b-text-subheadline</code></td><td>Buttons, inputs, selects</td></tr>
+              <tr><td><code>--lg</code></td><td><code>--b-control-h-lg</code></td><td class="b-table__num">44</td><td><code>--b-text-callout</code></td><td>Buttons, inputs</td></tr>
+              <tr><td><code>--xl</code></td><td><code>--b-control-h-xl</code></td><td class="b-table__num">52</td><td><code>--b-text-body</code></td><td>Buttons</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Touch targets.</strong> 44px (<code>--b-touch-target</code>)
+          is the minimum hit area on touch layouts — exactly
+          <code>--b-control-h-lg</code>, so prefer <code>--lg</code> controls on
+          mobile. Smaller controls can keep their compact look and still hit the
+          target with the <code>.b-touch-target</code> utility, which expands
+          the hit area invisibly.
+        </p>
+      </section>
+
+      <section class="docs-section" id="icon-system">
+        <h2>Icon System</h2>
+        <p>
+          Icons are inline SVGs on a <code>20×20</code> viewBox: 1.5px strokes,
+          round caps and joins, <code>fill="none"</code>, and
+          <code>currentColor</code> throughout so they inherit text color in
+          every variant and theme. The <code>.b-icon</code> wrapper sizes them —
+          <code>--sm</code> 16px, default 20px, <code>--lg</code> 24px,
+          <code>--xl</code> 32px. Inside buttons no wrapper is needed; the
+          button scales its own SVG.
+        </p>
+        <div class="docs-demo docs-demo--row" data-no-code style="gap: var(--b-space-8);">
+          <div class="b-hstack b-gap-2" aria-label="Envelope at 16, 20 and 24 pixels">
+            <span class="b-icon b-icon--sm"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="4.5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m3.5 6.5 6.5 4.5 6.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="b-icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="4.5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m3.5 6.5 6.5 4.5 6.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="b-icon b-icon--lg"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="4.5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m3.5 6.5 6.5 4.5 6.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="b-hstack b-gap-2" aria-label="Search at 16, 20 and 24 pixels">
+            <span class="b-icon b-icon--sm"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.4 13.4 3.6 3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <span class="b-icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.4 13.4 3.6 3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <span class="b-icon b-icon--lg"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.4 13.4 3.6 3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </div>
+          <div class="b-hstack b-gap-2" aria-label="Gear at 16, 20 and 24 pixels">
+            <span class="b-icon b-icon--sm"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.8V4m0 12v2.2M18.2 10H16M4 10H1.8m14.2-5.8-1.6 1.6M5.8 14.2l-1.6 1.6m0-11.6 1.6 1.6m8.4 8.4 1.6 1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <span class="b-icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.8V4m0 12v2.2M18.2 10H16M4 10H1.8m14.2-5.8-1.6 1.6M5.8 14.2l-1.6 1.6m0-11.6 1.6 1.6m8.4 8.4 1.6 1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <span class="b-icon b-icon--lg"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.8V4m0 12v2.2M18.2 10H16M4 10H1.8m14.2-5.8-1.6 1.6M5.8 14.2l-1.6 1.6m0-11.6 1.6 1.6m8.4 8.4 1.6 1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </div>
+          <div class="b-hstack b-gap-2" aria-label="Check at 16, 20 and 24 pixels">
+            <span class="b-icon b-icon--sm"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="b-icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="b-icon b-icon--lg"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="b-code" style="margin-block-start: var(--b-space-4);">
+          <div class="b-code__header"><span>Icon wrapper usage</span></div>
+          <pre><code>&lt;span class="b-icon b-icon--sm"&gt;  &lt;!-- 16px; default 20, --lg 24, --xl 32 --&gt;
+  &lt;svg viewBox="0 0 20 20" fill="none" aria-hidden="true"&gt;
+    &lt;path d="m4 10.5 4 4 8-9" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;</code></pre>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Decorative icons get
+          <code>aria-hidden="true"</code>. An icon that is the only content of
+          a control never labels it — put the name in <code>aria-label</code>
+          on the control, as every icon button on
+          <a href="actions.html">Actions</a> does.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="theme-system">
+        <h2>Theme System</h2>
+        <p>
+          Every color token is declared once with <code>light-dark()</code> and
+          <code>:root</code> sets <code>color-scheme: light dark</code>, so with
+          no attribute at all the UI follows the system appearance. Setting
+          <code>data-theme="light"</code> or <code>data-theme="dark"</code> on
+          <code>&lt;html&gt;</code> forces a scheme by flipping
+          <code>color-scheme</code> — no second stylesheet, no class swap. Each
+          docs page restores the saved choice before first paint:
+        </p>
+        <div class="b-code" style="margin-block-start: var(--b-space-4);">
+          <div class="b-code__header"><span>&lt;head&gt; — runs before first paint</span></div>
+          <pre><code>&lt;script&gt;
+  try {
+    const t = localStorage.getItem("barua-theme");
+    if (t) document.documentElement.dataset.theme = t;
+  } catch (e) {}
+&lt;/script&gt;</code></pre>
+        </div>
+        <h3 id="accent-retinting">Accent re-tinting</h3>
+        <p>
+          <code>data-accent="indigo|purple|pink|teal|green"</code> remaps
+          <code>--b-color-accent</code> and its hover/soft/text companions.
+          Because components only ever consume the semantic accent tokens, one
+          attribute re-tints everything below it — set it on
+          <code>&lt;html&gt;</code> for the whole app, or on any subtree:
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn b-btn--primary b-btn--sm">Blue</button>
+          <span data-accent="indigo"><button class="b-btn b-btn--primary b-btn--sm">Indigo</button></span>
+          <span data-accent="purple"><button class="b-btn b-btn--primary b-btn--sm">Purple</button></span>
+          <span data-accent="pink"><button class="b-btn b-btn--primary b-btn--sm">Pink</button></span>
+          <span data-accent="teal"><button class="b-btn b-btn--primary b-btn--sm">Teal</button></span>
+          <span data-accent="green"><button class="b-btn b-btn--primary b-btn--sm">Green</button></span>
+        </div>
+        <h3 id="theme-js-api">JS API</h3>
+        <p>
+          <code>barua.js</code> exposes <code>Barua.theme</code> and the
+          <code>data-b-theme-toggle</code> click hook (the moon/sun button in
+          the topbar uses it). Preference persists in
+          <code>localStorage</code> under <code>barua-theme</code>.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Method</th><th>Returns</th><th>Behavior</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>Barua.theme.get()</code></td><td><code>"light" | "dark" | "auto"</code></td><td>Current mode; <code>"auto"</code> when no override is set.</td></tr>
+              <tr><td><code>Barua.theme.set(mode)</code></td><td>—</td><td>Applies and persists <code>"light"</code> or <code>"dark"</code>; <code>"auto"</code> removes the override and returns to the system scheme.</td></tr>
+              <tr><td><code>Barua.theme.toggle()</code></td><td>—</td><td>Flips the <em>resolved</em> appearance — in auto mode it reads the system preference first, then sets the opposite.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="responsive-system">
+        <h2>Responsive System</h2>
+        <p>
+          Mobile-first: base styles target small screens and
+          <code>min-width</code> queries layer on refinements at the breakpoint
+          values below (a documented convention in <code>tokens.css</code> —
+          media queries cannot read custom properties, so the values are used
+          literally).
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Name</th><th class="b-table__num">Min-width</th><th>Typical use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>xs</code></td><td class="b-table__num">480px</td><td>Large phones; two-up chips and stats</td></tr>
+              <tr><td><code>sm</code></td><td class="b-table__num">640px</td><td>Forms go two-column, dialogs stop being full-screen</td></tr>
+              <tr><td><code>md</code></td><td class="b-table__num">768px</td><td>Tablet; the mobile/desktop pivot for visibility utilities</td></tr>
+              <tr><td><code>lg</code></td><td class="b-table__num">1024px</td><td>Persistent sidebar layouts</td></tr>
+              <tr><td><code>xl</code></td><td class="b-table__num">1280px</td><td>Right rails, inspectors, three-pane shells</td></tr>
+              <tr><td><code>2xl</code></td><td class="b-table__num">1536px</td><td>Wide dashboards; container max-widths do the capping</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Two visibility utilities pivot at 768px: <code>.b-hide-mobile</code>
+          hides below it, <code>.b-hide-desktop</code> hides at or above it —
+          resize to watch these swap:
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-badge b-badge--accent b-hide-mobile">Desktop only (≥768px)</span>
+          <span class="b-badge b-badge--accent b-hide-desktop">Mobile only (&lt;768px)</span>
+          <span class="b-badge">Always visible</span>
+        </div>
+        <p>
+          <strong>Container strategy.</strong> Content widths are capped by
+          <code>.b-container</code> (64rem via <code>--b-container-lg</code>)
+          with <code>--sm</code> 40rem, <code>--md</code> 48rem,
+          <code>--xl</code> 80rem and <code>--fluid</code> variants — pick the
+          narrowest container that fits the content instead of writing
+          page-level media queries. Shell metrics
+          (<code>--b-sidebar-w</code>, <code>--b-rail-w</code>,
+          <code>--b-topbar-h</code>) are tokens, so app chrome and content
+          agree on the same numbers.
+        </p>
+      </section>
+
+      <section class="docs-section" id="accessibility-system">
+        <h2>Accessibility System</h2>
+        <p>
+          Accessibility is infrastructure, not a per-component afterthought.
+          The baseline contract every component inherits:
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Guarantee</th><th>Mechanism</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Visible focus</td><td><code>:focus-visible</code> applies the <code>--b-focus-ring</code> token (3.5px accent halo) globally in <code>base.css</code> — keyboard users always see where they are, pointer users never see it flash.</td></tr>
+              <tr><td>Touch targets</td><td>44px minimum via <code>--b-touch-target</code>; <code>--b-control-h-lg</code> hits it exactly, and <code>.b-touch-target</code> extends smaller controls invisibly.</td></tr>
+              <tr><td>Contrast</td><td>Text meets 4.5:1 against its surface, UI components and focus indicators meet 3:1 — in both schemes; the text-hierarchy tokens are tuned for this.</td></tr>
+              <tr><td>Reduced motion</td><td>A global <code>prefers-reduced-motion</code> override in <code>base.css</code> collapses every animation and transition to 0.01ms — no per-component opt-in required.</td></tr>
+              <tr><td>Screen reader plumbing</td><td><code>.b-sr-only</code> for visually hidden text, <code>.b-skip-link</code> as the first focusable element of every page (press Tab from here to see it).</td></tr>
+              <tr><td>Semantic HTML first</td><td>Real <code>&lt;button&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;dialog&gt;</code>, <code>&lt;details&gt;</code>, <code>&lt;table&gt;</code> before any role attribute — components lean on native behavior and stay usable without JS where the platform allows.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Per-component notes appear in
+          blocks like this one throughout the docs. They cover what the
+          component does <em>not</em> do for you — labels, live regions and
+          focus order remain your responsibility in application code.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="motion-system">
+        <h2>Motion System</h2>
+        <p>
+          Five durations, five curves — all tokens, so timing stays consistent
+          across components. Small feedback is near-instant; the bigger the
+          surface, the longer and springier the move.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Token</th><th class="b-table__num">Value</th><th>Use for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--b-duration-instant</code></td><td class="b-table__num">100ms</td><td>Hover tints, pressed-scale feedback</td></tr>
+              <tr><td><code>--b-duration-fast</code></td><td class="b-table__num">150ms</td><td>Fades, color and border transitions, tooltips</td></tr>
+              <tr><td><code>--b-duration-normal</code></td><td class="b-table__num">250ms</td><td>Layout shifts, disclosure chevrons, card hover lift</td></tr>
+              <tr><td><code>--b-duration-slow</code></td><td class="b-table__num">350ms</td><td>Sheets, drawers, modals — pair with <code>--b-ease-spring</code></td></tr>
+              <tr><td><code>--b-duration-slower</code></td><td class="b-table__num">500ms</td><td>Large surface transitions, chart draws</td></tr>
+              <tr><td><code>--b-ease-standard</code></td><td class="b-table__num">0.4, 0, 0.2, 1</td><td>Default workhorse curve</td></tr>
+              <tr><td><code>--b-ease-out</code></td><td class="b-table__num">0.22, 1, 0.36, 1</td><td>Entrances — start fast, settle gently</td></tr>
+              <tr><td><code>--b-ease-in</code></td><td class="b-table__num">0.55, 0, 1, 0.45</td><td>Exits and dismissals</td></tr>
+              <tr><td><code>--b-ease-spring</code></td><td class="b-table__num">0.32, 0.72, 0, 1</td><td>Apple-style sheet slide</td></tr>
+              <tr><td><code>--b-ease-bounce</code></td><td class="b-table__num">0.34, 1.56, 0.64, 1</td><td>Playful overshoot — badges, toasts</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Rule.</strong> Motion communicates hierarchy — it tells the
+          eye what changed and how big the change was, never decorates. And
+          because the reduced-motion override is global, every token-driven
+          animation already respects <code>prefers-reduced-motion</code>.
+        </p>
+      </section>
+
+      <section class="docs-section" id="interaction-states">
+        <h2>Interaction States</h2>
+        <p>
+          The full interaction-state language — hover, pressed
+          (<code>:active</code> / <code>.is-pressed</code>), drag
+          (<code>.is-dragging</code>, <code>[draggable]</code> cursors),
+          selection rectangles, drop indicators and focus choreography — is a
+          pattern page of its own. This page defines the naming; see
+          <a href="interaction.html">Interaction</a> for live demos of each
+          state applied across components.
+        </p>
+      </section>
+
+      <section class="docs-section" id="composition-patterns">
+        <h2>Composition Patterns</h2>
+        <p>
+          Big surfaces are assembled, not invented. An auth screen is
+          <code>.b-card</code> + <code>.b-field</code> + <code>.b-btn</code>
+          (packaged as <code>.b-auth-card</code> on
+          <a href="authentication.html">Authentication</a>); a dashboard is
+          <code>.b-grid</code> + <code>.b-card</code> + <code>.b-stat</code> +
+          <code>.b-chart</code> (see <a href="productivity.html">Productivity</a>
+          and <a href="data-viz.html">Data Visualization</a>). The same three
+          primitives compose a working sign-in card with zero new CSS:
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div class="b-card" style="width: min(22rem, 100%)">
+            <div class="b-card__body b-stack b-gap-4">
+              <div>
+                <div class="b-card__title">Sign in</div>
+                <div class="b-card__subtitle">Card + field + button — nothing else.</div>
+              </div>
+              <div class="b-field">
+                <label class="b-label" for="infra-email">Email</label>
+                <input class="b-input" id="infra-email" type="email" placeholder="you@example.com">
+              </div>
+              <button class="b-btn b-btn--primary b-btn--block">Continue</button>
+            </div>
+          </div>
+        </div>
+        <p>
+          <strong>Rule.</strong> Build pages from patterns, patterns from
+          components, components from tokens. If a layer skips a level — a page
+          styling raw hex, a pattern inventing a one-off control — consistency
+          leaks out exactly there.
+        </p>
+      </section>
+
+      <section class="docs-section" id="content-guidelines">
+        <h2>Content Guidelines</h2>
+        <p>
+          Voice is part of the system. Buttons are verb-first and specific —
+          they say what happens, not what the dialog is about. Sentence case
+          everywhere: buttons, labels, headings, menu items. Errors say what
+          went wrong and what to do next, in words a person would use; error
+          codes belong in logs, not in <code>.b-error</code> text.
+        </p>
+        <div class="docs-guidance">
+          <div class="docs-do">Verb-first, specific, sentence case:
+            “Create project” · “Save changes” · “Move to trash” ·
+            “Send invite” · “Try again”.</div>
+          <div class="docs-dont">Vague, shouting, or jargon:
+            “New” · “OK” · “SUBMIT” · “Yes” (on a destructive confirm) ·
+            “Error 0x80070057 occurred”.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="usage-contribution">
+        <h2>Usage &amp; Contribution Guidelines</h2>
+        <p>
+          <strong>Compose first.</strong> If a design can be assembled from
+          existing components plus layout utilities, compose it in markup — do
+          not add CSS. Add a new component only when a pattern recurs across
+          several screens or needs its own state contract. New components get a
+          block name, live in <code>css/components/</code> inside
+          <code>@layer components</code>, and are imported from
+          <code>barua.css</code>. Before shipping one:
+        </p>
+        <ul class="b-list" style="margin-block-start: var(--b-space-4); max-width: 46rem;">
+          <li class="b-list-item">
+            <span class="b-list-item__leading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">Tokens only</div>
+              <div class="b-list-item__subtitle">No raw hex, px shadows or magic z-indexes — every value traces to a semantic token.</div>
+            </div>
+          </li>
+          <li class="b-list-item">
+            <span class="b-list-item__leading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">All states</div>
+              <div class="b-list-item__subtitle">Hover, pressed, focus-visible, disabled — plus loading and selected where they apply, via the is-*/aria-* contract.</div>
+            </div>
+          </li>
+          <li class="b-list-item">
+            <span class="b-list-item__leading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">Dark mode &amp; accents</div>
+              <div class="b-list-item__subtitle">Verified in light and dark via light-dark(), and under all five data-accent tints.</div>
+            </div>
+          </li>
+          <li class="b-list-item">
+            <span class="b-list-item__leading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">Accessibility notes</div>
+              <div class="b-list-item__subtitle">Semantic element, aria contract, 44px touch reach, contrast targets — and what the consumer must still provide.</div>
+            </div>
+          </li>
+          <li class="b-list-item">
+            <span class="b-list-item__leading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">Docs section</div>
+              <div class="b-list-item__subtitle">A live demo with variants, sizes and states on the relevant page — undocumented components don't exist.</div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="docs-section" id="documentation-conventions">
+        <h2>Documentation Conventions</h2>
+        <p>
+          These docs are themselves built from Barua — <code>docs.css</code>
+          styles only the chrome (shell, hero, demo frames), so every demo you
+          see is the real system rendering itself. Each section follows one
+          anatomy: <code>.docs-section</code> with an <code>h2[id]</code>,
+          short prose, a live <code>.docs-demo</code>, and a
+          <code>.docs-a11y</code> note where the component has sharp edges.
+          <code>docs.js</code> generates the collapsible HTML block under every
+          demo from its actual markup — the code you copy is the code that
+          rendered, and can never drift. Demos marked <code>data-no-code</code>
+          skip the block when the markup would be noise. The same script builds
+          the right-rail table of contents from the section headings and feeds
+          the <kbd>⌘K</kbd> palette from the sidebar, so navigation stays in
+          sync with the pages for free.
+        </p>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="mobile.html">← Mobile</a>
+        <a class="b-btn b-btn--ghost" href="../index.html">Getting Started →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings — Barua UI</title>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* Wallpaper only — every visible material below is a Barua component. */
+    body.settings {
+      min-height: 100dvh;
+      padding: var(--b-space-6) 0 var(--b-space-8);
+      background: var(--b-bg);
+    }
+  </style>
+</head>
+<body class="settings b-stage">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <main class="b-container b-container--sm b-stack b-gap-4" id="main">
+    <header class="b-stack b-gap-3">
+      <h1 class="b-large-title">Settings</h1>
+      <div class="b-search" role="search">
+        <div class="b-input-group">
+          <span class="b-input-affix b-input-affix--start">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <input class="b-input" type="search" placeholder="Search settings…" aria-label="Search settings">
+        </div>
+      </div>
+    </header>
+
+    <div class="b-scroll-area b-stack b-gap-4">
+    <div class="b-card b-card--flush">
+      <div class="b-card__body">
+        <ul class="b-list b-list--plain b-list--inset-divider">
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-avatar">KM</span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">Kelvin Mbwilo</div>
+              <div class="b-list-item__subtitle">Barua Account · kelvin@neurotech.africa</div>
+            </div>
+            <span class="b-list-item__trailing"><span class="b-list-item__chevron">›</span></span>
+          </li>
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m14.8 11.5.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Barua+</span>
+              <span class="b-list-item__subtitle">200 GB storage · renews 1 Sep</span>
+            </span>
+            <span class="b-list-item__trailing">TZS 6,500/mo <span class="b-list-item__chevron">›</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="b-list__header">Connectivity</div>
+      <div class="b-card b-card--flush">
+        <div class="b-card__body">
+          <ul class="b-list b-list--plain b-list--inset-divider">
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid"><svg viewBox="0 0 20 20" fill="none"><path d="M2.5 8a11 11 0 0 1 15 0M5 11a7.3 7.3 0 0 1 10 0M7.6 13.8a3.6 3.6 0 0 1 4.8 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="16.2" r="1.1" fill="currentColor"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Wi-Fi</span></span>
+              <span class="b-list-item__trailing">Mikocheni Home <span class="b-list-item__chevron">›</span></span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--green"><svg viewBox="0 0 20 20" fill="none"><path d="M8.5 11.5a3 3 0 0 0 4.2 0l2.5-2.5a3 3 0 1 0-4.2-4.2l-1 1M11.5 8.5a3 3 0 0 0-4.2 0L4.8 11a3 3 0 1 0 4.2 4.2l1-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Personal Hotspot</span></span>
+              <span class="b-list-item__trailing">Off <span class="b-list-item__chevron">›</span></span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--indigo"><svg viewBox="0 0 20 20" fill="none"><rect x="5" y="9" width="10" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9" stroke="currentColor" stroke-width="1.5"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">VPN</span></span>
+              <span class="b-list-item__trailing">Not Connected <span class="b-list-item__chevron">›</span></span>
+            </li>
+            <li class="b-list-item">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--orange"><svg viewBox="0 0 20 20" fill="none"><path d="M11 3 5 11h4l-1 6 6-8h-4l1-6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Low Data Mode</span></span>
+              <span class="b-list-item__trailing"><label class="b-switch b-switch--sm"><input type="checkbox" aria-label="Low Data Mode"></label></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="b-list__header">Notifications</div>
+      <div class="b-card b-card--flush">
+        <div class="b-card__body">
+          <ul class="b-list b-list--plain b-list--inset-divider">
+            <li class="b-list-item">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--red"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3.5A4.5 4.5 0 0 1 14.5 8c0 3 1 4 1.5 4.5H4c.5-.5 1.5-1.5 1.5-4.5A4.5 4.5 0 0 1 10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15.5a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Allow Notifications</span></span>
+              <span class="b-list-item__trailing"><label class="b-switch b-switch--sm"><input type="checkbox" checked aria-label="Allow Notifications"></label></span>
+            </li>
+            <li class="b-list-item">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4.5" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4.5 7 5.5 4 5.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">New mail</span></span>
+              <span class="b-list-item__trailing"><label class="b-switch b-switch--sm"><input type="checkbox" checked aria-label="New mail notifications"></label></span>
+            </li>
+            <li class="b-list-item">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--teal"><svg viewBox="0 0 20 20" fill="none"><path d="M5.5 4h9a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H8.5l-3 3v-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Mentions</span></span>
+              <span class="b-list-item__trailing"><label class="b-switch b-switch--sm"><input type="checkbox" aria-label="Mention notifications"></label></span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--purple"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M6 7.5h4.5v3.5H6zM13 7.5h1M13 11h1M6 13.5h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Morning digest</span></span>
+              <span class="b-list-item__trailing">06:30 <span class="b-list-item__chevron">›</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="b-list__footer">Notifications pause between 22:00 and 07:00 East Africa Time. Mail from starred people still comes through.</div>
+    </div>
+
+    <div>
+      <div class="b-list__header">General</div>
+      <div class="b-card b-card--flush">
+        <div class="b-card__body">
+          <ul class="b-list b-list--plain b-list--inset-divider">
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--gray"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.5v3M10 14.5v3M2.5 10h3M14.5 10h3M4.7 4.7l2.1 2.1M13.2 13.2l2.1 2.1M15.3 4.7l-2.1 2.1M6.8 13.2l-2.1 2.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">General</span></span>
+              <span class="b-list-item__trailing"><span class="b-list-item__chevron">›</span></span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--indigo"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5V10l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Screen Time</span></span>
+              <span class="b-list-item__trailing"><span class="b-list-item__chevron">›</span></span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--red"><svg viewBox="0 0 20 20" fill="none"><path d="M4 8v4h2.5L10 15V5L6.5 8H4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12.5 7.5a3.5 3.5 0 0 1 0 5M14.5 5.5a6 6 0 0 1 0 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Sounds &amp; Haptics</span></span>
+              <span class="b-list-item__trailing">Kilimanjaro <span class="b-list-item__chevron">›</span></span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3l6 2v5c0 3.5-2.5 5.8-6 7-3.5-1.2-6-3.5-6-7V5l6-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m7.5 10 1.8 1.8L13 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Privacy &amp; Security</span></span>
+              <span class="b-list-item__trailing"><span class="b-list-item__chevron">›</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="b-list__header">Display</div>
+      <div class="b-card">
+        <div class="b-card__body b-stack b-gap-4">
+          <div class="b-segmented b-segmented--block" role="group" aria-label="Appearance">
+            <button class="b-segmented__item">Light</button>
+            <button class="b-segmented__item">Dark</button>
+            <button class="b-segmented__item is-active">Auto</button>
+          </div>
+          <div class="b-field">
+            <label class="b-label" for="set-text-size">Text size · 17 px</label>
+            <input class="b-slider" id="set-text-size" type="range" min="12" max="24" step="1" value="17">
+            <p class="b-help">12–24 px. Every Barua app reflows to match.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="b-list__header">Language &amp; Region</div>
+      <div class="b-card">
+        <div class="b-card__body b-stack b-gap-4">
+          <div class="b-field">
+            <label class="b-label" for="set-language">App language</label>
+            <select class="b-select" id="set-language">
+              <option selected>Kiswahili</option>
+              <option>English (UK)</option>
+              <option>Français</option>
+            </select>
+            <p class="b-help">Dates, times and TZS prices follow this language.</p>
+          </div>
+          <div class="b-field">
+            <label class="b-label" for="set-region">Region</label>
+            <select class="b-select" id="set-region">
+              <option selected>Dar es Salaam</option>
+              <option>Arusha</option>
+              <option>Dodoma</option>
+              <option>Mwanza</option>
+              <option>Zanzibar West</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="b-list__header">Mail</div>
+      <div class="b-card b-card--flush">
+        <div class="b-card__body">
+          <ul class="b-list b-list--plain b-list--inset-divider">
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--teal"><svg viewBox="0 0 20 20" fill="none"><path d="m4 16 .8-3.2 8.8-8.8a1.4 1.4 0 0 1 2 0l.4.4a1.4 1.4 0 0 1 0 2l-8.8 8.8L4 16Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m12.5 5.5 2 2" stroke="currentColor" stroke-width="1.5"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Signature</span></span>
+              <span class="b-list-item__trailing">Sent from Barua <span class="b-list-item__chevron">›</span></span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--purple"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6.5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 16.5a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Default account</span></span>
+              <span class="b-list-item__trailing">Neurotech <span class="b-list-item__chevron">›</span></span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--orange"><svg viewBox="0 0 20 20" fill="none"><path d="M3.5 5.5A1.5 1.5 0 0 1 5 4h3l1.5 2H15a1.5 1.5 0 0 1 1.5 1.5V14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span></span>
+              <span class="b-list-item__content"><span class="b-list-item__title">Archive mailbox</span></span>
+              <span class="b-list-item__trailing">Hifadhi <span class="b-list-item__chevron">›</span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-stack b-stack--center b-gap-1">
+      <span class="b-footnote b-text-tertiary">Barua 4.2 · Build 255</span>
+      <span class="b-caption b-text-tertiary">Neurotech Africa · Dar es Salaam</span>
+    </div>
+  </div>
+  </main>
+</body>
+</html>

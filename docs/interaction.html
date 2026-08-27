@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interaction — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Patterns</div>
+        <h1>Interaction</h1>
+        <p class="docs-hero__lede">
+          The state language every Barua component speaks — hover, pressed,
+          selected, dragging — plus the drag &amp; drop, selection and keyboard
+          patterns built on top of it. Learn the grammar once and every
+          component reads the same way.
+        </p>
+      </header>
+
+      <section class="docs-section" id="state-conventions">
+        <h2>State Conventions</h2>
+        <p>
+          Barua uses one small vocabulary everywhere. Native pseudo-classes do
+          the work when the browser can (<code>:hover</code>,
+          <code>:active</code>, <code>:disabled</code>,
+          <code>:focus-visible</code>); a matching <code>is-*</code> class
+          exists for every state your JavaScript needs to drive itself.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>State</th><th>Class / pseudo</th><th>Visual treatment</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Hover</td><td><code>:hover</code></td><td>Fill deepens one step; pointer-only, never fires on touch</td></tr>
+              <tr><td>Pressed</td><td><code>:active</code> / <code>.is-pressed</code></td><td>Scales to 0.97 over <code>--b-duration-instant</code></td></tr>
+              <tr><td>Current / toggled on</td><td><code>.is-active</code></td><td>Accent-soft background, accent text</td></tr>
+              <tr><td>Selected</td><td><code>.is-selected</code></td><td>Accent-soft background; selectables add an inset accent ring</td></tr>
+              <tr><td>Dragging</td><td><code>.is-dragging</code></td><td>Opacity drops to 0.55, cursor becomes <code>grabbing</code></td></tr>
+              <tr><td>Disabled</td><td><code>:disabled</code> / <code>.is-disabled</code></td><td>Opacity <code>--b-opacity-disabled</code> (0.4), <code>not-allowed</code> cursor</td></tr>
+              <tr><td>Focused (keyboard)</td><td><code>:focus-visible</code></td><td>Accent glow from <code>--b-focus-ring</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          The same button, hard-wired into each state. Hover and focus can only
+          be shown live — mouse over the first one, or Tab to it.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn">Default</button>
+          <button class="b-btn is-pressed">Pressed</button>
+          <button class="b-btn is-active">Active</button>
+          <button class="b-btn is-dragging" draggable="true">Dragging</button>
+          <button class="b-btn" disabled>Disabled</button>
+          <button class="b-btn is-disabled" aria-disabled="true">Disabled (class)</button>
+        </div>
+        <div class="docs-guidance">
+          <div class="docs-do">
+            Keep the state grammar consistent across components. A selected
+            chip, table row, tree node and card all read as accent-soft plus a
+            second cue — if you invent a new selected look for one component,
+            people have to relearn the language.
+          </div>
+          <div class="docs-dont">
+            Don't remove focus outlines. <code>outline: none</code> without a
+            replacement strands keyboard users. If the default ring clashes,
+            restyle it through <code>--b-focus-ring</code> — never delete it.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="hover-state">
+        <h2>Hover State</h2>
+        <p>
+          Hover is an invitation, not information: the surface tint deepens one
+          step (<code>--b-fill-quaternary</code> → <code>--b-fill-tertiary</code>)
+          and interactive cards lift 2px. Treat it as enhancement only — touch
+          screens never fire it, so nothing may exist <em>solely</em> behind a
+          hover.
+        </p>
+        <h3 id="hover-cards">Cards</h3>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--2">
+            <div class="b-card b-card--interactive">
+              <div class="b-card__body">
+                <div class="b-card__title">Weekly digest</div>
+                <div class="b-card__subtitle">Hover me — I lift and gain elevation</div>
+              </div>
+            </div>
+            <div class="b-card b-card--interactive">
+              <div class="b-card__body">
+                <div class="b-card__title">Team inbox</div>
+                <div class="b-card__subtitle">.b-card--interactive opts a card in</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 id="hover-list-items">List items</h3>
+        <div class="docs-demo">
+          <ul class="b-list">
+            <li class="b-list-item b-list-item--interactive">
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Amara Okafor</div>
+                <div class="b-list-item__subtitle">Re: Q3 launch checklist</div>
+              </div>
+              <span class="b-list-item__chevron">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Kelvin Mbwilo</div>
+                <div class="b-list-item__subtitle">Design tokens are merged</div>
+              </div>
+              <span class="b-list-item__chevron">›</span>
+            </li>
+          </ul>
+        </div>
+        <h3 id="hover-table-rows">Table rows</h3>
+        <div class="docs-demo">
+          <div class="b-table-wrap">
+            <table class="b-table b-table--hover">
+              <thead>
+                <tr><th>Campaign</th><th>Status</th><th>Sent</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>August newsletter</td><td><span class="b-badge b-badge--success">Delivered</span></td><td>12,408</td></tr>
+                <tr><td>Product update</td><td><span class="b-badge b-badge--accent">Sending</span></td><td>3,112</td></tr>
+                <tr><td>Onboarding drip</td><td><span class="b-badge">Draft</span></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="pressed-state">
+        <h2>Pressed State</h2>
+        <p>
+          Buttons compress to <code>scale: 0.97</code> on <code>:active</code>
+          — a 100ms (<code>--b-duration-instant</code>) squeeze that makes
+          every press feel physical, the way Apple's controls do. When state is
+          driven from JavaScript instead of the pointer — keyboard activation,
+          pointer capture on a custom control — apply <code>.is-pressed</code>
+          to get the identical physics.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn b-btn--primary">Press and hold</button>
+          <button class="b-btn">Press and hold</button>
+          <button class="b-btn b-btn--tinted is-pressed">.is-pressed</button>
+        </div>
+        <h3 id="touch-targets">Touch Targets</h3>
+        <p>
+          Anything pressable needs a 44px hit area on touch — the
+          <code>--b-touch-target</code> token. Controls at
+          <code>--b-control-h-lg</code> and up qualify on their own; for
+          smaller visuals (an <code>.b-btn--xs</code> icon button, a drag
+          handle) add the <code>.b-touch-target</code> utility, which expands
+          the invisible hit area to 44&thinsp;×&thinsp;44 without changing the
+          rendered size.
+        </p>
+      </section>
+
+      <section class="docs-section" id="active-selected-state">
+        <h2>Active &amp; Selected State</h2>
+        <p>
+          <code>.is-active</code> means "you are here" or "this is on" —
+          navigation items, segmented controls, toggles.
+          <code>.is-selected</code> means "this is chosen and something will
+          happen to it" — list rows, chips, cards in a picker. Both tint with
+          <code>--b-color-accent-soft</code> so the whole system re-themes from
+          one accent token.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-segmented">
+            <button class="b-segmented__item is-active">List</button>
+            <button class="b-segmented__item">Board</button>
+            <button class="b-segmented__item">Timeline</button>
+          </div>
+          <button class="b-chip is-selected">Design</button>
+          <button class="b-chip">Engineering</button>
+          <button class="b-chip">Marketing</button>
+        </div>
+        <div class="docs-demo docs-demo--row" style="align-items: flex-start;">
+          <nav class="b-sidebar" style="width: 13rem; padding: 0;" aria-label="Folders">
+            <a class="b-sidebar__item" href="#active-selected-state">Inbox</a>
+            <a class="b-sidebar__item is-active" href="#active-selected-state">Starred</a>
+            <a class="b-sidebar__item" href="#active-selected-state">Archive</a>
+          </nav>
+          <ul class="b-list" style="flex: 1; min-width: 16rem;">
+            <li class="b-list-item b-list-item--interactive">
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Flight itinerary</div>
+              </div>
+            </li>
+            <li class="b-list-item b-list-item--interactive is-selected">
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Invoice #2044</div>
+              </div>
+              <span class="b-list-item__trailing">
+                <svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Weekly summary</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>
+          For free-form selection surfaces — file grids, photo pickers, canvas
+          objects — add <code>.b-selectable</code>. Selected items gain the
+          accent-soft wash plus an inset accent ring.
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--3">
+            <div class="b-card b-card--flat b-selectable">
+              <div class="b-card__body">
+                <div class="b-card__title">brief.pdf</div>
+                <div class="b-card__subtitle">1.2 MB</div>
+              </div>
+            </div>
+            <div class="b-card b-card--flat b-selectable is-selected">
+              <div class="b-card__body">
+                <div class="b-card__title">logo.svg ✓</div>
+                <div class="b-card__subtitle">Selected</div>
+              </div>
+            </div>
+            <div class="b-card b-card--flat b-selectable">
+              <div class="b-card__body">
+                <div class="b-card__title">deck.key</div>
+                <div class="b-card__subtitle">18 MB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Selected state must never be
+          color-only — roughly 1 in 12 men can't rely on the blue tint. Pair it
+          with a second cue: a checkmark (as above), a weight change, or an
+          icon swap. In markup, mirror the class with
+          <code>aria-selected="true"</code> (options, tabs, rows) or
+          <code>aria-pressed="true"</code> (toggle buttons) so the state is
+          announced, not just painted.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="disabled-state">
+        <h2>Disabled State</h2>
+        <p>
+          Disabled controls fade to <code>--b-opacity-disabled</code> (0.4) and
+          swap to a <code>not-allowed</code> cursor. The native
+          <code>disabled</code> attribute is the default; the
+          <code>.is-disabled</code> class produces the same look on elements
+          that can't take the attribute (links, custom widgets).
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn b-btn--primary" disabled>Send</button>
+          <button class="b-btn is-disabled" aria-disabled="true">Archive</button>
+          <input class="b-input" style="width: 11rem;" placeholder="Recipient" disabled>
+          <select class="b-select" style="width: 9rem;" disabled>
+            <option>Read only</option>
+          </select>
+          <label class="b-switch"><input type="checkbox" checked disabled> Auto-reply</label>
+          <label class="b-checkbox"><input type="checkbox" disabled> Cc me</label>
+        </div>
+        <p>
+          <code>disabled</code> removes the control from the tab order — quick,
+          but invisible to keyboard and screen-reader users, who can't discover
+          <em>why</em> it's off. When the reason matters (a Send button waiting
+          on a valid form), prefer <code>aria-disabled="true"</code> +
+          <code>.is-disabled</code>: the control stays focusable and announced
+          as dimmed, and your handler simply ignores activation. Add a tooltip
+          explaining the condition.
+        </p>
+      </section>
+
+      <section class="docs-section" id="dragging-state">
+        <h2>Dragging State</h2>
+        <p>
+          Mid-drag, the grabbed element takes <code>.is-dragging</code>: opacity
+          drops to 0.55 and the cursor switches to <code>grabbing</code> —
+          on <code>.b-task</code> cards it also tilts 2° for a picked-up feel.
+          Leave a <code>.b-drag-ghost</code> copy (50% opacity) at the origin so
+          the layout doesn't jump. Anything with <code>draggable="true"</code>
+          shows a <code>grab</code> cursor at rest.
+        </p>
+        <div class="docs-demo docs-demo--row" style="align-items: stretch;">
+          <div class="b-task" draggable="true" style="width: 12.5rem;">
+            <div class="b-task__title">At rest</div>
+            <div class="b-task__meta">cursor: grab</div>
+          </div>
+          <div class="b-task b-drag-ghost" style="width: 12.5rem;">
+            <div class="b-task__title">Origin ghost</div>
+            <div class="b-task__meta">.b-drag-ghost</div>
+          </div>
+          <div class="b-task is-dragging" style="width: 12.5rem;">
+            <div class="b-task__title">Being dragged</div>
+            <div class="b-task__meta">.is-dragging</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="drag-and-drop">
+        <h2>Drag &amp; Drop</h2>
+        <p>
+          The full pattern composes four pieces: <code>.b-dropzone</code> around
+          any list (its 2px dashed border is transparent until needed),
+          <code>.is-dropover</code> when a drag hovers a valid target (dashed
+          accent border + accent-soft wash), <code>.b-drop-indicator</code> as
+          the insertion line between items, and <code>.is-dragging</code> on the
+          grabbed card. The HTML5 <code>dragstart</code> /
+          <code>dragover</code> / <code>drop</code> wiring — and toggling these
+          classes — is app-side JavaScript; Barua supplies the states, not the
+          engine.
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--2">
+            <div class="b-dropzone" style="padding: var(--b-space-3);">
+              <div class="b-stack b-gap-2">
+                <div class="b-overline">Backlog</div>
+                <div class="b-task" draggable="true">
+                  <div class="b-task__title">Refactor tokens</div>
+                  <div class="b-task__meta">BAR-201</div>
+                </div>
+                <div class="b-task is-dragging" draggable="true">
+                  <div class="b-task__title">Ship dark mode</div>
+                  <div class="b-task__meta">BAR-202</div>
+                </div>
+              </div>
+            </div>
+            <div class="b-dropzone is-dropover" style="padding: var(--b-space-3);">
+              <div class="b-stack b-gap-2">
+                <div class="b-overline">This week</div>
+                <div class="b-task" draggable="true">
+                  <div class="b-task__title">Draft changelog</div>
+                  <div class="b-task__meta">BAR-198</div>
+                </div>
+                <div class="b-drop-indicator" aria-hidden="true"></div>
+                <div class="b-task" draggable="true">
+                  <div class="b-task__title">QA pass</div>
+                  <div class="b-task__meta">BAR-199</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 id="drag-handle">Drag handle &amp; reorder</h3>
+        <p>
+          When the whole row is tappable, reserve dragging for an explicit
+          <code>.b-drag-handle</code> grip — it keeps scroll and drag from
+          fighting on touch (<code>touch-action: none</code> is built in).
+        </p>
+        <div class="docs-demo">
+          <ul class="b-list">
+            <li class="b-list-item">
+              <button class="b-drag-handle" aria-label="Drag to reorder">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><circle cx="7" cy="4.5" r="1.3"/><circle cx="13" cy="4.5" r="1.3"/><circle cx="7" cy="10" r="1.3"/><circle cx="13" cy="10" r="1.3"/><circle cx="7" cy="15.5" r="1.3"/><circle cx="13" cy="15.5" r="1.3"/></svg>
+              </button>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Welcome email</div>
+              </div>
+              <span class="b-list-item__trailing">Step 1</span>
+            </li>
+            <li class="b-drop-indicator" aria-hidden="true"></li>
+            <li class="b-list-item">
+              <button class="b-drag-handle" aria-label="Drag to reorder">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><circle cx="7" cy="4.5" r="1.3"/><circle cx="13" cy="4.5" r="1.3"/><circle cx="7" cy="10" r="1.3"/><circle cx="13" cy="10" r="1.3"/><circle cx="7" cy="15.5" r="1.3"/><circle cx="13" cy="15.5" r="1.3"/></svg>
+              </button>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Follow-up nudge</div>
+              </div>
+              <span class="b-list-item__trailing">Step 2</span>
+            </li>
+          </ul>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Pointer dragging always needs a
+          keyboard alternative. Give every draggable item a "Move up" / "Move
+          down" pair in its action menu (or <kbd>⌘↑</kbd>/<kbd>⌘↓</kbd> when
+          focused), and announce the result — "Ship dark mode, moved to This
+          week, position 2 of 3" — through a live region.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="resizable-handle">
+        <h2>Resizable Handle</h2>
+        <p>
+          Place a <code>.b-resize-handle</code> between two
+          <code>.b-panel</code> children of a <code>.b-split</code>. The 9px
+          grab strip renders as a hairline; on hover — or with
+          <code>.is-active</code> while dragging — it thickens into an accent
+          bar. The pointer-tracking that actually resizes the panels is
+          app-side JavaScript.
+        </p>
+        <div class="docs-demo">
+          <div class="b-split" style="height: 9rem;">
+            <div class="b-panel" style="flex: 1; padding: var(--b-space-4);">
+              <div class="b-overline">Folders</div>
+            </div>
+            <div class="b-resize-handle" role="separator" aria-orientation="vertical" aria-label="Resize panels" tabindex="0"></div>
+            <div class="b-panel" style="flex: 2; padding: var(--b-space-4);">
+              <div class="b-overline">Messages</div>
+            </div>
+          </div>
+        </div>
+        <p>
+          For zero-JS cases, <code>.b-resizable</code> uses the browser's native
+          <code>resize: horizontal</code> (drag the bottom-trailing corner);
+          <code>.b-resizable--vertical</code> does the same for height.
+        </p>
+        <div class="docs-demo">
+          <div class="b-panel b-resizable" style="width: 18rem; padding: var(--b-space-4);">
+            <div class="b-overline">Native resize</div>
+            <p class="b-footnote b-text-secondary">Drag my corner — no JavaScript involved.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="selection-multi-selection">
+        <h2>Selection &amp; Multi-Selection</h2>
+        <p>
+          Multi-selection layers three pieces: <code>.b-selectable</code> items
+          (with <code>.is-selected</code>), a <code>.b-selection-rect</code>
+          marquee drawn while the pointer rubber-bands across the surface, and
+          a <code>.b-selection-count</code> readout. The rect is normally
+          <code>position: fixed</code> and sized from pointer coordinates —
+          it's frozen here with inline positioning so you can see it.
+        </p>
+        <div class="docs-demo">
+          <div class="b-relative">
+            <div class="b-grid b-grid--3">
+              <div class="b-card b-card--flat b-selectable is-selected">
+                <div class="b-card__body">
+                  <div class="b-card__title">photo-01.heic ✓</div>
+                  <div class="b-card__subtitle">2.4 MB</div>
+                </div>
+              </div>
+              <div class="b-card b-card--flat b-selectable is-selected">
+                <div class="b-card__body">
+                  <div class="b-card__title">photo-02.heic ✓</div>
+                  <div class="b-card__subtitle">3.1 MB</div>
+                </div>
+              </div>
+              <div class="b-card b-card--flat b-selectable">
+                <div class="b-card__body">
+                  <div class="b-card__title">notes.txt</div>
+                  <div class="b-card__subtitle">4 KB</div>
+                </div>
+              </div>
+            </div>
+            <div class="b-selection-rect" style="position: absolute; left: 4%; top: 22%; width: 58%; height: 68%;"></div>
+          </div>
+          <div class="b-hstack" style="margin-block-start: var(--b-space-4);">
+            <span class="b-selection-count">2 selected</span>
+            <button class="b-btn b-btn--sm">Move</button>
+            <button class="b-btn b-btn--sm b-btn--ghost">Deselect</button>
+          </div>
+        </div>
+        <p>
+          Once a selection exists, surface its operations in a floating Bulk
+          Actions bar — see <a href="specialized.html">Specialized</a> for
+          <code>.b-bulk-actions</code>. Support the platform grammar too:
+          <kbd>⌘</kbd>-click toggles, <kbd>⇧</kbd>-click extends a range,
+          <kbd>⌘A</kbd> selects all, <kbd>esc</kbd> clears.
+        </p>
+      </section>
+
+      <section class="docs-section" id="keyboard-shortcut">
+        <h2>Keyboard Shortcut</h2>
+        <p>
+          Shortcuts render with the native <code>&lt;kbd&gt;</code> element —
+          or <code>.b-kbd</code> on a span — styled as a small key cap with a
+          weighted bottom edge. Show them inline in help text, in menus and in
+          the command palette so they're learnable, not secret.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span>Open the palette with <kbd>⌘K</kbd>, save with <kbd>⌘S</kbd>, close with <kbd>esc</kbd> or press <span class="b-kbd">⇧⌘P</span> for actions.</span>
+        </div>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Shortcut</th><th>Action</th><th>Convention</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><kbd>⌘K</kbd></td><td>Command palette</td><td>Global; the fastest route to anything</td></tr>
+              <tr><td><kbd>⌘S</kbd></td><td>Save</td><td>Intercept the browser default</td></tr>
+              <tr><td><kbd>⌘↵</kbd></td><td>Submit / send</td><td>Composers and forms</td></tr>
+              <tr><td><kbd>esc</kbd></td><td>Close / cancel</td><td>Dismisses the top-most overlay first</td></tr>
+              <tr><td><kbd>⌘⌫</kbd></td><td>Delete</td><td>Destructive — always confirm or offer undo</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Menus surface the same bindings with
+          <code>.b-menu__shortcut</code>, right-aligned in each row — see
+          <a href="navigation.html">Navigation</a> for the full menu family.
+        </p>
+        <div class="docs-demo">
+          <ul class="b-menu" style="max-width: 15rem;">
+            <li><button class="b-menu__item">Open<span class="b-menu__shortcut">⏎</span></button></li>
+            <li><button class="b-menu__item">Save<span class="b-menu__shortcut">⌘S</span></button></li>
+            <li><hr class="b-menu__separator"></li>
+            <li><button class="b-menu__item">Close<span class="b-menu__shortcut">esc</span></button></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="docs-section" id="focus-ring">
+        <h2>Focus Ring</h2>
+        <p>
+          Every focusable element shares one ring: <code>--b-focus-ring</code>,
+          a 3.5px accent glow at 30% opacity. It attaches via
+          <code>:focus-visible</code>, so it appears for keyboard and assistive
+          tech but not for mouse clicks — press <kbd>Tab</kbd> below to walk
+          it across four different control types. Inputs pair the ring with an
+          accent border. Custom focusable elements can opt in with the
+          <code>.b-focus-ring</code> class.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn">Tab to me</button>
+          <input class="b-input" style="width: 11rem;" placeholder="Then me">
+          <a class="b-link" href="#focus-ring">Then this link</a>
+          <label class="b-checkbox"><input type="checkbox"> And this</label>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> <code>:focus-visible</code> is
+          not <code>:focus</code>. <code>:focus</code> matches on every
+          focus — including mouse clicks — which tempted a generation of
+          developers into <code>outline: none</code>.
+          <code>:focus-visible</code> lets the browser show the ring only when
+          it helps (keyboard, switch access), so there's no reason left to
+          suppress it. Test by tabbing through every screen: focus must always
+          be visible and never trapped.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="contextual-actions">
+        <h2>Contextual Actions</h2>
+        <p>
+          Row-level actions stay hidden until the row is hovered, keeping dense
+          lists calm. Inside a <code>.b-datagrid</code> this is automatic —
+          <code>.b-row-actions</code> cells flip from
+          <code>visibility: hidden</code> to visible on <code>tr:hover</code>.
+          The list below recreates both moments statically: the first row is at
+          rest, the second is shown as if hovered.
+        </p>
+        <div class="docs-demo">
+          <ul class="b-list">
+            <li class="b-list-item">
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Quarterly-report.pdf</div>
+                <div class="b-list-item__subtitle">Edited 2 hours ago</div>
+              </div>
+              <span class="b-row-actions" style="visibility: hidden; display: inline-flex; gap: var(--b-space-1);">
+                <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Star">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.3.9 4.7L10 13.7 5.7 16l.9-4.7L3 8l4.9-.6L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+              </span>
+            </li>
+            <li class="b-list-item" style="background: var(--b-fill-quaternary);">
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Launch-plan.key</div>
+                <div class="b-list-item__subtitle">Edited yesterday — hovered, actions revealed</div>
+              </div>
+              <span class="b-row-actions" style="display: inline-flex; gap: var(--b-space-1);">
+                <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Star">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.3.9 4.7L10 13.7 5.7 16l.9-4.7L3 8l4.9-.6L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <p>
+          Hover-revealed actions still need non-hover routes: reveal them on
+          <code>:focus-within</code> for keyboard users, and keep the same
+          commands in the row's action menu. On touch, the equivalent pattern
+          is swipe actions — see <a href="mobile.html">Mobile</a> for
+          <code>.b-swipe</code>.
+        </p>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="productivity.html">← Productivity</a>
+        <a class="b-btn b-btn--ghost" href="mobile.html">Mobile →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

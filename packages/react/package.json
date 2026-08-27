@@ -1,0 +1,40 @@
+{
+  "name": "barua-ui",
+  "version": "0.1.0",
+  "description": "Barua UI — Apple-DNA design system (glass materials, Barua blue) as React components over pure CSS.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./css": "./css/barua.css",
+    "./css/*": "./css/*"
+  },
+  "files": ["dist", "css", "README.md"],
+  "scripts": {
+    "copy:css": "rm -rf css && cp -R ../../css css",
+    "build": "npm run copy:css && tsup",
+    "typecheck": "tsc --noEmit",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  },
+  "keywords": ["design-system", "react", "css", "glassmorphism", "apple", "liquid-glass"]
+}

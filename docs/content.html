@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Content — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Components</div>
+        <h1>Content</h1>
+        <p class="docs-hero__lede">
+          The read layer — cards, lists, tables, trees and everything else that
+          presents information rather than collecting it. Content components
+          share one surface language: hairline separators, quiet fills, and a
+          single accent that marks selection everywhere.
+        </p>
+      </header>
+
+      <section class="docs-section" id="card">
+        <h2>Card</h2>
+        <p>
+          A bordered surface with optional <code>.b-card__header</code>,
+          <code>.b-card__body</code> and <code>.b-card__footer</code> regions.
+          Title and subtitle classes keep the type ramp consistent across
+          products.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <article class="b-card" style="max-width: 26rem">
+            <header class="b-card__header">
+              <div>
+                <div class="b-card__title">Safari itinerary</div>
+                <div class="b-card__subtitle">Serengeti &amp; Ngorongoro · 5 days</div>
+              </div>
+              <button class="b-btn b-btn--ghost b-btn--sm">Edit</button>
+            </header>
+            <div class="b-card__body">
+              Depart Arusha at dawn, overnight in Seronera, then descend into the
+              crater on day four. Amina Hassan is confirmed as your guide.
+            </div>
+            <footer class="b-card__footer">
+              <button class="b-btn b-btn--primary b-btn--sm">Book trip</button>
+              <button class="b-btn b-btn--ghost b-btn--sm">Share</button>
+            </footer>
+          </article>
+        </div>
+
+        <h3 id="card-variants">Variants</h3>
+        <p>
+          <code>.b-card--glass</code> blurs whatever sits behind it — reserve it
+          for cards floating over imagery or color. The header&rsquo;s trailing
+          slot takes a button or a status <code>.b-badge</code>.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <article class="b-card b-card--glass" style="max-width: 22rem">
+            <div class="b-card__header">
+              <div class="b-card__title">Zanzibar weekender</div>
+              <span class="b-badge b-badge--success">Live</span>
+            </div>
+            <div class="b-card__body">
+              <div class="b-card__subtitle">Glass card over the canvas</div>
+            </div>
+          </article>
+        </div>
+        <p>
+          <code>.b-card--neutral</code> is the one card that does not assume
+          the page behind it. Its material is a neutral veil, so it lightens a
+          dark backdrop and darkens a light one by the same step — the same
+          card over a photograph, a wallpaper or artwork. Put it inside a
+          <a href="foundations.html#adaptive-accent">wallpaper scope</a> and
+          the ink follows the backdrop too, as both strips below do.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div data-wall-scheme="light">
+            <div class="b-wallpaper-scope" style="padding: var(--b-space-5); border-radius: var(--b-radius-xl); background: linear-gradient(120deg, #e9e2d2, #cfd8dc 60%, #f3ece0)">
+              <article class="b-card b-card--neutral" style="max-width: 20rem">
+                <div class="b-card__body">
+                  <div class="b-card__title">Over something bright</div>
+                  <div class="b-card__subtitle">One step darker than the wall.</div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div data-wall-scheme="dark">
+            <div class="b-wallpaper-scope" style="padding: var(--b-space-5); border-radius: var(--b-radius-xl); background: linear-gradient(120deg, #171b24, #2a2118 60%, #101318)">
+              <article class="b-card b-card--neutral" style="max-width: 20rem">
+                <div class="b-card__body">
+                  <div class="b-card__title">Over something dark</div>
+                  <div class="b-card__subtitle">One step lighter than the wall.</div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="docs-demo docs-demo--row">
+          <article class="b-card b-card--elevated" style="width: 14rem">
+            <div class="b-card__body">
+              <div class="b-card__title">Elevated</div>
+              <div class="b-card__subtitle">Shadow, no border</div>
+            </div>
+          </article>
+          <article class="b-card b-card--interactive" style="width: 14rem" tabindex="0">
+            <div class="b-card__body">
+              <div class="b-card__title">Interactive</div>
+              <div class="b-card__subtitle">Lifts on hover</div>
+            </div>
+          </article>
+          <article class="b-card b-card--accent" style="width: 14rem">
+            <div class="b-card__body">
+              <div class="b-card__title">Accent</div>
+              <div class="b-card__subtitle">Top accent rule</div>
+            </div>
+          </article>
+          <article class="b-card b-card--compact" style="width: 14rem">
+            <div class="b-card__body">
+              <div class="b-card__title">Compact</div>
+              <div class="b-card__subtitle">Widget density</div>
+            </div>
+          </article>
+        </div>
+
+        <h3 id="card-media">Media card</h3>
+        <div class="docs-demo">
+          <article class="b-card" style="max-width: 22rem">
+            <div class="b-card__media" style="aspect-ratio:16/9;background:linear-gradient(135deg,var(--b-color-accent),var(--b-color-indigo))"></div>
+            <div class="b-card__body">
+              <div class="b-card__title">Stone Town, off season</div>
+              <div class="b-card__subtitle">Travel notes from Zanzibar · 6 min read</div>
+            </div>
+          </article>
+        </div>
+
+        <h3 id="card-media-overlay">Story card (App&nbsp;Store style)</h3>
+        <p>
+          The iOS "Today" pattern: full-bleed art with an
+          <code>__eyebrow</code> + <code>__title</code> stack laid over a
+          bottom scrim. Use <code>.b-card--media-overlay</code> with a
+          <code>__media</code> layer and a <code>__overlay</code> text block.
+        </p>
+        <div class="docs-demo">
+          <a class="b-card b-card--media-overlay b-card--interactive" href="#card-media-overlay" style="max-width: 22rem">
+            <div class="b-card__media" style="background: linear-gradient(160deg, var(--b-color-indigo), var(--b-color-purple) 55%, var(--b-color-pink))"></div>
+            <div class="b-card__overlay">
+              <div class="b-card__eyebrow">App of the day</div>
+              <div class="b-card__title">Barua Mail</div>
+              <div class="b-card__subtitle">Inbox zero, made of glass.</div>
+            </div>
+          </a>
+        </div>
+
+        <h3 id="card-icon">Icon card</h3>
+        <p>
+          A feature card led by an <code>.b-icon-tile</code>. Add
+          <code>.b-card--icon</code> so the body stacks and aligns the tile.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <article class="b-card b-card--icon" style="max-width: 16.5rem">
+            <div class="b-card__body">
+              <span class="b-icon-tile"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="m5 7.5 5 3.5 5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div>
+                <div class="b-card__title">Smart inbox</div>
+                <div class="b-card__subtitle">Rules sort mail before you see it.</div>
+              </div>
+            </div>
+          </article>
+          <article class="b-card b-card--icon" style="max-width: 16.5rem">
+            <div class="b-card__body">
+              <span class="b-icon-tile b-icon-tile--green"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5 8.5 15 16 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div>
+                <div class="b-card__title">Delivered</div>
+                <div class="b-card__subtitle">Read receipts without the creep.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <h3 id="card-grouped-list">Grouped list card (iOS Settings)</h3>
+        <p>
+          The inset-grouped list from iOS Settings: <code>.b-card--flush</code>
+          removes body padding so a <code>.b-list--plain</code> sits edge to
+          edge, each row led by a small solid
+          <code>.b-icon-tile--sm</code> in a system color.
+        </p>
+        <div class="docs-demo">
+          <div class="b-card b-card--flush" style="max-width: 22rem">
+            <div class="b-card__body">
+              <ul class="b-list b-list--plain b-list--inset-divider">
+                <li class="b-list-item b-list-item--interactive">
+                  <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid"><svg viewBox="0 0 20 20" fill="none"><path d="M2.5 8a11 11 0 0 1 15 0M5 11a7.3 7.3 0 0 1 10 0M7.6 13.8a3.6 3.6 0 0 1 4.8 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="16.2" r="1.1" fill="currentColor"/></svg></span></span>
+                  <span class="b-list-item__content"><span class="b-list-item__title">Wi-Fi</span></span>
+                  <span class="b-list-item__trailing">Ghala <span class="b-list-item__chevron">›</span></span>
+                </li>
+                <li class="b-list-item b-list-item--interactive">
+                  <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--green"><svg viewBox="0 0 20 20" fill="none"><path d="M6 6.5 14 13l-4 3.5v-13L14 7l-8 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                  <span class="b-list-item__content"><span class="b-list-item__title">Bluetooth</span></span>
+                  <span class="b-list-item__trailing">On <span class="b-list-item__chevron">›</span></span>
+                </li>
+                <li class="b-list-item b-list-item--interactive">
+                  <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--orange"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3.5c-4 0-6.5 4.5-6.5 6.5S6 16.5 10 16.5s6.5-4.5 6.5-6.5S14 3.5 10 3.5Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg></span></span>
+                  <span class="b-list-item__content"><span class="b-list-item__title">Screen Time</span></span>
+                  <span class="b-list-item__trailing"><span class="b-list-item__chevron">›</span></span>
+                </li>
+                <li class="b-list-item b-list-item--interactive">
+                  <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--purple"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.5v3M10 14.5v3M2.5 10h3M14.5 10h3M4.7 4.7l2.1 2.1M13.2 13.2l2.1 2.1M15.3 4.7l-2.1 2.1M6.8 13.2l-2.1 2.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span></span>
+                  <span class="b-list-item__content"><span class="b-list-item__title">General</span></span>
+                  <span class="b-list-item__trailing"><span class="b-list-item__chevron">›</span></span>
+                </li>
+              </ul>
+            </div>
+
+        <h3 id="icon-tile-colors">Icon tile colors</h3>
+        <p>
+          Solid <code>.b-icon-tile--sm</code> tiles come in the system palette:
+          <code>--solid</code> (accent), <code>--green</code>,
+          <code>--orange</code>, <code>--red</code>, <code>--purple</code>,
+          <code>--teal</code>, <code>--indigo</code> and <code>--gray</code>.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="b-icon-tile b-icon-tile--sm b-icon-tile--green"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="b-icon-tile b-icon-tile--sm b-icon-tile--orange"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="b-icon-tile b-icon-tile--sm b-icon-tile--red"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="b-icon-tile b-icon-tile--sm b-icon-tile--purple"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="b-icon-tile b-icon-tile--sm b-icon-tile--teal"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="b-icon-tile b-icon-tile--sm b-icon-tile--indigo"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="b-icon-tile b-icon-tile--sm b-icon-tile--gray"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+          </div>
+        </div>
+
+        <h3 id="card-app">App card</h3>
+        <p>
+          Artwork, name, developer and a tinted pill action — the App&nbsp;Store
+          row, composed from <code>__art</code>, list anatomy and a
+          <code>.b-btn--tinted .b-btn--pill</code>.
+        </p>
+        <div class="docs-demo">
+          <div class="b-card" style="max-width: 24rem">
+            <div class="b-card__body b-hstack b-gap-3">
+              <span class="b-card__art" style="background: linear-gradient(135deg, var(--b-color-accent), var(--b-color-indigo))"></span>
+              <span class="b-grow">
+                <div class="b-card__title">Barua Mail</div>
+                <div class="b-card__subtitle">Neurotech · Productivity</div>
+              </span>
+              <button class="b-btn b-btn--tinted b-btn--sm b-btn--pill">Get</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="list">
+        <h2>List &amp; List Item</h2>
+        <p>
+          iOS-style grouped list. Each <code>.b-list-item</code> slots a leading
+          icon, a content column with title and subtitle, trailing detail text
+          and an optional chevron. Add <code>.b-list-item--interactive</code>
+          for hover feedback and <code>.is-selected</code> for the accent wash.
+        </p>
+        <div class="docs-demo">
+          <ul class="b-list" style="max-width: 26rem">
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4.5 7 5.5 4 5.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Amina Hassan</div>
+                <div class="b-list-item__subtitle">Customs forms for the Dar es Salaam container</div>
+              </div>
+              <span class="b-list-item__trailing">09:41</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive is-selected">
+              <span class="b-list-item__leading">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 2.5 6.5 3.5v8L10 17.5 3.5 14V6L10 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.5 6 10 9.5 16.5 6M10 9.5v8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Parcel BR-2609</div>
+                <div class="b-list-item__subtitle">Out for delivery — Westlands, Nairobi</div>
+              </div>
+              <span class="b-list-item__trailing"><span class="b-badge b-badge--accent">Active</span></span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="6.5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 16.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Baraka Mwangi</div>
+                <div class="b-list-item__subtitle">Requested a pickup in Mombasa</div>
+              </div>
+              <span class="b-list-item__trailing"><span class="b-badge b-badge--count">3</span></span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+          </ul>
+        </div>
+
+        <h3 id="list-inset">Inset dividers</h3>
+        <p>
+          <code>.b-list--inset-divider</code> starts each hairline at the text
+          edge instead of the container edge — the Settings-app look.
+        </p>
+        <div class="docs-demo">
+          <ul class="b-list b-list--inset-divider" style="max-width: 26rem">
+            <li class="b-list-item b-list-item--interactive">
+              <div class="b-list-item__content"><div class="b-list-item__title">Notifications</div></div>
+              <span class="b-list-item__trailing">On</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <div class="b-list-item__content"><div class="b-list-item__title">Default warehouse</div></div>
+              <span class="b-list-item__trailing">Dar es Salaam</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <div class="b-list-item__content"><div class="b-list-item__title">Language</div></div>
+              <span class="b-list-item__trailing">Kiswahili</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+          </ul>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Keep lists real lists — a
+          <code>&lt;ul&gt;</code> of <code>&lt;li&gt;</code> — so screen readers
+          announce position and count. When a row navigates or triggers an
+          action, wrap the row content in an <code>&lt;a&gt;</code> or
+          <code>&lt;button&gt;</code> rather than putting a click handler on the
+          <code>&lt;li&gt;</code>; the chevron is decorative and stays
+          <code>aria-hidden</code>.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="list-captions">
+        <h2>List Header &amp; Footer</h2>
+        <p>
+          iOS grouped-list captions: an uppercase <code>.b-list__header</code>
+          above the group and a quiet explanatory
+          <code>.b-list__footer</code> beneath — the Settings-app pattern for
+          telling people what a group does.
+        </p>
+        <div class="docs-demo">
+          <div style="max-width: 24rem">
+            <div class="b-list__header">Notifications</div>
+            <ul class="b-list b-list--inset-divider">
+              <li class="b-list-item">
+                <span class="b-list-item__content"><span class="b-list-item__title">New mail</span></span>
+                <span class="b-list-item__trailing"><label class="b-switch b-switch--sm"><input type="checkbox" checked></label></span>
+              </li>
+              <li class="b-list-item">
+                <span class="b-list-item__content"><span class="b-list-item__title">Mentions</span></span>
+                <span class="b-list-item__trailing"><label class="b-switch b-switch--sm"><input type="checkbox"></label></span>
+              </li>
+            </ul>
+            <div class="b-list__footer">Delivered quietly between 22:00 and 07:00.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="description-list">
+        <h2>Description List</h2>
+        <p>
+          Label–value pairs on a two-column grid. Use for read-only detail
+          panes; switch to <code>.b-dl--stacked</code> in narrow columns.
+        </p>
+        <div class="docs-demo">
+          <dl class="b-dl">
+            <dt>Full name</dt><dd>Amina Hassan</dd>
+            <dt>Route</dt><dd>Dar es Salaam → Zanzibar</dd>
+            <dt>Vessel</dt><dd>MV Kilimanjaro IV, deck 2</dd>
+            <dt>Booking reference</dt><dd><code>ZNZ-88214</code></dd>
+          </dl>
+        </div>
+        <h3 id="description-list-stacked">Stacked</h3>
+        <div class="docs-demo">
+          <dl class="b-dl b-dl--stacked" style="max-width: 18rem">
+            <dt>Warehouse</dt><dd>Ubungo, Dar es Salaam</dd>
+            <dt>Manager on duty</dt><dd>Juma Ally</dd>
+            <dt>Cut-off for same-day dispatch</dt><dd>14:30 EAT</dd>
+          </dl>
+        </div>
+      </section>
+
+      <section class="docs-section" id="groupbox">
+        <h2>GroupBox</h2>
+        <p>
+          SwiftUI's <code>GroupBox</code> for the web: a quiet, labeled
+          enclosure for related content — softer than a card, and it nests
+          (a nested box flips back to surface so depth stays readable).
+        </p>
+        <div class="docs-demo">
+          <div class="b-groupbox" style="max-width: 24rem">
+            <div class="b-groupbox__label">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 3.5c-2.5 3-4.5 5.2-4.5 7.4a4.5 4.5 0 0 0 9 0c0-2.2-2-4.4-4.5-7.4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              Hydration
+            </div>
+            <div class="b-labeled">
+              <span class="b-labeled__label">Today</span>
+              <span class="b-labeled__value">1.2 L of 2 L</span>
+            </div>
+            <div class="b-progress"><div class="b-progress__fill" style="width: 60%"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="labeled-content">
+        <h2>Labeled Content</h2>
+        <p>
+          SwiftUI's <code>LabeledContent</code>: the standard label-left,
+          value-right row for settings and detail screens. Rows separate with
+          hairlines automatically; the label takes an optional
+          <code>small</code> second line.
+        </p>
+        <div class="docs-demo">
+          <div style="max-width: 24rem">
+            <div class="b-labeled">
+              <span class="b-labeled__label">Plan</span>
+              <span class="b-labeled__value">Barua Business</span>
+            </div>
+            <div class="b-labeled">
+              <span class="b-labeled__label">Storage<small>Mail and Drive combined</small></span>
+              <span class="b-labeled__value">8.2 GB of 15 GB</span>
+            </div>
+            <div class="b-labeled">
+              <span class="b-labeled__label">Two-factor</span>
+              <span class="b-labeled__value"><label class="b-switch"><input type="checkbox" checked></label></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="table">
+        <h2>Table</h2>
+        <p>
+          Wrap every <code>.b-table</code> in a <code>.b-table-wrap</code> so it
+          scrolls horizontally instead of breaking the page. Sortable columns
+          put a <code>.b-table__sort</code> button inside the header cell;
+          <code>.is-asc</code> / <code>.is-desc</code> flip the arrow. Numeric
+          columns take <code>.b-table__num</code> for right-aligned tabular
+          figures.
+        </p>
+        <div class="docs-demo">
+          <div class="b-table-wrap">
+            <table class="b-table b-table--hover">
+              <thead>
+                <tr>
+                  <th scope="col" aria-sort="ascending"><button class="b-table__sort is-asc">Route</button></th>
+                  <th scope="col"><button class="b-table__sort">Next departure</button></th>
+                  <th scope="col" class="b-table__num">Seats</th>
+                  <th scope="col" class="b-table__num">Fare (TZS)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dar es Salaam → Zanzibar</td>
+                  <td>Today 15:45</td>
+                  <td class="b-table__num">64</td>
+                  <td class="b-table__num">35,000</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>Nairobi → Mombasa</td>
+                  <td>Today 20:35</td>
+                  <td class="b-table__num">118</td>
+                  <td class="b-table__num">58,500</td>
+                </tr>
+                <tr>
+                  <td>Arusha → Moshi</td>
+                  <td>Tomorrow 07:10</td>
+                  <td class="b-table__num">42</td>
+                  <td class="b-table__num">12,000</td>
+                </tr>
+                <tr>
+                  <td>Dodoma → Dar es Salaam</td>
+                  <td>Tomorrow 09:00</td>
+                  <td class="b-table__num">51</td>
+                  <td class="b-table__num">41,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3 id="table-density">Striped &amp; compact</h3>
+        <div class="docs-demo">
+          <div class="b-table-wrap">
+            <table class="b-table b-table--striped b-table--compact">
+              <thead>
+                <tr>
+                  <th scope="col">Manifest</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col" class="b-table__num">Parcels</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>MAN-1182</td><td>Kampala</td><td class="b-table__num">240</td></tr>
+                <tr><td>MAN-1181</td><td>Kigali</td><td class="b-table__num">96</td></tr>
+                <tr><td>MAN-1180</td><td>Mwanza</td><td class="b-table__num">311</td></tr>
+                <tr><td>MAN-1179</td><td>Tanga</td><td class="b-table__num">57</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Give every header cell
+          <code>scope="col"</code> (or <code>scope="row"</code> for row headers)
+          so cells announce with their headers. Sortable headers keep the
+          <code>&lt;button&gt;</code> inside the <code>&lt;th&gt;</code> and
+          mirror the state with <code>aria-sort</code> on the header cell — the
+          arrow glyph alone is not announced.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="data-grid">
+        <h2>Data Grid</h2>
+        <p>
+          Add <code>.b-datagrid</code> to the table wrap for a scrolling body
+          with a sticky header — height comes from the
+          <code>--b-datagrid-h</code> custom property. Row actions in a
+          <code>.b-row-actions</code> span stay hidden until the row is
+          hovered.
+        </p>
+        <div class="docs-demo">
+          <div class="b-table-wrap b-datagrid" style="--b-datagrid-h: 17rem">
+            <table class="b-table b-table--hover">
+              <thead>
+                <tr>
+                  <th scope="col">Invoice</th>
+                  <th scope="col">Customer</th>
+                  <th scope="col">City</th>
+                  <th scope="col" class="b-table__num">Amount (TZS)</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BR-2610</td><td>Amina Hassan</td><td>Dar es Salaam</td><td class="b-table__num">240,000</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2610"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2610"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2609</td><td>Baraka Mwangi</td><td>Nairobi</td><td class="b-table__num">96,500</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2609"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2609"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2608</td><td>Neema Joseph</td><td>Zanzibar</td><td class="b-table__num">57,000</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2608"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2608"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2607</td><td>Juma Ally</td><td>Mombasa</td><td class="b-table__num">183,200</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2607"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2607"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2606</td><td>Khadija Omar</td><td>Arusha</td><td class="b-table__num">44,000</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2606"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2606"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2605</td><td>Eric Otieno</td><td>Kampala</td><td class="b-table__num">128,750</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2605"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2605"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2604</td><td>Fatma Said</td><td>Dodoma</td><td class="b-table__num">72,300</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2604"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2604"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2603</td><td>David Kimani</td><td>Kigali</td><td class="b-table__num">210,000</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2603"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2603"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2602</td><td>Zawadi Okello</td><td>Moshi</td><td class="b-table__num">39,900</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2602"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2602"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+                <tr>
+                  <td>BR-2601</td><td>Grace Wanjiru</td><td>Tanga</td><td class="b-table__num">65,400</td>
+                  <td><span class="b-row-actions">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Edit BR-2601"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Delete BR-2601"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+                  </span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Hover-revealed row actions are
+          still real buttons in the tab order — keyboard users reach them even
+          while they are visually hidden. For anything destructive, also expose
+          the same actions through a persistent overflow menu so they are
+          discoverable without a pointer.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="tree">
+        <h2>Tree</h2>
+        <p>
+          Nested <code>&lt;details&gt;</code> elements with the
+          <code>.b-tree-item</code> class — branches expand natively, no
+          JavaScript. Leaves are plain <code>.b-tree-item__row</code> divs
+          indented to align with branch labels.
+        </p>
+        <div class="docs-demo">
+          <ul class="b-tree" style="max-width: 22rem">
+            <li>
+              <details class="b-tree-item" open>
+                <summary>
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2.5h6A1.5 1.5 0 0 1 17 8v6.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Reports
+                </summary>
+                <ul class="b-tree">
+                  <li>
+                    <details class="b-tree-item" open>
+                      <summary>
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2.5h6A1.5 1.5 0 0 1 17 8v6.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        Q3 2026
+                      </summary>
+                      <ul class="b-tree">
+                        <li>
+                          <div class="b-tree-item__row is-selected">
+                            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5v-15Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 2.5v3h3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            nairobi-sales.numbers
+                          </div>
+                        </li>
+                        <li>
+                          <div class="b-tree-item__row">
+                            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5v-15Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 2.5v3h3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                            zanzibar-routes.pdf
+                          </div>
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+                  <li>
+                    <div class="b-tree-item__row">
+                      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5v-15Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 2.5v3h3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                      annual-summary.pdf
+                    </div>
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details class="b-tree-item">
+                <summary>
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2.5h6A1.5 1.5 0 0 1 17 8v6.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Archive
+                </summary>
+                <ul class="b-tree">
+                  <li>
+                    <div class="b-tree-item__row">
+                      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5v-15Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 2.5v3h3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                      2025-manifests.zip
+                    </div>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="docs-section" id="timeline">
+        <h2>Timeline</h2>
+        <p>
+          A vertical sequence of events. Mark finished steps
+          <code>.is-complete</code> (filled accent dot) and the current one
+          <code>.is-active</code> (accent ring); untouched steps stay gray.
+        </p>
+        <div class="docs-demo">
+          <ol class="b-timeline" style="max-width: 26rem">
+            <li class="is-complete">
+              <div class="b-timeline__time">Mon 24 Aug · 08:12</div>
+              <div class="b-timeline__title">Order placed</div>
+              <div class="b-timeline__body">Amina Hassan paid TZS 240,000 via mobile money.</div>
+            </li>
+            <li class="is-complete">
+              <div class="b-timeline__time">Mon 24 Aug · 16:40</div>
+              <div class="b-timeline__title">Packed in Dar es Salaam</div>
+              <div class="b-timeline__body">Two parcels sealed at the Ubungo depot.</div>
+            </li>
+            <li class="is-active">
+              <div class="b-timeline__time">Wed 26 Aug · 06:55</div>
+              <div class="b-timeline__title">In transit to Nairobi</div>
+              <div class="b-timeline__body">Cleared Namanga border, ETA tonight.</div>
+            </li>
+            <li>
+              <div class="b-timeline__time">Pending</div>
+              <div class="b-timeline__title">Delivered</div>
+              <div class="b-timeline__body">Signature required on arrival.</div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="docs-section" id="feed">
+        <h2>Feed</h2>
+        <p>
+          Avatar-plus-bubble rows for comments and activity streams. The bubble
+          is a bordered surface; <code>.b-feed__meta</code> carries the
+          byline.
+        </p>
+        <div class="docs-demo">
+          <div class="b-feed" style="max-width: 30rem">
+            <div class="b-feed__item">
+              <span class="b-avatar">AH</span>
+              <div class="b-feed__bubble">
+                Customs cleared the container this morning — paperwork is in the
+                shared folder.
+                <div class="b-feed__meta">Amina Hassan · 2 h ago · Dar es Salaam</div>
+              </div>
+            </div>
+            <div class="b-feed__item">
+              <span class="b-avatar">BM</span>
+              <div class="b-feed__bubble">
+                Asante! I&rsquo;ll schedule the Nairobi leg for tomorrow at dawn.
+                <div class="b-feed__meta">Baraka Mwangi · 1 h ago · Nairobi</div>
+              </div>
+            </div>
+            <div class="b-feed__item">
+              <span class="b-avatar">NJ</span>
+              <div class="b-feed__bubble">
+                Flag anything fragile — the Zanzibar ferry crossing is rough this
+                week.
+                <div class="b-feed__meta">Neema Joseph · 20 min ago · Zanzibar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="accordion">
+        <h2>Accordion &amp; Disclosure</h2>
+        <p>
+          A <code>.b-accordion</code> stacks <code>details.b-disclosure</code>
+          panels with hairlines between them — native open/close semantics and
+          keyboard support for free. Use a lone
+          <code>.b-disclosure--plain</code> for an inline &ldquo;show
+          more&rdquo;.
+        </p>
+        <div class="docs-demo">
+          <div class="b-accordion" style="max-width: 32rem">
+            <details class="b-disclosure" open>
+              <summary>How long does delivery to Zanzibar take?</summary>
+              <div class="b-disclosure__body">
+                Parcels leave Dar es Salaam on the 15:45 ferry daily. Most
+                deliveries land in Stone Town the same evening; the east-coast
+                villages add one day.
+              </div>
+            </details>
+            <details class="b-disclosure">
+              <summary>Which cities do you cover?</summary>
+              <div class="b-disclosure__body">
+                Dar es Salaam, Nairobi, Mombasa, Arusha, Dodoma, Kampala and
+                Kigali — with partner depots in Moshi and Tanga.
+              </div>
+            </details>
+            <details class="b-disclosure">
+              <summary>Can I change the delivery address?</summary>
+              <div class="b-disclosure__body">
+                Yes, until the parcel is marked out for delivery. Edits after
+                dispatch reroute on the next leg.
+              </div>
+            </details>
+          </div>
+        </div>
+        <h3 id="disclosure-plain">Plain disclosure</h3>
+        <div class="docs-demo">
+          <details class="b-disclosure b-disclosure--plain" style="max-width: 32rem">
+            <summary>Show advanced options</summary>
+            <div class="b-disclosure__body">
+              Insurance, customs pre-clearance and cold-chain handling are
+              configured per shipment.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="badge">
+        <h2>Badge</h2>
+        <p>
+          Small status labels. <code>--dot</code> prefixes a colored point,
+          <code>--count</code> is the red numeric pill, and
+          <code>--solid</code> fills with the accent for maximum emphasis.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-badge">Default</span>
+          <span class="b-badge b-badge--accent">Accent</span>
+          <span class="b-badge b-badge--success">Delivered</span>
+          <span class="b-badge b-badge--warning">Held at customs</span>
+          <span class="b-badge b-badge--danger">Failed</span>
+          <span class="b-badge b-badge--solid">Solid</span>
+          <span class="b-badge b-badge--success b-badge--dot">Online</span>
+          <span class="b-badge b-badge--danger b-badge--dot">Offline</span>
+          <span class="b-badge b-badge--count">12</span>
+        </div>
+      </section>
+
+      <section class="docs-section" id="tag-chip">
+        <h2>Tag &amp; Chip</h2>
+        <p>
+          Tags are quiet, outlined metadata — never click targets. Chips are
+          interactive: real buttons that toggle with
+          <code>.is-selected</code> (or <code>aria-pressed</code>) and can
+          carry a <code>.b-chip__remove</code> affordance.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-tag">fragile</span>
+          <span class="b-tag">express</span>
+          <span class="b-tag">cold-chain</span>
+          <span class="b-tag">v0.1</span>
+        </div>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-chip">Nairobi</button>
+          <button class="b-chip is-selected">Dar es Salaam</button>
+          <button class="b-chip" aria-pressed="true">Mombasa</button>
+          <span class="b-chip">Zanzibar
+            <button class="b-chip__remove" data-b-dismiss aria-label="Remove Zanzibar">×</button>
+          </span>
+        </div>
+        <div class="docs-guidance">
+          <div class="docs-do">
+            Use chips for input the person controls — filters, recipients,
+            selected cities — and give each one real button semantics so state
+            is announced.
+          </div>
+          <div class="docs-dont">
+            Don&rsquo;t make tags clickable or dress badges up as actions. If it
+            triggers behavior it&rsquo;s a chip or a button; tags and badges
+            only describe.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="avatar">
+        <h2>Avatar &amp; Avatar Group</h2>
+        <p>
+          Initials on the accent-soft fill are the built-in fallback — no
+          broken-image state, ever. Sizes run <code>--xs</code> to
+          <code>--xl</code>; <code>--square</code> suits workspaces and files,
+          <code>--online</code> adds the presence dot.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-avatar b-avatar--xs">AH</span>
+          <span class="b-avatar b-avatar--sm">BM</span>
+          <span class="b-avatar">NJ</span>
+          <span class="b-avatar b-avatar--lg">JA</span>
+          <span class="b-avatar b-avatar--xl">KO</span>
+          <span class="b-avatar b-avatar--square">DK</span>
+          <span class="b-avatar b-avatar--online">FS</span>
+        </div>
+        <h3 id="avatar-group">Group</h3>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-avatar-group">
+            <span class="b-avatar">AH</span>
+            <span class="b-avatar">BM</span>
+            <span class="b-avatar">NJ</span>
+            <span class="b-avatar b-avatar--more">+4</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="icon">
+        <h2>Icon</h2>
+        <p>
+          <code>.b-icon</code> is a sized slot for any inline SVG — it inherits
+          <code>currentColor</code>, so icons re-tint with their context.
+          <code>.b-icon-tile</code> wraps one in the rounded accent square used
+          across settings lists and feature grids.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-icon b-icon--sm"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.3.9 4.7L10 13.7 5.7 16l.9-4.7L3 8l4.9-.6L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+          <span class="b-icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.3.9 4.7L10 13.7 5.7 16l.9-4.7L3 8l4.9-.6L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+          <span class="b-icon b-icon--lg"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.3.9 4.7L10 13.7 5.7 16l.9-4.7L3 8l4.9-.6L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+          <span class="b-icon b-icon--xl"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.3.9 4.7L10 13.7 5.7 16l.9-4.7L3 8l4.9-.6L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+          <span class="b-icon-tile"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4.5 7 5.5 4 5.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="b-icon-tile"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3a4.5 4.5 0 0 0-4.5 4.5c0 4-1.5 5-1.5 5h12s-1.5-1-1.5-5A4.5 4.5 0 0 0 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15.5a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+      </section>
+
+      <section class="docs-section" id="image">
+        <h2>Image</h2>
+        <p>
+          <code>.b-img</code> rounds and crops; <code>--framed</code> adds a
+          soft elevation shadow. <code>.b-figure</code> pairs an image with a
+          quiet caption. Gradients stand in for photography below.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-img" style="width:14rem;aspect-ratio:4/3;background:linear-gradient(135deg,var(--b-color-accent),var(--b-color-indigo))"></div>
+          <figure class="b-figure" style="max-width: 16rem">
+            <div class="b-img b-img--framed" style="aspect-ratio:16/10;background:linear-gradient(160deg,var(--b-color-teal),var(--b-color-accent))"></div>
+            <figcaption>Forodhani Gardens at dusk, Zanzibar.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="docs-section" id="code-block">
+        <h2>Code Block</h2>
+        <p>
+          Always dark, regardless of theme. The header slot names the file and
+          hosts a <code>.b-code__copy</code> button — point
+          <code>data-b-copy</code> at the id of the <code>&lt;code&gt;</code>
+          element and Barua handles the clipboard.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-code" style="max-width: 34rem">
+            <div class="b-code__header">
+              <span>install.sh</span>
+              <button class="b-code__copy" data-b-copy="#code-install">Copy</button>
+            </div>
+            <pre><code id="code-install">npm install barua-ui
+# or just link the stylesheet
+&lt;link rel="stylesheet" href="css/barua.css"&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="quote">
+        <h2>Quote</h2>
+        <p>
+          Accent-washed pull quote with an inline-start rule. Keep the
+          <code>&lt;cite&gt;</code> inside the blockquote for attribution.
+        </p>
+        <div class="docs-demo">
+          <blockquote class="b-quote" style="max-width: 32rem">
+            <p>
+              Barua turned a two-day paperwork run into an afternoon. We clear a
+              full container out of Dar es Salaam before lunch now.
+            </p>
+            <cite>Khadija Omar — Operations lead, Mombasa</cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <section class="docs-section" id="statistic">
+        <h2>Statistic</h2>
+        <p>
+          Big tabular-numeral values with a label and an optional delta.
+          <code>.is-up</code> renders green, <code>.is-down</code> red — pick
+          metrics where the direction matches the sentiment.
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--3">
+            <div class="b-stat">
+              <div class="b-stat__label">Deliveries this month</div>
+              <div class="b-stat__value">4,807</div>
+              <span class="b-stat__delta is-up">↑ 12.4% vs July</span>
+            </div>
+            <div class="b-stat">
+              <div class="b-stat__label">On-time rate</div>
+              <div class="b-stat__value">96.2%</div>
+              <span class="b-stat__delta is-up">↑ 1.1 pts</span>
+            </div>
+            <div class="b-stat">
+              <div class="b-stat__label">Revenue (TZS)</div>
+              <div class="b-stat__value">86.4M</div>
+              <span class="b-stat__delta is-down">↓ 3.2% vs July</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="empty-state">
+        <h2>Empty State</h2>
+        <p>
+          Centered icon, headline, one supportive sentence, one action. Never
+          leave a blank pane — tell people what belongs here and how to start.
+        </p>
+        <div class="docs-demo">
+          <div class="b-empty">
+            <div class="b-empty__icon">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 4.5h10l2 6.5v4.5H3V11L5 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.5 11h4l1 2h3l1-2h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="b-empty__title">No shipments yet</div>
+            <p class="b-empty__desc">
+              When you book a pickup or send a parcel, it appears here with live
+              tracking from depot to doorstep.
+            </p>
+            <button class="b-btn b-btn--primary">Create shipment</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="rich-media-text">
+        <h2>Rich Media &amp; Text</h2>
+        <p>
+          Video and audio players live on the
+          <a href="media.html">Media</a> page. For rendered markdown and rich
+          text, Barua&rsquo;s base typography does the work — headings,
+          paragraphs, inline code, quotes and lists inherit the ramp, so a
+          <code>.b-card__body</code> is all a prose container needs.
+        </p>
+        <div class="docs-demo">
+          <article class="b-card" style="max-width: 36rem">
+            <div class="b-card__body">
+              <h3>Shipping to Zanzibar</h3>
+              <p>
+                Parcels bound for the islands route through the
+                <code>ZNZ</code> depot and cross on the afternoon ferry from Dar
+                es Salaam.
+              </p>
+              <blockquote>
+                Book before 13:00 EAT to make the same-day crossing.
+              </blockquote>
+              <ul>
+                <li>Stone Town — same evening</li>
+                <li>Nungwi and the east coast — next morning</li>
+                <li>Pemba — every Tuesday and Friday</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="forms.html">← Forms</a>
+        <a class="b-btn b-btn--ghost" href="feedback.html">Feedback →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

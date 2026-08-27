@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System Pages — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Patterns</div>
+        <h1>System Pages</h1>
+        <p class="docs-hero__lede">
+          The full-page states every app needs but nobody designs first —
+          errors, maintenance windows, empty lists, loading screens and
+          first-run onboarding. One calm scaffold (<code>.b-syspage</code>),
+          one outcome panel (<code>.b-result</code>) and an onboarding stack,
+          all composed from components you already know.
+        </p>
+      </header>
+
+      <section class="docs-section" id="error-page-anatomy">
+        <h2>Error Page Anatomy</h2>
+        <p>
+          Every error page is the same four pieces stacked on
+          <code>.b-syspage</code>, a flex column that centers itself in the
+          viewport: <code>.b-syspage__code</code> — the oversized status
+          number wearing the accent-to-indigo gradient —
+          <code>.b-syspage__title</code> for the human headline,
+          <code>.b-syspage__desc</code> for one or two sentences on what
+          actually happened, and <code>.b-syspage__actions</code>, a button
+          row with exactly one primary way out. Swap the code for an icon and
+          the same scaffold covers maintenance and any other full-page
+          interruption.
+        </p>
+        <div class="docs-guidance">
+          <div class="docs-do">Say what happened in plain language and offer one clear next step — go home, try again, request access. The gradient number supplies the drama; the copy stays calm.</div>
+          <div class="docs-dont">Blame the user, print a stack trace, or dead-end the page. An error page with no action — or eight of them — strands people at the exact moment they need a way out.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="404-page">
+        <h2>404 Page</h2>
+        <p>
+          The classic. Keep the description honest — most 404s are stale
+          links, not user error — and route people home or to a human. The
+          demo pins <code>min-height: 0</code>; the real page keeps the
+          default <code>60vh</code> so it centers in the viewport.
+        </p>
+        <div class="docs-demo">
+          <div class="b-syspage" style="min-height: 0">
+            <div class="b-syspage__code">404</div>
+            <div class="b-syspage__title">Page not found</div>
+            <p class="b-syspage__desc">The page you're looking for was moved, renamed, or never existed. Check the address, or head back somewhere familiar.</p>
+            <div class="b-syspage__actions">
+              <a class="b-btn b-btn--primary" href="#404-page">Go home</a>
+              <a class="b-btn b-btn--ghost" href="#404-page">Contact support</a>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Error pages are real pages:
+          give them a descriptive <code>&lt;title&gt;</code> ("Page not found
+          — Barua"), make <code>.b-syspage__title</code> the page's only
+          <code>&lt;h1&gt;</code>, and render the scaffold inside a
+          <code>&lt;main&gt;</code> landmark so screen-reader users land
+          straight on the explanation. Return the real HTTP status too — the
+          semantics live in the response, not the visuals.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="403-page">
+        <h2>403 Page</h2>
+        <p>
+          Denied, not broken. Offer the two exits people actually want:
+          request access, or hop identities. Pair "Switch account" with the
+          Account Switcher from <a href="authentication.html">Authentication</a>
+          so nobody has to sign out just to sign back in.
+        </p>
+        <div class="docs-demo">
+          <div class="b-syspage" style="min-height: 0">
+            <div class="b-syspage__code">403</div>
+            <div class="b-syspage__title">Access denied</div>
+            <p class="b-syspage__desc">Your account doesn't have permission to view this workspace. Ask an admin to let you in, or try a different account.</p>
+            <div class="b-syspage__actions">
+              <button class="b-btn b-btn--primary">Request access</button>
+              <button class="b-btn b-btn--ghost">Switch account</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="500-page">
+        <h2>500 Page</h2>
+        <p>
+          Own it. Say the fault is on your side, promise the data is safe,
+          and hand over a reference code support can actually use — a plain
+          <code>&lt;code&gt;</code> line tucked under the actions.
+        </p>
+        <div class="docs-demo">
+          <div class="b-syspage" style="min-height: 0">
+            <div class="b-syspage__code">500</div>
+            <div class="b-syspage__title">Something broke on our side</div>
+            <p class="b-syspage__desc">An unexpected error stopped this request. It's not you — your mail is safe, and the team has already been paged.</p>
+            <div class="b-syspage__actions">
+              <button class="b-btn b-btn--primary">Try again</button>
+              <a class="b-btn b-btn--ghost" href="#500-page">View status page</a>
+            </div>
+            <p class="b-footnote b-text-tertiary">Reference: <code>ERR-2AF4-9C01</code></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="maintenance-page">
+        <h2>Maintenance Page</h2>
+        <p>
+          The same scaffold minus the status code — an icon where the number
+          would be, a concrete time window, and an indeterminate
+          <code>.b-progress</code> so the page feels alive rather than
+          abandoned.
+        </p>
+        <div class="docs-demo">
+          <div class="b-syspage" style="min-height: 0">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="var(--b-color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="b-syspage__title">Scheduled maintenance</div>
+            <p class="b-syspage__desc">Barua is getting a planned upgrade between 02:00 and 04:30 UTC. Mail keeps arriving the whole time and will be waiting when we're back.</p>
+            <div class="b-progress b-progress--indeterminate" style="max-width: 20rem">
+              <div class="b-progress__fill"></div>
+            </div>
+            <p class="b-footnote b-text-tertiary">Started 02:00 UTC · Live updates on the status page</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="offline-state">
+        <h2>Offline State</h2>
+        <p>
+          A <code>.b-result--warning</code> panel, not a dead end — reassure
+          people their drafts are safe locally. Toggling it (listening to
+          <code>navigator.onLine</code> and the <code>online</code> /
+          <code>offline</code> events) is app-side wiring; Barua ships the
+          look.
+        </p>
+        <div class="docs-demo">
+          <div class="b-result b-result--warning">
+            <div class="b-result__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M2 8.5a14.5 14.5 0 0 1 20 0M5.5 12a9.7 9.7 0 0 1 13 0M9 15.5a4.6 4.6 0 0 1 6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/><path d="m4 4 16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div class="b-result__title">You're offline</div>
+            <p class="b-result__desc">Barua can't reach the network. Drafts are saved on this device and will send themselves the moment you're back online.</p>
+            <div class="b-result__actions">
+              <button class="b-btn b-btn--primary">Retry connection</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="permission-state">
+        <h2>Permission State</h2>
+        <p>
+          Ask in context, right before the capability is used. A
+          <code>.b-result--confirm</code> panel primes the real browser
+          prompt — explain the payoff first and the OS dialog stops feeling
+          like an ambush.
+        </p>
+        <div class="docs-demo">
+          <div class="b-result b-result--confirm">
+            <div class="b-result__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div class="b-result__title">Turn on notifications?</div>
+            <p class="b-result__desc">Get a ping the moment important mail lands — VIP senders and mentions only, never the newsletter flood.</p>
+            <div class="b-result__actions">
+              <button class="b-btn b-btn--primary">Allow notifications</button>
+              <button class="b-btn b-btn--ghost">Not now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="loading-state">
+        <h2>Loading State</h2>
+        <p>
+          Two tools, both from <a href="feedback.html">Feedback</a>: a
+          centered spinner when you don't know the shape of what's coming,
+          skeletons when you do. Full-page loading is a
+          <code>.b-spinner--lg</code> plus one quiet line of
+          <code>.b-footnote</code> text — never a paragraph.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div class="b-vstack b-stack--center b-gap-3" role="status" aria-busy="true">
+            <span class="b-spinner b-spinner--lg" aria-hidden="true"></span>
+            <p class="b-footnote b-text-secondary">Loading your inbox…</p>
+          </div>
+        </div>
+
+        <h3 id="loading-skeleton">Skeleton page</h3>
+        <p>
+          When the layout is known, ghost it instead: compose
+          <code>.b-skeleton</code> variants inside the real containers so
+          nothing jumps when content arrives.
+        </p>
+        <div class="docs-demo">
+          <div class="b-card-grid" aria-busy="true">
+            <div class="b-card">
+              <div class="b-skeleton b-skeleton--card"></div>
+              <div class="b-card__body">
+                <div class="b-skeleton b-skeleton--title"></div>
+                <div class="b-skeleton b-skeleton--text"></div>
+                <div class="b-skeleton b-skeleton--text" style="width: 65%"></div>
+              </div>
+            </div>
+            <div class="b-card">
+              <div class="b-skeleton b-skeleton--card"></div>
+              <div class="b-card__body">
+                <div class="b-skeleton b-skeleton--title"></div>
+                <div class="b-skeleton b-skeleton--text"></div>
+                <div class="b-skeleton b-skeleton--text" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="b-card">
+              <div class="b-skeleton b-skeleton--card"></div>
+              <div class="b-card__body">
+                <div class="b-skeleton b-skeleton--title"></div>
+                <div class="b-skeleton b-skeleton--text"></div>
+                <div class="b-skeleton b-skeleton--text" style="width: 50%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Mark the region being replaced
+          with <code>aria-busy="true"</code> while it loads and remove it when
+          content arrives. Announce the transition through a polite live
+          region — <code>role="status"</code> or
+          <code>aria-live="polite"</code> — with a short label like "Loading
+          your inbox". Skeletons are decorative; hide them from assistive tech
+          with <code>aria-hidden="true"</code> rather than labelling each
+          shimmering bar.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="empty-state">
+        <h2>Empty State</h2>
+        <p>
+          The component lives in <a href="content.html">Content</a> — this is
+          the pattern. On first run, render <code>.b-empty</code> inside the
+          exact container the content will eventually fill, with the creation
+          action right there instead of hidden in a toolbar.
+        </p>
+        <div class="docs-demo">
+          <div class="b-card">
+            <div class="b-card__header">
+              <div class="b-card__title">Rules</div>
+              <button class="b-btn b-btn--ghost b-btn--sm">Import</button>
+            </div>
+            <div class="b-empty">
+              <div class="b-empty__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="b-empty__title">No rules yet</div>
+              <p class="b-empty__desc">Rules file, label and archive mail before it ever hits your inbox. Start with one for newsletters — future you says thanks.</p>
+              <button class="b-btn b-btn--primary">Create your first rule</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="onboarding">
+        <h2>Onboarding</h2>
+        <p>
+          The pitch page. <code>.b-onboarding__hero</code> gives one word the
+          gradient treatment via <code>&lt;em&gt;</code>, a single primary CTA
+          leads, and at most three <code>.b-onboarding-feature</code> rows
+          carry the argument — icons from <code>.b-icon-tile</code>.
+        </p>
+        <div class="docs-demo">
+          <div class="b-onboarding">
+            <div class="b-onboarding__hero">Email that finally feels <em>effortless</em></div>
+            <p class="b-callout b-text-secondary" style="max-width: 34rem">One inbox for every account, triaged before you even open it. No folders to invent, no zero to chase.</p>
+            <div class="b-hstack">
+              <button class="b-btn b-btn--primary b-btn--lg">Get started</button>
+              <button class="b-btn b-btn--ghost b-btn--lg">Watch demo</button>
+            </div>
+            <div class="b-vstack b-gap-4">
+              <div class="b-onboarding-feature">
+                <span class="b-icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M22 12h-6l-2 3h-4l-2-3H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div>
+                  <div class="b-onboarding-feature__title">Smart triage</div>
+                  <div class="b-onboarding-feature__desc">People, receipts and newsletters sort themselves into calm, separate lanes.</div>
+                </div>
+              </div>
+              <div class="b-onboarding-feature">
+                <span class="b-icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.6"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </span>
+                <div>
+                  <div class="b-onboarding-feature__title">Instant search</div>
+                  <div class="b-onboarding-feature__desc">Any message, attachment or contact in milliseconds — even offline.</div>
+                </div>
+              </div>
+              <div class="b-onboarding-feature">
+                <span class="b-icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </span>
+                <div>
+                  <div class="b-onboarding-feature__title">Private by default</div>
+                  <div class="b-onboarding-feature__desc">Indexing happens on your device. Nobody reads your mail to sell you shoes.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="welcome-screen">
+        <h2>Welcome Screen</h2>
+        <p>
+          The Apple-style first-launch sheet: app icon up top
+          (<code>.b-auth-card__logo</code>), a "Welcome to" hero, a short
+          feature list, and a single Continue button in a
+          <code>.b-form-actions</code> footer. In a real sheet, pin that
+          footer to the bottom edge so Continue never scrolls away.
+        </p>
+        <div class="docs-demo">
+          <div class="b-onboarding">
+            <div class="b-auth-card__logo" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="4.5" width="19" height="15" rx="3.5" stroke="currentColor" stroke-width="1.5"/><path d="m5 8.2 7 5.3 7-5.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="b-onboarding__hero">Welcome to <em>Barua</em></div>
+            <div class="b-vstack b-gap-4">
+              <div class="b-onboarding-feature">
+                <span class="b-icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </span>
+                <div>
+                  <div class="b-onboarding-feature__title">All of your accounts</div>
+                  <div class="b-onboarding-feature__desc">Work, personal and that address from 2011 — unified in one inbox, color-coded per identity.</div>
+                </div>
+              </div>
+              <div class="b-onboarding-feature">
+                <span class="b-icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div>
+                  <div class="b-onboarding-feature__title">Fast everywhere</div>
+                  <div class="b-onboarding-feature__desc">Full offline sync means the plane, the tunnel and the dead zone all feel the same.</div>
+                </div>
+              </div>
+              <div class="b-onboarding-feature">
+                <span class="b-icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div>
+                  <div class="b-onboarding-feature__title">You're in control</div>
+                  <div class="b-onboarding-feature__desc">Trackers stripped, images proxied, and one switch to turn any of it back on.</div>
+                </div>
+              </div>
+            </div>
+            <div class="b-form-actions" style="width: 100%; justify-content: center">
+              <button class="b-btn b-btn--primary b-btn--lg" style="min-width: 15rem">Continue</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="authentication.html">← Authentication</a>
+        <a class="b-btn b-btn--ghost" href="productivity.html">Productivity →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

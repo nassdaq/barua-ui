@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Barua UI — single entry point
+   <link rel="stylesheet" href="css/barua.css">
+
+   Layer order (later wins): reset < tokens < base < utilities < components.
+   Your overrides go in unlayered CSS, which always beats layered rules.
+   ========================================================================== */
+
+@layer tokens, base, utilities, components;
+
+@import url("tokens.css");
+@import url("base.css");
+@import url("utilities.css");
+@import url("components/actions.css");
+@import url("components/nav.css");
+@import url("components/forms.css");
+@import url("components/content.css");
+@import url("components/feedback.css");
+@import url("components/overlays.css");
+@import url("components/charts.css");
+@import url("components/media.css");
+@import url("components/specialized.css");
+@import url("components/productivity.css");
+@import url("components/mobile.css");
+@import url("components/auth.css");
+@import url("components/control-center.css");
+@import url("liquid.css");

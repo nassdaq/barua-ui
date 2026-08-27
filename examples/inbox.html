@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inbox — Barua UI</title>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* Wallpaper only — every visible material below is a Barua component. */
+    body.inbox {
+      min-height: 100dvh;
+      padding: var(--b-space-6) var(--b-space-4) 5rem;
+      background: linear-gradient(180deg, var(--b-color-accent-soft), transparent 20rem) var(--b-bg);
+    }
+  </style>
+</head>
+<body class="inbox b-stage">
+  <main class="b-container b-container--md b-stack b-gap-4">
+    <header class="b-hstack b-stack--wrap b-gap-3">
+      <div class="b-grow">
+        <div class="b-overline">Barua · kelvin@neurotech.africa</div>
+        <h1 class="b-title1">Inbox</h1>
+      </div>
+      <div class="b-segmented" role="group" aria-label="Message filter">
+        <button class="b-segmented__item is-active">All</button>
+        <button class="b-segmented__item">Unread</button>
+      </div>
+      <button class="b-btn b-btn--primary">
+        <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 16 .8-3.2 8.8-8.8a1.4 1.4 0 0 1 2 0l.4.4a1.4 1.4 0 0 1 0 2l-8.8 8.8L4 16Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m12.5 5.5 2 2" stroke="currentColor" stroke-width="1.5"/></svg>
+        Compose
+      </button>
+    </header>
+
+    <div class="b-scroll-area b-stack b-gap-4">
+    <div class="b-notification" role="status">
+      <span class="b-avatar">NS</span>
+      <div class="b-notification__body">
+        <div class="b-notification__app">Barua Mail · Pinned</div>
+        <div class="b-notification__title">Neema Salim</div>
+        <div class="b-notification__desc">Board pack for Thursday&rsquo;s Mwenge depot review — please read before 14:00 EAT.</div>
+      </div>
+      <span class="b-notification__time">08:15</span>
+    </div>
+
+    <div class="b-card b-card--flush">
+      <div class="b-card__body">
+        <ul class="b-list b-list--plain b-list--inset-divider">
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">AM</span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Amina Mushi</span>
+              <span class="b-list-item__subtitle">Container quote, Dar es Salaam → Mwanza — TZS 2,400,000, Friday slot</span>
+            </span>
+            <span class="b-list-item__trailing">09:41 <span class="b-status b-status--online">New</span></span>
+          </li>
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">BC</span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Baraka Chacha</span>
+              <span class="b-list-item__subtitle">Kariakoo stall photos plus the updated stock sheet for September</span>
+            </span>
+            <span class="b-list-item__trailing">09:12 <span class="b-badge b-badge--count">3</span></span>
+          </li>
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">ZF</span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Zanzibar Ferries</span>
+              <span class="b-list-item__subtitle">E-ticket ZNZ-88214 confirmed — Stone Town, Sat 07:00, TZS 35,000</span>
+            </span>
+            <span class="b-list-item__trailing">08:26 <span class="b-badge b-badge--accent">Ticket</span></span>
+          </li>
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">JA</span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Juma Ally</span>
+              <span class="b-list-item__subtitle">Ubungo depot iko tayari — cut-off for same-day dispatch is 14:30</span>
+            </span>
+            <span class="b-list-item__trailing">Jana</span>
+          </li>
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">HN</span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">Halima Nassor</span>
+              <span class="b-list-item__subtitle">Asante kwa jana! M-Pesa receipt for TZS 185,000 attached</span>
+            </span>
+            <span class="b-list-item__trailing">Jana</span>
+          </li>
+          <li class="b-list-item b-list-item--interactive">
+            <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">TR</span></span>
+            <span class="b-list-item__content">
+              <span class="b-list-item__title">TRA e-Filing</span>
+              <span class="b-list-item__subtitle">August VAT return received — reference EFD-55231</span>
+            </span>
+            <span class="b-list-item__trailing">Jumatatu</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="b-card" style="max-width: 24rem">
+      <div class="b-card__header">
+        <div class="b-card__title">Archive</div>
+        <button class="b-btn b-btn--ghost b-btn--sm">Manage</button>
+      </div>
+      <div class="b-empty">
+        <div class="b-empty__icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 5.5A1.5 1.5 0 0 1 5 4h3l1.5 2H15a1.5 1.5 0 0 1 1.5 1.5V14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="b-empty__title">Archive is empty</div>
+        <p class="b-empty__desc">Messages you archive move here and stay searchable — clear the inbox without losing a thing.</p>
+        <button class="b-btn b-btn--primary">Archive read mail</button>
+      </div>
+    </div>
+  </div>
+  </main>
+</body>
+</html>

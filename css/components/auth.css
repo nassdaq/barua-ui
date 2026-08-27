@@ -1,0 +1,237 @@
+/* ==========================================================================
+   Barua UI — Authentication & System pages
+   Auth card/layout, OTP Input, Passkey Prompt, Account Switcher,
+   Profile Menu trigger, error/system page scaffold, onboarding.
+   ========================================================================== */
+
+@layer components {
+  /* ---- Auth layout ------------------------------------------------------------ */
+  @media (min-width: 768px) {
+    .b-auth.b-stage { height: 100dvh; min-height: 0; overflow: clip; }
+    .b-auth.b-stage > main { height: 100%; min-height: 0; overflow-y: auto; }
+  }
+  .b-auth {
+    display: grid;
+    place-items: center;
+    min-height: 100dvh;
+    padding: var(--b-space-6) var(--b-space-4);
+    background:
+      radial-gradient(50rem 30rem at 15% -10%,
+        color-mix(in srgb, var(--b-color-accent) 22%, transparent), transparent),
+      radial-gradient(40rem 26rem at 110% 110%,
+        color-mix(in srgb, var(--b-color-indigo) 16%, transparent), transparent),
+      var(--b-bg);
+  }
+  .b-auth-card {
+    width: min(24rem, 100%);
+    padding: var(--b-space-8) var(--b-space-6);
+    background: var(--b-material-thick-bg);
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-2xl);
+    box-shadow: var(--b-glass-edge), var(--b-elevation-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-4);
+  }
+  .b-auth-card__logo {
+    display: grid;
+    place-items: center;
+    width: 3rem; height: 3rem;
+    margin-inline: auto;
+    font-size: 1.4rem;
+    color: var(--b-color-on-accent);
+    background: linear-gradient(135deg, var(--b-color-accent), var(--b-color-indigo));
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-shadow-accent);
+  }
+  .b-auth-card__title {
+    font-size: var(--b-text-title2);
+    font-weight: var(--b-weight-bold);
+    text-align: center;
+    letter-spacing: var(--b-tracking-tight);
+  }
+  .b-auth-card__subtitle {
+    font-size: var(--b-text-subheadline);
+    color: var(--b-text-secondary);
+    text-align: center;
+    margin-block-start: calc(var(--b-space-1) * -1);
+  }
+  .b-auth-card__footer {
+    font-size: var(--b-text-footnote);
+    color: var(--b-text-secondary);
+    text-align: center;
+  }
+
+  /* Social sign-in button */
+  .b-btn--provider {
+    background: var(--b-surface);
+    border: 1px solid var(--b-border);
+    justify-content: center;
+    gap: var(--b-space-2);
+    font-weight: var(--b-weight-medium);
+  }
+  .b-btn--provider:hover { background: var(--b-fill-quaternary); }
+
+  /* ---- OTP Input ----------------------------------------------------------------- */
+  .b-otp {
+    display: flex;
+    justify-content: center;
+    gap: var(--b-space-2);
+  }
+  .b-otp input {
+    width: 2.75rem;
+    height: 3.25rem;
+    text-align: center;
+    font-size: var(--b-text-title3);
+    font-weight: var(--b-weight-semibold);
+    font-variant-numeric: tabular-nums;
+    color: var(--b-text);
+    background: var(--b-surface);
+    border: 1.5px solid var(--b-border);
+    border-radius: var(--b-radius-md);
+    caret-color: var(--b-color-accent);
+    transition: border-color var(--b-duration-fast), box-shadow var(--b-duration-fast);
+  }
+  .b-otp input:focus-visible {
+    border-color: var(--b-color-accent);
+    box-shadow: var(--b-focus-ring);
+    outline: none;
+  }
+  .b-otp input.is-filled { border-color: var(--b-color-accent); }
+  .b-otp.is-invalid input { border-color: var(--b-color-danger); animation: b-shake 0.35s var(--b-ease-standard); }
+  @keyframes b-shake {
+    20%, 60% { translate: -4px 0; }
+    40%, 80% { translate: 4px 0; }
+  }
+
+  /* ---- Passkey Prompt --------------------------------------------------------------- */
+  .b-passkey {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--b-space-3);
+    padding: var(--b-space-6);
+    text-align: center;
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+  }
+  .b-passkey__icon {
+    display: grid;
+    place-items: center;
+    width: 3.5rem; height: 3.5rem;
+    font-size: 1.6rem;
+    color: var(--b-color-accent-text);
+    background: var(--b-color-accent-soft);
+    border-radius: 50%;
+  }
+  .b-passkey__title { font-weight: var(--b-weight-semibold); font-size: var(--b-text-headline); }
+  .b-passkey__desc { font-size: var(--b-text-footnote); color: var(--b-text-secondary); max-width: 22rem; }
+
+  /* ---- Account Switcher / Profile Menu ------------------------------------------------ */
+  .b-account-switcher {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--b-space-1);
+  }
+  .b-account {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-3);
+    width: 100%;
+    padding: var(--b-space-2) var(--b-space-3);
+    background: none;
+    border: none;
+    border-radius: var(--b-radius-md);
+    cursor: pointer;
+    text-align: start;
+  }
+  .b-account:hover { background: var(--b-fill-tertiary); }
+  .b-account.is-active { background: var(--b-color-accent-soft); }
+  .b-account__meta { flex: 1; min-width: 0; }
+  .b-account__name { font-size: var(--b-text-footnote); font-weight: var(--b-weight-semibold); }
+  .b-account__email { font-size: var(--b-text-caption); color: var(--b-text-secondary); }
+  .b-account__check { color: var(--b-color-accent-text); font-weight: var(--b-weight-bold); }
+
+  .b-profile-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    padding: var(--b-space-1);
+    padding-inline-end: var(--b-space-2);
+    background: none;
+    border: 1px solid transparent;
+    border-radius: var(--b-radius-full);
+    cursor: pointer;
+    transition: background var(--b-duration-fast), border-color var(--b-duration-fast);
+  }
+  .b-profile-trigger:hover { background: var(--b-fill-tertiary); border-color: var(--b-separator); }
+
+  /* ---- System / error page scaffold ----------------------------------------------------- */
+  .b-syspage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--b-space-3);
+    min-height: 60vh;
+    padding: var(--b-space-8) var(--b-space-4);
+    text-align: center;
+  }
+  .b-syspage__code {
+    font-size: clamp(4rem, 14vw, 7rem);
+    font-weight: var(--b-weight-bold);
+    letter-spacing: var(--b-tracking-tight);
+    line-height: 1;
+    background: linear-gradient(135deg, var(--b-color-accent), var(--b-color-indigo));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .b-syspage__title { font-size: var(--b-text-title2); font-weight: var(--b-weight-bold); }
+  .b-syspage__desc {
+    max-width: 30rem;
+    color: var(--b-text-secondary);
+    font-size: var(--b-text-subheadline);
+  }
+  .b-syspage__actions { display: flex; gap: var(--b-space-2); margin-block-start: var(--b-space-3); }
+
+  /* Offline / permission chip states reuse .b-result (feedback.css) */
+
+  /* ---- Onboarding / Welcome -------------------------------------------------------------- */
+  .b-onboarding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--b-space-6);
+    padding: var(--b-space-10) var(--b-space-4);
+    text-align: center;
+  }
+  .b-onboarding__hero {
+    font-size: var(--b-text-display);
+    font-weight: var(--b-weight-bold);
+    letter-spacing: var(--b-tracking-tight);
+    line-height: var(--b-leading-tight);
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .b-onboarding__hero em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--b-color-accent), var(--b-color-indigo));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .b-onboarding-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--b-space-3);
+    text-align: start;
+    max-width: 24rem;
+  }
+  .b-onboarding-feature__title { font-weight: var(--b-weight-semibold); font-size: var(--b-text-subheadline); }
+  .b-onboarding-feature__desc { font-size: var(--b-text-footnote); color: var(--b-text-secondary); }
+}

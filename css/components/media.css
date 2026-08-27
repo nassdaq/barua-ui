@@ -1,0 +1,321 @@
+/* ==========================================================================
+   Barua UI — Media
+   Image Viewer, Image Gallery, Carousel, Video Player frame, Audio Player,
+   Media Controls, Thumbnail, Media Placeholder, Upload Preview grid.
+   ========================================================================== */
+
+@layer components {
+  /* ---- Image Viewer -------------------------------------------------------- */
+  .b-image-viewer {
+    position: relative;
+    background: light-dark(#0e0e12, #000);
+    border-radius: var(--b-radius-xl);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .b-image-viewer img { max-height: 70vh; object-fit: contain; }
+  .b-image-viewer__bar {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--b-space-2) var(--b-space-3);
+    color: #fff;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+    font-size: var(--b-text-footnote);
+  }
+
+  /* ---- Image Gallery -------------------------------------------------------- */
+  .b-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: var(--b-space-2);
+  }
+  .b-gallery a, .b-gallery button {
+    display: block;
+    padding: 0;
+    border: none;
+    background: none;
+    border-radius: var(--b-radius-md);
+    overflow: hidden;
+    cursor: zoom-in;
+  }
+  .b-gallery img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: scale var(--b-duration-normal) var(--b-ease-out);
+  }
+  .b-gallery :is(a, button):hover img { scale: 1.05; }
+
+  /* ---- Carousel (scroll-snap) ------------------------------------------------ */
+  .b-carousel { position: relative; }
+  .b-carousel__track {
+    display: flex;
+    gap: var(--b-space-3);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--b-space-1);
+    scrollbar-width: none;
+    padding-block: var(--b-space-1);
+  }
+  .b-carousel__track::-webkit-scrollbar { display: none; }
+  .b-carousel__slide {
+    flex: 0 0 var(--b-slide-w, 70%);
+    scroll-snap-align: start;
+    border-radius: var(--b-radius-lg);
+    overflow: hidden;
+  }
+  .b-carousel__slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .b-carousel__nav {
+    position: absolute;
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    z-index: var(--b-z-raised);
+  }
+  .b-carousel__nav--prev { inset-inline-start: var(--b-space-2); }
+  .b-carousel__nav--next { inset-inline-end: var(--b-space-2); }
+  .b-carousel__dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--b-space-1);
+    margin-block-start: var(--b-space-2);
+  }
+  .b-carousel__dots button {
+    width: 0.45rem; height: 0.45rem;
+    padding: 0;
+    background: var(--b-fill);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background var(--b-duration-fast), width var(--b-duration-normal) var(--b-ease-out);
+  }
+  .b-carousel__dots button.is-active {
+    width: 1.1rem;
+    border-radius: var(--b-radius-full);
+    background: var(--b-color-accent);
+  }
+
+  /* ---- Video Player frame ------------------------------------------------------ */
+  .b-video {
+    position: relative;
+    background: #000;
+    border-radius: var(--b-radius-xl);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
+  .b-video video { width: 100%; height: 100%; object-fit: contain; }
+  .b-video__overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: opacity var(--b-duration-normal);
+  }
+  .b-video:hover .b-video__overlay, .b-video.is-paused .b-video__overlay { opacity: 1; }
+  .b-video__play {
+    display: grid;
+    place-items: center;
+    width: 4rem; height: 4rem;
+    font-size: 1.4rem;
+    color: #fff;
+    background: rgba(20, 20, 26, 0.55);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: scale var(--b-duration-fast) var(--b-ease-bounce);
+  }
+  .b-video__play:hover { scale: 1.08; }
+
+  /* ---- Media Controls (shared control bar) --------------------------------------- */
+  .b-media-controls {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    padding: var(--b-space-2) var(--b-space-3);
+    color: #fff;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+    color-scheme: dark;
+  }
+  .b-media-controls .b-icon-btn {
+    color: #fff;
+    background: transparent;
+  }
+  .b-media-controls .b-icon-btn:hover { background: rgba(255, 255, 255, 0.16); }
+  .b-media-controls .b-slider { flex: 1; }
+  .b-media-controls__time {
+    font-size: var(--b-text-caption);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.85;
+  }
+
+  /* ---- Audio Player ---------------------------------------------------------------- */
+  .b-audio {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-3);
+    padding: var(--b-space-3) var(--b-space-4);
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+  }
+  .b-audio--glass {
+    background: var(--b-material-regular-bg);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border-color: var(--b-hairline);
+  }
+  .b-audio__art {
+    width: 3rem; height: 3rem;
+    border-radius: var(--b-radius-md);
+    object-fit: cover;
+    background: var(--b-fill-tertiary);
+    flex: none;
+  }
+  .b-audio__meta { flex: 1; min-width: 0; }
+  .b-audio__title { font-size: var(--b-text-footnote); font-weight: var(--b-weight-semibold); }
+  .b-audio__artist { font-size: var(--b-text-caption); color: var(--b-text-secondary); }
+  .b-audio__controls { display: flex; align-items: center; gap: var(--b-space-1); }
+  .b-audio .b-progress { margin-block-start: var(--b-space-1); }
+
+  /* Waveform bars (decorative) */
+  .b-waveform {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 1.6rem;
+    flex: 1;
+  }
+  .b-waveform i {
+    flex: 1;
+    height: calc(var(--v, 0.4) * 100%);
+    min-width: 2px;
+    background: var(--b-fill);
+    border-radius: var(--b-radius-full);
+  }
+  .b-waveform i.is-played { background: var(--b-color-accent); }
+
+  /* ---- Async image (SwiftUI AsyncImage) ------------------------------------
+     <span class="b-async-img"><img data-b-async src="…"></span>
+     Shimmers until the image loads, then fades it in (barua.js).
+  --------------------------------------------------------------------------- */
+  .b-async-img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--b-radius-lg);
+    background: var(--b-fill-tertiary);
+  }
+  .b-async-img::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    translate: -100% 0;
+    background: linear-gradient(90deg, transparent,
+      light-dark(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.06)), transparent);
+    animation: b-shimmer 1.6s var(--b-ease-standard) infinite;
+  }
+  .b-async-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--b-duration-slow) var(--b-ease-out);
+  }
+  .b-async-img.is-loaded::before { display: none; }
+  .b-async-img.is-loaded img { opacity: 1; }
+
+  /* ---- Thumbnail --------------------------------------------------------------------- */
+  .b-thumb {
+    position: relative;
+    display: inline-block;
+    width: var(--b-thumb-size, 4.5rem);
+    aspect-ratio: 1;
+    border-radius: var(--b-radius-md);
+    overflow: hidden;
+    background: var(--b-fill-tertiary);
+    flex: none;
+  }
+  .b-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .b-thumb--video::after {
+    content: "▶";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .b-thumb__duration {
+    position: absolute;
+    inset-block-end: 0.25rem;
+    inset-inline-end: 0.25rem;
+    padding: 0.05rem 0.3rem;
+    font-size: var(--b-text-caption2);
+    font-variant-numeric: tabular-nums;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: var(--b-radius-xs);
+  }
+
+  /* ---- Media Placeholder --------------------------------------------------------------- */
+  .b-media-placeholder {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    color: var(--b-text-quaternary);
+    background:
+      repeating-linear-gradient(45deg,
+        var(--b-fill-quaternary) 0 10px, transparent 10px 20px),
+      var(--b-fill-quaternary);
+    border: 1px dashed var(--b-border);
+    border-radius: var(--b-radius-lg);
+  }
+  .b-media-placeholder svg { width: 2rem; height: 2rem; }
+
+  /* ---- Upload Preview grid --------------------------------------------------------------- */
+  .b-upload-previews {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+    gap: var(--b-space-2);
+  }
+  .b-upload-preview {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: var(--b-radius-md);
+    overflow: hidden;
+    background: var(--b-fill-tertiary);
+  }
+  .b-upload-preview img { width: 100%; height: 100%; object-fit: cover; }
+  .b-upload-preview__remove {
+    position: absolute;
+    inset-block-start: 0.25rem;
+    inset-inline-end: 0.25rem;
+    display: grid;
+    place-items: center;
+    width: 1.4rem; height: 1.4rem;
+    font-size: 0.8rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .b-upload-preview__remove:hover { background: var(--b-color-danger); }
+  .b-upload-preview .b-progress {
+    position: absolute;
+    inset-inline: 0.4rem;
+    inset-block-end: 0.4rem;
+  }
+}

@@ -1,0 +1,1198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foundations — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Foundations</div>
+        <h1>Foundations</h1>
+        <p class="docs-hero__lede">
+          Barua's entire look lives in one token layer: an Apple-derived palette
+          tinted around Barua blue, glass materials for depth, and
+          <code>light-dark()</code> pairs that keep every color correct in both
+          themes. Learn the tokens once — every component on the following pages
+          is assembled from them, and re-theming means changing a variable, not
+          a component.
+        </p>
+      </header>
+
+      <section class="docs-section" id="color-system">
+        <h2>Color System</h2>
+        <p>
+          Every color token is a <code>light-dark()</code> pair, so a single
+          name is always correct in either scheme. The accent family drives
+          buttons, links, focus and selection; re-tint the whole system with
+          <code>data-accent="indigo|purple|pink|teal|green"</code> on
+          <code>&lt;html&gt;</code>.
+        </p>
+        <div class="docs-swatch-grid">
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-accent)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Accent — Barua blue</div>
+              <div class="docs-swatch__value">--b-color-accent</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-accent-hover)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Accent hover</div>
+              <div class="docs-swatch__value">--b-color-accent-hover</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-accent-active)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Accent active</div>
+              <div class="docs-swatch__value">--b-color-accent-active</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-accent-soft)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Accent soft wash</div>
+              <div class="docs-swatch__value">--b-color-accent-soft</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-accent-text)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Accent text</div>
+              <div class="docs-swatch__value">--b-color-accent-text</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-on-accent)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">On accent</div>
+              <div class="docs-swatch__value">--b-color-on-accent</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="system-colors">System colors</h3>
+        <p>
+          The Apple system palette, tuned per scheme. Use them for meaning —
+          the semantic aliases <code>--b-color-success</code>,
+          <code>--b-color-warning</code>, <code>--b-color-danger</code> and
+          <code>--b-color-info</code> map to green, orange, red and accent, and
+          each has a translucent <code>*-soft</code> wash for badges and tints.
+        </p>
+        <div class="docs-swatch-grid">
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-red)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Red</div>
+              <div class="docs-swatch__value">--b-color-red</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-orange)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Orange</div>
+              <div class="docs-swatch__value">--b-color-orange</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-yellow)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Yellow</div>
+              <div class="docs-swatch__value">--b-color-yellow</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-green)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Green</div>
+              <div class="docs-swatch__value">--b-color-green</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-mint)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Mint</div>
+              <div class="docs-swatch__value">--b-color-mint</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-teal)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Teal</div>
+              <div class="docs-swatch__value">--b-color-teal</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-cyan)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Cyan</div>
+              <div class="docs-swatch__value">--b-color-cyan</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-indigo)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Indigo</div>
+              <div class="docs-swatch__value">--b-color-indigo</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-purple)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Purple</div>
+              <div class="docs-swatch__value">--b-color-purple</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-color-pink)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Pink</div>
+              <div class="docs-swatch__value">--b-color-pink</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="grays">Grays</h3>
+        <p>
+          Apple systemGray 1–6, darkest to lightest in light mode. Reach for
+          grays only when a fill or separator token doesn't fit — most neutral
+          UI should use the translucent fills so it layers correctly.
+        </p>
+        <div class="docs-swatch-grid">
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-gray-1)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Gray 1</div>
+              <div class="docs-swatch__value">--b-gray-1</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-gray-2)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Gray 2</div>
+              <div class="docs-swatch__value">--b-gray-2</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-gray-3)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Gray 3</div>
+              <div class="docs-swatch__value">--b-gray-3</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-gray-4)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Gray 4</div>
+              <div class="docs-swatch__value">--b-gray-4</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-gray-5)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Gray 5</div>
+              <div class="docs-swatch__value">--b-gray-5</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-gray-6)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Gray 6</div>
+              <div class="docs-swatch__value">--b-gray-6</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="backgrounds-surfaces">Backgrounds &amp; surfaces</h3>
+        <p>
+          Depth is a stack: canvas below, surfaces on top, elevated layers for
+          overlays. Cards and fields sit on <code>--b-surface</code>; nest with
+          <code>--b-surface-2</code> and <code>-3</code>; menus and dialogs use
+          <code>--b-elevated</code> over a <code>--b-scrim</code>.
+        </p>
+        <div class="docs-swatch-grid">
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-bg)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Canvas</div>
+              <div class="docs-swatch__value">--b-bg</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-bg-secondary)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Canvas secondary</div>
+              <div class="docs-swatch__value">--b-bg-secondary</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-surface)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Surface</div>
+              <div class="docs-swatch__value">--b-surface</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-surface-2)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Surface 2</div>
+              <div class="docs-swatch__value">--b-surface-2</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-surface-3)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Surface 3</div>
+              <div class="docs-swatch__value">--b-surface-3</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-elevated)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Elevated</div>
+              <div class="docs-swatch__value">--b-elevated</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-scrim)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Scrim</div>
+              <div class="docs-swatch__value">--b-scrim</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="text-hierarchy">Text hierarchy</h3>
+        <p>
+          Four label levels, Apple-style, built from opacity so they read
+          correctly on any surface. Primary for content, secondary for
+          supporting copy, tertiary for hints and placeholders, quaternary for
+          watermarks only — never for information people must read.
+        </p>
+        <div class="docs-swatch-grid">
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-text)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Primary</div>
+              <div class="docs-swatch__value">--b-text</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-text-secondary)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Secondary</div>
+              <div class="docs-swatch__value">--b-text-secondary</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-text-tertiary)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Tertiary</div>
+              <div class="docs-swatch__value">--b-text-tertiary</div>
+            </div>
+          </div>
+          <div class="docs-swatch">
+            <div class="docs-swatch__chip" style="background: var(--b-text-quaternary)"></div>
+            <div class="docs-swatch__meta">
+              <div class="docs-swatch__name">Quaternary</div>
+              <div class="docs-swatch__value">--b-text-quaternary</div>
+            </div>
+          </div>
+        </div>
+      
+        <h3 id="adaptive-accent">Adaptive accent &amp; scheme</h3>
+        <p>
+          The system can learn from a picture — a user&rsquo;s wallpaper.
+          <code>Barua.adapt(imageOrUrl)</code> samples the image and reads two
+          things from it: its most vibrant hue, which re-tints the accent
+          tokens on <code>&lt;html&gt;</code>, and its overall brightness,
+          which sets <code>data-wall-scheme</code> to
+          <code>light</code> or <code>dark</code>. Anything marked
+          <code>.b-wallpaper-scope</code> then resolves every
+          <code>light-dark()</code> token that way — so a dark wallpaper gets
+          light text and dark glass without touching the app&rsquo;s theme.
+          <code>Barua.adapt.reset()</code> returns to stock. Try it — the whole
+          page follows:
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-hstack b-stack--wrap b-gap-3">
+            <button class="b-btn b-btn--glass" onclick="Barua.adapt('../examples/assets/ambient-bg.svg').then(function(r){ if (r) Barua.toast({title: 'Adapted to ' + r.accent, variant: 'success', duration: 2200}); })">
+              <img src="../examples/assets/ambient-bg.svg" alt="" width="28" height="18" style="border-radius: 4px; object-fit: cover">
+              Adapt to the ambient art
+            </button>
+            <button class="b-btn b-btn--glass" onclick="Barua.adapt(document.getElementById('adapt-ember')).then(function(r){ if (r) Barua.toast({title: 'Adapted to ' + r.accent, variant: 'success', duration: 2200}); })">
+              <img id="adapt-ember" width="28" height="18" style="border-radius: 4px" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='18'%3E%3Crect width='28' height='18' fill='%238c3d2a'/%3E%3Ccircle cx='20' cy='6' r='9' fill='%23d97a3f'/%3E%3Ccircle cx='6' cy='14' r='7' fill='%235b2418'/%3E%3C/svg%3E">
+              Adapt to ember
+            </button>
+            <button class="b-btn b-btn--ghost" onclick="Barua.adapt.reset(); Barua.toast({title: 'Stock accent restored', duration: 1800})">Reset</button>
+          </div>
+          <div class="b-hstack b-stack--wrap b-gap-2">
+            <button class="b-btn b-btn--primary">Primary follows</button>
+            <span class="b-badge b-badge--accent">So do badges</span>
+            <a class="b-link" href="#adaptive-accent">And links</a>
+          </div>
+        </div>
+
+        <p>
+          A wall of its own: the surface below is a
+          <code>.b-wallpaper-scope</code>. Swap its wallpaper and the glass,
+          the ink and the accent inside it all follow the picture — the page
+          around it never changes theme.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-hstack b-stack--wrap b-gap-2">
+            <button class="b-btn b-btn--glass b-btn--sm" onclick="Barua.adapt(document.getElementById('wall-day')).then(function(){ document.getElementById('mini-wall').style.backgroundImage = 'url(' + document.getElementById('wall-day').src + ')'; })">
+              <img id="wall-day" width="26" height="16" alt="" style="border-radius: 3px" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='72'%3E%3Crect width='120' height='72' fill='%23e8e0cf'/%3E%3Ccircle cx='90' cy='22' r='28' fill='%23f4c98a'/%3E%3Ccircle cx='26' cy='56' r='22' fill='%23cfd8c4'/%3E%3C/svg%3E">
+              Bright wallpaper
+            </button>
+            <button class="b-btn b-btn--glass b-btn--sm" onclick="Barua.adapt(document.getElementById('wall-night')).then(function(){ document.getElementById('mini-wall').style.backgroundImage = 'url(' + document.getElementById('wall-night').src + ')'; })">
+              <img id="wall-night" width="26" height="16" alt="" style="border-radius: 3px" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='72'%3E%3Crect width='120' height='72' fill='%23131a24'/%3E%3Ccircle cx='92' cy='20' r='26' fill='%231d3a5c'/%3E%3Ccircle cx='24' cy='58' r='20' fill='%230d1119'/%3E%3C/svg%3E">
+              Dark wallpaper
+            </button>
+            <button class="b-btn b-btn--ghost b-btn--sm" onclick="Barua.adapt.reset(); document.getElementById('mini-wall').style.backgroundImage = ''">Reset</button>
+          </div>
+          <div class="b-wallpaper-scope" id="mini-wall" style="padding: var(--b-space-5); border-radius: var(--b-radius-xl); background: var(--b-fill-quaternary) center / cover no-repeat">
+            <article class="b-card b-card--glass" style="max-width: 22rem">
+              <div class="b-card__header">
+                <div class="b-card__title">On the wall</div>
+                <span class="b-badge b-badge--accent">Live</span>
+              </div>
+              <div class="b-card__body b-stack b-gap-2">
+                <p class="b-footnote b-text-secondary" style="margin: 0">
+                  Glass, ink and accent all read the picture behind them.
+                </p>
+                <span><button class="b-btn b-btn--primary b-btn--sm">Action</button></span>
+              </div>
+            </article>
+          </div>
+        </div>
+</section>
+
+      <section class="docs-section" id="typography">
+        <h2>Typography</h2>
+        <p>
+          SF first. <code>--b-font-sans</code> resolves to SF Pro on Apple
+          hardware and degrades gracefully everywhere else, so the system feels
+          native without shipping a webfont. Weight, tracking and leading are
+          tokens too — pair tight tracking with large sizes, wide tracking with
+          uppercase labels, and leave body text alone.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Token</th><th>Value</th><th>Use it for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--b-font-sans</code></td><td>SF Pro Text / Display, system fallbacks</td><td>All interface text</td></tr>
+              <tr><td><code>--b-font-mono</code></td><td>SF Mono, Menlo, Consolas</td><td>Code, tokens, technical values</td></tr>
+              <tr><td><code>--b-font-rounded</code></td><td>SF Pro Rounded, system fallbacks</td><td>Friendly numerals, badges, empty states</td></tr>
+              <tr><td><code>--b-weight-regular</code></td><td>400</td><td>Body copy</td></tr>
+              <tr><td><code>--b-weight-medium</code></td><td>500</td><td>Labels, chips, quiet emphasis</td></tr>
+              <tr><td><code>--b-weight-semibold</code></td><td>600</td><td>Headlines, buttons, table headers</td></tr>
+              <tr><td><code>--b-weight-bold</code></td><td>700</td><td>Titles, stat numerals</td></tr>
+              <tr><td><code>--b-tracking-tight</code></td><td>-0.022em</td><td>Large titles</td></tr>
+              <tr><td><code>--b-tracking-text</code></td><td>-0.011em</td><td>Body text (default)</td></tr>
+              <tr><td><code>--b-tracking-wide</code></td><td>0.06em</td><td>Overlines, uppercase labels</td></tr>
+              <tr><td><code>--b-leading-tight</code></td><td>1.2</td><td>Titles and headings</td></tr>
+              <tr><td><code>--b-leading-snug</code></td><td>1.35</td><td>Dense UI, code blocks</td></tr>
+              <tr><td><code>--b-leading-body</code></td><td>1.5</td><td>Reading text (default)</td></tr>
+              <tr><td><code>--b-leading-loose</code></td><td>1.65</td><td>Long-form articles</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="font-scale">
+        <h2>Font Scale</h2>
+        <p>
+          The Apple HIG scale, exposed as one class per role. Elements
+          <code>h1</code>–<code>h6</code> map onto it automatically; use the
+          classes when semantics and size need to differ — a card title that is
+          an <code>h3</code> but should read as a headline, for instance.
+        </p>
+        <div>
+          <div class="docs-type-row">
+            <code>.b-large-title</code>
+            <div>
+              <div class="b-large-title">Large Title</div>
+              <div class="b-caption b-text-tertiary">--b-text-large-title · 2.125rem / 34px · bold</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-title1</code>
+            <div>
+              <div class="b-title1">Title 1</div>
+              <div class="b-caption b-text-tertiary">--b-text-title1 · 1.75rem / 28px · bold</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-title2</code>
+            <div>
+              <div class="b-title2">Title 2</div>
+              <div class="b-caption b-text-tertiary">--b-text-title2 · 1.375rem / 22px · semibold</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-title3</code>
+            <div>
+              <div class="b-title3">Title 3</div>
+              <div class="b-caption b-text-tertiary">--b-text-title3 · 1.25rem / 20px · semibold</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-headline</code>
+            <div>
+              <div class="b-headline">Headline</div>
+              <div class="b-caption b-text-tertiary">--b-text-headline · 1.0625rem / 17px · semibold</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-body</code>
+            <div>
+              <div class="b-body">Body</div>
+              <div class="b-caption b-text-tertiary">--b-text-body · 1.0625rem / 17px</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-callout</code>
+            <div>
+              <div class="b-callout">Callout</div>
+              <div class="b-caption b-text-tertiary">--b-text-callout · 1rem / 16px</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-subheadline</code>
+            <div>
+              <div class="b-subheadline">Subheadline</div>
+              <div class="b-caption b-text-tertiary">--b-text-subheadline · 0.9375rem / 15px</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-footnote</code>
+            <div>
+              <div class="b-footnote">Footnote</div>
+              <div class="b-caption b-text-tertiary">--b-text-footnote · 0.8125rem / 13px</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-caption</code>
+            <div>
+              <div class="b-caption">Caption</div>
+              <div class="b-caption b-text-tertiary">--b-text-caption · 0.75rem / 12px</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-overline</code>
+            <div>
+              <div class="b-overline">Overline</div>
+              <div class="b-caption b-text-tertiary">--b-text-caption · 0.75rem / 12px · uppercase, wide tracking</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-tabular-nums</code>
+            <div>
+              <div class="b-title3 b-tabular-nums">09:41 · 12,847</div>
+              <div class="b-caption b-text-tertiary">font-variant-numeric: tabular-nums — equal-width digits for clocks, timers and tables</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="spacing">
+        <h2>Spacing</h2>
+        <p>
+          A 4px base scale. Use 1–3 for padding inside controls, 4–6 between
+          related elements, 8–12 between groups, and 16–24 between page
+          sections. If a gap isn't on the scale, it isn't in the system.
+        </p>
+        <div>
+          <div class="docs-space-row"><code>--b-space-1</code><span>0.25rem · 4px</span><i style="width: var(--b-space-1)"></i></div>
+          <div class="docs-space-row"><code>--b-space-2</code><span>0.5rem · 8px</span><i style="width: var(--b-space-2)"></i></div>
+          <div class="docs-space-row"><code>--b-space-3</code><span>0.75rem · 12px</span><i style="width: var(--b-space-3)"></i></div>
+          <div class="docs-space-row"><code>--b-space-4</code><span>1rem · 16px</span><i style="width: var(--b-space-4)"></i></div>
+          <div class="docs-space-row"><code>--b-space-5</code><span>1.25rem · 20px</span><i style="width: var(--b-space-5)"></i></div>
+          <div class="docs-space-row"><code>--b-space-6</code><span>1.5rem · 24px</span><i style="width: var(--b-space-6)"></i></div>
+          <div class="docs-space-row"><code>--b-space-8</code><span>2rem · 32px</span><i style="width: var(--b-space-8)"></i></div>
+          <div class="docs-space-row"><code>--b-space-10</code><span>2.5rem · 40px</span><i style="width: var(--b-space-10)"></i></div>
+          <div class="docs-space-row"><code>--b-space-12</code><span>3rem · 48px</span><i style="width: var(--b-space-12)"></i></div>
+          <div class="docs-space-row"><code>--b-space-16</code><span>4rem · 64px</span><i style="width: var(--b-space-16)"></i></div>
+          <div class="docs-space-row"><code>--b-space-20</code><span>5rem · 80px</span><i style="width: var(--b-space-20)"></i></div>
+          <div class="docs-space-row"><code>--b-space-24</code><span>6rem · 96px</span><i style="width: var(--b-space-24)"></i></div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="grid">
+        <h2>Grid</h2>
+        <p>
+          <code>.b-grid</code> is 12 columns by default; set
+          <code>--b-cols</code> or use <code>.b-grid--2/3/4/6</code> for equal
+          tracks, and span with <code>.b-col-span-*</code>.
+          <code>.b-grid--auto</code> auto-fills against
+          <code>--b-col-min</code>, and <code>.b-card-grid</code> /
+          <code>.b-masonry</code> handle card walls without media queries. Gaps
+          come from the spacing scale via <code>.b-gap-*</code>.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-grid b-grid--3">
+            <div class="b-panel b-text-center b-footnote" style="padding: var(--b-space-3)">1 / 3</div>
+            <div class="b-panel b-text-center b-footnote" style="padding: var(--b-space-3)">1 / 3</div>
+            <div class="b-panel b-text-center b-footnote" style="padding: var(--b-space-3)">1 / 3</div>
+          </div>
+          <div class="b-grid">
+            <div class="b-panel b-text-center b-footnote b-col-span-6" style="padding: var(--b-space-3)">span 6</div>
+            <div class="b-panel b-text-center b-footnote b-col-span-6" style="padding: var(--b-space-3)">span 6</div>
+            <div class="b-panel b-text-center b-footnote b-col-span-4" style="padding: var(--b-space-3)">span 4</div>
+            <div class="b-panel b-text-center b-footnote b-col-span-4" style="padding: var(--b-space-3)">span 4</div>
+            <div class="b-panel b-text-center b-footnote b-col-span-4" style="padding: var(--b-space-3)">span 4</div>
+            <div class="b-panel b-text-center b-footnote b-col-span-full" style="padding: var(--b-space-3)">span full</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="layout">
+        <h2>Layout</h2>
+        <p>
+          SwiftUI-style primitives: <code>.b-vstack</code> and
+          <code>.b-hstack</code> flow content with a token gap, and
+          <code>.b-spacer</code> absorbs the leftover space — that trio builds
+          most toolbars and headers. <code>.b-container</code> centers a page
+          column, <code>.b-section</code> spaces bands of content, and
+          <code>.b-split</code> + <code>.b-panel</code> make resizable
+          multi-pane layouts.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-hstack b-panel" style="padding: var(--b-space-3)">
+            <span class="b-headline">Inbox</span>
+            <span class="b-spacer"></span>
+            <button class="b-btn b-btn--sm">Filter</button>
+            <button class="b-btn b-btn--primary b-btn--sm">Compose</button>
+          </div>
+          <div class="b-vstack b-gap-1 b-panel" style="padding: var(--b-space-3)">
+            <span class="b-headline">VStack</span>
+            <span class="b-footnote b-text-secondary">Children flow vertically; the gap comes from --b-gap.</span>
+          </div>
+        </div>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Token</th><th>Value</th><th>Use it for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--b-container-sm</code></td><td>40rem · 640px</td><td>Reading columns, auth forms</td></tr>
+              <tr><td><code>--b-container-md</code></td><td>48rem · 768px</td><td>Articles, settings pages</td></tr>
+              <tr><td><code>--b-container-lg</code></td><td>64rem · 1024px</td><td>Default <code>.b-container</code> width</td></tr>
+              <tr><td><code>--b-container-xl</code></td><td>80rem · 1280px</td><td>Dashboards, data-dense views</td></tr>
+              <tr><td><code>--b-sidebar-w</code></td><td>16.25rem · 260px</td><td>Navigation sidebar</td></tr>
+              <tr><td><code>--b-rail-w</code></td><td>4.5rem · 72px</td><td>Collapsed icon rail</td></tr>
+              <tr><td><code>--b-topbar-h</code></td><td>3.25rem · 52px</td><td>Top bar height, scroll offsets</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="breakpoints">
+        <h2>Breakpoints</h2>
+        <p>
+          Custom properties can't drive <code>@media</code>, so breakpoints are
+          a convention: six shared stops, written by value, always mobile-first
+          with <code>@media (min-width: …)</code>. Base styles serve the phone;
+          each stop only adds.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Name</th><th>Min-width</th><th>Use it for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>xs</code></td><td>480px</td><td>Large phones — bump paddings, keep one column</td></tr>
+              <tr><td><code>sm</code></td><td>640px</td><td>Landscape phones, small tablets — first two-column grids</td></tr>
+              <tr><td><code>md</code></td><td>768px</td><td>Tablets — <code>.b-hide-mobile</code> / <code>.b-hide-desktop</code> flip here</td></tr>
+              <tr><td><code>lg</code></td><td>1024px</td><td>Laptops — persistent sidebars, split views</td></tr>
+              <tr><td><code>xl</code></td><td>1280px</td><td>Desktops — right rails, TOCs, inspectors</td></tr>
+              <tr><td><code>2xl</code></td><td>1536px</td><td>Wide desktops — widen containers, cap line length</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="border-radius">
+        <h2>Border Radius</h2>
+        <p>
+          Corners grow with the surface, Apple-style: <code>xs</code> for
+          inline code and checkboxes, <code>sm</code> for chips and kbd,
+          <code>md</code> for buttons, inputs and menus, <code>lg</code> for
+          panels and toolbars, <code>xl</code> for cards and modals,
+          <code>2xl</code> for sheets, and <code>full</code> for pills and
+          avatars. Never give a small control a bigger radius than the surface
+          it sits on.
+        </p>
+        <div class="docs-demo docs-demo--row" data-no-code style="gap: var(--b-space-5)">
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6rem; height: 4rem; background: var(--b-color-accent-soft); border: 1px solid var(--b-color-accent); border-radius: var(--b-radius-xs)"></div>
+            <code>--b-radius-xs</code>
+            <span class="b-caption2 b-text-tertiary">4px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6rem; height: 4rem; background: var(--b-color-accent-soft); border: 1px solid var(--b-color-accent); border-radius: var(--b-radius-sm)"></div>
+            <code>--b-radius-sm</code>
+            <span class="b-caption2 b-text-tertiary">6px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6rem; height: 4rem; background: var(--b-color-accent-soft); border: 1px solid var(--b-color-accent); border-radius: var(--b-radius-md)"></div>
+            <code>--b-radius-md</code>
+            <span class="b-caption2 b-text-tertiary">10px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6rem; height: 4rem; background: var(--b-color-accent-soft); border: 1px solid var(--b-color-accent); border-radius: var(--b-radius-lg)"></div>
+            <code>--b-radius-lg</code>
+            <span class="b-caption2 b-text-tertiary">14px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6rem; height: 4rem; background: var(--b-color-accent-soft); border: 1px solid var(--b-color-accent); border-radius: var(--b-radius-xl)"></div>
+            <code>--b-radius-xl</code>
+            <span class="b-caption2 b-text-tertiary">20px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6rem; height: 4rem; background: var(--b-color-accent-soft); border: 1px solid var(--b-color-accent); border-radius: var(--b-radius-2xl)"></div>
+            <code>--b-radius-2xl</code>
+            <span class="b-caption2 b-text-tertiary">28px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6rem; height: 4rem; background: var(--b-color-accent-soft); border: 1px solid var(--b-color-accent); border-radius: var(--b-radius-full)"></div>
+            <code>--b-radius-full</code>
+            <span class="b-caption2 b-text-tertiary">pill</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="shadows">
+        <h2>Shadows</h2>
+        <p>
+          Soft, layered, never harsh — each token stacks a contact shadow with
+          a wide ambient one, and <code>--b-shadow-color</code> deepens
+          automatically in dark mode. <code>--b-shadow-accent</code> is a blue
+          glow reserved for the FAB and other floating accent controls. Prefer
+          the elevation tokens below, which pair these with a hairline ring.
+        </p>
+        <div class="docs-demo docs-demo--row" data-no-code style="gap: var(--b-space-6); padding: var(--b-space-8) var(--b-space-6)">
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); background: var(--b-surface); box-shadow: var(--b-shadow-xs)"></div>
+            <code>--b-shadow-xs</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); background: var(--b-surface); box-shadow: var(--b-shadow-sm)"></div>
+            <code>--b-shadow-sm</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); background: var(--b-surface); box-shadow: var(--b-shadow-md)"></div>
+            <code>--b-shadow-md</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); background: var(--b-surface); box-shadow: var(--b-shadow-lg)"></div>
+            <code>--b-shadow-lg</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); background: var(--b-surface); box-shadow: var(--b-shadow-xl)"></div>
+            <code>--b-shadow-xl</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); background: var(--b-surface); box-shadow: var(--b-shadow-accent)"></div>
+            <code>--b-shadow-accent</code>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="elevation">
+        <h2>Elevation</h2>
+        <p>
+          The elevation ladder pairs each shadow with a 1px hairline ring
+          (<code>--b-ring</code>) so edges stay crisp on any background. Use
+          the utilities: 1 for resting cards, 2 for raised cards and glass
+          toolbars, 3 for menus and popovers, 4 for modals and drawers, 5 for
+          the command palette. Level 0 removes elevation for flush surfaces.
+        </p>
+        <div class="docs-demo docs-demo--row" style="gap: var(--b-space-6); padding: var(--b-space-8) var(--b-space-6)">
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-elevation-1 b-radius-lg" style="width: 6.5rem; height: 4rem; background: var(--b-surface)"></div>
+            <code>.b-elevation-1</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-elevation-2 b-radius-lg" style="width: 6.5rem; height: 4rem; background: var(--b-surface)"></div>
+            <code>.b-elevation-2</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-elevation-3 b-radius-lg" style="width: 6.5rem; height: 4rem; background: var(--b-surface)"></div>
+            <code>.b-elevation-3</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-elevation-4 b-radius-lg" style="width: 6.5rem; height: 4rem; background: var(--b-surface)"></div>
+            <code>.b-elevation-4</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-elevation-5 b-radius-lg" style="width: 6.5rem; height: 4rem; background: var(--b-surface)"></div>
+            <code>.b-elevation-5</code>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="opacity">
+        <h2>Opacity</h2>
+        <p>
+          Three stops, three meanings. <code>hover</code> (0.85) dims media and
+          imagery under the pointer, <code>muted</code> (0.6) de-emphasizes
+          without disabling, and <code>disabled</code> (0.4) is applied
+          automatically by <code>:disabled</code> and <code>.is-disabled</code>
+          — never hand-roll a disabled look.
+        </p>
+        <div class="docs-demo docs-demo--row" data-no-code style="gap: var(--b-space-5)">
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 5.5rem; height: 3.5rem; border-radius: var(--b-radius-md); background: var(--b-color-accent)"></div>
+            <code>base</code>
+            <span class="b-caption2 b-text-tertiary">1</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 5.5rem; height: 3.5rem; border-radius: var(--b-radius-md); background: var(--b-color-accent); opacity: var(--b-opacity-hover)"></div>
+            <code>--b-opacity-hover</code>
+            <span class="b-caption2 b-text-tertiary">0.85</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 5.5rem; height: 3.5rem; border-radius: var(--b-radius-md); background: var(--b-color-accent); opacity: var(--b-opacity-muted)"></div>
+            <code>--b-opacity-muted</code>
+            <span class="b-caption2 b-text-tertiary">0.6</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 5.5rem; height: 3.5rem; border-radius: var(--b-radius-md); background: var(--b-color-accent); opacity: var(--b-opacity-disabled)"></div>
+            <code>--b-opacity-disabled</code>
+            <span class="b-caption2 b-text-tertiary">0.4</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="blur">
+        <h2>Blur</h2>
+        <p>
+          The blur scale feeds the glass materials. Rather than using raw blur
+          values, reach for the composite filters:
+          <code>--b-glass-light</code> (blur-sm + saturate 1.6),
+          <code>--b-glass</code> (blur-lg + saturate 1.8) and
+          <code>--b-glass-heavy</code> (blur-xl + saturate 2) — the saturation
+          boost is what makes color glow through the pane.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--row" data-no-code style="gap: var(--b-space-5)">
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); border: 1px solid var(--b-hairline); -webkit-backdrop-filter: blur(var(--b-blur-xs)); backdrop-filter: blur(var(--b-blur-xs))"></div>
+            <code>--b-blur-xs</code>
+            <span class="b-caption2 b-text-tertiary">4px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); border: 1px solid var(--b-hairline); -webkit-backdrop-filter: blur(var(--b-blur-sm)); backdrop-filter: blur(var(--b-blur-sm))"></div>
+            <code>--b-blur-sm</code>
+            <span class="b-caption2 b-text-tertiary">8px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); border: 1px solid var(--b-hairline); -webkit-backdrop-filter: blur(var(--b-blur-md)); backdrop-filter: blur(var(--b-blur-md))"></div>
+            <code>--b-blur-md</code>
+            <span class="b-caption2 b-text-tertiary">16px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); border: 1px solid var(--b-hairline); -webkit-backdrop-filter: blur(var(--b-blur-lg)); backdrop-filter: blur(var(--b-blur-lg))"></div>
+            <code>--b-blur-lg</code>
+            <span class="b-caption2 b-text-tertiary">24px</span>
+          </div>
+          <div class="b-stack b-stack--center b-gap-1">
+            <div style="width: 6.5rem; height: 4rem; border-radius: var(--b-radius-lg); border: 1px solid var(--b-hairline); -webkit-backdrop-filter: blur(var(--b-blur-xl)); backdrop-filter: blur(var(--b-blur-xl))"></div>
+            <code>--b-blur-xl</code>
+            <span class="b-caption2 b-text-tertiary">40px</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="materials">
+        <h2>Materials</h2>
+        <p>
+          Five glass thicknesses, from a whisper to nearly opaque. Thinner
+          materials show more of what's behind but hold less legible content —
+          use <code>ultrathin</code> and <code>thin</code> for hover surfaces,
+          <code>regular</code> for floating toolbars and glass cards,
+          <code>thick</code> for sheets, and <code>chrome</code> for app bars.
+          <code>.b-material-accent</code> adds a Barua-blue tint. Each class
+          pairs its <code>--b-material-*-bg</code> token with the
+          <code>--b-glass</code> backdrop filter and a hairline border.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--row" style="gap: var(--b-space-5)">
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-material-ultrathin b-radius-lg b-flex b-flex--center b-callout" style="width: 7rem; height: 4.5rem">Aa</div>
+            <code>.b-material-ultrathin</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-material-thin b-radius-lg b-flex b-flex--center b-callout" style="width: 7rem; height: 4.5rem">Aa</div>
+            <code>.b-material-thin</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-material-regular b-radius-lg b-flex b-flex--center b-callout" style="width: 7rem; height: 4.5rem">Aa</div>
+            <code>.b-material-regular</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-material-thick b-radius-lg b-flex b-flex--center b-callout" style="width: 7rem; height: 4.5rem">Aa</div>
+            <code>.b-material-thick</code>
+          </div>
+          <div class="b-stack b-stack--center b-gap-2">
+            <div class="b-material-chrome b-radius-lg b-flex b-flex--center b-callout" style="width: 7rem; height: 4.5rem">Aa</div>
+            <code>.b-material-chrome</code>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="borders-dividers">
+        <h2>Borders &amp; Dividers</h2>
+        <p>
+          Four weights of edge, all translucent so they sit naturally on any
+          surface: <code>--b-hairline</code> for glass edges and elevation
+          rings, <code>--b-separator</code> for list rows and card borders,
+          <code>--b-border</code> for inputs and controls, and
+          <code>--b-border-strong</code> for their hover state.
+          <code>.b-divider</code> draws separator rules — vertical inside an
+          hstack, labeled for timeline breaks, and inset to align with list
+          content.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-hstack">
+            <span>Reply</span>
+            <hr class="b-divider b-divider--vertical">
+            <span>Forward</span>
+            <hr class="b-divider b-divider--vertical">
+            <span>Archive</span>
+          </div>
+          <hr class="b-divider">
+          <div class="b-divider b-divider--label">Yesterday</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="motion">
+        <h2>Motion</h2>
+        <p>
+          Motion is quick, physical and quiet: five durations, five curves, and
+          nothing animates that doesn't communicate. Small state changes use
+          <code>instant</code> and <code>fast</code>; surfaces that move use
+          <code>slow</code> with the spring curve. Everything collapses to near
+          zero under <code>prefers-reduced-motion</code> — see Accessibility.
+        </p>
+        <div class="docs-demo docs-demo--row" data-no-code>
+          <span class="b-chip">instant · 100ms</span>
+          <span class="b-chip">fast · 150ms</span>
+          <span class="b-chip">normal · 250ms</span>
+          <span class="b-chip">slow · 350ms</span>
+          <span class="b-chip">slower · 500ms</span>
+          <span class="b-chip">standard · default</span>
+          <span class="b-chip">out · entrances</span>
+          <span class="b-chip">in · exits</span>
+          <span class="b-chip">spring · sheets</span>
+          <span class="b-chip">bounce · overshoot</span>
+        </div>
+
+        <h3 id="motion-transitions">Transitions</h3>
+        <p>
+          Components already transition on their tokens — hover these to feel
+          <code>fast · standard</code> on the button tint and
+          <code>normal · out</code> on the card lift.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn b-btn--primary">Hover — 150ms standard</button>
+          <div class="b-card b-card--interactive" style="width: 15rem">
+            <div class="b-card__body b-footnote">Hover — 250ms ease-out lift</div>
+          </div>
+        </div>
+
+        <h3 id="motion-animation">Animation</h3>
+        <p>
+          Looping animation is reserved for indeterminate progress; keep it
+          small and let it stop the moment the work resolves.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-spinner"></div>
+          <div class="b-spinner b-spinner--lg"></div>
+          <div class="b-progress b-progress--indeterminate" style="width: 12rem">
+            <div class="b-progress__fill"></div>
+          </div>
+          <button class="b-btn b-btn--primary is-loading">Saving…</button>
+        </div>
+
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead>
+              <tr><th>Token</th><th>Value</th><th>Use it for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--b-duration-instant</code></td><td>100ms</td><td>Hover tints, pressed states</td></tr>
+              <tr><td><code>--b-duration-fast</code></td><td>150ms</td><td>Control transitions, focus rings, tooltips</td></tr>
+              <tr><td><code>--b-duration-normal</code></td><td>250ms</td><td>Reveals, card lifts, accordions</td></tr>
+              <tr><td><code>--b-duration-slow</code></td><td>350ms</td><td>Drawers, sheets, large surfaces</td></tr>
+              <tr><td><code>--b-duration-slower</code></td><td>500ms</td><td>Page-level moves, staged sequences</td></tr>
+              <tr><td><code>--b-ease-standard</code></td><td>cubic-bezier(0.4, 0, 0.2, 1)</td><td>Default for property changes</td></tr>
+              <tr><td><code>--b-ease-out</code></td><td>cubic-bezier(0.22, 1, 0.36, 1)</td><td>Entrances — fast start, gentle settle</td></tr>
+              <tr><td><code>--b-ease-in</code></td><td>cubic-bezier(0.55, 0, 1, 0.45)</td><td>Exits and dismissals</td></tr>
+              <tr><td><code>--b-ease-spring</code></td><td>cubic-bezier(0.32, 0.72, 0, 1)</td><td>Sheets and drawers — Apple slide feel</td></tr>
+              <tr><td><code>--b-ease-bounce</code></td><td>cubic-bezier(0.34, 1.56, 0.64, 1)</td><td>Playful overshoot — toggles, badges</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="iconography">
+        <h2>Iconography</h2>
+        <p>
+          Icons are inline SVG — no font, no sprite request. Draw on a
+          <code>20×20</code> viewBox with a <code>1.5</code> stroke,
+          <code>stroke="currentColor"</code> and round caps and joins, so every
+          icon inherits text color and matches the SF Symbols weight.
+          <code>.b-icon</code> sizes the box (<code>--sm</code> 16,
+          default 20, <code>--lg</code> 24, <code>--xl</code> 32) and
+          <code>.b-icon-tile</code> seats an icon on an accent-soft tile for
+          list leaders and feature rows. Decorative icons take
+          <code>aria-hidden="true"</code>.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-icon b-icon--sm">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="b-icon">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="b-icon b-icon--lg">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="b-icon b-icon--xl">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="b-icon-tile">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4 7 6 4.5L16 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="b-icon-tile">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </section>
+
+      <section class="docs-section" id="accessibility">
+        <h2>Accessibility</h2>
+        <p>
+          Accessibility is baked into the tokens, not bolted on. The focus ring
+          (<code>--b-focus-ring</code>, a 3.5px accent halo) appears on
+          <code>:focus-visible</code> only — keyboards get it, mouse clicks
+          don't. Tab through this demo to see it.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn">Tab to me</button>
+          <button class="b-btn b-btn--primary">Then me</button>
+          <input class="b-input" style="max-width: 16rem" type="text" placeholder="Focus shows the ring">
+        </div>
+        <p>
+          <code>.b-sr-only</code> keeps text available to screen readers while
+          visually hidden — use it to name icon-only controls when
+          <code>aria-label</code> won't do. <code>.b-skip-link</code> is the
+          first focusable element on every page (press Tab from the top of this
+          one), and <code>.b-touch-target</code> extends small controls to the
+          44px minimum without changing their look.
+        </p>
+        <div class="docs-a11y">
+          <div><strong>Contrast.</strong> Text tokens are tuned for WCAG:
+          primary and secondary labels hold 4.5:1 on every surface token in
+          both schemes, and large titles hold 3:1. Tertiary and quaternary
+          labels are decorative — never use them for information people must
+          read, and never place body text directly on an accent wash without
+          checking it.</div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Reduced motion.</strong> A global
+          <code>prefers-reduced-motion</code> rule collapses every animation
+          and transition to 0.01ms — spinners, sheets and card lifts all
+          respect it with no per-component work. Design so that motion is
+          reinforcement, never the only signal.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="dark-light">
+        <h2>Dark Mode &amp; Light Mode</h2>
+        <p>
+          The root declares <code>color-scheme: light dark</code> and every
+          color token is a <code>light-dark()</code> pair, so the whole system
+          follows the OS by default. Set <code>data-theme="light|dark"</code>
+          on <code>&lt;html&gt;</code> to force a scheme — the topbar's
+          <code>data-b-theme-toggle</code> button does exactly that and
+          persists the choice, which the inline <code>&lt;head&gt;</code>
+          script restores before first paint to avoid a flash.
+        </p>
+        <p>
+          Because tokens resolve against the nearest <code>color-scheme</code>,
+          you can force a subtree: the second card below is identical markup
+          inside a <code>style="color-scheme: dark"</code> wrapper.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div style="color-scheme: light; background: var(--b-bg); padding: var(--b-space-4); border-radius: var(--b-radius-lg)">
+            <div class="b-card" style="width: 14rem">
+              <div class="b-card__body">
+                <div class="b-card__title">Light</div>
+                <div class="b-card__subtitle">color-scheme: light</div>
+              </div>
+            </div>
+          </div>
+          <div style="color-scheme: dark; background: var(--b-bg); padding: var(--b-space-4); border-radius: var(--b-radius-lg)">
+            <div class="b-card" style="width: 14rem">
+              <div class="b-card__body">
+                <div class="b-card__title">Dark</div>
+                <div class="b-card__subtitle">color-scheme: dark</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Test both.</strong> Never hardcode a hex where a token
+          exists — a color that looks right in light mode will break in dark.
+          The accent itself shifts (<code>#0a7aff</code> light,
+          <code>#0a84ff</code> dark) to hold contrast on dark surfaces.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="responsive-rules">
+        <h2>Responsive Rules</h2>
+        <p>
+          Mobile first, always: base styles serve the smallest screen, and each
+          of the six breakpoints only adds. Most layouts shouldn't need media
+          queries at all — <code>.b-grid--auto</code>,
+          <code>.b-card-grid</code> and the stack primitives reflow on their
+          own. When you do write one, use <code>min-width</code> at a shared
+          stop.
+        </p>
+        <pre><code>/* Base styles serve the phone */
+.inspector { display: none; }
+
+/* lg · 1024px — laptops gain the inspector */
+@media (min-width: 1024px) {
+  .inspector { display: block; }
+}</code></pre>
+        <p>
+          On small screens: controls grow to the 44px touch target, hover-only
+          affordances get a visible fallback, <code>.b-hide-mobile</code> and
+          <code>.b-hide-desktop</code> swap chrome at 768px, and
+          <code>.b-safe-area</code> / <code>.b-safe-bottom</code> pad content
+          away from notches and home indicators.
+        </p>
+        <div class="docs-guidance">
+          <div class="docs-do">
+            Start from the phone layout and layer
+            <code>@media (min-width: …)</code> enhancements at the six shared
+            stops. Let auto-fill grids and stacks do the reflowing.
+          </div>
+          <div class="docs-dont">
+            Don't write desktop-first <code>max-width</code> overrides, invent
+            bespoke breakpoint values, or hide core content on mobile — reflow
+            it instead.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="view-transitions">
+        <h2>View Transitions</h2>
+        <p>
+          SwiftUI's matched-geometry fluidity between pages, on the platform's
+          View Transitions API. Opt in with <code>data-vt</code> on
+          <code>&lt;html&gt;</code> and same-origin navigations cross-fade on
+          the system's motion tokens (180ms out, 220ms in). Off by default,
+          disabled automatically under reduced motion, and inert in browsers
+          without the API.
+        </p>
+        <div class="docs-demo" data-no-code>
+          <pre style="margin:0"><code>&lt;html data-vt&gt;   &lt;!-- pages now cross-fade on navigation --&gt;</code></pre>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="../index.html">← Getting Started</a>
+        <a class="b-btn b-btn--ghost" href="layout.html">Layout →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

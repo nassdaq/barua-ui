@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Icons — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Foundations</div>
+        <h1>Icons</h1>
+        <p class="docs-hero__lede">
+          The system glyph set. Every icon is an inline SVG on a 20×20 grid —
+          1.5px strokes, round caps and joins, <code>currentColor</code> so it
+          inherits text color, filled shapes only for playback glyphs. Click
+          any icon to copy its markup.
+        </p>
+      </header>
+
+      <section class="docs-section" id="icon-usage">
+        <h2>Usage</h2>
+        <p>
+          Size icons with <code>.b-icon</code> (1.25rem), <code>.b-icon--sm</code>
+          (1rem) or <code>.b-icon--lg</code> (1.75rem) instead of width/height
+          attributes. Icons inherit <code>currentColor</code>, so they recolor
+          with the component state — a tinted button tints its glyph for free.
+          Decorative icons take <code>aria-hidden="true"</code>; icon-only
+          buttons carry the label via <code>aria-label</code>.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn b-btn--primary">
+            <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Send
+          </button>
+          <button class="b-btn b-btn--glass">
+            <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 12.5v-9M7 6l3-2.8L13 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 9.5H5A1.5 1.5 0 0 0 3.5 11v4A1.5 1.5 0 0 0 5 16.5h10a1.5 1.5 0 0 0 1.5-1.5v-4A1.5 1.5 0 0 0 15 9.5h-.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Share
+          </button>
+          <button class="b-btn b-icon-btn b-btn--ghost b-tooltip-host" data-tooltip="Notifications" aria-label="Notifications">
+            <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5A4.5 4.5 0 0 1 14.5 8c0 3 1 4 1.5 4.5H4c.5-.5 1.5-1.5 1.5-4.5A4.5 4.5 0 0 1 10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15.5a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="docs-section" id="icon-library">
+        <h2>Library</h2>
+        <p>
+          Fifty-nine core glyphs. Click to copy the SVG — paste it inline and
+          add <code>.b-icon</code>. New icons must keep the grid, stroke and
+          naming conventions; propose them here before using them in product.
+        </p>
+        <div class="docs-icon-grid">
+          <button class="docs-icon" data-icon="chevron-down"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>chevron-down</span></button>
+          <button class="docs-icon" data-icon="chevron-up"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 12 5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>chevron-up</span></button>
+          <button class="docs-icon" data-icon="chevron-left"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12 5l-5 5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>chevron-left</span></button>
+          <button class="docs-icon" data-icon="chevron-right"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m8 5 5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>chevron-right</span></button>
+          <button class="docs-icon" data-icon="arrow-up-right"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>arrow-up-right</span></button>
+          <button class="docs-icon" data-icon="plus"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>plus</span></button>
+          <button class="docs-icon" data-icon="close"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>close</span></button>
+          <button class="docs-icon" data-icon="check"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8.5 15 16 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>check</span></button>
+          <button class="docs-icon" data-icon="search"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>search</span></button>
+          <button class="docs-icon" data-icon="mail"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4.5 7 5.5 4 5.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>mail</span></button>
+          <button class="docs-icon" data-icon="calendar"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3.5" y="4.5" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 3v3M13 3v3M3.5 8.5h13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>calendar</span></button>
+          <button class="docs-icon" data-icon="clock"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5V10l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>clock</span></button>
+          <button class="docs-icon" data-icon="bell"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5A4.5 4.5 0 0 1 14.5 8c0 3 1 4 1.5 4.5H4c.5-.5 1.5-1.5 1.5-4.5A4.5 4.5 0 0 1 10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15.5a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>bell</span></button>
+          <button class="docs-icon" data-icon="gear"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.5v3M10 14.5v3M2.5 10h3M14.5 10h3M4.7 4.7l2.1 2.1M13.2 13.2l2.1 2.1M15.3 4.7l-2.1 2.1M6.8 13.2l-2.1 2.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span>gear</span></button>
+          <button class="docs-icon" data-icon="person"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="6.5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 16.5a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>person</span></button>
+          <button class="docs-icon" data-icon="people"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="7.5" cy="7" r="2.6" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 16a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 4.6a2.6 2.6 0 0 1 0 4.9M14.5 11.6a5 5 0 0 1 3 4.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>people</span></button>
+          <button class="docs-icon" data-icon="house"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 9.5 10 4l7 5.5M5 8.5V16h10V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>house</span></button>
+          <button class="docs-icon" data-icon="folder"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 5.5A1.5 1.5 0 0 1 5 4h3l1.5 2H15a1.5 1.5 0 0 1 1.5 1.5V14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>folder</span></button>
+          <button class="docs-icon" data-icon="doc"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 3.5h6L15 7v9.5H5.5V3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M11.5 3.5V7H15M8 10.5h4M8 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>doc</span></button>
+          <button class="docs-icon" data-icon="newspaper"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M6 7.5h4.5v3.5H6zM13 7.5h1M13 11h1M6 13.5h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>newspaper</span></button>
+          <button class="docs-icon" data-icon="trash"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6h12M8 6V4.5h4V6M6.5 6l.5 10h6l.5-10M8.5 9v4M11.5 9v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>trash</span></button>
+          <button class="docs-icon" data-icon="pencil"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 16 .8-3.2 8.8-8.8a1.4 1.4 0 0 1 2 0l.4.4a1.4 1.4 0 0 1 0 2l-8.8 8.8L4 16Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m12.5 5.5 2 2" stroke="currentColor" stroke-width="1.5"/></svg><span>pencil</span></button>
+          <button class="docs-icon" data-icon="share"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 12.5v-9M7 6l3-2.8L13 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 9.5H5A1.5 1.5 0 0 0 3.5 11v4A1.5 1.5 0 0 0 5 16.5h10a1.5 1.5 0 0 0 1.5-1.5v-4A1.5 1.5 0 0 0 15 9.5h-.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>share</span></button>
+          <button class="docs-icon" data-icon="download"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5v9M6.5 9.5l3.5 3 3.5-3M4 16.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>download</span></button>
+          <button class="docs-icon" data-icon="link"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.5 11.5a3 3 0 0 0 4.2 0l2.5-2.5a3 3 0 1 0-4.2-4.2l-1 1M11.5 8.5a3 3 0 0 0-4.2 0L4.8 11a3 3 0 1 0 4.2 4.2l1-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>link</span></button>
+          <button class="docs-icon" data-icon="camera"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 7A1.5 1.5 0 0 1 5 5.5h1.5L8 3.5h4l1.5 2H15A1.5 1.5 0 0 1 16.5 7v7a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="10.5" r="2.8" stroke="currentColor" stroke-width="1.5"/></svg><span>camera</span></button>
+          <button class="docs-icon" data-icon="photo"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3.5" y="4.5" width="13" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="7.5" cy="8" r="1.2" fill="currentColor"/><path d="m5 14 3.5-3.5 2 2L14 9l2.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>photo</span></button>
+          <button class="docs-icon" data-icon="mic"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7.5" y="3.5" width="5" height="9" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 10a4.5 4.5 0 0 0 9 0M10 14.5v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>mic</span></button>
+          <button class="docs-icon" data-icon="speaker"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 8v4h2.5L10 15V5L6.5 8H4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12.5 7.5a3.5 3.5 0 0 1 0 5M14.5 5.5a6 6 0 0 1 0 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>speaker</span></button>
+          <button class="docs-icon" data-icon="play"><svg class="b-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7 4.9v10.2a.6.6 0 0 0 .92.5l8-5.1a.6.6 0 0 0 0-1l-8-5.1a.6.6 0 0 0-.92.5Z"/></svg><span>play</span></button>
+          <button class="docs-icon" data-icon="pause"><svg class="b-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6 4.5h2.5v11H6zM11.5 4.5H14v11h-2.5z"/></svg><span>pause</span></button>
+          <button class="docs-icon" data-icon="backward"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 4.5v11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15 5.6v8.8a.6.6 0 0 1-.93.5L7.6 10.5a.6.6 0 0 1 0-1l6.47-4.4a.6.6 0 0 1 .93.5Z" fill="currentColor"/></svg><span>backward</span></button>
+          <button class="docs-icon" data-icon="forward"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M14.5 4.5v11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 5.6v8.8a.6.6 0 0 0 .93.5l6.47-4.4a.6.6 0 0 0 0-1L5.93 5.1a.6.6 0 0 0-.93.5Z" fill="currentColor"/></svg><span>forward</span></button>
+          <button class="docs-icon" data-icon="repeat"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 8V7A2.5 2.5 0 0 1 8 4.5h6.5M12.5 2.5l2 2-2 2M14.5 12v1a2.5 2.5 0 0 1-2.5 2.5H5.5M7.5 17.5l-2-2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>repeat</span></button>
+          <button class="docs-icon" data-icon="heart"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 16.5S3.5 12.5 3.5 8.2A3.6 3.6 0 0 1 10 6a3.6 3.6 0 0 1 6.5 2.2c0 4.3-6.5 8.3-6.5 8.3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>heart</span></button>
+          <button class="docs-icon" data-icon="star"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2 4.4 4.8.5-3.6 3.2 1 4.7L10 13.4l-4.2 2.4 1-4.7L3.2 7.9 8 7.4 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>star</span></button>
+          <button class="docs-icon" data-icon="bookmark"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 5A1.5 1.5 0 0 1 7 3.5h6A1.5 1.5 0 0 1 14.5 5v11.5L10 13l-4.5 3.5V5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>bookmark</span></button>
+          <button class="docs-icon" data-icon="filter"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 5.5h13M6 10h8M8.5 14.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>filter</span></button>
+          <button class="docs-icon" data-icon="sliders"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 6.5h5M12 6.5h4.5M3.5 13.5h3M10 13.5h6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10.2" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="8.2" cy="13.5" r="1.8" stroke="currentColor" stroke-width="1.5"/></svg><span>sliders</span></button>
+          <button class="docs-icon" data-icon="grid"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="5.5" height="5.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="3.5" width="5.5" height="5.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3.5" y="11" width="5.5" height="5.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="5.5" height="5.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg><span>grid</span></button>
+          <button class="docs-icon" data-icon="lock"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="5" y="9" width="10" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9" stroke="currentColor" stroke-width="1.5"/></svg><span>lock</span></button>
+          <button class="docs-icon" data-icon="shield"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3l6 2v5c0 3.5-2.5 5.8-6 7-3.5-1.2-6-3.5-6-7V5l6-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m7.5 10 1.8 1.8L13 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>shield</span></button>
+          <button class="docs-icon" data-icon="wifi"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2.5 8a11 11 0 0 1 15 0M5 11a7.3 7.3 0 0 1 10 0M7.6 13.8a3.6 3.6 0 0 1 4.8 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="16.2" r="1.1" fill="currentColor"/></svg><span>wifi</span></button>
+          <button class="docs-icon" data-icon="bolt"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M11 3 5 11h4l-1 6 6-8h-4l1-6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>bolt</span></button>
+          <button class="docs-icon" data-icon="sun"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>sun</span></button>
+          <button class="docs-icon" data-icon="moon-stars"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M14.5 12.5A6 6 0 0 1 7.5 5.5 6 6 0 1 0 14.5 12.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m14 3.5.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6.6-1.4Z" fill="currentColor"/></svg><span>moon-stars</span></button>
+          <button class="docs-icon" data-icon="drop"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>drop</span></button>
+          <button class="docs-icon" data-icon="flame"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3c-2.5 3-4.5 5.2-4.5 7.4a4.5 4.5 0 0 0 9 0C14.5 8.2 12.5 6 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>flame</span></button>
+          <button class="docs-icon" data-icon="pin"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 17s-5-4.3-5-8a5 5 0 0 1 10 0c0 3.7-5 8-5 8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="9" r="1.8" stroke="currentColor" stroke-width="1.5"/></svg><span>pin</span></button>
+          <button class="docs-icon" data-icon="message"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 4h9a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H8.5l-3 3v-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>message</span></button>
+          <button class="docs-icon" data-icon="send"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>send</span></button>
+          <button class="docs-icon" data-icon="info"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v4M10 6.4h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>info</span></button>
+          <button class="docs-icon" data-icon="warning"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5 18 17H2L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8.5V12M10 14.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>warning</span></button>
+          <button class="docs-icon" data-icon="refresh"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.8 10A5.8 5.8 0 1 1 13 5.1M15.8 3.5v3.2h-3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>refresh</span></button>
+          <button class="docs-icon" data-icon="sparkles"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m14.8 11.5.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>sparkles</span></button>
+          <button class="docs-icon" data-icon="waveform"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 8.5v3M7 6v8M10 4v12M13 6.5v7M16 8.5v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>waveform</span></button>
+          <button class="docs-icon" data-icon="music-note"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 15.5V5l7-1.5V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="15.5" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="13" cy="13" r="2" stroke="currentColor" stroke-width="1.5"/></svg><span>music-note</span></button>
+          <button class="docs-icon" data-icon="lightbulb"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3a5 5 0 0 0-2.5 9.3V14a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1.7A5 5 0 0 0 10 3ZM8.5 17h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>lightbulb</span></button>
+          <button class="docs-icon" data-icon="garage"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 9.5 10 4l7 5.5M5 8.5V16h10V8.5M7 11h6M7 13.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>garage</span></button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    addEventListener("click", (e) => {
+      const cell = e.target.closest(".docs-icon");
+      if (!cell) return;
+      const svg = cell.querySelector("svg").outerHTML;
+      navigator.clipboard.writeText(svg).then(() => {
+        if (window.Barua) Barua.toast({ title: "Copied " + cell.dataset.icon, variant: "success", duration: 1800 });
+      });
+    });
+  </script>
+</body>
+</html>

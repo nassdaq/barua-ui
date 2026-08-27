@@ -1,0 +1,367 @@
+/* ==========================================================================
+   Barua UI — Specialized
+   Calendar, Date Picker panel, Emoji/Mention/User Picker, Search Results,
+   Filter Bar, Filter Chip, Sort Control, Bulk Actions, Multi-Select,
+   File Browser, Folder Tree, Activity/Audit Log.
+   (Command Palette lives in nav.css as .b-cmdk; Color Picker in forms.css.)
+   ========================================================================== */
+
+@layer components {
+  /* ---- Calendar ------------------------------------------------------------- */
+  .b-calendar {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--b-space-2);
+    padding: var(--b-space-4);
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+    user-select: none;
+  }
+  .b-calendar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--b-space-2);
+  }
+  .b-calendar__month { font-weight: var(--b-weight-semibold); font-size: var(--b-text-subheadline); }
+  .b-calendar__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 2.25rem);
+    gap: 2px;
+  }
+  .b-calendar__weekday {
+    display: grid;
+    place-items: center;
+    height: 1.75rem;
+    font-size: var(--b-text-caption2);
+    font-weight: var(--b-weight-semibold);
+    text-transform: uppercase;
+    color: var(--b-text-tertiary);
+  }
+  .b-calendar__day {
+    display: grid;
+    place-items: center;
+    height: 2.25rem;
+    font-size: var(--b-text-footnote);
+    font-variant-numeric: tabular-nums;
+    color: var(--b-text);
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background var(--b-duration-fast);
+  }
+  .b-calendar__day:hover { background: var(--b-fill-tertiary); }
+  .b-calendar__day.is-muted { color: var(--b-text-quaternary); }
+  .b-calendar__day.is-today {
+    color: var(--b-color-accent-text);
+    font-weight: var(--b-weight-bold);
+  }
+  .b-calendar__day.is-selected {
+    color: var(--b-color-on-accent);
+    background: var(--b-color-accent);
+    font-weight: var(--b-weight-semibold);
+  }
+  .b-calendar__day.is-in-range { background: var(--b-color-accent-soft); border-radius: 0; }
+  .b-calendar__day.is-range-start { border-radius: 50% 0 0 50%; }
+  .b-calendar__day.is-range-end { border-radius: 0 50% 50% 0; }
+  .b-calendar__day:disabled { color: var(--b-text-quaternary); cursor: not-allowed; text-decoration: line-through; }
+  .b-calendar__day .b-dot-marker {
+    position: absolute;
+    translate: 0 0.7rem;
+    width: 0.25rem; height: 0.25rem;
+    border-radius: 50%;
+    background: var(--b-color-accent);
+  }
+
+  /* Date picker = input + calendar in popover */
+  .b-datepicker { position: relative; display: inline-block; }
+  .b-datepicker > .b-calendar {
+    position: absolute;
+    top: calc(100% + var(--b-space-1));
+    inset-inline-start: 0;
+    z-index: var(--b-z-popover);
+    box-shadow: var(--b-elevation-4);
+  }
+
+  /* ---- Emoji Picker ----------------------------------------------------------- */
+  .b-emoji-picker {
+    width: 18rem;
+    padding: var(--b-space-3);
+    background: var(--b-elevated);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-elevation-4);
+  }
+  .b-emoji-picker__grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+    max-height: 12rem;
+    overflow-y: auto;
+    margin-block-start: var(--b-space-2);
+  }
+  .b-emoji-picker__grid button {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    font-size: 1.15rem;
+    background: none;
+    border: none;
+    border-radius: var(--b-radius-sm);
+    cursor: pointer;
+  }
+  .b-emoji-picker__grid button:hover { background: var(--b-fill-tertiary); scale: 1.15; }
+
+  /* ---- Mention / User Picker ---------------------------------------------------- */
+  .b-mention-list {
+    min-width: 16rem;
+    max-height: 15rem;
+    overflow-y: auto;
+    padding: var(--b-space-1);
+    margin: 0;
+    list-style: none;
+    background: var(--b-elevated);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-elevation-4);
+  }
+  .b-mention-list__item {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    width: 100%;
+    padding: var(--b-space-2);
+    background: none;
+    border: none;
+    border-radius: var(--b-radius-sm);
+    cursor: pointer;
+    text-align: start;
+  }
+  .b-mention-list__item:hover { background: var(--b-fill-quaternary); }
+  .b-mention-list__item.is-active { background: var(--b-color-accent-soft); }
+  .b-mention-list__item .b-avatar { --b-avatar-size: 1.75rem; }
+  .b-mention-list__name { font-size: var(--b-text-footnote); font-weight: var(--b-weight-medium); }
+  .b-mention-list__handle { font-size: var(--b-text-caption); color: var(--b-text-tertiary); }
+  .b-mention {
+    display: inline;
+    padding: 0.05em 0.3em;
+    color: var(--b-color-accent-text);
+    background: var(--b-color-accent-soft);
+    border-radius: var(--b-radius-xs);
+    font-weight: var(--b-weight-medium);
+  }
+
+  /* ---- Search Results ------------------------------------------------------------- */
+  .b-search-results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-1);
+  }
+  .b-search-result {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--b-space-3);
+    border-radius: var(--b-radius-md);
+    cursor: pointer;
+  }
+  .b-search-result:hover { background: var(--b-fill-quaternary); text-decoration: none; }
+  .b-search-result__title { font-weight: var(--b-weight-semibold); font-size: var(--b-text-subheadline); color: var(--b-text); }
+  .b-search-result__snippet { font-size: var(--b-text-footnote); color: var(--b-text-secondary); }
+  .b-search-result__snippet mark, .b-highlight {
+    color: inherit;
+    background: color-mix(in srgb, var(--b-color-yellow) 45%, transparent);
+    border-radius: 2px;
+    padding-inline: 0.1em;
+  }
+  .b-search-result__path { font-size: var(--b-text-caption); color: var(--b-text-tertiary); }
+
+  /* ---- Filter Bar / Filter Chip / Sort Control ------------------------------------- */
+  .b-filter-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--b-space-2);
+    padding: var(--b-space-2) 0;
+  }
+  .b-filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--b-space-1);
+    height: var(--b-control-h-sm);
+    padding-inline: var(--b-space-3);
+    font-size: var(--b-text-footnote);
+    font-weight: var(--b-weight-medium);
+    color: var(--b-text-secondary);
+    background: none;
+    border: 1px dashed var(--b-border-strong);
+    border-radius: var(--b-radius-full);
+    cursor: pointer;
+    transition: all var(--b-duration-fast) var(--b-ease-standard);
+  }
+  .b-filter-chip:hover { border-color: var(--b-color-accent); color: var(--b-color-accent-text); }
+  .b-filter-chip.is-active {
+    color: var(--b-color-accent-text);
+    background: var(--b-color-accent-soft);
+    border: 1px solid transparent;
+  }
+  .b-filter-chip__value { font-weight: var(--b-weight-semibold); }
+  .b-sort-control {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--b-space-1);
+    font-size: var(--b-text-footnote);
+    font-weight: var(--b-weight-medium);
+    color: var(--b-text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--b-space-1) var(--b-space-2);
+    border-radius: var(--b-radius-sm);
+  }
+  .b-sort-control:hover { background: var(--b-fill-tertiary); color: var(--b-text); }
+  .b-sort-control.is-asc::after { content: "↑"; color: var(--b-color-accent-text); }
+  .b-sort-control.is-desc::after { content: "↓"; color: var(--b-color-accent-text); }
+
+  /* ---- Bulk Actions ------------------------------------------------------------------ */
+  .b-bulk-actions {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: var(--b-space-6);
+    z-index: var(--b-z-sticky);
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .b-bulk-actions__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-3);
+    padding: var(--b-space-2) var(--b-space-3);
+    background: color-mix(in srgb, var(--b-elevated) 88%, transparent);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-full);
+    box-shadow: var(--b-glass-edge), var(--b-elevation-4);
+    pointer-events: auto;
+    animation: b-toast-in var(--b-duration-slow) var(--b-ease-spring);
+  }
+  .b-bulk-actions__count {
+    font-size: var(--b-text-footnote);
+    font-weight: var(--b-weight-semibold);
+    padding-inline-start: var(--b-space-2);
+  }
+
+  /* ---- Multi-Select (token input) ------------------------------------------------------ */
+  .b-multiselect {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--b-space-1);
+    min-height: var(--b-control-h-md);
+    padding: var(--b-space-1) var(--b-space-2);
+    background: var(--b-surface);
+    border: 1px solid var(--b-border);
+    border-radius: var(--b-radius-md);
+    cursor: text;
+  }
+  .b-multiselect:focus-within {
+    border-color: var(--b-color-accent);
+    box-shadow: var(--b-focus-ring);
+  }
+  .b-multiselect input {
+    flex: 1;
+    min-width: 6rem;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: var(--b-text-subheadline);
+    padding: var(--b-space-1);
+  }
+  .b-multiselect input:focus-visible { box-shadow: none; }
+  .b-multiselect .b-chip { height: 1.5rem; font-size: var(--b-text-caption); }
+
+  /* ---- File Browser / Folder Tree ------------------------------------------------------- */
+  .b-file-browser {
+    display: grid;
+    grid-template-columns: minmax(11rem, 0.35fr) 1fr;
+    min-height: 18rem;
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+    overflow: hidden;
+  }
+  .b-file-browser__side {
+    padding: var(--b-space-2);
+    border-inline-end: 1px solid var(--b-separator);
+    background: var(--b-fill-quaternary);
+    overflow-y: auto;
+  }
+  .b-file-browser__main { padding: var(--b-space-3); overflow-y: auto; }
+  .b-file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+    gap: var(--b-space-2);
+  }
+  .b-file-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--b-space-1);
+    padding: var(--b-space-2);
+    font-size: var(--b-text-caption);
+    text-align: center;
+    color: var(--b-text);
+    background: none;
+    border: none;
+    border-radius: var(--b-radius-md);
+    cursor: default;
+    word-break: break-word;
+  }
+  .b-file-tile:hover { background: var(--b-fill-quaternary); }
+  .b-file-tile.is-selected { background: var(--b-color-accent-soft); }
+  .b-file-tile.is-selected .b-file-tile__name {
+    background: var(--b-color-accent);
+    color: var(--b-color-on-accent);
+    border-radius: var(--b-radius-xs);
+    padding-inline: 0.25rem;
+  }
+  .b-file-tile__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem; height: 3rem;
+    font-size: 1.75rem;
+  }
+  .b-file-tile__icon svg { width: 2.25rem; height: 2.25rem; color: var(--b-color-accent); }
+
+  /* ---- Activity / Audit Log -------------------------------------------------------------- */
+  .b-log { display: flex; flex-direction: column; }
+  .b-log__entry {
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    align-items: baseline;
+    gap: var(--b-space-3);
+    padding: var(--b-space-2) var(--b-space-3);
+    font-size: var(--b-text-footnote);
+    border-radius: var(--b-radius-sm);
+  }
+  .b-log__entry:hover { background: var(--b-fill-quaternary); }
+  .b-log__entry + .b-log__entry { border-top: 1px solid var(--b-separator); }
+  .b-log__actor { font-weight: var(--b-weight-semibold); }
+  .b-log__action { color: var(--b-text-secondary); }
+  .b-log__action code {
+    font-size: var(--b-text-caption);
+    color: var(--b-text);
+  }
+  .b-log__time {
+    font-size: var(--b-text-caption);
+    color: var(--b-text-tertiary);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .b-log--audit .b-log__entry { grid-template-columns: 7.5rem max-content 1fr max-content; }
+  .b-log__ip { font-family: var(--b-font-mono); font-size: var(--b-text-caption); color: var(--b-text-tertiary); }
+}

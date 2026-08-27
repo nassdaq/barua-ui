@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout — Barua UI</title>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* Wallpaper only — every visible material below is a Barua component. */
+    body.checkout {
+      min-height: 100dvh;
+      padding: var(--b-space-6) var(--b-space-4) var(--b-space-8);
+      background: linear-gradient(180deg, var(--b-color-accent-soft), transparent 22rem) no-repeat var(--b-bg);
+    }
+  </style>
+</head>
+<body class="checkout b-stage">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <main class="b-container b-container--md b-stack b-gap-4" id="main">
+    <div class="b-banner" role="status">
+      <span>Free delivery across Dar es Salaam on orders above TZS 50,000 — this order qualifies. <a href="#">How it works</a></span>
+      <button class="b-banner__close" data-b-dismiss aria-label="Dismiss announcement">
+        <svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="m5.5 5.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <header class="b-hstack b-stack--wrap b-gap-3">
+      <div class="b-stack b-gap-1">
+        <span class="b-overline b-text-secondary">Duka la Barua</span>
+        <span class="b-large-title">Checkout</span>
+      </div>
+      <span class="b-spacer"></span>
+      <span class="b-badge b-badge--accent b-hide-mobile">Order DK-2608</span>
+    </header>
+
+    <div class="b-scroll-area b-stack b-gap-4">
+    <article class="b-card">
+      <div class="b-card__header">
+        <div>
+          <div class="b-card__title">Order summary</div>
+          <div class="b-card__subtitle">Duka la Barua · Kariakoo</div>
+        </div>
+        <span class="b-badge">3 items</span>
+      </div>
+      <div class="b-card__body b-stack b-gap-3">
+        <ul class="b-list b-list--plain b-list--inset-divider">
+          <li class="b-list-item">
+            <span class="b-list-item__leading"><span class="b-thumb" aria-hidden="true" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, var(--b-color-accent), var(--b-color-indigo))"></span></span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">Kanga ya pamba — Bluu ya Bahari</div>
+              <div class="b-list-item__subtitle">2 × TZS 18,000</div>
+            </div>
+            <span class="b-list-item__trailing b-tabular-nums">TZS 36,000</span>
+          </li>
+          <li class="b-list-item">
+            <span class="b-list-item__leading"><span class="b-thumb" aria-hidden="true" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #6b4a2f, #2e1f14)"></span></span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">Kahawa ya Kilimanjaro — 500 g, ground</div>
+              <div class="b-list-item__subtitle">1 × TZS 16,000</div>
+            </div>
+            <span class="b-list-item__trailing b-tabular-nums">TZS 16,000</span>
+          </li>
+          <li class="b-list-item">
+            <span class="b-list-item__leading"><span class="b-thumb" aria-hidden="true" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #b07d2a, #5c3d12)"></span></span>
+            <div class="b-list-item__content">
+              <div class="b-list-item__title">Asali ya Tabora — 1 L jar</div>
+              <div class="b-list-item__subtitle">1 × TZS 15,000</div>
+            </div>
+            <span class="b-list-item__trailing b-tabular-nums">TZS 15,000</span>
+          </li>
+        </ul>
+        <div>
+          <div class="b-list__header">Totals</div>
+          <div class="b-labeled"><span class="b-labeled__label">Subtotal</span><span class="b-labeled__value b-tabular-nums">TZS 67,000</span></div>
+          <div class="b-labeled"><span class="b-labeled__label">Delivery<small>Mikocheni, Kinondoni · Fri 28 Aug</small></span><span class="b-labeled__value">Free</span></div>
+          <div class="b-labeled"><span class="b-labeled__label">Rider tip</span><span class="b-labeled__value b-tabular-nums">TZS 1,000</span></div>
+          <div class="b-labeled"><span class="b-labeled__label">Total</span><span class="b-labeled__value b-tabular-nums">TZS 68,000</span></div>
+        </div>
+      </div>
+      <footer class="b-card__footer">
+        <a class="b-link" href="#">Edit basket</a>
+        <span class="b-spacer"></span>
+        <span class="b-caption b-text-tertiary">Prices include 18% VAT</span>
+      </footer>
+    </article>
+
+    <form class="b-form" onsubmit="event.preventDefault()">
+      <div class="b-form-section">
+        <div class="b-form-section__header">
+          <div class="b-form-section__title">Delivery details</div>
+          <p class="b-form-section__desc">Where the rider should bring this order.</p>
+        </div>
+        <div class="b-form-row">
+          <div class="b-field">
+            <label class="b-label" for="co-name">Full name</label>
+            <input class="b-input" id="co-name" type="text" value="Neema Joseph" autocomplete="name">
+          </div>
+          <div class="b-field">
+            <label class="b-label" for="co-phone">Phone</label>
+            <input class="b-input" id="co-phone" type="tel" value="+255 754 887 210" autocomplete="tel" aria-describedby="co-phone-help">
+            <p class="b-help" id="co-phone-help">Delivery updates arrive by SMS on this number.</p>
+          </div>
+        </div>
+        <div class="b-field">
+          <label class="b-label" for="co-address">Street address</label>
+          <input class="b-input" id="co-address" type="text" value="Mwai Kibaki Road 14, Mikocheni B" autocomplete="street-address">
+        </div>
+        <div class="b-form-row">
+          <div class="b-field">
+            <label class="b-label" for="co-region">Region</label>
+            <select class="b-select" id="co-region">
+              <option value="" disabled>Choose a region…</option>
+              <option selected>Dar es Salaam</option>
+              <option>Arusha</option>
+              <option>Dodoma</option>
+              <option>Mwanza</option>
+              <option>Zanzibar West</option>
+            </select>
+            <p class="b-help">Sets your delivery zone.</p>
+          </div>
+          <div class="b-field">
+            <span class="b-label" id="co-date-label">Delivery date</span>
+            <details class="b-dropdown">
+              <summary class="b-select" aria-labelledby="co-date-label" style="display: flex; align-items: center; justify-content: space-between; gap: var(--b-space-2); cursor: pointer">
+                <span data-b-date-display>28 Aug 2026</span>
+                <svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8.5h14M7 3v3M13 3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </summary>
+              <div class="b-menu" style="padding: 0; min-width: 0">
+                <div class="b-calendar" style="border: none">
+                  <div class="b-calendar__header">
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Previous month">‹</button>
+                    <span class="b-calendar__month">August 2026</span>
+                    <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Next month">›</button>
+                  </div>
+                  <div class="b-calendar__grid" role="grid" aria-label="August 2026">
+                    <span class="b-calendar__weekday">M</span><span class="b-calendar__weekday">T</span><span class="b-calendar__weekday">W</span><span class="b-calendar__weekday">T</span><span class="b-calendar__weekday">F</span><span class="b-calendar__weekday">S</span><span class="b-calendar__weekday">S</span>
+                    <button class="b-calendar__day is-muted">27</button><button class="b-calendar__day is-muted">28</button><button class="b-calendar__day is-muted">29</button><button class="b-calendar__day is-muted">30</button><button class="b-calendar__day is-muted">31</button><button class="b-calendar__day">1</button><button class="b-calendar__day">2</button>
+                    <button class="b-calendar__day">3</button><button class="b-calendar__day">4</button><button class="b-calendar__day">5</button><button class="b-calendar__day">6</button><button class="b-calendar__day">7</button><button class="b-calendar__day">8</button><button class="b-calendar__day">9</button>
+                    <button class="b-calendar__day">10</button><button class="b-calendar__day">11</button><button class="b-calendar__day">12</button><button class="b-calendar__day">13</button><button class="b-calendar__day">14</button><button class="b-calendar__day">15</button><button class="b-calendar__day">16</button>
+                    <button class="b-calendar__day">17</button><button class="b-calendar__day">18</button><button class="b-calendar__day">19</button><button class="b-calendar__day">20</button><button class="b-calendar__day">21</button><button class="b-calendar__day">22</button><button class="b-calendar__day">23</button>
+                    <button class="b-calendar__day">24</button><button class="b-calendar__day">25</button><button class="b-calendar__day">26</button><button class="b-calendar__day is-today">27</button><button class="b-calendar__day is-selected">28</button><button class="b-calendar__day">29</button><button class="b-calendar__day">30</button>
+                    <button class="b-calendar__day">31</button><button class="b-calendar__day is-muted">1</button><button class="b-calendar__day is-muted">2</button><button class="b-calendar__day is-muted">3</button><button class="b-calendar__day is-muted">4</button><button class="b-calendar__day is-muted">5</button><button class="b-calendar__day is-muted">6</button>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+        <div class="b-field">
+          <label class="b-label" for="co-note">Delivery note <span class="b-optional">(optional)</span></label>
+          <textarea class="b-textarea" id="co-note" rows="3" placeholder="Karibu! Ask the askari at the blue gate for Neema."></textarea>
+        </div>
+      </div>
+
+      <div class="b-form-section">
+        <div class="b-form-section__header">
+          <div class="b-form-section__title">Payment</div>
+          <p class="b-form-section__desc">Nothing is charged until you confirm on your phone.</p>
+        </div>
+        <fieldset class="b-fieldset">
+          <legend>Payment method</legend>
+          <label class="b-radio"><input type="radio" name="pay" checked> M-Pesa</label>
+          <label class="b-radio"><input type="radio" name="pay"> Airtel Money</label>
+          <label class="b-radio"><input type="radio" name="pay"> Mixx by Yas</label>
+          <label class="b-radio"><input type="radio" name="pay"> Card — Visa or Mastercard</label>
+        </fieldset>
+        <div class="b-field">
+          <label class="b-label" for="co-tip">Tip for the rider (TZS)</label>
+          <div class="b-stepper-input">
+            <button type="button" aria-label="Smaller tip">−</button>
+            <input id="co-tip" type="number" value="1000" min="0" max="5000" step="500">
+            <button type="button" aria-label="Larger tip">+</button>
+          </div>
+          <p class="b-help">Goes to the rider in full, already counted in the total.</p>
+        </div>
+        <label class="b-checkbox"><input type="checkbox" checked> Save these details for next time</label>
+      </div>
+
+      <button class="b-btn b-btn--liquid b-btn--block" type="submit">
+        <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="5" y="9" width="10" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9" stroke="currentColor" stroke-width="1.5"/></svg>
+        Pay TZS 68,000
+      </button>
+      <p class="b-footnote b-text-secondary">You'll confirm with your M-Pesa PIN on +255 754 887 210. A receipt lands in your inbox the moment payment clears.</p>
+    </form>
+  </div>
+  </main>
+</body>
+</html>

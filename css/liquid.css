@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Barua UI — Liquid Glass mode
+   Opt-in whole-system re-skin: <html data-glass="liquid">.
+   Every major surface becomes translucent Apple-style liquid glass —
+   backdrop blur, specular edges, glossy cores — while text stays solid
+   for legibility. Toggle at runtime with Barua.glass.toggle().
+   ========================================================================== */
+
+@layer components {
+  [data-glass="liquid"] {
+    /* Liquid-mode surface language */
+    --b-lg-pane: light-dark(rgba(255, 255, 255, 0.42), rgba(38, 40, 48, 0.42));
+    --b-lg-pane-strong: light-dark(rgba(255, 255, 255, 0.58), rgba(38, 40, 48, 0.58));
+    --b-lg-inset: light-dark(rgba(255, 255, 255, 0.30), rgba(30, 32, 40, 0.35));
+    --b-lg-border: light-dark(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.10));
+  }
+
+  /* ---- Panes: cards, lists, tables, panels, accordions… -------------------- */
+  [data-glass="liquid"] :is(.b-card, .b-list, .b-table-wrap, .b-accordion,
+    .b-panel, .b-form-section, .b-calendar, .b-file-browser, .b-master-detail,
+    .b-calview, .b-gantt, .b-audio, .b-emoji-picker, .b-mention-list,
+    .b-passkey, .b-menubar, .b-toolbar, .b-stepper-input, .b-upload-item) {
+    background: var(--b-lg-pane);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border-color: var(--b-lg-border);
+    box-shadow: var(--b-glass-edge), var(--b-shadow-sm);
+  }
+  [data-glass="liquid"] :is(.b-card__footer, .b-table th, .b-calview__head,
+    .b-file-browser__side) {
+    background: light-dark(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.03));
+  }
+  [data-glass="liquid"] .b-elevated,
+  [data-glass="liquid"] :is(.b-menu, .b-cmdk, .b-popover, .b-toast,
+    .b-notification, .b-hover-card, .b-modal, .b-sheet, .b-combobox__list) {
+    background: color-mix(in srgb, var(--b-elevated) 55%, transparent);
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+    border-color: var(--b-lg-border);
+  }
+
+  /* ---- Chrome: bars, sidebars, rails, status ------------------------------- */
+  [data-glass="liquid"] :is(.b-topnav, .b-bottomnav, .b-mobile-header,
+    .b-mobile-toolbar, .b-statusbar) {
+    background: light-dark(rgba(250, 251, 254, 0.45), rgba(20, 20, 26, 0.45));
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+  }
+  [data-glass="liquid"] :is(.b-sidebar--surface, .b-rail, .b-inspector) {
+    background: light-dark(rgba(250, 251, 254, 0.35), rgba(24, 25, 32, 0.35));
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+  }
+
+  /* ---- Actions --------------------------------------------------------------- */
+  [data-glass="liquid"] .b-btn {
+    background: var(--b-lg-pane);
+    -webkit-backdrop-filter: var(--b-glass-light);
+    backdrop-filter: var(--b-glass-light);
+    box-shadow: var(--b-glass-edge), var(--b-shadow-xs);
+  }
+  /* Generic glass hover must not repaint colored/stateful variants —
+     in light mode it would wash them to white with invisible labels. */
+  [data-glass="liquid"] .b-btn:not(.b-btn--primary, .b-btn--tinted,
+    .b-btn--danger, .b-btn--danger-tinted, .b-btn--success, .b-fab,
+    .is-active, [aria-pressed="true"]):hover {
+    background: var(--b-lg-pane-strong);
+  }
+  [data-glass="liquid"] .b-btn--primary,
+  [data-glass="liquid"] .b-fab {
+    background:
+      radial-gradient(120% 140% at 30% 12%, rgba(255, 255, 255, 0.38), transparent 42%),
+      var(--b-color-accent);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 0 0 1px color-mix(in srgb, var(--b-color-accent) 55%, transparent),
+      var(--b-shadow-accent);
+  }
+  [data-glass="liquid"] .b-btn--primary:hover,
+  [data-glass="liquid"] .b-fab:hover { background:
+      radial-gradient(120% 140% at 30% 12%, rgba(255, 255, 255, 0.45), transparent 44%),
+      var(--b-color-accent-hover); }
+  [data-glass="liquid"] .b-btn--danger {
+    background:
+      radial-gradient(120% 140% at 30% 12%, rgba(255, 255, 255, 0.35), transparent 42%),
+      var(--b-color-danger);
+  }
+  [data-glass="liquid"] .b-btn--danger:hover {
+    background:
+      radial-gradient(120% 140% at 30% 12%, rgba(255, 255, 255, 0.42), transparent 44%),
+      color-mix(in srgb, var(--b-color-danger) 85%, black);
+  }
+  [data-glass="liquid"] .b-btn--tinted { background: var(--b-color-accent-soft); }
+  [data-glass="liquid"] .b-btn--tinted:hover {
+    background: color-mix(in srgb, var(--b-color-accent) 24%, transparent);
+  }
+  [data-glass="liquid"] .b-btn--danger-tinted { background: var(--b-color-danger-soft); }
+  [data-glass="liquid"] :is(.b-btn--ghost, .b-btn--outline, .b-link) {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+  [data-glass="liquid"] .b-btn--outline { box-shadow: inset 0 0 0 1px var(--b-lg-border); }
+  [data-glass="liquid"] .b-btn--ghost:hover { background: var(--b-lg-inset); }
+
+  /* ---- Forms ------------------------------------------------------------------ */
+  [data-glass="liquid"] :is(.b-input, .b-textarea, .b-select, .b-multiselect,
+    .b-otp input) {
+    background: var(--b-lg-inset);
+    -webkit-backdrop-filter: var(--b-glass-light);
+    backdrop-filter: var(--b-glass-light);
+    border-color: var(--b-lg-border);
+    box-shadow: inset 0 1px 2px light-dark(rgba(20, 24, 38, 0.05), rgba(0, 0, 0, 0.2));
+  }
+  [data-glass="liquid"] :is(.b-input, .b-textarea, .b-select):focus-visible {
+    border-color: var(--b-color-accent);
+    background: var(--b-lg-pane-strong);
+  }
+  [data-glass="liquid"] .b-switch input {
+    background: var(--b-lg-inset);
+    box-shadow: inset 0 0 0 1px var(--b-lg-border),
+      inset 0 2px 4px light-dark(rgba(20, 24, 38, 0.08), rgba(0, 0, 0, 0.3));
+  }
+  [data-glass="liquid"] .b-switch input:checked {
+    background:
+      radial-gradient(130% 160% at 30% 10%, rgba(255, 255, 255, 0.4), transparent 45%),
+      var(--b-color-green);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      0 2px 10px color-mix(in srgb, var(--b-color-green) 45%, transparent);
+  }
+  [data-glass="liquid"] .b-checkbox input:not(:checked):not(:indeterminate),
+  [data-glass="liquid"] .b-radio input:not(:checked) {
+    background: var(--b-lg-inset);
+    border-color: var(--b-lg-border);
+  }
+  [data-glass="liquid"] .b-upload {
+    background: var(--b-lg-inset);
+    -webkit-backdrop-filter: var(--b-glass-light);
+    backdrop-filter: var(--b-glass-light);
+  }
+
+  /* ---- Navigation ------------------------------------------------------------- */
+  [data-glass="liquid"] .b-segmented {
+    background: var(--b-lg-inset);
+    -webkit-backdrop-filter: var(--b-glass-light);
+    backdrop-filter: var(--b-glass-light);
+    box-shadow: inset 0 1px 2px light-dark(rgba(20, 24, 38, 0.06), rgba(0, 0, 0, 0.22));
+  }
+  [data-glass="liquid"] .b-segmented__item.is-active,
+  [data-glass="liquid"] .b-segmented__item[aria-selected="true"] {
+    background:
+      radial-gradient(120% 150% at 30% 10%, rgba(255, 255, 255, 0.65), transparent 55%),
+      light-dark(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.16));
+    box-shadow: var(--b-glass-edge), var(--b-shadow-xs);
+  }
+  [data-glass="liquid"] :is(.b-sidebar__item, .b-tab, .b-topnav__link):hover {
+    background: var(--b-lg-inset);
+  }
+  [data-glass="liquid"] .b-breadcrumbs {
+    display: inline-flex;
+    padding: var(--b-space-1) var(--b-space-3);
+    background: var(--b-lg-pane);
+    -webkit-backdrop-filter: var(--b-glass-light);
+    backdrop-filter: var(--b-glass-light);
+    border: 1px solid var(--b-lg-border);
+    border-radius: var(--b-radius-full);
+    box-shadow: var(--b-glass-edge);
+  }
+  [data-glass="liquid"] .b-pagination__item:not(.is-active):hover {
+    background: var(--b-lg-inset);
+  }
+  [data-glass="liquid"] .b-pagination__item.is-active,
+  [data-glass="liquid"] .b-pagination__item[aria-current="page"] {
+    background:
+      radial-gradient(120% 150% at 30% 10%, rgba(255, 255, 255, 0.4), transparent 45%),
+      var(--b-color-accent);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  /* ---- Content bits ------------------------------------------------------------ */
+  [data-glass="liquid"] :is(.b-badge, .b-tag, .b-chip:not(.is-selected)) {
+    -webkit-backdrop-filter: var(--b-glass-light);
+    backdrop-filter: var(--b-glass-light);
+  }
+  [data-glass="liquid"] .b-chip:not(.is-selected) {
+    background: var(--b-lg-pane);
+    box-shadow: var(--b-glass-edge);
+  }
+  [data-glass="liquid"] .b-disclosure > summary:hover { background: var(--b-lg-inset); }
+  [data-glass="liquid"] .b-progress {
+    background: var(--b-lg-inset);
+    box-shadow: inset 0 1px 2px light-dark(rgba(20, 24, 38, 0.06), rgba(0, 0, 0, 0.25));
+  }
+  [data-glass="liquid"] .b-progress__fill {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent 55%),
+      var(--b-color-accent);
+  }
+
+  /* ---- Feedback ------------------------------------------------------------------ */
+  [data-glass="liquid"] .b-alert {
+    -webkit-backdrop-filter: var(--b-glass-light);
+    backdrop-filter: var(--b-glass-light);
+    box-shadow: var(--b-glass-edge);
+  }
+
+  /* Docs chrome plays along */
+  [data-glass="liquid"] .docs-demo:not(.docs-demo--canvas):not(.docs-demo--dark) {
+    background: light-dark(rgba(255, 255, 255, 0.35), rgba(30, 31, 38, 0.35));
+    -webkit-backdrop-filter: var(--b-glass-light);
+    backdrop-filter: var(--b-glass-light);
+  }
+}

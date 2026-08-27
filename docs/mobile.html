@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mobile — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Patterns</div>
+        <h1>Mobile</h1>
+        <p class="docs-hero__lede">
+          iOS-feeling patterns for the small screen — glass chrome, safe areas,
+          44pt targets. Headers collapse from large titles, tab bars blur the
+          content behind them, and rows swipe to reveal actions.
+        </p>
+      </header>
+
+      <section class="docs-section" id="mobile-header">
+        <h2>Mobile Header</h2>
+        <p>
+          <code>.b-mobile-header</code> is the sticky glass chrome at the top of
+          a mobile view: a three-column <code>__bar</code> with a
+          <code>.b-back-btn</code> at the start, a centered <code>__title</code>
+          and an <code>__action--end</code> slot. One note on the demos on this
+          page: mobile chrome is normally <code>position: fixed</code> or
+          <code>sticky</code>, so each demo sits inside a phone-width frame and
+          the component gets an inline <code>position: static</code> override to
+          render inside it — drop the override in a real app.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <header class="b-mobile-header" style="position: static">
+              <div class="b-mobile-header__bar">
+                <button class="b-back-btn b-mobile-header__action--start">Inbox</button>
+                <div class="b-mobile-header__title">Message</div>
+                <button class="b-btn b-icon-btn b-btn--ghost b-mobile-header__action--end" aria-label="Reply">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M8 5 3.5 9.5 8 14M3.5 9.5H12a4.5 4.5 0 0 1 4.5 4.5V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </header>
+            <div style="height: 4.5rem"></div>
+          </div>
+        </div>
+
+        <h3 id="mobile-header-large-title">Large title</h3>
+        <p>
+          Add <code>__large-title</code> under the bar for the iOS large-title
+          pattern; on scroll, collapse it and reveal the small centered title.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <header class="b-mobile-header" style="position: static">
+              <div class="b-mobile-header__bar">
+                <button class="b-back-btn b-mobile-header__action--start">Mailboxes</button>
+                <button class="b-btn b-icon-btn b-btn--ghost b-mobile-header__action--end" aria-label="Compose">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="b-mobile-header__large-title">Inbox</div>
+            </header>
+            <div style="height: 3.5rem"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="mobile-navigation">
+        <h2>Mobile Navigation</h2>
+        <p>
+          Mobile navigation is a pattern, not one component. Follow the iOS
+          conventions: the back button sits at the start of the header, is
+          labelled with the <em>previous</em> screen's title (never just
+          "Back"), and the current screen's title stays centered. Push deeper
+          views onto a stack; switch top-level sections with the
+          <a href="#bottom-tab-bar">Bottom Tab Bar</a> below. For overflow
+          destinations, use the navigation drawer from the
+          <a href="navigation.html">Navigation</a> page, or the
+          <a href="#mobile-menu">Mobile Menu</a> as a full-screen list.
+        </p>
+        <div class="docs-guidance">
+          <div class="docs-do">
+            Mirror iOS conventions — back button labelled with the parent
+            screen, one centered title, tab bar for top-level sections. Muscle
+            memory from the platform transfers straight into your app.
+          </div>
+          <div class="docs-dont">
+            Hide primary actions only behind gestures. Swipes, long-presses and
+            pull-to-refresh are accelerators — every action they trigger must
+            also exist as a visible button or menu item somewhere on screen.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="bottom-tab-bar">
+        <h2>Bottom Tab Bar</h2>
+        <p>
+          <code>.b-bottomnav</code> fixes a glass tab bar to the bottom edge
+          with safe-area padding built in. Use three to five
+          <code>__item</code>s, mark the current one with
+          <code>.is-active</code>, and attach a <code>.b-badge--count</code> to
+          an icon for unread counts.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <div style="height: 4.5rem"></div>
+            <nav class="b-bottomnav" style="position: static" aria-label="Primary">
+              <a class="b-bottomnav__item" href="#bottom-tab-bar">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M4 9.5 10 4l6 5.5V16a1 1 0 0 1-1 1h-3v-4H8v4H5a1 1 0 0 1-1-1V9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                Home
+              </a>
+              <a class="b-bottomnav__item is-active" href="#bottom-tab-bar" aria-current="page">
+                <span style="position: relative; display: inline-flex">
+                  <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4.5 7.5 5.5 4 5.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="b-badge b-badge--count" style="position: absolute; top: -0.4rem; inset-inline-end: -0.7rem">3</span>
+                </span>
+                Inbox
+              </a>
+              <a class="b-bottomnav__item" href="#bottom-tab-bar">
+                <svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="5" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Search
+              </a>
+              <a class="b-bottomnav__item" href="#bottom-tab-bar">
+                <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 16.5a5.5 5.5 0 0 1 11 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Profile
+              </a>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="bottom-sheet">
+        <h2>Bottom Sheet</h2>
+        <p>
+          The full <code>.b-bottom-sheet</code> — a <code>&lt;dialog&gt;</code>
+          that springs up from the bottom edge with a scrim — is documented on
+          the <a href="overlays.html">Overlays</a> page. Shown here statically
+          inside the frame: a <code>__grabber</code> pill on top of a
+          <code>__body</code> list of actions.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <div style="height: 3rem"></div>
+            <dialog class="b-bottom-sheet" open style="position: static; width: 100%">
+              <div class="b-bottom-sheet__grabber"></div>
+              <div class="b-bottom-sheet__body">
+                <ul class="b-list b-list--plain">
+                  <li class="b-list-item b-list-item--interactive">
+                    <span class="b-list-item__leading">
+                      <svg viewBox="0 0 20 20" fill="none"><path d="M8 5 3.5 9.5 8 14M3.5 9.5H12a4.5 4.5 0 0 1 4.5 4.5V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <div class="b-list-item__content"><div class="b-list-item__title">Reply</div></div>
+                  </li>
+                  <li class="b-list-item b-list-item--interactive">
+                    <span class="b-list-item__leading">
+                      <svg viewBox="0 0 20 20" fill="none"><path d="M12 5l4.5 4.5L12 14M16.5 9.5H8A4.5 4.5 0 0 0 3.5 14V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <div class="b-list-item__content"><div class="b-list-item__title">Forward</div></div>
+                  </li>
+                  <li class="b-list-item b-list-item--interactive">
+                    <span class="b-list-item__leading">
+                      <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 8v6.5A1.5 1.5 0 0 0 6 16h8a1.5 1.5 0 0 0 1.5-1.5V8M8.5 11h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <div class="b-list-item__content"><div class="b-list-item__title">Archive</div></div>
+                  </li>
+                  <li class="b-list-item b-list-item--interactive">
+                    <span class="b-list-item__leading">
+                      <svg viewBox="0 0 20 20" fill="none"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <div class="b-list-item__content"><div class="b-list-item__title">Delete</div></div>
+                  </li>
+                </ul>
+              </div>
+            </dialog>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="mobile-menu">
+        <h2>Mobile Menu</h2>
+        <p>
+          <code>.b-mobile-menu</code> is a full-width list of big, thumb-sized
+          rows — each at least the 44px touch target tall. Use it inside a
+          drawer or a full-screen sheet; mark the current destination with
+          <code>.is-active</code>.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <ul class="b-mobile-menu">
+              <li>
+                <a class="is-active" href="#mobile-menu" aria-current="page">
+                  <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><rect x="3" y="5" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4.5 7.5 5.5 4 5.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Inbox
+                </a>
+              </li>
+              <li>
+                <a href="#mobile-menu">
+                  <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><path d="m10 3 2.1 4.4 4.9.6-3.6 3.3.9 4.7L10 13.7 5.7 16l.9-4.7L3 8l4.9-.6L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Starred
+                </a>
+              </li>
+              <li>
+                <a href="#mobile-menu">
+                  <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><path d="M6 3h6l3 3v11H6V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 3v3h3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  Drafts
+                </a>
+              </li>
+              <li>
+                <a href="#mobile-menu">
+                  <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><rect x="3" y="4" width="14" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 8v6.5A1.5 1.5 0 0 0 6 16h8a1.5 1.5 0 0 0 1.5-1.5V8M8.5 11h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Archive
+                </a>
+              </li>
+              <li>
+                <a href="#mobile-menu">
+                  <svg viewBox="0 0 20 20" fill="none" width="20" height="20"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Trash
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="mobile-toolbar">
+        <h2>Mobile Toolbar</h2>
+        <p>
+          <code>.b-mobile-toolbar</code> is the bottom action bar for the
+          current screen — glass, hairline on top, safe-area padding below, and
+          icon buttons bumped up to the large control size for easy reach.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <div style="height: 4.5rem"></div>
+            <div class="b-mobile-toolbar" style="position: static" role="toolbar" aria-label="Message actions">
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Reply">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M8 5 3.5 9.5 8 14M3.5 9.5H12a4.5 4.5 0 0 1 4.5 4.5V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Archive">
+                <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 8v6.5A1.5 1.5 0 0 0 6 16h8a1.5 1.5 0 0 0 1.5-1.5V8M8.5 11h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Flag">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M5 17V4h9.5l-2 3.5 2 3.5H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Delete">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="swipe-actions">
+        <h2>Swipe Actions</h2>
+        <p>
+          <code>.b-swipe</code> is a CSS-only take on the iOS swipe-to-act row:
+          a horizontal scroller with <code>scroll-snap-type: x mandatory</code>.
+          The <code>__content</code> row fills 100% of the width and snaps to
+          the start; the <code>__actions</code> sit just off-screen and snap to
+          the end. Dragging left reveals them, and the scroll snap makes the
+          row rest either fully closed or fully open — try it, the demo below
+          actually scrolls.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <div class="b-swipe">
+              <div class="b-swipe__content b-list-item">
+                <span class="b-avatar">AK</span>
+                <div class="b-list-item__content">
+                  <div class="b-list-item__title">Amina Kassim</div>
+                  <div class="b-list-item__subtitle">Q3 launch review — moved to Thursday, can you make it?</div>
+                </div>
+              </div>
+              <div class="b-swipe__actions">
+                <button class="is-flag">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M5 17V4h9.5l-2 3.5 2 3.5H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Flag
+                </button>
+                <button class="is-danger">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m2.5 0-.7 9.1A1.5 1.5 0 0 1 12.3 16H7.7a1.5 1.5 0 0 1-1.5-.9L5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> A swipe is invisible to keyboard,
+          switch and screen-reader users — and to anyone who simply doesn't know
+          it's there. Every swipe action needs a visible alternative: the same
+          Flag and Delete must also appear in the row's action menu or the
+          <a href="#mobile-toolbar">mobile toolbar</a>. The hidden buttons are
+          still real <code>&lt;button&gt;</code>s, so they stay focusable and
+          announced.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="pull-to-refresh">
+        <h2>Pull to Refresh</h2>
+        <p>
+          <code>.b-ptr</code> is the visual affordance above a list. It sits at
+          <code>height: 0</code> until your scroll handler adds a state class:
+          <code>.is-pulling</code> springs it open to its full height as the
+          user drags, <code>.is-ready</code> rotates the <code>__arrow</code>
+          180° to signal "release to refresh", and <code>.is-refreshing</code>
+          swaps the arrow for a spinner while data loads. Shown here frozen in
+          the refreshing state.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <div class="b-ptr is-refreshing">
+              <span class="b-spinner b-spinner--sm"></span>
+              Refreshing…
+            </div>
+            <ul class="b-list b-list--plain">
+              <li class="b-list-item">
+                <span class="b-avatar b-avatar--sm">JM</span>
+                <div class="b-list-item__content">
+                  <div class="b-list-item__title">Joseph Mwangi</div>
+                  <div class="b-list-item__subtitle">Invoice #2214 approved</div>
+                </div>
+              </li>
+              <li class="b-list-item">
+                <span class="b-avatar b-avatar--sm">ZH</span>
+                <div class="b-list-item__content">
+                  <div class="b-list-item__title">Zawadi Hassan</div>
+                  <div class="b-list-item__subtitle">Design tokens are ready for review</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="touch-target">
+        <h2>Touch Target</h2>
+        <p>
+          Small controls stay small visually but should never be small to a
+          thumb. The <code>.b-touch-target</code> utility overlays an invisible
+          <code>::after</code> hit area of at least
+          <code>var(--b-touch-target)</code> — 44px — centered on the control,
+          so a compact close button still catches an imprecise tap. The button
+          below renders at its extra-small size; the whole 44×44 area around it
+          is pressable.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn b-icon-btn b-btn--xs b-touch-target" aria-label="Dismiss">
+            <svg viewBox="0 0 20 20" fill="none" width="12" height="12"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+          <span class="b-badge">← 44×44 hit area around a tiny button</span>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> WCAG 2.5.8 (Target Size —
+          Minimum) makes undersized targets a conformance failure; Barua's
+          <code>--b-touch-target</code> token standardizes on Apple's 44px
+          minimum, comfortably above the WCAG floor. Apply
+          <code>.b-touch-target</code> to any control smaller than 44px, and
+          keep at least a hairline of spacing between adjacent expanded
+          targets so taps don't overlap.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="safe-area">
+        <h2>Safe Area</h2>
+        <p>
+          On notched and home-indicator phones, the OS reserves the screen edges
+          and reports them as <code>env(safe-area-inset-*)</code> values.
+          Barua's fixed chrome — <code>.b-mobile-header</code>,
+          <code>.b-bottomnav</code>, <code>.b-mobile-toolbar</code>,
+          <code>.b-bottom-sheet</code> — already pads with them. For your own
+          bars, use <code>.b-safe-area</code> (all four edges) or
+          <code>.b-safe-bottom</code>, which pads with
+          <code>max(var(--b-space-3), env(safe-area-inset-bottom))</code> so it
+          still breathes on squared-off screens.
+        </p>
+        <p>
+          The insets report <code>0</code> until you opt in with
+          <code>viewport-fit=cover</code> in the viewport meta tag — without it,
+          the browser letterboxes your page instead:
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>index.html</span></div>
+          <pre><code>&lt;meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"&gt;</code></pre>
+        </div>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <div style="height: 3.5rem"></div>
+            <div class="b-mobile-toolbar b-safe-bottom" style="position: static" role="toolbar" aria-label="Editor actions">
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Compose">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Search">
+                <svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="5" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="More options">
+                <svg viewBox="0 0 20 20" fill="currentColor"><circle cx="4.5" cy="10" r="1.4"/><circle cx="10" cy="10" r="1.4"/><circle cx="15.5" cy="10" r="1.4"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="collapsing-title">
+        <h2>Collapsing Large Title</h2>
+        <p>
+          NavigationStack's signature move: the large title shrinks away as
+          content scrolls, and the bar title fades in. Add
+          <code>data-b-collapse</code> to a <code>.b-mobile-header</code> —
+          barua.js watches the nearest scroll parent and toggles
+          <code>.is-collapsed</code>.
+        </p>
+        <div class="docs-demo" data-no-code>
+          <div style="width: 22.5rem; max-width: 100%; margin-inline: auto; border: 1px solid var(--b-separator); border-radius: var(--b-radius-2xl); overflow: hidden; background: var(--b-bg)">
+            <div style="height: 18rem; overflow-y: auto; position: relative">
+              <header class="b-mobile-header" data-b-collapse style="position: sticky">
+                <div class="b-mobile-header__bar">
+                  <span class="b-mobile-header__title">Inbox</span>
+                </div>
+                <h1 class="b-mobile-header__large-title">Inbox</h1>
+              </header>
+              <div style="padding: var(--b-space-4)">
+                <p class="b-subheadline b-text-secondary">Scroll this panel — the large title collapses into the bar.</p>
+                <div style="height: 30rem"></div>
+                <p class="b-footnote b-text-tertiary">The end.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="interaction.html">← Interaction</a>
+        <a class="b-btn b-btn--ghost" href="infrastructure.html">Infrastructure →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

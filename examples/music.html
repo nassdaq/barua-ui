@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Barua Music — Barua UI</title>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* Wallpaper only — every visible material below is a Barua component. */
+    body.music {
+      min-height: 100dvh;
+      padding: var(--b-space-5) var(--b-space-6) var(--b-space-12);
+      background:
+        radial-gradient(56rem 38rem at 85% -12%, rgba(10, 132, 255, 0.16), transparent 60%),
+        radial-gradient(48rem 34rem at -12% 108%, rgba(94, 92, 230, 0.12), transparent 60%),
+        #0a0d13;
+    }
+  </style>
+</head>
+<body class="music b-stage">
+  <div class="b-container b-stack b-gap-4">
+    <header class="b-hstack b-stack--wrap b-gap-3">
+      <div class="b-stack b-gap-1">
+        <span class="b-large-title">Barua Music</span>
+        <span class="b-overline b-text-secondary">Jumatano 26 Agosti · Dar es Salaam</span>
+      </div>
+      <span class="b-spacer"></span>
+      <button class="b-btn b-btn--ghost">
+        <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Search
+      </button>
+      <details class="b-dropdown b-dropdown--end">
+        <summary class="b-profile-trigger">
+          <span class="b-avatar b-avatar--sm b-avatar--online" aria-hidden="true">ZM</span>
+          Zawadi
+          <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <ul class="b-menu">
+          <li class="b-menu__label">zawadi@baruamail.co.tz</li>
+          <li><button class="b-menu__item">Profile</button></li>
+          <li><button class="b-menu__item">Settings<span class="b-menu__shortcut">⌘,</span></button></li>
+          <li><hr class="b-menu__separator"></li>
+          <li><button class="b-menu__item b-menu__item--danger">Sign out</button></li>
+        </ul>
+      </details>
+    </header>
+
+    <main class="b-scroll-area b-stack b-gap-4">
+      <article class="b-card b-card--glass">
+        <div class="b-card__header">
+          <div>
+            <div class="b-card__title">Now Playing</div>
+            <div class="b-card__subtitle">Kutoka albamu ya Sukari (Deluxe)</div>
+          </div>
+          <span class="b-badge b-badge--accent">Lossless</span>
+        </div>
+        <div class="b-card__body b-stack b-gap-4">
+          <div class="b-stack b-stack--center">
+            <span class="b-thumb" aria-hidden="true" style="--b-thumb-size: 8.5rem; background: linear-gradient(150deg, var(--b-color-accent), #14273f 55%, #0b1524)"></span>
+          </div>
+          <div class="b-audio b-audio--glass">
+            <div class="b-audio__art" style="background: linear-gradient(150deg, var(--b-color-accent), #0b1524)"></div>
+            <div class="b-audio__meta">
+              <div class="b-audio__title">Sukari</div>
+              <div class="b-audio__artist">Zuchu · WCB Wasafi</div>
+              <div class="b-waveform" aria-hidden="true">
+                <i style="--v: 0.25" class="is-played"></i><i style="--v: 0.45" class="is-played"></i><i style="--v: 0.7" class="is-played"></i><i style="--v: 0.55" class="is-played"></i><i style="--v: 0.85" class="is-played"></i><i style="--v: 1" class="is-played"></i><i style="--v: 0.7" class="is-played"></i><i style="--v: 0.5" class="is-played"></i><i style="--v: 0.65" class="is-played"></i><i style="--v: 0.35" class="is-played"></i><i style="--v: 0.55"></i><i style="--v: 0.8"></i><i style="--v: 0.6"></i><i style="--v: 0.4"></i><i style="--v: 0.75"></i><i style="--v: 0.95"></i><i style="--v: 0.6"></i><i style="--v: 0.45"></i><i style="--v: 0.3"></i><i style="--v: 0.55"></i><i style="--v: 0.7"></i><i style="--v: 0.4"></i><i style="--v: 0.3"></i><i style="--v: 0.2"></i>
+              </div>
+            </div>
+            <div class="b-audio__controls">
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Previous track">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 4.5v11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M15 5.6v8.8a.6.6 0 0 1-.93.5L7.6 10.5a.6.6 0 0 1 0-1l6.47-4.4a.6.6 0 0 1 .93.5Z" fill="currentColor"/></svg>
+              </button>
+              <button class="b-btn b-icon-btn b-btn--primary" aria-label="Play">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7 4.9v10.2a.6.6 0 0 0 .92.5l8-5.1a.6.6 0 0 0 0-1l-8-5.1a.6.6 0 0 0-.92.5Z"/></svg>
+              </button>
+              <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Next track">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M14.5 4.5v11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 5.6v8.8a.6.6 0 0 0 .93.5l6.47-4.4a.6.6 0 0 0 0-1L5.93 5.1a.6.6 0 0 0-.93.5Z" fill="currentColor"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <footer class="b-card__footer">
+          <a class="b-link" href="#">Open queue</a>
+          <span class="b-spacer"></span>
+          <span class="b-caption b-text-tertiary">Inayofuata: Kwangwaru · Harmonize</span>
+        </footer>
+      </article>
+
+      <article class="b-card b-card--glass">
+        <div class="b-card__header">
+          <div class="b-card__title">Recently played</div>
+          <button class="b-btn b-btn--ghost b-btn--sm">History</button>
+        </div>
+        <div class="b-card__body">
+          <ul class="b-app-grid">
+            <li><a class="b-app-tile" href="#">
+              <span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-accent), var(--b-color-indigo))"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M8 15.5V5l7-1.5V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="15.5" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="13" cy="13" r="2" stroke="currentColor" stroke-width="1.5"/></svg></span>
+              <span class="b-app-tile__label">Sukari (Deluxe)</span>
+              <span class="b-app-tile__hint">Zuchu</span>
+            </a></li>
+            <li><a class="b-app-tile" href="#">
+              <span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-pink), var(--b-color-orange))"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M10 3c-2.5 3-4.5 5.2-4.5 7.4a4.5 4.5 0 0 0 9 0C14.5 8.2 12.5 6 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+              <span class="b-app-tile__label">Konde Vibes</span>
+              <span class="b-app-tile__hint">Harmonize</span>
+            </a></li>
+            <li><a class="b-app-tile" href="#">
+              <span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-teal), var(--b-color-cyan))"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M4 8v4h2.5L10 15V5L6.5 8H4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12.5 7.5a3.5 3.5 0 0 1 0 5M14.5 5.5a6 6 0 0 1 0 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              <span class="b-app-tile__label">Taarab Asilia</span>
+              <span class="b-app-tile__hint">Culture Musical Club</span>
+            </a></li>
+            <li><a class="b-app-tile" href="#">
+              <span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-green), var(--b-color-mint))"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><rect x="7.5" y="3.5" width="5" height="9" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 10a4.5 4.5 0 0 0 9 0M10 14.5v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              <span class="b-app-tile__label">Chai ya Asubuhi</span>
+              <span class="b-app-tile__hint">Podcast</span>
+            </a></li>
+            <li><a class="b-app-tile" href="#">
+              <span class="b-app-tile__icon" style="background: linear-gradient(135deg, var(--b-color-indigo), var(--b-color-purple))"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M4 8.5v3M7 6v8M10 4v12M13 6.5v7M16 8.5v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+              <span class="b-app-tile__label">Zilipendwa</span>
+              <span class="b-app-tile__hint">Mixtape</span>
+            </a></li>
+            <li><a class="b-app-tile" href="#">
+              <span class="b-app-tile__icon"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M10 16.5S3.5 12.5 3.5 8.2A3.6 3.6 0 0 1 10 6a3.6 3.6 0 0 1 6.5 2.2c0 4.3-6.5 8.3-6.5 8.3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+              <span class="b-app-tile__label">Nyimbo Pendwa</span>
+              <span class="b-app-tile__hint">Favourites</span>
+            </a></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="b-card b-card--glass">
+        <div class="b-card__header">
+          <div>
+            <div class="b-card__title">Top Songs — Tanzania</div>
+            <div class="b-card__subtitle">Chati ya wiki · imesasishwa leo</div>
+          </div>
+          <button class="b-btn b-btn--ghost b-btn--sm">See all</button>
+        </div>
+        <div class="b-card__body">
+          <ul class="b-list b-list--plain b-list--inset-divider">
+            <li class="b-list-item b-list-item--interactive is-selected">
+              <span class="b-list-item__leading"><span class="b-thumb" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #24344d, #101a28)"></span></span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Sukari</div>
+                <div class="b-list-item__subtitle">Zuchu</div>
+              </div>
+              <span class="b-list-item__trailing"><span class="b-badge b-badge--accent">Playing</span></span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-thumb" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #3d3524, #201b10)"></span></span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Kwangwaru</div>
+                <div class="b-list-item__subtitle">Harmonize ft. Diamond Platnumz</div>
+              </div>
+              <span class="b-list-item__trailing">3:57</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-thumb" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #1f3d2c, #0d1f16)"></span></span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Jeje</div>
+                <div class="b-list-item__subtitle">Diamond Platnumz</div>
+              </div>
+              <span class="b-list-item__trailing">3:04</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-thumb" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #24333d, #101a20)"></span></span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Cinderella</div>
+                <div class="b-list-item__subtitle">Alikiba</div>
+              </div>
+              <span class="b-list-item__trailing">3:51</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-thumb" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #2e2440, #171022)"></span></span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Ninogeshe</div>
+                <div class="b-list-item__subtitle">Nandy</div>
+              </div>
+              <span class="b-list-item__trailing">3:22</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+            <li class="b-list-item b-list-item--interactive">
+              <span class="b-list-item__leading"><span class="b-thumb" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #3d2430, #1f1018)"></span></span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Inama</div>
+                <div class="b-list-item__subtitle">Diamond Platnumz ft. Fally Ipupa</div>
+              </div>
+              <span class="b-list-item__trailing">3:39</span>
+              <span class="b-list-item__chevron" aria-hidden="true">›</span>
+            </li>
+          </ul>
+          <div class="b-list__footer">Barua Music+ huondoa matangazo — TZS 9,000 kwa mwezi.</div>
+        </div>
+      </article>
+
+      <div class="b-hstack">
+        <span class="b-headline">Playlists</span>
+        <span class="b-spacer"></span>
+        <a class="b-link b-link--muted" href="#">Edit</a>
+      </div>
+
+      <div class="b-dashboard">
+        <article class="b-card b-card--glass b-span-4">
+          <div class="b-card__header">
+            <div>
+              <div class="b-card__title">Safari ya Pwani</div>
+              <div class="b-card__subtitle">Dar es Salaam → Bagamoyo</div>
+            </div>
+            <span class="b-badge">18 songs</span>
+          </div>
+          <div class="b-card__body b-stack b-gap-3">
+            <div class="b-hstack b-gap-2">
+              <div class="b-thumb" style="--b-thumb-size: 3rem">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--b-color-accent), var(--b-color-indigo))"></div>
+              </div>
+              <div class="b-thumb" style="--b-thumb-size: 3rem">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--b-color-teal), var(--b-color-cyan))"></div>
+              </div>
+              <div class="b-thumb" style="--b-thumb-size: 3rem">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--b-color-green), var(--b-color-mint))"></div>
+              </div>
+            </div>
+            <p class="b-footnote b-text-secondary">
+              Bongo flava kwa ajili ya barabara — Diamond Platnumz, Alikiba na
+              Nandy hadi ufike Bagamoyo.
+            </p>
+            <div class="b-hstack b-stack--wrap b-gap-2">
+              <span class="b-tag">bongo flava</span>
+              <span class="b-tag">road trip</span>
+            </div>
+          </div>
+          <footer class="b-card__footer">
+            <a class="b-link" href="#">Play all</a>
+            <span class="b-spacer"></span>
+            <span class="b-caption b-text-tertiary">1 hr 12 min</span>
+          </footer>
+        </article>
+
+        <article class="b-card b-card--glass b-span-4">
+          <div class="b-card__header">
+            <div>
+              <div class="b-card__title">Taarab ya Jioni</div>
+              <div class="b-card__subtitle">Zanzibar classics</div>
+            </div>
+            <span class="b-badge b-badge--success b-badge--dot">Shared</span>
+          </div>
+          <div class="b-card__body b-stack b-gap-3">
+            <div class="b-avatar-group">
+              <span class="b-avatar">ZM</span>
+              <span class="b-avatar">BK</span>
+              <span class="b-avatar">JA</span>
+              <span class="b-avatar b-avatar--more">+2</span>
+            </div>
+            <p class="b-footnote b-text-secondary">
+              Bi Kidude, Siti binti Saad na Culture Musical Club — jioni ya
+              Forodhani ndani ya spika zako.
+            </p>
+            <div class="b-hstack b-stack--wrap b-gap-2">
+              <span class="b-tag">taarab</span>
+              <span class="b-tag">zanzibar</span>
+            </div>
+          </div>
+          <footer class="b-card__footer">
+            <a class="b-link" href="#">Play all</a>
+            <span class="b-spacer"></span>
+            <span class="b-caption b-text-tertiary">58 min</span>
+          </footer>
+        </article>
+
+        <article class="b-card b-card--glass b-span-4">
+          <div class="b-card__header">
+            <div class="b-card__title">Music videos</div>
+            <span class="b-badge b-badge--accent">New</span>
+          </div>
+          <div class="b-card__body">
+            <ul class="b-list b-list--plain b-list--inset-divider">
+              <li class="b-list-item b-list-item--interactive">
+                <span class="b-list-item__leading"><span class="b-thumb b-thumb--video" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #3d3524, #201b10)"><span class="b-thumb__duration">4:05</span></span></span>
+                <span class="b-list-item__content">
+                  <span class="b-list-item__title">Kwangwaru — official video</span>
+                  <span class="b-list-item__subtitle">Harmonize ft. Diamond Platnumz</span>
+                </span>
+              </li>
+              <li class="b-list-item b-list-item--interactive">
+                <span class="b-list-item__leading"><span class="b-thumb b-thumb--video" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #24344d, #101a28)"><span class="b-thumb__duration">3:12</span></span></span>
+                <span class="b-list-item__content">
+                  <span class="b-list-item__title">Sukari — live studio session</span>
+                  <span class="b-list-item__subtitle">Zuchu · Wasafi Studios</span>
+                </span>
+              </li>
+              <li class="b-list-item b-list-item--interactive">
+                <span class="b-list-item__leading"><span class="b-thumb b-thumb--video" style="--b-thumb-size: 2.75rem; background: linear-gradient(135deg, #1f3d2c, #0d1f16)"><span class="b-thumb__duration">2:48</span></span></span>
+                <span class="b-list-item__content">
+                  <span class="b-list-item__title">Ninogeshe — behind the scenes</span>
+                  <span class="b-list-item__subtitle">Nandy · Arusha</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

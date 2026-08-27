@@ -1,0 +1,517 @@
+/* ==========================================================================
+   Barua UI — Productivity & App Chrome
+   Dashboard/Workspace shells, Command Center, Kanban, Task, Calendar View,
+   Gantt, Activity/Inspector/Properties panels, Master-Detail, Dock,
+   Status Bar. Interaction: drag & drop, selection.
+   ========================================================================== */
+
+@layer components {
+  /* ---- App shells ------------------------------------------------------------
+     .b-workspace = topbar + sidebar + main (+ inspector)
+  ----------------------------------------------------------------------------- */
+  .b-workspace {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "topbar topbar topbar"
+      "sidebar main inspector"
+      "statusbar statusbar statusbar";
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .b-workspace > .b-topnav { grid-area: topbar; }
+  .b-workspace > .b-sidebar, .b-workspace > .b-rail { grid-area: sidebar; height: 100%; }
+  .b-workspace__main {
+    grid-area: main;
+    overflow: auto;
+    padding: var(--b-space-6);
+  }
+  .b-workspace > .b-inspector { grid-area: inspector; }
+  .b-workspace > .b-statusbar { grid-area: statusbar; }
+
+  /* Dashboard grid */
+  .b-dashboard {
+    display: grid;
+    gap: var(--b-space-4);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .b-dashboard > * { grid-column: span 12; }
+  @media (min-width: 768px) {
+    .b-dashboard > .b-span-3 { grid-column: span 3; }
+    .b-dashboard > .b-span-4 { grid-column: span 4; }
+    .b-dashboard > .b-span-6 { grid-column: span 6; }
+    .b-dashboard > .b-span-8 { grid-column: span 8; }
+    .b-dashboard > .b-span-9 { grid-column: span 9; }
+  }
+
+  /* Command center hero (search-first) */
+  .b-command-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--b-space-4);
+    padding: var(--b-space-16) var(--b-space-4);
+    text-align: center;
+  }
+  .b-command-center .b-input-group { width: min(34rem, 100%); }
+
+  /* ---- Kanban ------------------------------------------------------------------ */
+  .b-kanban {
+    display: flex;
+    gap: var(--b-space-4);
+    align-items: flex-start;
+    overflow-x: auto;
+    padding-block-end: var(--b-space-4);
+  }
+  .b-kanban-col {
+    flex: 0 0 17rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-2);
+    max-height: 100%;
+    padding: var(--b-space-3);
+    background: var(--b-fill-quaternary);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+  }
+  .b-kanban-col__header {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    padding-inline: var(--b-space-1);
+    font-size: var(--b-text-footnote);
+    font-weight: var(--b-weight-semibold);
+  }
+  .b-kanban-col__count {
+    color: var(--b-text-tertiary);
+    font-weight: var(--b-weight-regular);
+  }
+  .b-kanban-col__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-2);
+    min-height: 2rem;
+    overflow-y: auto;
+  }
+  .b-kanban-col.is-dropover {
+    background: var(--b-color-accent-soft);
+    border-color: var(--b-color-accent);
+    border-style: dashed;
+  }
+
+  /* ---- Task card / Task list ----------------------------------------------------- */
+  .b-task {
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-2);
+    padding: var(--b-space-3);
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-shadow-xs);
+    cursor: grab;
+    transition: box-shadow var(--b-duration-fast), translate var(--b-duration-fast) var(--b-ease-out);
+  }
+  .b-task:hover { box-shadow: var(--b-shadow-sm); translate: 0 -1px; }
+  .b-task.is-dragging { opacity: 0.55; rotate: 2deg; cursor: grabbing; }
+  .b-task__title { font-size: var(--b-text-footnote); font-weight: var(--b-weight-medium); }
+  .b-task__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    font-size: var(--b-text-caption);
+    color: var(--b-text-tertiary);
+  }
+  .b-task__meta .b-avatar { --b-avatar-size: 1.25rem; margin-inline-start: auto; }
+
+  .b-task-list { display: flex; flex-direction: column; }
+  .b-task-row {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-3);
+    padding: var(--b-space-2) var(--b-space-3);
+    border-radius: var(--b-radius-md);
+    font-size: var(--b-text-subheadline);
+  }
+  .b-task-row:hover { background: var(--b-fill-quaternary); }
+  .b-task-row.is-done .b-task-row__title {
+    color: var(--b-text-tertiary);
+    text-decoration: line-through;
+  }
+  .b-task-row__title { flex: 1; min-width: 0; }
+  .b-task-row__due {
+    font-size: var(--b-text-caption);
+    color: var(--b-text-tertiary);
+    font-variant-numeric: tabular-nums;
+  }
+  .b-task-row__due.is-overdue { color: var(--b-color-danger); font-weight: var(--b-weight-medium); }
+
+  /* ---- Calendar View (month grid) -------------------------------------------------- */
+  .b-calview {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+    overflow: hidden;
+  }
+  .b-calview__head {
+    padding: var(--b-space-2);
+    font-size: var(--b-text-caption);
+    font-weight: var(--b-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--b-tracking-wide);
+    color: var(--b-text-tertiary);
+    text-align: center;
+    background: var(--b-fill-quaternary);
+    border-bottom: 1px solid var(--b-separator);
+  }
+  .b-calview__cell {
+    min-height: 6rem;
+    padding: var(--b-space-1);
+    border-bottom: 1px solid var(--b-separator);
+    border-inline-end: 1px solid var(--b-separator);
+    font-size: var(--b-text-caption);
+  }
+  .b-calview__cell:nth-child(7n) { border-inline-end: none; }
+  .b-calview__date {
+    display: inline-grid;
+    place-items: center;
+    width: 1.5rem; height: 1.5rem;
+    font-variant-numeric: tabular-nums;
+    border-radius: 50%;
+    color: var(--b-text-secondary);
+  }
+  .b-calview__cell.is-today .b-calview__date {
+    background: var(--b-color-accent);
+    color: var(--b-color-on-accent);
+    font-weight: var(--b-weight-semibold);
+  }
+  .b-calview__cell.is-other-month { background: var(--b-fill-quaternary); }
+  .b-calview__cell.is-other-month .b-calview__date { color: var(--b-text-quaternary); }
+  .b-event {
+    display: block;
+    margin-block-start: 2px;
+    padding: 0.1rem var(--b-space-1);
+    font-size: var(--b-text-caption2);
+    font-weight: var(--b-weight-medium);
+    color: var(--b-color-accent-text);
+    background: var(--b-color-accent-soft);
+    border-inline-start: 2px solid var(--b-color-accent);
+    border-radius: var(--b-radius-xs);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .b-event--green { color: var(--b-color-success); background: var(--b-color-success-soft); border-color: var(--b-color-success); }
+  .b-event--orange { color: light-dark(#b46200, var(--b-color-warning)); background: var(--b-color-warning-soft); border-color: var(--b-color-warning); }
+  .b-event--purple { color: var(--b-color-purple); background: var(--b-color-purple-soft); border-color: var(--b-color-purple); }
+
+  /* ---- Gantt View --------------------------------------------------------------------- */
+  .b-gantt {
+    display: grid;
+    grid-template-columns: minmax(9rem, max-content) 1fr;
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+    overflow: hidden;
+    font-size: var(--b-text-footnote);
+  }
+  .b-gantt__label {
+    padding: var(--b-space-2) var(--b-space-3);
+    border-bottom: 1px solid var(--b-separator);
+    border-inline-end: 1px solid var(--b-separator);
+    white-space: nowrap;
+  }
+  .b-gantt__row {
+    position: relative;
+    border-bottom: 1px solid var(--b-separator);
+    background:
+      repeating-linear-gradient(90deg,
+        transparent 0 calc(100% / var(--b-gantt-units, 12) - 1px),
+        var(--b-separator) calc(100% / var(--b-gantt-units, 12) - 1px)
+        calc(100% / var(--b-gantt-units, 12)));
+  }
+  .b-gantt__bar {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    inset-inline-start: var(--start, 0%);
+    width: var(--len, 20%);
+    height: 1.1rem;
+    background: var(--b-chart-color, var(--b-chart-1));
+    border-radius: var(--b-radius-full);
+    cursor: pointer;
+    transition: filter var(--b-duration-fast);
+  }
+  .b-gantt__bar:hover { filter: brightness(1.1); }
+  .b-gantt__bar > i {
+    position: absolute;
+    inset: 0;
+    width: var(--done, 0%);
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: inherit;
+  }
+
+  /* ---- Panels: Activity / Inspector / Properties / Detail ------------------------------- */
+  .b-inspector {
+    display: flex;
+    flex-direction: column;
+    width: var(--b-inspector-w, 19rem);
+    background: var(--b-surface);
+    border-inline-start: 1px solid var(--b-separator);
+    overflow-y: auto;
+  }
+  .b-inspector__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--b-space-3) var(--b-space-4);
+    font-size: var(--b-text-footnote);
+    font-weight: var(--b-weight-semibold);
+    border-bottom: 1px solid var(--b-separator);
+    position: sticky;
+    top: 0;
+    background: inherit;
+  }
+  .b-inspector__section {
+    padding: var(--b-space-4);
+    border-bottom: 1px solid var(--b-separator);
+  }
+  .b-inspector__section > h6 { margin-block-end: var(--b-space-3); }
+
+  /* Properties rows (label: control) */
+  .b-props { display: flex; flex-direction: column; gap: var(--b-space-2); }
+  .b-props__row {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    align-items: center;
+    gap: var(--b-space-2);
+    font-size: var(--b-text-footnote);
+  }
+  .b-props__key { color: var(--b-text-secondary); }
+  .b-props__row .b-input, .b-props__row .b-select { height: var(--b-control-h-sm); font-size: var(--b-text-footnote); }
+
+  /* ---- Master-Detail ---------------------------------------------------------------------- */
+  .b-master-detail {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.38fr) 1fr;
+    min-height: 24rem;
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+    overflow: hidden;
+  }
+  .b-master-detail__list {
+    border-inline-end: 1px solid var(--b-separator);
+    overflow-y: auto;
+  }
+  .b-master-detail__detail { padding: var(--b-space-6); overflow-y: auto; }
+  @media (max-width: 767px) {
+    .b-master-detail { grid-template-columns: 1fr; }
+    .b-master-detail__list { border-inline-end: none; }
+    .b-master-detail.is-detail-open .b-master-detail__list { display: none; }
+    .b-master-detail:not(.is-detail-open) .b-master-detail__detail { display: none; }
+  }
+
+  /* ---- App grid (iOS home screen) ------------------------------------------
+     <ul class="b-app-grid"><li><a class="b-app-tile">…icon + label…</a></li>
+  ----------------------------------------------------------------------------- */
+  .b-app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
+    gap: var(--b-space-5) var(--b-space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .b-app-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--b-space-2);
+    text-align: center;
+    color: var(--b-text);
+    cursor: pointer;
+  }
+  .b-app-tile:hover { text-decoration: none; }
+  .b-app-tile__icon {
+    display: grid;
+    place-items: center;
+    width: 3.75rem;
+    height: 3.75rem;
+    color: #fff;
+    background: var(--b-color-accent);
+    border-radius: 1.15rem;
+    box-shadow: var(--b-glass-edge), var(--b-shadow-sm);
+    transition: scale var(--b-duration-fast) var(--b-ease-bounce);
+  }
+  .b-app-tile:hover .b-app-tile__icon { scale: 1.06; }
+  .b-app-tile:active .b-app-tile__icon { scale: 0.94; }
+  .b-app-tile__label {
+    font-size: var(--b-text-caption);
+    font-weight: var(--b-weight-medium);
+    line-height: 1.25;
+  }
+  .b-app-tile__hint { font-size: var(--b-text-caption2); color: var(--b-text-tertiary); }
+  .b-app-tile.is-soon .b-app-tile__icon { opacity: 0.55; filter: saturate(0.6); }
+  .b-app-tile.is-soon .b-app-tile__label { color: var(--b-text-secondary); }
+
+  /* ---- Dock ---------------------------------------------------------------------------------- */
+  .b-dock {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: var(--b-space-3);
+    display: flex;
+    justify-content: center;
+    z-index: var(--b-z-sticky);
+    pointer-events: none;
+  }
+  .b-dock__tray {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--b-space-2);
+    max-width: calc(100vw - var(--b-space-3) * 2);
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: var(--b-space-2);
+    background: var(--b-material-thin-bg);
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-xl);
+    box-shadow: var(--b-glass-edge), var(--b-elevation-3);
+    pointer-events: auto;
+  }
+  .b-dock__tray::-webkit-scrollbar { display: none; }
+  .b-dock__item {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.75rem; height: 2.75rem;
+    font-size: 1.35rem;
+    background: none;
+    border: none;
+    border-radius: var(--b-radius-md);
+    cursor: pointer;
+    transition: scale var(--b-duration-fast) var(--b-ease-bounce),
+                translate var(--b-duration-fast) var(--b-ease-bounce);
+  }
+  .b-dock__item:hover { scale: 1.28; translate: 0 -6px; }
+  .b-dock__item.is-active { position: relative; }
+  .b-dock__item.is-active::after {
+    content: "";
+    position: absolute;
+    inset-block-end: -0.3rem;
+    width: 0.25rem; height: 0.25rem;
+    border-radius: 50%;
+    background: var(--b-text-secondary);
+  }
+
+
+  /* ---- Ornament (visionOS-style glass attachment) --------------------------
+     A floating glass control cluster attached to a panel's edge. Host gets
+     .b-ornament-host; the ornament hangs half-outside the edge it names.
+  ----------------------------------------------------------------------------- */
+  .b-ornament-host { position: relative; overflow: visible; }
+  .b-ornament {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-1);
+    padding: var(--b-space-1);
+    background: var(--b-material-thin-bg);
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-full);
+    box-shadow: var(--b-glass-edge), var(--b-shadow-md);
+  }
+  .b-ornament--bottom {
+    inset-inline-start: 50%;
+    inset-block-end: 0;
+    translate: -50% 50%;
+  }
+  .b-ornament--top {
+    inset-inline-start: 50%;
+    inset-block-start: 0;
+    translate: -50% -50%;
+  }
+  .b-ornament--start {
+    inset-block-start: 50%;
+    inset-inline-start: 0;
+    translate: -50% -50%;
+    flex-direction: column;
+  }
+  .b-ornament--end {
+    inset-block-start: 50%;
+    inset-inline-end: 0;
+    translate: 50% -50%;
+    flex-direction: column;
+  }
+
+  /* ---- Status Bar ------------------------------------------------------------------------------ */
+  .b-statusbar {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-4);
+    padding: var(--b-space-1) var(--b-space-3);
+    font-size: var(--b-text-caption);
+    color: var(--b-text-secondary);
+    background: var(--b-surface-2);
+    border-top: 1px solid var(--b-separator);
+    font-variant-numeric: tabular-nums;
+  }
+  .b-statusbar__item { display: inline-flex; align-items: center; gap: var(--b-space-1); }
+
+  /* ---- Drag & Drop / Selection ------------------------------------------------------------------ */
+  .b-dropzone {
+    border: 2px dashed transparent;
+    border-radius: var(--b-radius-lg);
+    transition: border-color var(--b-duration-fast), background var(--b-duration-fast);
+  }
+  .b-dropzone.is-dropover {
+    border-color: var(--b-color-accent);
+    background: var(--b-color-accent-soft);
+  }
+  .b-drag-handle {
+    color: var(--b-text-quaternary);
+    cursor: grab;
+    touch-action: none;
+    background: none;
+    border: none;
+    padding: var(--b-space-1);
+    border-radius: var(--b-radius-xs);
+  }
+  .b-drag-handle:hover { color: var(--b-text-secondary); background: var(--b-fill-quaternary); }
+  .b-drag-handle:active { cursor: grabbing; }
+  .b-drag-ghost { opacity: 0.5; }
+  .b-drop-indicator {
+    height: 2px;
+    margin-block: -1px;
+    background: var(--b-color-accent);
+    border-radius: var(--b-radius-full);
+    box-shadow: 0 0 0 2px var(--b-color-accent-soft);
+  }
+
+  .b-selectable { user-select: none; cursor: default; }
+  .b-selectable.is-selected {
+    background: var(--b-color-accent-soft);
+    box-shadow: inset 0 0 0 1.5px var(--b-color-accent);
+    border-radius: var(--b-radius-md);
+  }
+  .b-selection-rect {
+    position: fixed;
+    z-index: var(--b-z-overlay);
+    background: color-mix(in srgb, var(--b-color-accent) 12%, transparent);
+    border: 1px solid var(--b-color-accent);
+    pointer-events: none;
+  }
+  .b-selection-count {
+    font-size: var(--b-text-footnote);
+    font-weight: var(--b-weight-semibold);
+    color: var(--b-color-accent-text);
+  }
+}

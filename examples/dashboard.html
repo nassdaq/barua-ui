@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en" data-vt>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard example — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* No page styles — the example is components only. */
+  </style>
+</head>
+<body>
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <div class="b-workspace">
+    <header class="b-topnav">
+      <a class="b-topnav__brand" href="#">
+        <span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M4.5 4.5c.6-.8 1.7-1 2.5-.4l1.6 1.2c.8.6 1 1.7.4 2.5l-.7.9a10 10 0 0 0 3 3l.9-.7c.8-.6 1.9-.4 2.5.4l1.2 1.6c.6.8.4 1.9-.4 2.5l-1 .8c-1 .7-2.3.8-3.4.2a19 19 0 0 1-7.6-7.6c-.6-1.1-.5-2.4.2-3.4l.8-1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </span>
+        Sema
+      </a>
+      <span class="b-badge b-badge--accent b-hide-mobile">Console</span>
+      <span class="b-spacer"></span>
+      <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#x-cmdk">Search&nbsp;<kbd>⌘K</kbd></button>
+      <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass" title="Liquid Glass">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <details class="b-dropdown b-dropdown--end">
+        <summary class="b-profile-trigger" aria-label="Account">
+          <span class="b-avatar b-avatar--sm b-avatar--online">AH</span>
+        </summary>
+        <ul class="b-menu">
+          <li><button class="b-menu__item">Profile</button></li>
+          <li><button class="b-menu__item">Preferences<span class="b-menu__shortcut">⌘,</span></button></li>
+          <li><hr class="b-menu__separator"></li>
+          <li><button class="b-menu__item b-menu__item--danger">Sign out</button></li>
+        </ul>
+      </details>
+    </header>
+
+    <nav class="b-rail b-hide-mobile" aria-label="Primary">
+      <a class="b-rail__item is-active" aria-current="page" href="#">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 8.5 10 3l6.5 5.5v7a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span>Overview</span>
+      </a>
+      <a class="b-rail__item" href="#">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 4.5c.6-.8 1.7-1 2.5-.4l1.6 1.2c.8.6 1 1.7.4 2.5l-.7.9a10 10 0 0 0 3 3l.9-.7c.8-.6 1.9-.4 2.5.4l1.2 1.6c.6.8.4 1.9-.4 2.5l-1 .8c-1 .7-2.3.8-3.4.2a19 19 0 0 1-7.6-7.6c-.6-1.1-.5-2.4.2-3.4l.8-1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span>Calls</span>
+      </a>
+      <a class="b-rail__item" href="#">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="6.5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 16.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Agents</span>
+      </a>
+      <a class="b-rail__item" href="#">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 16.5v-6M10 16.5v-13M16.5 16.5v-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Reports</span>
+      </a>
+      <a class="b-rail__item" href="#">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 6.5h6m4 0h2M4 13.5h2m4 0h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="13.5" r="1.8" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <main class="b-workspace__main" id="main">
+      <div class="b-container b-container--xl b-stack b-gap-6" style="padding-block: var(--b-space-2) var(--b-space-6)">
+        <header class="b-hstack b-stack--wrap b-gap-3">
+          <div class="b-grow">
+            <div class="b-overline">Sema · Call center</div>
+            <h1 class="b-title1">Overview</h1>
+          </div>
+          <div class="b-segmented" role="group" aria-label="Range">
+            <button class="b-segmented__item">Today</button>
+            <button class="b-segmented__item is-active">Week</button>
+            <button class="b-segmented__item">Month</button>
+          </div>
+          <button class="b-btn b-btn--primary b-btn--liquid">New campaign</button>
+        </header>
+
+        <div class="b-dashboard">
+          <article class="b-card b-span-3"><div class="b-card__body">
+            <div class="b-stat">
+              <span class="b-stat__label">Calls this week</span>
+              <span class="b-stat__value">1,284</span>
+              <span class="b-stat__delta is-up">▲ 9% vs last week</span>
+            </div>
+          </div></article>
+          <article class="b-card b-span-3"><div class="b-card__body">
+            <div class="b-stat">
+              <span class="b-stat__label">Answer rate</span>
+              <span class="b-stat__value">94%</span>
+              <span class="b-stat__delta is-up">▲ 2 pts</span>
+            </div>
+          </div></article>
+          <article class="b-card b-span-3"><div class="b-card__body">
+            <div class="b-stat">
+              <span class="b-stat__label">Avg handle time</span>
+              <span class="b-stat__value">3m 42s</span>
+              <span class="b-stat__delta is-down">▼ 8%</span>
+            </div>
+          </div></article>
+          <article class="b-card b-span-3"><div class="b-card__body">
+            <div class="b-stat">
+              <span class="b-stat__label">CSAT</span>
+              <span class="b-stat__value">4.8</span>
+            </div>
+            <svg class="b-sparkline" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 18 L14 14 L28 16 L42 10 L56 12 L70 7 L84 9 L100 4" />
+            </svg>
+          </div></article>
+
+          <article class="b-card b-span-8">
+            <div class="b-card__header">
+              <div>
+                <div class="b-card__title">Calls by day</div>
+                <div class="b-card__subtitle">Answered vs missed · this week</div>
+              </div>
+              <ul class="b-legend">
+                <li><span class="b-legend__swatch"></span>Answered</li>
+                <li><span class="b-legend__swatch" style="background: var(--b-chart-4)"></span>Missed</li>
+              </ul>
+            </div>
+            <div class="b-card__body">
+              <div class="b-columns b-columns--rounded" style="--b-chart-h: 11rem; position: relative">
+                <div class="b-rule b-rule--accent" style="bottom: calc(1.4rem + (11rem - 1.4rem) * 0.75)"><span class="b-rule__label">Target 75%</span></div>
+                <div class="b-columns__bar" style="--v: 62%" data-label="Mon"><i style="--v: 12%; --b-chart-color: var(--b-chart-4)"></i></div>
+                <div class="b-columns__bar" style="--v: 78%" data-label="Tue"><i style="--v: 9%; --b-chart-color: var(--b-chart-4)"></i></div>
+                <div class="b-columns__bar" style="--v: 71%" data-label="Wed"><i style="--v: 14%; --b-chart-color: var(--b-chart-4)"></i></div>
+                <div class="b-columns__bar" style="--v: 86%" data-label="Thu"><i style="--v: 7%; --b-chart-color: var(--b-chart-4)"></i></div>
+                <div class="b-columns__bar" style="--v: 92%" data-label="Fri"><i style="--v: 6%; --b-chart-color: var(--b-chart-4)"></i></div>
+                <div class="b-columns__bar" style="--v: 44%" data-label="Sat"><i style="--v: 5%; --b-chart-color: var(--b-chart-4)"></i></div>
+                <div class="b-columns__bar" style="--v: 31%" data-label="Sun"><i style="--v: 4%; --b-chart-color: var(--b-chart-4)"></i></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="b-card b-span-4">
+            <div class="b-card__header"><div class="b-card__title">Outcome mix</div></div>
+            <div class="b-card__body b-stack b-stack--center b-gap-4">
+              <div class="b-donut">
+                <div class="b-pie" style="--b-pie-size: 10rem; --b-pie: var(--b-chart-1) 0 58%, var(--b-chart-2) 58% 79%, var(--b-chart-4) 79% 91%, var(--b-chart-5) 91% 100%"></div>
+                <div class="b-donut__center">
+                  <div class="b-stat__value b-tabular-nums">58%</div>
+                  <div class="b-caption b-text-secondary">Resolved</div>
+                </div>
+              </div>
+              <ul class="b-legend">
+                <li><span class="b-legend__swatch"></span>Resolved</li>
+                <li><span class="b-legend__swatch" style="background: var(--b-chart-2)"></span>Follow-up</li>
+                <li><span class="b-legend__swatch" style="background: var(--b-chart-4)"></span>Missed</li>
+                <li><span class="b-legend__swatch" style="background: var(--b-chart-5)"></span>Voicemail</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="b-card b-span-4">
+            <div class="b-card__header"><div class="b-card__title">Top agents</div></div>
+            <div class="b-card__body">
+              <div class="b-bars" style="--b-bars-label-w: 5.5rem">
+                <div class="b-bars__row"><span class="b-bars__label">Asha</span><div class="b-bars__track"><i style="--v: 92%"></i></div><span class="b-bars__value">312</span></div>
+                <div class="b-bars__row"><span class="b-bars__label">Baraka</span><div class="b-bars__track"><i style="--v: 81%"></i></div><span class="b-bars__value">274</span></div>
+                <div class="b-bars__row"><span class="b-bars__label">Neema</span><div class="b-bars__track"><i style="--v: 68%"></i></div><span class="b-bars__value">231</span></div>
+                <div class="b-bars__row"><span class="b-bars__label">Juma</span><div class="b-bars__track"><i style="--v: 55%"></i></div><span class="b-bars__value">186</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="b-card b-card--flush b-span-4">
+            <div class="b-card__body">
+              <div class="b-list__header">Recent activity</div>
+              <ul class="b-list b-list--plain b-list--inset-divider">
+                <li class="b-list-item">
+                  <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--green"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5 8.5 15 16 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                  <span class="b-list-item__content"><span class="b-list-item__title">Campaign "Karibu" completed</span><span class="b-list-item__subtitle">1,204 of 1,210 reached</span></span>
+                  <span class="b-list-item__trailing">2m</span>
+                </li>
+                <li class="b-list-item">
+                  <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--solid"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6.5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 16.5c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+                  <span class="b-list-item__content"><span class="b-list-item__title">Neema joined shift B</span></span>
+                  <span class="b-list-item__trailing">18m</span>
+                </li>
+                <li class="b-list-item">
+                  <span class="b-list-item__leading"><span class="b-icon-tile b-icon-tile--sm b-icon-tile--orange"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3.5 18 17H2L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span></span>
+                  <span class="b-list-item__content"><span class="b-list-item__title">Queue wait above 60s</span><span class="b-list-item__subtitle">Auto-scaled to 6 lines</span></span>
+                  <span class="b-list-item__trailing">1h</span>
+                </li>
+              </ul>
+              <div class="b-list__footer">Everything else is in the audit log.</div>
+            </div>
+          </article>
+
+          <article class="b-card b-span-4">
+            <div class="b-card__header"><div class="b-card__title">Recording storage</div></div>
+            <div class="b-card__body b-stack b-gap-4">
+              <div class="b-gauge-linear">
+                <div class="b-gauge-linear__track"><span class="b-gauge-linear__marker" style="--v: 72%"></span></div>
+                <div class="b-gauge-linear__labels"><span>0 GB</span><span>50 GB</span></div>
+              </div>
+              <div class="b-labeled">
+                <span class="b-labeled__label">Retention</span>
+                <span class="b-labeled__value">90 days</span>
+              </div>
+              <div class="b-labeled">
+                <span class="b-labeled__label">Auto-archive</span>
+                <span class="b-labeled__value"><label class="b-switch b-switch--sm"><input type="checkbox" checked></label></span>
+              </div>
+            </div>
+          </article>
+
+          <div class="b-span-4">
+            <div class="b-tip">
+              <span class="b-tip__icon">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5v2M4.7 4.7l1.4 1.4M2.5 10h2M15.3 4.7l-1.4 1.4M17.5 10h-2M7.5 15.5h5M8.5 18h3M10 6a4 4 0 0 1 2.5 7.1c-.5.4-.8 1-.8 1.6v.3h-3.4v-.3c0-.6-.3-1.2-.8-1.6A4 4 0 0 1 10 6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="b-tip__content">
+                <span class="b-tip__title">Pin your busiest queue</span>
+                <span class="b-tip__desc">Drag any card to the top row — the layout remembers per person.</span>
+                <span class="b-tip__actions">
+                  <button class="b-link">Show me</button>
+                  <button class="b-link b-link--muted">Not now</button>
+                </span>
+              </span>
+              <button class="b-tip__close" aria-label="Dismiss" data-b-dismiss>✕</button>
+            </div>
+          </div>
+
+          <article class="b-card b-card--flush">
+            <div class="b-card__header">
+              <div class="b-card__title">Latest calls</div>
+              <button class="b-btn b-btn--ghost b-btn--sm">View all</button>
+            </div>
+            <div class="b-card__body">
+              <div class="b-table-wrap"><table class="b-table b-table--hover">
+                <thead><tr><th>Caller</th><th>Agent</th><th>Outcome</th><th class="b-table__num">Duration</th><th>Time</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><span class="b-hstack b-gap-2"><span class="b-avatar b-avatar--xs">MK</span>+255 754 · Mwanza</span></td>
+                    <td>Asha</td>
+                    <td><span class="b-badge b-badge--success">Resolved</span></td>
+                    <td class="b-table__num">4m 12s</td>
+                    <td>09:41</td>
+                  </tr>
+                  <tr>
+                    <td><span class="b-hstack b-gap-2"><span class="b-avatar b-avatar--xs">JD</span>+255 713 · Dar</span></td>
+                    <td>Baraka</td>
+                    <td><span class="b-badge b-badge--accent">Follow-up</span></td>
+                    <td class="b-table__num">2m 03s</td>
+                    <td>09:38</td>
+                  </tr>
+                  <tr class="is-selected">
+                    <td><span class="b-hstack b-gap-2"><span class="b-avatar b-avatar--xs">FN</span>+255 682 · Arusha</span></td>
+                    <td>Neema</td>
+                    <td><span class="b-badge b-badge--warning">Voicemail</span></td>
+                    <td class="b-table__num">0m 48s</td>
+                    <td>09:31</td>
+                  </tr>
+                  <tr>
+                    <td><span class="b-hstack b-gap-2"><span class="b-avatar b-avatar--xs">SO</span>+255 745 · Dodoma</span></td>
+                    <td>Juma</td>
+                    <td><span class="b-badge b-badge--danger">Missed</span></td>
+                    <td class="b-table__num">—</td>
+                    <td>09:27</td>
+                  </tr>
+                </tbody>
+              </table></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <aside class="b-inspector b-hide-mobile" aria-label="Shift details">
+      <div class="b-inspector__header">Shift B <span class="b-status b-status--online b-status--pulse">Live</span></div>
+      <div class="b-inspector__section">
+        <h6>On duty</h6>
+        <div class="b-avatar-group">
+          <span class="b-avatar b-avatar--sm b-avatar--online">AH</span>
+          <span class="b-avatar b-avatar--sm b-avatar--online">BO</span>
+          <span class="b-avatar b-avatar--sm">NM</span>
+          <span class="b-avatar b-avatar--sm b-avatar--more">+3</span>
+        </div>
+      </div>
+      <div class="b-inspector__section">
+        <h6>Queue health</h6>
+        <div class="b-progress-chart">
+          <div class="b-progress-chart__row">
+            <div class="b-progress-chart__head"><span>Support</span><span>32s wait</span></div>
+            <div class="b-progress"><div class="b-progress__fill" style="width: 40%"></div></div>
+          </div>
+          <div class="b-progress-chart__row">
+            <div class="b-progress-chart__head"><span>Sales</span><span>58s wait</span></div>
+            <div class="b-progress b-progress--warning"><div class="b-progress__fill" style="width: 74%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="b-inspector__section">
+        <h6>Shift</h6>
+        <dl class="b-dl b-dl--stacked">
+          <dt>Lead</dt><dd>Asha Hassan</dd>
+          <dt>Window</dt><dd>07:00 – 15:00 EAT</dd>
+        </dl>
+      </div>
+    </aside>
+      <footer class="b-statusbar">
+      <span class="b-statusbar__item"><span class="b-status b-status--online">Connected</span></span>
+      <span class="b-statusbar__item">6 lines active</span>
+      <span class="b-spacer"></span>
+      <span class="b-statusbar__item">99.98% uptime</span>
+    </footer>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="x-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search Sema…" data-b-filter="#x-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list">
+      <li class="b-cmdk__group-label">Go to</li>
+      <li><button class="b-cmdk__item" data-b-filter-item>Overview<kbd>G O</kbd></button></li>
+      <li><button class="b-cmdk__item" data-b-filter-item>Calls</button></li>
+      <li><button class="b-cmdk__item" data-b-filter-item>Agents</button></li>
+      <li><button class="b-cmdk__item" data-b-filter-item>Reports</button></li>
+      <li class="b-cmdk__group-label">Actions</li>
+      <li><button class="b-cmdk__item" data-b-filter-item>New campaign<kbd>⌘N</kbd></button></li>
+      <li><button class="b-cmdk__item" data-b-filter-item>Export week to CSV</button></li>
+    </ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

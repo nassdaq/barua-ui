@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Specialized — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Components</div>
+        <h1>Specialized</h1>
+        <p class="docs-hero__lede">
+          The power-user layer. Calendars, pickers, filters, bulk selection,
+          file browsing and audit trails — dense, keyboard-friendly patterns
+          that turn a pretty interface into a working tool. Each one composes
+          from the same tokens and primitives as the rest of Barua, so the
+          heavy screens still feel light.
+        </p>
+      </header>
+
+      <section class="docs-section" id="command-palette">
+        <h2>Command Palette</h2>
+        <p>
+          The <code>.b-cmdk</code> glass palette — full behaviour, ⌘K wiring
+          and filtering live in <a href="navigation.html#command-menu">Navigation
+          › Command Menu</a>. Shown here as a static snapshot of the anatomy:
+          input, grouped list, active item, footer hints.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div class="b-cmdk">
+            <input class="b-cmdk__input" type="search" placeholder="Type a command or search…">
+            <ul class="b-cmdk__list">
+              <li class="b-cmdk__group-label">Actions</li>
+              <li><button class="b-cmdk__item is-active">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                New invoice<kbd>⌘N</kbd>
+              </button></li>
+              <li><button class="b-cmdk__item">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                Assign to Amina Hassan<kbd>⌘⇧A</kbd>
+              </button></li>
+              <li class="b-cmdk__group-label">Go to</li>
+              <li><button class="b-cmdk__item">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                Dar es Salaam branch
+              </button></li>
+            </ul>
+            <div class="b-cmdk__footer"><span><kbd>↑↓</kbd> navigate</span><span><kbd>↵</kbd> select</span><span><kbd>esc</kbd> close</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="calendar">
+        <h2>Calendar</h2>
+        <p>
+          A full month panel. <code>.b-calendar__header</code> pairs the month
+          label with ghost icon buttons; the <code>__grid</code> lays seven
+          <code>__weekday</code> cells over circular <code>__day</code>
+          buttons. Neighbouring-month days take <code>.is-muted</code>, today
+          takes <code>.is-today</code> plus <code>aria-current="date"</code>,
+          and unavailable days are simply <code>disabled</code>.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div class="b-calendar">
+            <div class="b-calendar__header">
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Previous month">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m12 5-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <span class="b-calendar__month">October 2026</span>
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Next month">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m8 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="b-calendar__grid">
+              <div class="b-calendar__weekday">Mo</div>
+              <div class="b-calendar__weekday">Tu</div>
+              <div class="b-calendar__weekday">We</div>
+              <div class="b-calendar__weekday">Th</div>
+              <div class="b-calendar__weekday">Fr</div>
+              <div class="b-calendar__weekday">Sa</div>
+              <div class="b-calendar__weekday">Su</div>
+              <button class="b-calendar__day is-muted">28</button>
+              <button class="b-calendar__day is-muted">29</button>
+              <button class="b-calendar__day is-muted">30</button>
+              <button class="b-calendar__day">1</button>
+              <button class="b-calendar__day">2</button>
+              <button class="b-calendar__day">3</button>
+              <button class="b-calendar__day">4</button>
+              <button class="b-calendar__day">5</button>
+              <button class="b-calendar__day is-today" aria-current="date">6</button>
+              <button class="b-calendar__day">7</button>
+              <button class="b-calendar__day">8</button>
+              <button class="b-calendar__day">9</button>
+              <button class="b-calendar__day">10</button>
+              <button class="b-calendar__day">11</button>
+              <button class="b-calendar__day">12</button>
+              <button class="b-calendar__day">13</button>
+              <button class="b-calendar__day">14</button>
+              <button class="b-calendar__day is-selected" aria-pressed="true">15</button>
+              <button class="b-calendar__day">16</button>
+              <button class="b-calendar__day">17</button>
+              <button class="b-calendar__day">18</button>
+              <button class="b-calendar__day">19</button>
+              <button class="b-calendar__day">20</button>
+              <button class="b-calendar__day">21</button>
+              <button class="b-calendar__day">22</button>
+              <button class="b-calendar__day">23</button>
+              <button class="b-calendar__day" disabled>24</button>
+              <button class="b-calendar__day">25</button>
+              <button class="b-calendar__day">26</button>
+              <button class="b-calendar__day">27</button>
+              <button class="b-calendar__day">28</button>
+              <button class="b-calendar__day">29</button>
+              <button class="b-calendar__day">30</button>
+              <button class="b-calendar__day">31</button>
+              <button class="b-calendar__day is-muted">1</button>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Wrap the panel in
+          <code>role="grid"</code> with each week as a <code>role="row"</code>
+          of <code>role="gridcell"</code> day buttons, and move focus with
+          arrow keys (one tab stop for the whole grid). Mark today with
+          <code>aria-current="date"</code> — never colour alone — and give
+          every day an accessible name like <code>aria-label="Thursday 15
+          October 2026"</code>. Disabled days stay in the reading order so
+          screen-reader users hear why a gap exists.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="date-range">
+        <h2>Date Range</h2>
+        <p>
+          The same calendar expresses a span: solid endpoints get
+          <code>.is-range-start</code> / <code>.is-range-end</code> (squared on
+          the inner edge), and every day between takes <code>.is-in-range</code>
+          for a continuous soft-accent band.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div class="b-calendar">
+            <div class="b-calendar__header">
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Previous month">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m12 5-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <span class="b-calendar__month">October 2026</span>
+              <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Next month">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m8 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="b-calendar__grid">
+              <div class="b-calendar__weekday">Mo</div>
+              <div class="b-calendar__weekday">Tu</div>
+              <div class="b-calendar__weekday">We</div>
+              <div class="b-calendar__weekday">Th</div>
+              <div class="b-calendar__weekday">Fr</div>
+              <div class="b-calendar__weekday">Sa</div>
+              <div class="b-calendar__weekday">Su</div>
+              <button class="b-calendar__day is-muted">28</button>
+              <button class="b-calendar__day is-muted">29</button>
+              <button class="b-calendar__day is-muted">30</button>
+              <button class="b-calendar__day">1</button>
+              <button class="b-calendar__day">2</button>
+              <button class="b-calendar__day">3</button>
+              <button class="b-calendar__day">4</button>
+              <button class="b-calendar__day">5</button>
+              <button class="b-calendar__day">6</button>
+              <button class="b-calendar__day">7</button>
+              <button class="b-calendar__day">8</button>
+              <button class="b-calendar__day">9</button>
+              <button class="b-calendar__day">10</button>
+              <button class="b-calendar__day">11</button>
+              <button class="b-calendar__day is-selected is-range-start">12</button>
+              <button class="b-calendar__day is-in-range">13</button>
+              <button class="b-calendar__day is-in-range">14</button>
+              <button class="b-calendar__day is-in-range">15</button>
+              <button class="b-calendar__day is-selected is-range-end">16</button>
+              <button class="b-calendar__day">17</button>
+              <button class="b-calendar__day">18</button>
+              <button class="b-calendar__day">19</button>
+              <button class="b-calendar__day">20</button>
+              <button class="b-calendar__day">21</button>
+              <button class="b-calendar__day">22</button>
+              <button class="b-calendar__day">23</button>
+              <button class="b-calendar__day">24</button>
+              <button class="b-calendar__day">25</button>
+              <button class="b-calendar__day">26</button>
+              <button class="b-calendar__day">27</button>
+              <button class="b-calendar__day">28</button>
+              <button class="b-calendar__day">29</button>
+              <button class="b-calendar__day">30</button>
+              <button class="b-calendar__day">31</button>
+              <button class="b-calendar__day is-muted">1</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="date-picker">
+        <h2>Date Picker</h2>
+        <p>
+          <code>.b-datepicker</code> is a field that grows a calendar. Compose
+          a <code>.b-input-group</code> with a leading calendar affix; when
+          open, append a <code>.b-calendar</code> directly inside the wrapper —
+          it drops beneath the field as an elevated popover
+          (<code>position: absolute</code>, <code>--b-elevation-4</code>,
+          popover z-index) with zero extra wiring.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-datepicker">
+            <div class="b-input-group">
+              <span class="b-input-affix b-input-affix--start">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8.5h14M7 3v3m6-3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+              <input class="b-input" type="text" value="26 Aug 2026" aria-label="Invoice date" style="max-width: 14rem;">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="color-picker">
+        <h2>Color Picker</h2>
+        <p>
+          The native <code>.b-color-picker</code> input and full field patterns
+          are documented in <a href="forms.html#color-picker">Forms › Color
+          Picker</a>. For constrained palettes, a row of
+          <code>.b-swatches</code> is usually the better control — pass each
+          swatch its colour and mark the choice with <code>.is-selected</code>.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-swatches">
+            <button class="b-swatch" style="background: var(--b-color-red)" aria-label="Red"></button>
+            <button class="b-swatch" style="background: var(--b-color-orange)" aria-label="Orange"></button>
+            <button class="b-swatch" style="background: var(--b-color-yellow)" aria-label="Yellow"></button>
+            <button class="b-swatch" style="background: var(--b-color-green)" aria-label="Green"></button>
+            <button class="b-swatch" style="background: var(--b-color-teal)" aria-label="Teal"></button>
+            <button class="b-swatch is-selected" style="background: var(--b-color-blue)" aria-label="Blue" aria-pressed="true"></button>
+            <button class="b-swatch" style="background: var(--b-color-purple)" aria-label="Purple"></button>
+            <button class="b-swatch" style="background: var(--b-color-pink)" aria-label="Pink"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="emoji-picker">
+        <h2>Emoji Picker</h2>
+        <p>
+          A compact <code>.b-emoji-picker</code> panel: small search field on
+          top, then a scrollable eight-column <code>__grid</code> of plain
+          buttons that scale up on hover.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <div class="b-emoji-picker">
+            <input class="b-input b-input--sm" type="search" placeholder="Search emoji" aria-label="Search emoji">
+            <div class="b-emoji-picker__grid">
+              <button aria-label="Grinning face">😀</button>
+              <button aria-label="Tears of joy">😂</button>
+              <button aria-label="Smiling with hearts">🥰</button>
+              <button aria-label="Sunglasses">😎</button>
+              <button aria-label="Handshake">🤝</button>
+              <button aria-label="Clapping hands">👏</button>
+              <button aria-label="Folded hands">🙏</button>
+              <button aria-label="Flexed biceps">💪</button>
+              <button aria-label="Fire">🔥</button>
+              <button aria-label="Sparkles">✨</button>
+              <button aria-label="Party popper">🎉</button>
+              <button aria-label="Bullseye">🎯</button>
+              <button aria-label="Sun">☀️</button>
+              <button aria-label="Ocean wave">🌊</button>
+              <button aria-label="Palm tree">🌴</button>
+              <button aria-label="Mountain">⛰️</button>
+              <button aria-label="Lion">🦁</button>
+              <button aria-label="Elephant">🐘</button>
+              <button aria-label="Giraffe">🦒</button>
+              <button aria-label="Zebra">🦓</button>
+              <button aria-label="Coffee">☕</button>
+              <button aria-label="Watermelon">🍉</button>
+              <button aria-label="Football">⚽</button>
+              <button aria-label="Rocket">🚀</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="mention-picker">
+        <h2>Mention Picker</h2>
+        <p>
+          Typing <code>@</code> in a composer opens a <code>.b-mention-list</code>
+          of people — avatar initials, <code>__name</code>, muted
+          <code>__handle</code>, with <code>.is-active</code> tracking the
+          keyboard. Committed mentions render inline as <code>.b-mention</code>
+          tokens.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <ul class="b-mention-list" style="max-width: 20rem;">
+            <li><button class="b-mention-list__item is-active">
+              <span class="b-avatar">AH</span>
+              <span class="b-mention-list__name">Amina Hassan</span>
+              <span class="b-mention-list__handle">@amina</span>
+            </button></li>
+            <li><button class="b-mention-list__item">
+              <span class="b-avatar">BO</span>
+              <span class="b-mention-list__name">Baraka Otieno</span>
+              <span class="b-mention-list__handle">@baraka</span>
+            </button></li>
+            <li><button class="b-mention-list__item">
+              <span class="b-avatar">NM</span>
+              <span class="b-mention-list__name">Neema Mushi</span>
+              <span class="b-mention-list__handle">@neema</span>
+            </button></li>
+            <li><button class="b-mention-list__item">
+              <span class="b-avatar">JK</span>
+              <span class="b-mention-list__name">Juma Kibwana</span>
+              <span class="b-mention-list__handle">@juma</span>
+            </button></li>
+          </ul>
+          <p>Handing the Q3 invoices to <span class="b-mention">@amina</span> —
+          <span class="b-mention">@baraka</span> has the port-fees context.</p>
+        </div>
+      </section>
+
+      <section class="docs-section" id="user-picker">
+        <h2>User Picker</h2>
+        <p>
+          Compose a <code>.b-multiselect</code> token field with the mention
+          list as its open listbox: chosen people become removable
+          <code>.b-chip</code> tokens, the inline input keeps filtering, and
+          the list below tracks the highlighted option.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-multiselect" style="max-width: 24rem;">
+            <span class="b-chip">Amina Hassan
+              <button class="b-chip__remove" aria-label="Remove Amina Hassan">×</button>
+            </span>
+            <span class="b-chip">Baraka Otieno
+              <button class="b-chip__remove" aria-label="Remove Baraka Otieno">×</button>
+            </span>
+            <input type="text" placeholder="Add people…" aria-label="Add people">
+          </div>
+          <ul class="b-mention-list" role="listbox" aria-label="People" style="max-width: 24rem;">
+            <li class="b-mention-list__item is-active" role="option" aria-selected="true">
+              <span class="b-avatar">NM</span>
+              <span class="b-mention-list__name">Neema Mushi</span>
+              <span class="b-mention-list__handle">@neema</span>
+            </li>
+            <li class="b-mention-list__item" role="option" aria-selected="false">
+              <span class="b-avatar">JK</span>
+              <span class="b-mention-list__name">Juma Kibwana</span>
+              <span class="b-mention-list__handle">@juma</span>
+            </li>
+          </ul>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> Mention, user and emoji pickers
+          are comboboxes: give the input <code>role="combobox"</code> with
+          <code>aria-expanded</code> and <code>aria-controls</code> pointing at
+          a <code>role="listbox"</code> whose rows are
+          <code>role="option"</code>. Track the highlight with
+          <code>aria-activedescendant</code> (focus never leaves the input),
+          reflect it visually with <code>.is-active</code>, and announce the
+          filtered count via a polite live region.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="search-results">
+        <h2>Search Results</h2>
+        <p>
+          A <code>.b-search-results</code> stack renders each hit as a
+          title, snippet and breadcrumb <code>__path</code>. Wrap matched terms
+          in <code>&lt;mark&gt;</code> — or <code>.b-highlight</code> on any
+          element — for the soft yellow wash.
+        </p>
+        <div class="docs-demo">
+          <div class="b-search-results" style="max-width: 34rem;">
+            <a class="b-search-result" href="#search-results">
+              <span class="b-search-result__title">Q3 invoice ready for approval</span>
+              <span class="b-search-result__snippet">Baraka uploaded <mark>invoice</mark>-q3.pdf covering the Dar es Salaam port fees…</span>
+              <span class="b-search-result__path">Finance › Invoices › invoice-q3.pdf</span>
+            </a>
+            <a class="b-search-result" href="#search-results">
+              <span class="b-search-result__title">Supplier <mark>invoice</mark> workflow</span>
+              <span class="b-search-result__snippet">Amina approves any <span class="b-highlight">invoice</span> above TZS 2,000,000 before payout…</span>
+              <span class="b-search-result__path">Handbook › Finance › Approvals</span>
+            </a>
+            <a class="b-search-result" href="#search-results">
+              <span class="b-search-result__title">Mwanza depot handover notes</span>
+              <span class="b-search-result__snippet">…final <mark>invoice</mark> reconciliation is owed to the Mwanza depot by Friday.</span>
+              <span class="b-search-result__path">Operations › Mwanza › Handover</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="filter-bar">
+        <h2>Filter Bar</h2>
+        <p>
+          <code>.b-filter-bar</code> is a wrapping row that composes a small
+          search field, <code>.b-filter-chip</code> facets, a
+          <code>.b-sort-control</code> and a clear-all link — no bespoke
+          styling, just flex and gap.
+        </p>
+        <div class="docs-demo">
+          <div class="b-filter-bar">
+            <div class="b-search">
+              <input class="b-input b-input--sm" type="search" placeholder="Search documents…" aria-label="Search documents">
+            </div>
+            <button class="b-filter-chip">Owner</button>
+            <button class="b-filter-chip is-active">Type <span class="b-filter-chip__value">PDF</span></button>
+            <button class="b-filter-chip">Modified</button>
+            <button class="b-sort-control is-desc">Sort: Newest</button>
+            <button class="b-link">Clear all</button>
+          </div>
+        </div>
+        <div class="docs-guidance">
+          <div class="docs-do">
+            Reflect every applied filter as a chip with its value visible in
+            the bar, and offer one-press “Clear all” the moment two or more are
+            active.
+          </div>
+          <div class="docs-dont">
+            Don’t hide active filters inside a panel — when results shrink
+            without a visible cause, people blame the search, not their
+            filters.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="filter-chip">
+        <h2>Filter Chip</h2>
+        <p>
+          A dashed pill that reads as “add a constraint”. On hover the dashed
+          border and label tint accent; once applied, <code>.is-active</code>
+          swaps to a solid soft-accent fill and the chosen
+          <code>__value</code> renders semibold beside the facet name.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-filter-chip">Owner</button>
+          <button class="b-filter-chip">Status</button>
+          <button class="b-filter-chip is-active">Branch <span class="b-filter-chip__value">Dar es Salaam</span></button>
+        </div>
+      </section>
+
+      <section class="docs-section" id="sort-control">
+        <h2>Sort Control</h2>
+        <p>
+          A quiet text button for column or list ordering. <code>.is-asc</code>
+          and <code>.is-desc</code> append an accent arrow via CSS; with
+          neither class the control reads as unsorted. Cycle
+          asc&nbsp;→&nbsp;desc&nbsp;→&nbsp;none on press and mirror the state
+          with <code>aria-sort</code> on the column header.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-sort-control is-asc">Name</button>
+          <button class="b-sort-control is-desc">Modified</button>
+          <button class="b-sort-control">Size</button>
+        </div>
+      </section>
+
+      <section class="docs-section" id="bulk-actions">
+        <h2>Bulk Actions</h2>
+        <p>
+          When a selection exists, a glass <code>.b-bulk-actions__bar</code>
+          floats in with the count and the few actions that apply to every
+          selected item. In production, wrap it in <code>.b-bulk-actions</code>
+          to pin it bottom-center; the bar is shown here statically.
+        </p>
+        <div class="docs-demo docs-demo--canvas docs-demo--center">
+          <div class="b-bulk-actions__bar">
+            <span class="b-bulk-actions__count">3 selected</span>
+            <button class="b-btn b-btn--ghost b-btn--sm">Move</button>
+            <button class="b-btn b-btn--ghost b-btn--sm">Share</button>
+            <hr class="b-divider b-divider--vertical">
+            <button class="b-btn b-btn--danger-tinted b-btn--sm">Delete</button>
+            <button class="b-btn b-icon-btn b-btn--ghost b-btn--sm" aria-label="Clear selection">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="multi-select">
+        <h2>Multi-Select</h2>
+        <p>
+          A token field: <code>.b-multiselect</code> looks like one input but
+          holds removable <code>.b-chip</code> tokens ahead of a borderless
+          inline input. The whole frame lights up on
+          <code>:focus-within</code>, so it behaves like a single control.
+        </p>
+        <div class="docs-demo">
+          <div class="b-multiselect" style="max-width: 26rem;">
+            <span class="b-chip">Dar es Salaam
+              <button class="b-chip__remove" aria-label="Remove Dar es Salaam">×</button>
+            </span>
+            <span class="b-chip">Mwanza
+              <button class="b-chip__remove" aria-label="Remove Mwanza">×</button>
+            </span>
+            <span class="b-chip">Arusha
+              <button class="b-chip__remove" aria-label="Remove Arusha">×</button>
+            </span>
+            <input type="text" placeholder="Add branch…" aria-label="Add branch">
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="file-browser">
+        <h2>File Browser</h2>
+        <p>
+          A two-pane Finder-style shell: <code>__side</code> holds a compact
+          folder <code>.b-tree</code> on a recessed fill, <code>__main</code>
+          holds a responsive <code>.b-file-grid</code> of
+          <code>.b-file-tile</code> items. The selected tile gets a soft-accent
+          wash and a solid accent name pill — exactly like the desktop.
+        </p>
+        <div class="docs-demo">
+          <div class="b-file-browser">
+            <aside class="b-file-browser__side">
+              <ul class="b-tree">
+                <li>
+                  <details class="b-tree-item" open>
+                    <summary><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Finance</summary>
+                    <ul class="b-tree">
+                      <li><div class="b-tree-item__row is-selected"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Invoices</div></li>
+                      <li><div class="b-tree-item__row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Receipts</div></li>
+                    </ul>
+                  </details>
+                </li>
+                <li><div class="b-tree-item__row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Operations</div></li>
+                <li><div class="b-tree-item__row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>People</div></li>
+              </ul>
+            </aside>
+            <div class="b-file-browser__main">
+              <div class="b-file-grid">
+                <button class="b-file-tile"><span class="b-file-tile__icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 6.2A1.8 1.8 0 0 1 4.3 4.4h3.1a1.8 1.8 0 0 1 1.3.55L9.9 6.2h5.8a1.8 1.8 0 0 1 1.8 1.8v6a1.8 1.8 0 0 1-1.8 1.8H4.3a1.8 1.8 0 0 1-1.8-1.8V6.2Z" fill="#4da3ff"/><path d="M2.5 8.4h15V14a1.8 1.8 0 0 1-1.8 1.8H4.3A1.8 1.8 0 0 1 2.5 14V8.4Z" fill="#7ec0ff"/></svg></span><span class="b-file-tile__name">Q1 archive</span></button>
+                <button class="b-file-tile"><span class="b-file-tile__icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 6.2A1.8 1.8 0 0 1 4.3 4.4h3.1a1.8 1.8 0 0 1 1.3.55L9.9 6.2h5.8a1.8 1.8 0 0 1 1.8 1.8v6a1.8 1.8 0 0 1-1.8 1.8H4.3a1.8 1.8 0 0 1-1.8-1.8V6.2Z" fill="#4da3ff"/><path d="M2.5 8.4h15V14a1.8 1.8 0 0 1-1.8 1.8H4.3A1.8 1.8 0 0 1 2.5 14V8.4Z" fill="#7ec0ff"/></svg></span><span class="b-file-tile__name">Q2 archive</span></button>
+                <button class="b-file-tile"><span class="b-file-tile__icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 6.2A1.8 1.8 0 0 1 4.3 4.4h3.1a1.8 1.8 0 0 1 1.3.55L9.9 6.2h5.8a1.8 1.8 0 0 1 1.8 1.8v6a1.8 1.8 0 0 1-1.8 1.8H4.3a1.8 1.8 0 0 1-1.8-1.8V6.2Z" fill="#4da3ff"/><path d="M2.5 8.4h15V14a1.8 1.8 0 0 1-1.8 1.8H4.3A1.8 1.8 0 0 1 2.5 14V8.4Z" fill="#7ec0ff"/></svg></span><span class="b-file-tile__name">Contracts</span></button>
+                <button class="b-file-tile is-selected"><span class="b-file-tile__icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.8h6.5l4 4v10.4H5V2.8Z" fill="#fdecec" stroke="#eebcbc" stroke-width="0.8"/><path d="M11.5 2.8v4h4" fill="#f6d4d4"/><path d="M7 10h6M7 12.2h6M7 14.4h4" stroke="#d96b6b" stroke-width="1" stroke-linecap="round"/></svg></span><span class="b-file-tile__name">invoice-q3.pdf</span></button>
+                <button class="b-file-tile"><span class="b-file-tile__icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.8h6.5l4 4v10.4H5V2.8Z" fill="#fdecec" stroke="#eebcbc" stroke-width="0.8"/><path d="M11.5 2.8v4h4" fill="#f6d4d4"/><path d="M7 10h6M7 12.2h6M7 14.4h4" stroke="#d96b6b" stroke-width="1" stroke-linecap="round"/></svg></span><span class="b-file-tile__name">invoice-q2.pdf</span></button>
+                <button class="b-file-tile"><span class="b-file-tile__icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.8h6.5l4 4v10.4H5V2.8Z" fill="#e9f6ee" stroke="#bfe2cc" stroke-width="0.8"/><path d="M11.5 2.8v4h4" fill="#d3ecdc"/><path d="M7 10h6M7 12.4h6M7 14.8h6M9 10v4.8M11.5 10v4.8" stroke="#3f9e64" stroke-width="0.9"/></svg></span><span class="b-file-tile__name">port-fees.xlsx</span></button>
+                <button class="b-file-tile"><span class="b-file-tile__icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.8h6.5l4 4v10.4H5V2.8Z" fill="#eef0f4" stroke="#c3c8d1" stroke-width="0.8"/><path d="M11.5 2.8v4h4" fill="#d8dce3"/><path d="M7 10h6M7 12.2h6M7 14.4h4" stroke="#9aa1ac" stroke-width="1" stroke-linecap="round"/></svg></span><span class="b-file-tile__name">tender-brief.docx</span></button>
+                <button class="b-file-tile"><span class="b-file-tile__icon"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2" fill="#d4e5ff"/><circle cx="7.2" cy="8" r="1.3" fill="#ffd76e"/><path d="m4.6 14.4 3.5-3.8 2.4 2.4 2.6-3 2.3 4.4H4.6Z" fill="#4da3ff"/></svg></span><span class="b-file-tile__name">kariakoo-site.jpg</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="folder-tree">
+        <h2>Folder Tree</h2>
+        <p>
+          The generic disclosure tree is documented in
+          <a href="content.html#tree">Content › Tree</a>. Flavoured with folder
+          icons it becomes a location picker: <code>&lt;details
+          class="b-tree-item"&gt;</code> for branches, <code>__row</code> for
+          leaves, <code>.is-selected</code> for the current folder.
+        </p>
+        <div class="docs-demo">
+          <ul class="b-tree" style="max-width: 18rem;">
+            <li>
+              <details class="b-tree-item" open>
+                <summary><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Dar es Salaam HQ</summary>
+                <ul class="b-tree">
+                  <li>
+                    <details class="b-tree-item" open>
+                      <summary><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Finance</summary>
+                      <ul class="b-tree">
+                        <li><div class="b-tree-item__row is-selected"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Invoices</div></li>
+                        <li><div class="b-tree-item__row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Payroll</div></li>
+                      </ul>
+                    </details>
+                  </li>
+                  <li><div class="b-tree-item__row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Operations</div></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details class="b-tree-item">
+                <summary><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h3l2 2h6A1.5 1.5 0 0 1 17 7.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 3 14.5v-9Z" stroke="currentColor" stroke-width="1.5"/></svg>Zanzibar office</summary>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="docs-section" id="activity-log">
+        <h2>Activity Log</h2>
+        <p>
+          <code>.b-log</code> renders each <code>__entry</code> on a
+          three-column baseline grid — semibold <code>__actor</code>, muted
+          <code>__action</code> with object names in <code>&lt;code&gt;</code>,
+          and a tabular <code>__time</code> pinned trailing. Rows separate with
+          hairlines and highlight on hover.
+        </p>
+        <div class="docs-demo">
+          <div class="b-log" style="max-width: 40rem;">
+            <div class="b-log__entry">
+              <span class="b-log__actor">Amina Hassan</span>
+              <span class="b-log__action">uploaded <code>invoice-q3.pdf</code> to Finance / Invoices</span>
+              <time class="b-log__time">2 min ago</time>
+            </div>
+            <div class="b-log__entry">
+              <span class="b-log__actor">Baraka Otieno</span>
+              <span class="b-log__action">approved purchase order <code>PO-2214</code></span>
+              <time class="b-log__time">38 min ago</time>
+            </div>
+            <div class="b-log__entry">
+              <span class="b-log__actor">Neema Mushi</span>
+              <span class="b-log__action">renamed <code>port-fees-draft.xlsx</code> to <code>port-fees.xlsx</code></span>
+              <time class="b-log__time">Yesterday</time>
+            </div>
+            <div class="b-log__entry">
+              <span class="b-log__actor">Juma Kibwana</span>
+              <span class="b-log__action">shared <code>tender-brief.docx</code> with the Mwanza depot</span>
+              <time class="b-log__time">Mon 09:12</time>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="audit-log">
+        <h2>Audit Log</h2>
+        <p>
+          Security review needs provenance. <code>.b-log--audit</code> widens
+          the entry grid to four columns —
+          <code>7.5rem&nbsp;max-content&nbsp;1fr&nbsp;max-content</code> — so a
+          monospace <code>__ip</code> leads each row and full timestamps align
+          down the right edge.
+        </p>
+        <div class="docs-demo">
+          <div class="b-log b-log--audit">
+            <div class="b-log__entry">
+              <span class="b-log__ip">197.250.14.62</span>
+              <span class="b-log__actor">amina</span>
+              <span class="b-log__action">signed in with <code>passkey</code></span>
+              <time class="b-log__time">2026-08-26 09:14</time>
+            </div>
+            <div class="b-log__entry">
+              <span class="b-log__ip">197.250.14.62</span>
+              <span class="b-log__actor">amina</span>
+              <span class="b-log__action">exported <code>invoice-q3.pdf</code></span>
+              <time class="b-log__time">2026-08-26 09:21</time>
+            </div>
+            <div class="b-log__entry">
+              <span class="b-log__ip">41.222.180.7</span>
+              <span class="b-log__actor">baraka</span>
+              <span class="b-log__action">changed role of <code>@juma</code> to <code>editor</code></span>
+              <time class="b-log__time">2026-08-25 17:03</time>
+            </div>
+            <div class="b-log__entry">
+              <span class="b-log__ip">196.249.5.118</span>
+              <span class="b-log__actor">system</span>
+              <span class="b-log__action">rotated API key <code>brk_live_…9f2</code></span>
+              <time class="b-log__time">2026-08-25 02:00</time>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="media.html">← Media</a>
+        <a class="b-btn b-btn--ghost" href="authentication.html">Authentication →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

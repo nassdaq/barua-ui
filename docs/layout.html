@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+    <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Foundations</div>
+        <h1>Layout</h1>
+        <p class="docs-hero__lede">
+          SwiftUI-inspired layout primitives for the web. Stack, HStack, VStack
+          and Spacer compose exactly like their Swift namesakes; containers,
+          grids, split views and scroll areas cover the rest. Everything spaces
+          itself from the 4px token scale — no margin fiddling.
+        </p>
+      </header>
+
+      <section class="docs-section" id="container">
+        <h2>Container</h2>
+        <p>
+          <code>.b-container</code> centers content and clamps its width — the
+          default cap is <code>--b-container-lg</code> (64rem). Size variants
+          swap the cap; <code>--fluid</code> removes it. Wider variants clamp
+          to this page's width here, which is exactly what they'd do on a
+          narrow viewport.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-container b-container--sm">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">--sm · 40rem</div>
+          </div>
+          <div class="b-container b-container--md">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">--md · 48rem</div>
+          </div>
+          <div class="b-container">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">default · 64rem</div>
+          </div>
+          <div class="b-container b-container--xl">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">--xl · 80rem</div>
+          </div>
+          <div class="b-container b-container--fluid">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">--fluid · no cap</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="stack">
+        <h2>Stack (VStack)</h2>
+        <p>
+          <code>.b-stack</code> (alias <code>.b-vstack</code>) is a vertical
+          flex column with a token gap — the default building block for any
+          view. Tune spacing with <code>.b-gap-*</code> instead of margins on
+          children.
+        </p>
+        <div class="docs-demo">
+          <div class="b-stack b-gap-2">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">1</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">2</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">3</div>
+          </div>
+        </div>
+
+        <h3 id="stack-alignment">Alignment</h3>
+        <p>
+          Cross-axis alignment mirrors SwiftUI's
+          <code>VStack(alignment:)</code> — <code>--start</code>,
+          <code>--center</code> and <code>--end</code> (children stretch by
+          default).
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--3">
+            <div class="b-stack b-stack--start b-gap-2">
+              <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center; width: 7rem;">--start</div>
+              <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center; width: 4.5rem;">--start</div>
+            </div>
+            <div class="b-stack b-stack--center b-gap-2">
+              <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center; width: 7rem;">--center</div>
+              <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center; width: 4.5rem;">--center</div>
+            </div>
+            <div class="b-stack b-stack--end b-gap-2">
+              <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center; width: 7rem;">--end</div>
+              <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center; width: 4.5rem;">--end</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="hstack">
+        <h2>HStack</h2>
+        <p>
+          <code>.b-hstack</code> lays children out in a row, vertically
+          centered. The alignment modifiers are shared with Stack — add
+          <code>.b-stack--between</code> to spread children across the row.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-hstack b-gap-2">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">1</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">2</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">3</div>
+          </div>
+          <div class="b-hstack b-stack--between">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">1</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">2</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">3</div>
+          </div>
+        </div>
+
+        <h3 id="hstack-spacer">Title + Spacer + action</h3>
+        <p>
+          The classic SwiftUI bar: a title, a <code>.b-spacer</code> to eat
+          the middle, and a trailing action.
+        </p>
+        <div class="docs-demo">
+          <div class="b-hstack">
+            <span class="b-headline">Inbox</span>
+            <span class="b-badge b-badge--accent">12</span>
+            <span class="b-spacer"></span>
+            <button class="b-btn b-btn--tinted b-btn--sm">Mark all read</button>
+          </div>
+        </div>
+        <div class="docs-guidance">
+          <div class="docs-do">
+            Space siblings with the stack's gap (<code>.b-gap-*</code>) and
+            push them apart with <code>.b-spacer</code> or
+            <code>--between</code> — one knob, consistent rhythm.
+          </div>
+          <div class="docs-dont">
+            Don't sprinkle ad-hoc margins on children to fake spacing; mixed
+            margins fight the gap and break at the first refactor.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="grid">
+        <h2>Grid</h2>
+        <p>
+          <code>.b-grid</code> is a 12-column grid by default — set
+          <code>--b-cols</code> (or a <code>.b-grid--2/3/4/6</code> preset)
+          and place children with <code>.b-col-span-*</code> classes.
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid">
+            <div class="b-col-span-4 b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">span 4</div>
+            <div class="b-col-span-4 b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">span 4</div>
+            <div class="b-col-span-4 b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">span 4</div>
+            <div class="b-col-span-6 b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">span 6</div>
+            <div class="b-col-span-6 b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">span 6</div>
+            <div class="b-col-span-full b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">span full</div>
+          </div>
+        </div>
+
+        <h3 id="grid-auto">Auto-fit</h3>
+        <p>
+          <code>.b-grid--auto</code> packs as many tracks of at least
+          <code>--b-col-min</code> (default 16rem) as fit — responsive with
+          zero media queries.
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--auto" style="--b-col-min: 8rem;">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">1</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">2</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">3</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">4</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">5</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">6</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="flex">
+        <h2>Flex</h2>
+        <p>
+          A thin <code>display: flex</code> shorthand for when a stack is too
+          opinionated. <code>--center</code> and <code>--between</code> handle
+          both axes; <code>.b-grow</code> and <code>.b-shrink-0</code> tune
+          individual children.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-flex b-flex--between">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">--between</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">--between</div>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">--between</div>
+          </div>
+          <div class="b-flex">
+            <div class="b-shrink-0 b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">fixed</div>
+            <div class="b-grow b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">b-grow</div>
+            <div class="b-shrink-0 b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">fixed</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="split-view">
+        <h2>Split View</h2>
+        <p>
+          Master–detail in one line of markup: <code>.b-split</code> stretches
+          <code>.b-panel</code> children to equal height with a
+          <code>.b-resize-handle</code> between them. Make the sidebar
+          <code>.b-resizable</code> and dragging is native CSS
+          <code>resize</code> — no JavaScript.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-split" style="height: 12rem;">
+            <div class="b-panel b-resizable" style="flex: none; width: 13rem;">
+              <div class="b-card__body">Sidebar</div>
+            </div>
+            <div class="b-resize-handle" role="separator" aria-orientation="vertical" aria-label="Resize sidebar"></div>
+            <div class="b-panel b-grow">
+              <div class="b-card__body">Detail</div>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> The native resize grip is
+          pointer-only. Give the handle <code>role="separator"</code> with
+          <code>aria-orientation</code> and an <code>aria-label</code>, and
+          offer a keyboard path — arrow-key handling on the handle or a width
+          control elsewhere in the view.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="resizable-panel">
+        <h2>Resizable Panel</h2>
+        <p>
+          <code>.b-resizable</code> adds the browser's native resize grip to
+          any panel — horizontal by default, <code>--vertical</code> for
+          height. Look for the grip in the bottom-trailing corner; min and max
+          bounds are built in.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <div class="b-panel b-resizable" style="width: 15rem;">
+            <div class="b-card__body">Drag my corner →</div>
+          </div>
+          <div class="b-panel b-resizable b-resizable--vertical" style="width: 15rem; height: 7rem;">
+            <div class="b-card__body">Drag me taller ↓</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="panel">
+        <h2>Panel</h2>
+        <p>
+          <code>.b-panel</code> is the plain workhorse surface: surface
+          background, hairline border, large radius. <code>--plain</code>
+          strips the chrome for panels that only exist to scroll or resize.
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--2">
+            <div class="b-panel">
+              <div class="b-card__body">b-panel</div>
+            </div>
+            <div class="b-panel b-panel--plain">
+              <div class="b-card__body">b-panel--plain</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="section">
+        <h2>Section</h2>
+        <p>
+          <code>.b-section</code> adds generous block padding between page
+          regions — the vertical rhythm of a landing or settings page.
+          <code>--tight</code> is the compact cut. Dividers shown here only to
+          make the padding visible.
+        </p>
+        <div class="docs-demo">
+          <div>
+            <hr class="b-divider">
+            <div class="b-section b-section--tight">
+              <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">b-section--tight</div>
+            </div>
+            <hr class="b-divider">
+            <div class="b-section">
+              <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">b-section</div>
+            </div>
+            <hr class="b-divider">
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="card-grid">
+        <h2>Card Grid</h2>
+        <p>
+          A responsive shelf of cards: auto-fill columns at least 17rem wide,
+          token gap, no breakpoints. The default answer for dashboards and
+          galleries.
+        </p>
+        <div class="docs-demo">
+          <div class="b-card-grid">
+            <article class="b-card">
+              <div class="b-card__body">
+                <div class="b-card__title">Reports</div>
+                <div class="b-card__subtitle">Weekly digest</div>
+              </div>
+            </article>
+            <article class="b-card">
+              <div class="b-card__body">
+                <div class="b-card__title">Automations</div>
+                <div class="b-card__subtitle">4 running</div>
+              </div>
+            </article>
+            <article class="b-card">
+              <div class="b-card__body">
+                <div class="b-card__title">Contacts</div>
+                <div class="b-card__subtitle">1,208 people</div>
+              </div>
+            </article>
+            <article class="b-card">
+              <div class="b-card__body">
+                <div class="b-card__title">Billing</div>
+                <div class="b-card__subtitle">Paid until March</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="masonry">
+        <h2>Masonry</h2>
+        <p>
+          CSS-columns masonry for content of uneven height — pins, notes,
+          image cards. Items flow down each column in source order; cap the
+          column count with <code>--b-masonry-cols</code>.
+        </p>
+        <div class="docs-demo">
+          <div class="b-masonry">
+            <article class="b-card">
+              <div class="b-card__body" style="min-height: 5rem;">1</div>
+            </article>
+            <article class="b-card">
+              <div class="b-card__body" style="min-height: 8rem;">2</div>
+            </article>
+            <article class="b-card">
+              <div class="b-card__body" style="min-height: 3rem;">3</div>
+            </article>
+            <article class="b-card">
+              <div class="b-card__body" style="min-height: 6rem;">4</div>
+            </article>
+            <article class="b-card">
+              <div class="b-card__body" style="min-height: 4rem;">5</div>
+            </article>
+            <article class="b-card">
+              <div class="b-card__body" style="min-height: 7rem;">6</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="scroll-area">
+        <h2>Scroll Area</h2>
+        <p>
+          Give it a height and <code>.b-scroll-area</code> contains the
+          scrolling: overscroll never leaks to the page and the scrollbar
+          gutter stays stable. <code>--fade</code> masks both edges so clipped
+          content looks intentional.
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--2">
+            <div class="b-scroll-area" style="height: 10rem;" tabindex="0" role="region" aria-label="Recent activity">
+              <div class="b-stack b-gap-2">
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 1</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 2</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 3</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 4</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 5</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 6</div>
+              </div>
+            </div>
+            <div class="b-scroll-area b-scroll-area--fade" style="height: 10rem;" tabindex="0" role="region" aria-label="Recent activity, faded edges">
+              <div class="b-stack b-gap-2">
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 1</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 2</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 3</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 4</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 5</div>
+                <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Row 6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> A scrollable
+          <code>&lt;div&gt;</code> isn't keyboard-reachable on every browser.
+          Add <code>tabindex="0"</code> plus <code>role="region"</code> and an
+          <code>aria-label</code> (as above) so keyboard users can focus and
+          scroll it.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="spacer">
+        <h2>Spacer</h2>
+        <p>
+          Straight from SwiftUI: <code>.b-spacer</code> is an empty flex-1
+          element that absorbs leftover space. Push row siblings apart, or pin
+          a footer to the bottom of a fixed-height stack.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-hstack">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Leading</div>
+            <span class="b-spacer"></span>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Trailing</div>
+          </div>
+          <div class="b-stack" style="height: 9rem;">
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Content</div>
+            <span class="b-spacer"></span>
+            <div class="b-card__body" style="background: var(--b-color-accent-soft); border-radius: var(--b-radius-md); padding: var(--b-space-3); text-align: center;">Pinned footer</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="divider">
+        <h2>Divider</h2>
+        <p>
+          Hairline separators drawn with <code>--b-separator</code>.
+          Horizontal by default; use them sparingly — a stack gap is often
+          separation enough.
+        </p>
+        <div class="docs-demo">
+          <div class="b-stack">
+            <p class="b-body">Above the fold</p>
+            <hr class="b-divider">
+            <p class="b-body">Below the fold</p>
+          </div>
+        </div>
+
+        <h3 id="divider-vertical">Vertical</h3>
+        <p>
+          <code>--vertical</code> separates inline actions inside an hstack or
+          toolbar.
+        </p>
+        <div class="docs-demo">
+          <div class="b-hstack b-gap-3">
+            <a class="b-link" href="#divider-vertical">Edit</a>
+            <hr class="b-divider b-divider--vertical">
+            <a class="b-link" href="#divider-vertical">Duplicate</a>
+            <hr class="b-divider b-divider--vertical">
+            <a class="b-link b-link--danger" href="#divider-vertical">Delete</a>
+          </div>
+        </div>
+
+        <h3 id="divider-inset">Inset</h3>
+        <p>
+          <code>--inset</code> starts the hairline past the leading edge so it
+          aligns with list text — the iOS settings look.
+        </p>
+        <div class="docs-demo">
+          <div class="b-list">
+            <div class="b-list-item">
+              <span class="b-avatar b-avatar--sm">AK</span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Asha Kimaro</div>
+                <div class="b-list-item__subtitle">asha@barua.app</div>
+              </div>
+            </div>
+            <hr class="b-divider b-divider--inset" aria-hidden="true">
+            <div class="b-list-item">
+              <span class="b-avatar b-avatar--sm">JM</span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Juma Mwita</div>
+                <div class="b-list-item__subtitle">juma@barua.app</div>
+              </div>
+            </div>
+            <hr class="b-divider b-divider--inset" aria-hidden="true">
+            <div class="b-list-item">
+              <span class="b-avatar b-avatar--sm">NK</span>
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Neema Kessy</div>
+                <div class="b-list-item__subtitle">neema@barua.app</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="divider-label">Label</h3>
+        <p>
+          <code>--label</code> centers a caption between two hairlines —
+          the classic "or" between sign-in choices.
+        </p>
+        <div class="docs-demo">
+          <div class="b-stack" style="max-width: 22rem;">
+            <button class="b-btn">Continue with Apple</button>
+            <div class="b-divider b-divider--label" role="separator">or</div>
+            <button class="b-btn b-btn--primary">Create account</button>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Accessibility.</strong> An <code>&lt;hr&gt;</code> maps
+          to <code>role="separator"</code> and is announced. That's right for
+          meaningful breaks like the labelled "or"; mark purely decorative
+          hairlines <code>aria-hidden="true"</code> so screen readers skip
+          them.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="responsive">
+        <h2>Responsive</h2>
+        <p>
+          Barua is mobile-first and the components own their own shrinking —
+          pages should not need bespoke media queries. <code>.b-dashboard</code>
+          spans collapse to full width below <code>md</code> (768px) and the
+          column grid engages above it. Floating surfaces clamp themselves to
+          the viewport: toasts, notifications, menus and the command palette
+          cap their width, and the dock tray scrolls when crowded. The
+          breakpoint scale lives in
+          <a href="foundations.html">Foundations</a>; when a component should
+          respond to its box rather than the viewport, use container queries
+          below.
+        </p>
+
+        <h3 id="responsive-wrap">Wrapping toolbars</h3>
+        <p>
+          Add <code>.b-stack--wrap</code> to any <code>.b-hstack</code> so a
+          crowded row reflows onto new lines instead of squeezing its items —
+          the pattern behind the ambient example&rsquo;s header.
+        </p>
+        <div class="docs-demo">
+          <div class="b-hstack b-stack--wrap b-gap-2" style="max-width: 20rem">
+            <span class="b-badge b-badge--accent">Inbox</span>
+            <span class="b-badge">Sent</span>
+            <span class="b-badge">Archive</span>
+            <span class="b-spacer"></span>
+            <button class="b-btn b-btn--glass b-btn--sm">Filter</button>
+            <button class="b-btn b-btn--primary b-btn--sm">Compose</button>
+          </div>
+        </div>
+
+        <h3 id="responsive-visibility">Visibility utilities</h3>
+        <p>
+          <code>.b-hide-mobile</code> and <code>.b-hide-desktop</code> flip at
+          <code>md</code> — use them to drop rails, inspectors and secondary
+          chrome on phones. Resize the window to see them trade places.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <span class="b-badge b-hide-mobile">Desktop only · .b-hide-mobile</span>
+          <span class="b-badge b-hide-desktop">Mobile only · .b-hide-desktop</span>
+        </div>
+      </section>
+
+      <section class="docs-section" id="stage">
+        <h2>Stage</h2>
+        <p>
+          <code>.b-stage</code> turns a page into a fixed screen: full
+          viewport height, no scrolling — the layout for ambient walls,
+          kiosks and TV-style surfaces where everything must be visible at
+          once. Its <code>.b-container</code> child stretches, a
+          <code>.b-dashboard</code> inside shares the remaining height
+          between rows, and cards clip internally instead of growing the
+          page. Below <code>md</code> it steps aside and the page scrolls
+          like any phone screen. The ambient example is built on it.
+        </p>
+        <p>
+          This is the Barua stance, not a special case: <strong>on desktop
+          there is no page scroll</strong>. A surface ends at the screen —
+          chrome stays put, and only designated panes move:
+          <code>.b-scroll-area</code>, a workspace main, a list. Every
+          example ships this way; build products the same way.
+        </p>
+        <div class="docs-demo docs-demo--canvas">
+          <div class="b-stage" style="height: 16rem">
+            <div class="b-container b-stack b-gap-3">
+              <div class="b-dashboard">
+                <article class="b-card b-card--compact b-span-6">
+                  <div class="b-card__header"><div class="b-card__title">Fits</div></div>
+                  <div class="b-card__body">Rows share the stage height.</div>
+                </article>
+                <article class="b-card b-card--compact b-span-6">
+                  <div class="b-card__header"><div class="b-card__title">Clips</div></div>
+                  <div class="b-card__body">Overflowing content clips inside the card — the page never scrolls.</div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="container-queries">
+        <h2>Container Queries</h2>
+        <p>
+          SwiftUI's <code>ViewThatFits</code>, the CSS way: mark a wrapper
+          <code>.b-cq</code> and children respond to the <em>container's</em>
+          width — <code>.b-cq-show-sm/md/lg</code> appear at ≥24/40/56rem,
+          <code>.b-cq-hide-*</code> retire. The same component adapts in a
+          sidebar and in a full-width main without media queries.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-cq b-card" style="max-width: 20rem">
+            <div class="b-card__body">
+              <span class="b-cq-hide-sm b-footnote b-text-secondary">Narrow container → compact</span>
+              <span class="b-cq-show-sm">Wide container content</span>
+            </div>
+          </div>
+          <div class="b-cq b-card">
+            <div class="b-card__body">
+              <span class="b-cq-hide-sm b-footnote b-text-secondary">Narrow container → compact</span>
+              <span class="b-cq-show-sm">Wide container content — this card is past the 24rem detent, so the fuller layout renders.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="docs-pager">
+        <a class="b-btn b-btn--ghost" href="foundations.html">← Foundations</a>
+        <a class="b-btn b-btn--ghost" href="actions.html">Actions →</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="On this page"></aside>
+  </div>
+
+  <dialog class="b-modal b-cmdk" id="docs-cmdk" data-b-cmdk-root>
+    <input class="b-cmdk__input" type="search" placeholder="Search components…" data-b-filter="#docs-cmdk .b-cmdk__list">
+    <ul class="b-cmdk__list"></ul>
+    <div class="b-cmdk__footer"><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </dialog>
+</body>
+</html>

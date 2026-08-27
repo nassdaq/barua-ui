@@ -1,0 +1,574 @@
+/* ==========================================================================
+   Barua UI — Overlays
+   Modal/Dialog, Alert Dialog, Sheet, Bottom Sheet, Popover, Tooltip,
+   Hover Card, Lightbox, Fullscreen Overlay.
+   Built on native <dialog> and the Popover API.
+   ========================================================================== */
+
+@layer components {
+  /* ---- Modal / Dialog ------------------------------------------------------ */
+  .b-modal {
+    width: min(28rem, calc(100vw - 2rem));
+    padding: 0;
+    background: var(--b-elevated);
+    color: var(--b-text);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-xl);
+    box-shadow: var(--b-elevation-5);
+    transition: opacity var(--b-duration-normal) var(--b-ease-out),
+                scale var(--b-duration-normal) var(--b-ease-spring),
+                display var(--b-duration-normal) allow-discrete,
+                overlay var(--b-duration-normal) allow-discrete;
+  }
+  /* Hidden-state props live on the CLOSED selector so a static (non-dialog
+     or [open]) instance renders normally. */
+  dialog.b-modal:not([open]) { opacity: 0; scale: 0.96; }
+  .b-modal[open] { opacity: 1; scale: 1; }
+  @starting-style {
+    .b-modal[open] { opacity: 0; scale: 0.96; }
+  }
+  .b-modal::backdrop {
+    background: var(--b-scrim);
+    -webkit-backdrop-filter: blur(var(--b-blur-xs));
+    backdrop-filter: blur(var(--b-blur-xs));
+    transition: opacity var(--b-duration-normal) var(--b-ease-out),
+                display var(--b-duration-normal) allow-discrete,
+                overlay var(--b-duration-normal) allow-discrete;
+    opacity: 0;
+  }
+  .b-modal[open]::backdrop { opacity: 1; }
+  @starting-style {
+    .b-modal[open]::backdrop { opacity: 0; }
+  }
+
+  .b-modal--glass {
+    position: relative;
+    background: color-mix(in srgb, var(--b-elevated) 82%, transparent);
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+    border-color: light-dark(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+    box-shadow: var(--b-glass-shadow);
+    overflow: hidden;
+  }
+  .b-modal--glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+
+  .b-modal--glass :is(.b-input, .b-textarea, .b-select) {
+    background: var(--b-fill-quaternary);
+  }
+  .b-modal--sm { width: min(22rem, calc(100vw - 2rem)); }
+  .b-modal--lg { width: min(40rem, calc(100vw - 2rem)); }
+  .b-modal--xl { width: min(56rem, calc(100vw - 2rem)); }
+
+  .b-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--b-space-3);
+    padding: var(--b-space-4) var(--b-space-5);
+    border-bottom: 1px solid var(--b-separator);
+  }
+  .b-modal__title { font-size: var(--b-text-headline); font-weight: var(--b-weight-semibold); }
+  .b-modal__body { padding: var(--b-space-5); max-height: 65vh; overflow: auto; }
+  .b-modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--b-space-2);
+    padding: var(--b-space-4) var(--b-space-5);
+    border-top: 1px solid var(--b-separator);
+  }
+  .b-modal__close {
+    display: grid;
+    place-items: center;
+    width: 1.75rem; height: 1.75rem;
+    font-size: var(--b-text-callout);
+    color: var(--b-text-secondary);
+    background: var(--b-fill-tertiary);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background var(--b-duration-fast);
+  }
+  .b-modal__close:hover { background: var(--b-fill-secondary); color: var(--b-text); }
+
+  /* ---- Alert Dialog (centered, compact) --------------------------------------- */
+  .b-alert-dialog { width: min(18.5rem, calc(100vw - 2rem)); text-align: center; }
+  .b-alert-dialog .b-modal__body {
+    padding: var(--b-space-6) var(--b-space-5) var(--b-space-4);
+  }
+  .b-alert-dialog__title { font-size: var(--b-text-headline); font-weight: var(--b-weight-semibold); }
+  .b-alert-dialog__desc {
+    margin-block-start: var(--b-space-1);
+    font-size: var(--b-text-footnote);
+    color: var(--b-text-secondary);
+  }
+  .b-alert-dialog__actions {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--b-separator);
+  }
+  .b-alert-dialog__actions button {
+    padding: var(--b-space-3);
+    font-size: var(--b-text-body);
+    font-weight: var(--b-weight-medium);
+    color: var(--b-color-accent-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .b-alert-dialog__actions button:hover { background: var(--b-fill-quaternary); }
+  .b-alert-dialog__actions button + button { border-top: 1px solid var(--b-separator); }
+  .b-alert-dialog__actions .is-destructive { color: var(--b-color-danger); }
+  .b-alert-dialog__actions .is-primary { font-weight: var(--b-weight-semibold); }
+  .b-alert-dialog__actions--row { flex-direction: row; }
+  .b-alert-dialog__actions--row button { flex: 1; }
+  .b-alert-dialog__actions--row button + button {
+    border-top: none;
+    border-inline-start: 1px solid var(--b-separator);
+  }
+
+  /* ---- Sheet (side) ------------------------------------------------------------- */
+  .b-sheet {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+    margin: 0;
+    width: min(26rem, 92vw);
+    max-height: none;
+    height: 100dvh;
+    padding: 0;
+    background: var(--b-elevated);
+    border: none;
+    border-inline-start: 1px solid var(--b-hairline);
+    box-shadow: var(--b-elevation-5);
+    transition: translate var(--b-duration-slow) var(--b-ease-spring),
+                display var(--b-duration-slow) allow-discrete,
+                overlay var(--b-duration-slow) allow-discrete;
+  }
+  dialog.b-sheet:not([open]) { translate: 100% 0; }
+  .b-sheet[open] { translate: 0 0; }
+  @starting-style {
+    .b-sheet[open] { translate: 100% 0; }
+  }
+  .b-sheet::backdrop { background: var(--b-scrim); }
+  .b-sheet__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--b-space-4) var(--b-space-5);
+    border-bottom: 1px solid var(--b-separator);
+  }
+  .b-sheet__body { padding: var(--b-space-5); overflow-y: auto; height: 100%; }
+
+  /* ---- Bottom Sheet --------------------------------------------------------------- */
+  .b-bottom-sheet {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-start: auto;
+    inset-block-end: 0;
+    margin: 0 auto;
+    width: min(34rem, 100vw);
+    max-height: 85dvh;
+    padding: 0;
+    background: var(--b-material-thick-bg);
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+    border: 1px solid light-dark(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+    border-bottom: none;
+    border-radius: var(--b-radius-2xl) var(--b-radius-2xl) 0 0;
+    box-shadow: var(--b-glass-shadow);
+    overflow: hidden;
+    transition: translate var(--b-duration-slow) var(--b-ease-spring),
+                display var(--b-duration-slow) allow-discrete,
+                overlay var(--b-duration-slow) allow-discrete;
+  }
+  .b-bottom-sheet::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+    z-index: 1;
+  }
+  dialog.b-bottom-sheet:not([open]),
+  .b-bottom-sheet[popover]:not(:popover-open) { translate: 0 100%; }
+  .b-bottom-sheet[open] { translate: 0 0; }
+  @starting-style {
+    .b-bottom-sheet[open] { translate: 0 100%; }
+  }
+  .b-bottom-sheet::backdrop { background: var(--b-scrim); }
+  .b-bottom-sheet__grabber {
+    width: 2.25rem;
+    height: 0.3rem;
+    margin: var(--b-space-2) auto 0;
+    background: var(--b-fill);
+    border-radius: var(--b-radius-full);
+  }
+  .b-bottom-sheet__body {
+    padding: var(--b-space-4) var(--b-space-5);
+    padding-bottom: max(var(--b-space-5), env(safe-area-inset-bottom));
+    overflow-y: auto;
+  }
+
+
+  /* ---- Action Sheet (SwiftUI confirmationDialog) ---------------------------
+     Bottom-anchored stack: a glass group of choices, then a separate Cancel.
+  ----------------------------------------------------------------------------- */
+  .b-action-sheet {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-start: auto;
+    inset-block-end: 0;
+    margin: 0 auto;
+    width: min(26rem, calc(100vw - 1rem));
+    max-height: 85dvh;
+    padding: var(--b-space-2);
+    padding-bottom: max(var(--b-space-2), env(safe-area-inset-bottom));
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    overflow: visible;
+    transition: translate var(--b-duration-slow) var(--b-ease-spring),
+                display var(--b-duration-slow) allow-discrete,
+                overlay var(--b-duration-slow) allow-discrete;
+  }
+  dialog.b-action-sheet:not([open]) { translate: 0 100%; }
+  .b-action-sheet[open] { translate: 0 0; }
+  @starting-style {
+    .b-action-sheet[open] { translate: 0 100%; }
+  }
+  .b-action-sheet::backdrop { background: var(--b-scrim); }
+  .b-action-sheet__group {
+    background: var(--b-material-thick-bg);
+    -webkit-backdrop-filter: var(--b-glass-heavy);
+    backdrop-filter: var(--b-glass-heavy);
+    border: 1px solid var(--b-hairline);
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-glass-edge), var(--b-shadow-lg);
+    overflow: hidden;
+  }
+  .b-action-sheet__title {
+    padding: var(--b-space-3) var(--b-space-4);
+    font-size: var(--b-text-footnote);
+    color: var(--b-text-secondary);
+    text-align: center;
+  }
+  .b-action-sheet__group button {
+    display: block;
+    width: 100%;
+    padding: var(--b-space-3);
+    font-size: var(--b-text-body);
+    color: var(--b-color-accent-text);
+    text-align: center;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--b-separator);
+    cursor: pointer;
+  }
+  .b-action-sheet__group button:first-child { border-top: none; }
+  .b-action-sheet__group button:hover { background: var(--b-fill-quaternary); }
+  .b-action-sheet__group button.is-destructive { color: var(--b-color-danger); }
+  .b-action-sheet__cancel {
+    margin-block-start: var(--b-space-2);
+    font-weight: var(--b-weight-semibold);
+  }
+  .b-action-sheet__cancel button { border-top: none; font-weight: var(--b-weight-semibold); }
+
+  /* Bottom sheet detents (SwiftUI presentationDetents) */
+  .b-bottom-sheet--medium { max-height: 50dvh; }
+  .b-bottom-sheet--large { max-height: 92dvh; }
+
+  /* ---- Popover (positioned card) ---------------------------------------------------- */
+  .b-popover {
+    padding: var(--b-space-4);
+    min-width: 14rem;
+    max-width: 20rem;
+    background: color-mix(in srgb, var(--b-elevated) 88%, transparent);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border: 1px solid light-dark(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-glass-shadow);
+    font-size: var(--b-text-footnote);
+    position: relative;
+    overflow: hidden;
+  }
+  .b-popover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+  /* Popovers open centered (native popover centering); use --anchored
+     when positioning against a trigger yourself. */
+  .b-popover[popover] { position: fixed; overflow: visible; }
+  .b-popover--anchored[popover] { inset: auto; margin: 0; }
+  .b-popover[popover]:popover-open { animation: b-pop-in var(--b-duration-fast) var(--b-ease-out); }
+  @keyframes b-pop-in {
+    from { opacity: 0; scale: 0.96; translate: 0 -3px; }
+  }
+  .b-popover__title { font-weight: var(--b-weight-semibold); margin-block-end: var(--b-space-1); }
+
+  /* Arrowed popover — Apple-style caret pointing at the anchor.
+     Direction names the popover's position relative to the anchor:
+     --arrow-top (popover ABOVE, caret at its bottom), --arrow-bottom,
+     --arrow-start, --arrow-end. */
+  .b-popover[class*="b-popover--arrow"] { overflow: visible; }
+  .b-popover[class*="b-popover--arrow"]::before {
+    content: "";
+    position: absolute;
+    width: 0.85rem;
+    height: 0.85rem;
+    background: inherit;
+    border: 1px solid var(--b-hairline);
+    rotate: 45deg;
+    z-index: -1;
+  }
+  .b-popover--arrow-bottom::before {   /* popover below anchor, caret on top */
+    top: -0.475rem;
+    inset-inline-start: calc(50% - 0.425rem);
+    border-inline-end: none;
+    border-block-end: none;
+  }
+  .b-popover--arrow-top::before {
+    bottom: -0.475rem;
+    inset-inline-start: calc(50% - 0.425rem);
+    border-inline-start: none;
+    border-block-start: none;
+  }
+  .b-popover--arrow-end::before {      /* popover after anchor, caret at start */
+    inset-inline-start: -0.475rem;
+    top: calc(50% - 0.425rem);
+    border-inline-end: none;
+    border-block-start: none;
+  }
+  .b-popover--arrow-start::before {
+    inset-inline-end: -0.475rem;
+    top: calc(50% - 0.425rem);
+    border-inline-start: none;
+    border-block-end: none;
+  }
+
+  /* Popover card — structured panel: header / body / footer actions */
+  .b-popover--card {
+    padding: 0;
+    max-width: 22rem;
+    overflow: hidden;
+  }
+  .b-popover--card[class*="b-popover--arrow"] { overflow: visible; }
+  .b-popover__header {
+    display: flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    padding: var(--b-space-3) var(--b-space-4);
+    border-bottom: 1px solid var(--b-separator);
+    font-weight: var(--b-weight-semibold);
+    font-size: var(--b-text-subheadline);
+  }
+  .b-popover__body { padding: var(--b-space-4); }
+  .b-popover__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--b-space-2);
+    padding: var(--b-space-3) var(--b-space-4);
+    border-top: 1px solid var(--b-separator);
+    background: var(--b-fill-quaternary);
+  }
+
+  /* Anchored wrapper fallback (no anchor positioning): .b-popover-anchor  */
+  .b-popover-anchor { position: relative; display: inline-block; }
+  .b-popover-anchor > .b-popover {
+    position: absolute;
+    top: calc(100% + var(--b-space-2));
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    z-index: var(--b-z-popover);
+  }
+
+  /* ---- Tooltip ------------------------------------------------------------------------
+     CSS-only: <span class="b-tooltip-host" data-tooltip="Label">…</span>
+  --------------------------------------------------------------------------------------- */
+  .b-tooltip-host { position: relative; }
+  .b-tooltip-host::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    inset-block-end: calc(100% + var(--b-space-2));
+    inset-inline-start: 50%;
+    translate: -50% 4px;
+    z-index: var(--b-z-tooltip);
+    padding: var(--b-space-1) var(--b-space-2);
+    font-size: var(--b-text-caption);
+    font-weight: var(--b-weight-medium);
+    line-height: 1.35;
+    white-space: nowrap;
+    color: light-dark(#fff, #0c0c10);
+    background: light-dark(rgba(24, 26, 34, 0.92), rgba(245, 246, 250, 0.95));
+    border-radius: var(--b-radius-sm);
+    box-shadow: var(--b-shadow-sm);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--b-duration-fast) var(--b-ease-out),
+                translate var(--b-duration-fast) var(--b-ease-out);
+  }
+  .b-tooltip-host:hover::after,
+  .b-tooltip-host:focus-visible::after {
+    opacity: 1;
+    translate: -50% 0;
+    transition-delay: 350ms;
+  }
+  .b-tooltip-host--bottom::after {
+    inset-block-end: auto;
+    inset-block-start: calc(100% + var(--b-space-2));
+    translate: -50% -4px;
+  }
+  .b-tooltip-host--bottom:hover::after { translate: -50% 0; }
+
+  /* ---- Hover Card ----------------------------------------------------------------------- */
+  .b-hover-card-host { position: relative; display: inline-block; }
+  .b-hover-card {
+    position: absolute;
+    inset-block-start: calc(100% + var(--b-space-2));
+    inset-inline-start: 0;
+    z-index: var(--b-z-popover);
+    width: 18rem;
+    padding: var(--b-space-4);
+    background: color-mix(in srgb, var(--b-elevated) 88%, transparent);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border: 1px solid light-dark(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-glass-shadow);
+    opacity: 0;
+    translate: 0 4px;
+    visibility: hidden;
+    overflow: hidden;
+    transition: opacity var(--b-duration-normal) var(--b-ease-out),
+                translate var(--b-duration-normal) var(--b-ease-out),
+                visibility var(--b-duration-normal);
+  }
+  .b-hover-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--b-glass-edge);
+    pointer-events: none;
+  }
+  .b-hover-card-host:hover .b-hover-card,
+  .b-hover-card-host:focus-within .b-hover-card {
+    opacity: 1;
+    translate: 0 0;
+    visibility: visible;
+    transition-delay: 250ms;
+  }
+
+  /* ---- Lightbox --------------------------------------------------------------------------- */
+  .b-lightbox {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: var(--b-space-6);
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: none;
+  }
+  .b-lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.82);
+    -webkit-backdrop-filter: blur(var(--b-blur-sm));
+    backdrop-filter: blur(var(--b-blur-sm));
+  }
+  .b-lightbox img {
+    max-width: 92vw;
+    max-height: 86dvh;
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-elevation-5);
+  }
+  /* A document preview — PDF, text, anything the browser can render itself.
+     Sized like the image slot so both feel like one Quick Look. */
+  .b-lightbox__frame {
+    width: min(92vw, 58rem);
+    height: 84dvh;
+    background: var(--b-surface);
+    border: none;
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-elevation-5);
+  }
+  /* What a file that cannot be previewed shows instead: its glyph and a way
+     to get it. Glass, because it floats on the lightbox's own darkness. */
+  .b-lightbox__empty {
+    display: grid;
+    justify-items: center;
+    gap: var(--b-space-2);
+    width: min(92vw, 22rem);
+    padding: var(--b-space-8) var(--b-space-6);
+    text-align: center;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--b-radius-xl);
+  }
+  .b-lightbox__empty svg { width: 3.25rem; height: 3.25rem; }
+  .b-lightbox__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--b-space-2);
+    margin-block-start: var(--b-space-3);
+  }
+  .b-lightbox__caption {
+    margin-block-start: var(--b-space-3);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: var(--b-text-footnote);
+    text-align: center;
+  }
+  .b-lightbox .b-modal__close {
+    position: fixed;
+    inset-block-start: var(--b-space-4);
+    inset-inline-end: var(--b-space-4);
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+  }
+
+  /* ---- Fullscreen Overlay ------------------------------------------------------------------- */
+  .b-fullscreen {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    background: var(--b-bg);
+    border: none;
+    transition: opacity var(--b-duration-normal) var(--b-ease-out),
+                display var(--b-duration-normal) allow-discrete,
+                overlay var(--b-duration-normal) allow-discrete;
+  }
+  dialog.b-fullscreen:not([open]) { opacity: 0; }
+  .b-fullscreen[open] { opacity: 1; }
+  @starting-style {
+    .b-fullscreen[open] { opacity: 0; }
+  }
+  .b-fullscreen__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--b-space-3) var(--b-space-5);
+    border-bottom: 1px solid var(--b-separator);
+  }
+  .b-fullscreen__body { padding: var(--b-space-6); overflow: auto; height: calc(100dvh - var(--b-topbar-h)); }
+}
