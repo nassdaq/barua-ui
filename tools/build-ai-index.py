@@ -37,6 +37,7 @@ CATEGORY_TITLES = {
     "productivity": "Productivity — dashboards, workspace, dock, control centre",
     "interaction": "Interaction — states, drag and drop, shortcuts",
     "mobile": "Mobile — headers, tab bars, sheets, safe areas",
+    "marketing": "Marketing — landing pages: hero, chapters, figures, bento, site footer",
     "infrastructure": "Infrastructure — naming, theming, accessibility, contribution",
 }
 

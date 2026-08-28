@@ -28,7 +28,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 762,
+  "classCount": 796,
   "classes": [
     "b-accordion",
     "b-account",
@@ -105,6 +105,11 @@
     "b-bars__row",
     "b-bars__track",
     "b-bars__value",
+    "b-bento",
+    "b-bento__body",
+    "b-bento__tile",
+    "b-bento__tile--wide",
+    "b-bento__title",
     "b-body",
     "b-bottom-sheet",
     "b-bottom-sheet--large",
@@ -199,6 +204,13 @@
     "b-cc__tile--plain",
     "b-cc__tile--round",
     "b-cc__transport",
+    "b-chapter",
+    "b-chapter--start",
+    "b-chapter--tight",
+    "b-chapter__actions",
+    "b-chapter__eyebrow",
+    "b-chapter__lede",
+    "b-chapter__title",
     "b-chart",
     "b-chart-tip",
     "b-chart__canvas",
@@ -293,6 +305,10 @@
     "b-event--purple",
     "b-fab",
     "b-fab--extended",
+    "b-feature-row",
+    "b-feature-row--flip",
+    "b-feature-row__body",
+    "b-feature-row__title",
     "b-feed",
     "b-feed__bubble",
     "b-feed__bubble--glass",
@@ -301,6 +317,9 @@
     "b-field",
     "b-fieldset",
     "b-figure",
+    "b-figure--bleed",
+    "b-figure__caption",
+    "b-figure__frame",
     "b-file-browser",
     "b-file-browser__main",
     "b-file-browser__side",
@@ -367,6 +386,9 @@
     "b-headline",
     "b-heatmap",
     "b-help",
+    "b-hero",
+    "b-hero__media",
+    "b-hero__title",
     "b-hidden",
     "b-hide-desktop",
     "b-hide-mobile",
@@ -417,6 +439,7 @@
     "b-labeled",
     "b-labeled__label",
     "b-labeled__value",
+    "b-landing",
     "b-large-title",
     "b-legend",
     "b-legend__swatch",
@@ -458,6 +481,9 @@
     "b-log__entry",
     "b-log__ip",
     "b-log__time",
+    "b-marketing-nav",
+    "b-marketing-nav__brand",
+    "b-marketing-nav__links",
     "b-masonry",
     "b-master-detail",
     "b-master-detail__detail",
@@ -634,6 +660,11 @@
     "b-sidebar__group",
     "b-sidebar__heading",
     "b-sidebar__item",
+    "b-site-footer",
+    "b-site-footer__group",
+    "b-site-footer__groups",
+    "b-site-footer__heading",
+    "b-site-footer__legal",
     "b-skeleton",
     "b-skeleton--card",
     "b-skeleton--circle",
@@ -654,6 +685,9 @@
     "b-span-8",
     "b-span-9",
     "b-sparkline",
+    "b-spec-strip",
+    "b-spec__label",
+    "b-spec__value",
     "b-spinner",
     "b-spinner--lg",
     "b-spinner--sm",
@@ -867,6 +901,11 @@
     "b-bars__row",
     "b-bars__track",
     "b-bars__value",
+    "b-bento",
+    "b-bento__body",
+    "b-bento__tile",
+    "b-bento__tile--wide",
+    "b-bento__title",
     "b-body",
     "b-bottom-sheet",
     "b-bottom-sheet--medium",
@@ -954,6 +993,12 @@
     "b-cc__tile--4x1",
     "b-cc__tile--round",
     "b-cc__transport",
+    "b-chapter",
+    "b-chapter--tight",
+    "b-chapter__actions",
+    "b-chapter__eyebrow",
+    "b-chapter__lede",
+    "b-chapter__title",
     "b-chart",
     "b-chart-tip",
     "b-chart__canvas",
@@ -1036,6 +1081,9 @@
     "b-event--purple",
     "b-fab",
     "b-fab--extended",
+    "b-feature-row",
+    "b-feature-row__body",
+    "b-feature-row__title",
     "b-feed",
     "b-feed__bubble",
     "b-feed__item",
@@ -1043,6 +1091,8 @@
     "b-field",
     "b-fieldset",
     "b-figure",
+    "b-figure__caption",
+    "b-figure__frame",
     "b-file-browser",
     "b-file-browser__main",
     "b-file-browser__side",
@@ -1182,6 +1232,9 @@
     "b-log__entry",
     "b-log__ip",
     "b-log__time",
+    "b-marketing-nav",
+    "b-marketing-nav__brand",
+    "b-marketing-nav__links",
     "b-masonry",
     "b-master-detail",
     "b-master-detail__detail",
@@ -1329,6 +1382,11 @@
     "b-sidebar__group",
     "b-sidebar__heading",
     "b-sidebar__item",
+    "b-site-footer",
+    "b-site-footer__group",
+    "b-site-footer__groups",
+    "b-site-footer__heading",
+    "b-site-footer__legal",
     "b-skeleton",
     "b-skeleton--card",
     "b-skeleton--circle",
@@ -1341,6 +1399,9 @@
     "b-span-6",
     "b-span-8",
     "b-sparkline",
+    "b-spec-strip",
+    "b-spec__label",
+    "b-spec__value",
     "b-spinner",
     "b-spinner--lg",
     "b-spinner--sm",
@@ -1478,6 +1539,7 @@
     "--b-capsule-w",
     "--b-cc-fill",
     "--b-cc-tile",
+    "--b-chapter-gap",
     "--b-chart-color",
     "--b-chart-h",
     "--b-circular-size",
@@ -7973,6 +8035,157 @@
           "states": [
             "is-collapsed"
           ]
+        }
+      ]
+    },
+    {
+      "id": "marketing",
+      "title": "Marketing \u2014 landing pages: hero, chapters, figures, bento, site footer",
+      "url": "https://ui.barua.tz/docs/marketing.html",
+      "components": [
+        {
+          "id": "marketing-nav",
+          "title": "Marketing Nav",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#marketing-nav",
+          "summary": "Quieter than an application\u2019s chrome: a slim sticky bar in the chrome material, links centred, one action at the end. It is .b-marketing-nav rather than .b-topnav because a product page is not an app and should not pretend to be.",
+          "classes": [
+            "b-btn",
+            "b-btn--primary",
+            "b-btn--sm",
+            "b-marketing-nav",
+            "b-marketing-nav__brand",
+            "b-marketing-nav__links"
+          ],
+          "markup": "<nav class=\"b-marketing-nav\" style=\"position: static\">\n            <a class=\"b-marketing-nav__brand\" href=\"#marketing-nav\">Barua</a>\n            <div class=\"b-marketing-nav__links\"><a href=\"#marketing-nav\">Mail</a><a href=\"#marketing-nav\">Domains</a><a href=\"#marketing-nav\">Pricing</a></div>\n            <a class=\"b-btn b-btn--primary b-btn--sm\" href=\"#marketing-nav\">Get started</a>\n          </nav>",
+          "knobs": [
+            "--b-lg-border",
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong"
+          ],
+          "states": [
+            "is-active",
+            "is-loading",
+            "is-pressed"
+          ]
+        },
+        {
+          "id": "chapter",
+          "title": "Chapter",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#chapter",
+          "summary": "One idea, centred, with room around it. An eyebrow names the subject, the title is capped at twenty characters of measure so it always breaks well, and the lede is one sentence at reading width. .b-chapter--tight halves the vertical room; .b-chapter--start aligns the whole chapter to the reading edge.",
+          "classes": [
+            "b-btn",
+            "b-btn--lg",
+            "b-btn--primary",
+            "b-chapter",
+            "b-chapter--tight",
+            "b-chapter__actions",
+            "b-chapter__eyebrow",
+            "b-chapter__lede",
+            "b-chapter__title",
+            "b-link"
+          ],
+          "markup": "<div class=\"b-chapter b-chapter--tight\">\n            <p class=\"b-chapter__eyebrow\">Barua Mail</p>\n            <h2 class=\"b-chapter__title\">Your business, on your own name.</h2>\n            <p class=\"b-chapter__lede\">Professional email on the domain you own \u2014 set up in an afternoon, paid for in shillings.</p>\n            <div class=\"b-chapter__actions\">\n              <a class=\"b-btn b-btn--primary b-btn--lg\" href=\"#chapter\">Start free trial</a>\n              <a class=\"b-link\" href=\"#chapter\">See how it works &rsaquo;</a>\n            </div>\n          </div>",
+          "variants": [
+            {
+              "id": "hero",
+              "title": "Hero"
+            }
+          ],
+          "knobs": [
+            "--b-chapter-gap",
+            "--b-lg-border",
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong"
+          ],
+          "states": [
+            "is-active",
+            "is-loading",
+            "is-pressed"
+          ]
+        },
+        {
+          "id": "figure",
+          "title": "Figure",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#figure",
+          "summary": "A picture is furniture, so it has a shape: .b-figure__frame clips it to the large radius, lifts it on the elevation scale, and fills any gap with a surface rather than white. .b-figure--bleed lets it run to the edges of the page, which is how a chapter ends when the image is the argument.",
+          "classes": [
+            "b-figure",
+            "b-figure__caption",
+            "b-figure__frame"
+          ],
+          "markup": "<figure class=\"b-figure\" style=\"max-width: 26rem\">\n            <div class=\"b-figure__frame\">\n              <img src=\"../examples/assets/landing-domains.svg\" alt=\"Domain records verifying\" width=\"1200\" height=\"900\" loading=\"lazy\">\n            </div>\n            <figcaption class=\"b-figure__caption\">Every record checked against public resolvers.</figcaption>\n          </figure>"
+        },
+        {
+          "id": "feature-row",
+          "title": "Feature Row",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#feature-row",
+          "summary": "Picture beside prose, alternating down the page. .b-feature-row--flip swaps the sides so consecutive rows do not march; below md both stack with the picture first. Actions inside a row align with the prose, never centre.",
+          "classes": [
+            "b-chapter__actions",
+            "b-chapter__eyebrow",
+            "b-feature-row",
+            "b-feature-row__body",
+            "b-feature-row__title",
+            "b-figure",
+            "b-figure__frame",
+            "b-link"
+          ],
+          "markup": "<div class=\"b-feature-row\">\n            <figure class=\"b-figure\">\n              <div class=\"b-figure__frame\">\n                <img src=\"../examples/assets/landing-mail.svg\" alt=\"Threads and labels\" width=\"1200\" height=\"900\" loading=\"lazy\">\n              </div>\n            </figure>\n            <div>\n              <p class=\"b-chapter__eyebrow\">Mail</p>\n              <h3 class=\"b-feature-row__title\">An inbox that behaves like an application.</h3>\n              <p class=\"b-feature-row__body\">Threads, labels, and search that reads the whole message \u2014 one keystroke away.</p>\n              <p class=\"b-chapter__actions\"><a class=\"b-link\" href=\"#feature-row\">Open an inbox &rsaquo;</a></p>\n            </div>\n          </div>"
+        },
+        {
+          "id": "bento",
+          "title": "Bento",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#bento",
+          "summary": "Tiles of unequal weight in one grid \u2014 the rest of a platform at a glance. .b-bento__tile--wide takes two columns so the grid has a rhythm instead of a checkerboard; on a phone every tile is full width.",
+          "classes": [
+            "b-bento",
+            "b-bento__body",
+            "b-bento__tile",
+            "b-bento__tile--wide",
+            "b-bento__title",
+            "b-icon-tile",
+            "b-icon-tile--sm",
+            "b-icon-tile--solid",
+            "b-icon-tile--teal"
+          ],
+          "markup": "<div class=\"b-bento\">\n            <article class=\"b-bento__tile b-bento__tile--wide\">\n              <span class=\"b-icon-tile b-icon-tile--solid\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" fill=\"none\"><rect x=\"3\" y=\"4.5\" width=\"14\" height=\"11\" rx=\"2\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"m4.5 7 5.5 4 5.5-4\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span>\n              <h3 class=\"b-bento__title\">Mail</h3>\n              <p class=\"b-bento__body\">Mailboxes on your domain, shared inboxes for the team, and IMAP for the app you already use.</p>\n            </article>\n            <article class=\"b-bento__tile\">\n              <span class=\"b-icon-tile b-icon-tile--sm b-icon-tile--teal\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" fill=\"none\"><path d=\"M3.5 5.5A1.5 1.5 0 0 1 5 4h3l1.5 2H15a1.5 1.5 0 0 1 1.5 1.5V14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V5.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/></svg></span>\n              <h3 class=\"b-bento__title\">Storage</h3>\n              <p class=\"b-bento__body\">Files beside the mailbox they belong to.</p>\n            </article>\n          </div>"
+        },
+        {
+          "id": "spec-strip",
+          "title": "Spec Strip",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#spec-strip",
+          "summary": "Four numbers, evenly spaced, with the claim underneath each. Use tabular numerals so the row stays even, and keep the labels honest \u2014 a figure with a footnote is worth more than a figure without one.",
+          "classes": [
+            "b-spec-strip",
+            "b-spec__label",
+            "b-spec__value",
+            "b-tabular-nums"
+          ],
+          "markup": "<div class=\"b-spec-strip\">\n            <div><span class=\"b-spec__value b-tabular-nums\">10 min</span><span class=\"b-spec__label\">From signup to first email</span></div>\n            <div><span class=\"b-spec__value b-tabular-nums\">99.9%</span><span class=\"b-spec__label\">Delivery to the major providers</span></div>\n            <div><span class=\"b-spec__value\">TZS</span><span class=\"b-spec__label\">Billed in shillings</span></div>\n          </div>"
+        },
+        {
+          "id": "site-footer",
+          "title": "Site Footer",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#site-footer",
+          "summary": "Small, dense, and unafraid of links: groups of destinations in columns, then the legal line that carries the footnotes the page made. Caption-sized throughout \u2014 a footer is for finding, not for reading.",
+          "classes": [
+            "b-site-footer",
+            "b-site-footer__group",
+            "b-site-footer__groups",
+            "b-site-footer__heading",
+            "b-site-footer__legal"
+          ],
+          "markup": "<footer class=\"b-site-footer\" style=\"border-radius: var(--b-radius-lg)\">\n            <div class=\"b-site-footer__groups\">\n              <div class=\"b-site-footer__group\">\n                <div class=\"b-site-footer__heading\">Barua</div>\n                <a href=\"#site-footer\">Mail</a><a href=\"#site-footer\">Domains</a><a href=\"#site-footer\">Pricing</a>\n              </div>\n              <div class=\"b-site-footer__group\">\n                <div class=\"b-site-footer__heading\">Support</div>\n                <a href=\"#site-footer\">Help centre</a><a href=\"#site-footer\">Status</a><a href=\"#site-footer\">Contact</a>\n              </div>\n              <div class=\"b-site-footer__group\">\n                <div class=\"b-site-footer__heading\">Company</div>\n                <a href=\"#site-footer\">About</a><a href=\"#site-footer\">Privacy</a><a href=\"#site-footer\">Terms</a>\n              </div>\n            </div>\n            <p class=\"b-site-footer__legal\">Prices include VAT where it applies.<br>Copyright &copy; 2026 Barua. Dar es Salaam, Tanzania.</p>\n          </footer>"
         }
       ]
     },

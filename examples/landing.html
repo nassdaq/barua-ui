@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landing example — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+</head>
+<body class="b-landing">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <nav class="b-marketing-nav" aria-label="Barua">
+    <a class="b-marketing-nav__brand" href="#main">Barua</a>
+    <div class="b-marketing-nav__links b-hide-mobile">
+      <a href="#mail">Mail</a>
+      <a href="#domains">Domains</a>
+      <a href="#storage">Storage</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#support">Support</a>
+    </div>
+    <a class="b-btn b-btn--primary b-btn--sm" href="#pricing">Get started</a>
+  </nav>
+
+  <main id="main">
+    <!-- The hero: one promise, two ways in, and the product itself beneath. -->
+    <header class="b-chapter b-hero">
+      <p class="b-chapter__eyebrow">Barua Mail</p>
+      <h1 class="b-chapter__title b-hero__title">Your business, on your own name.</h1>
+      <p class="b-chapter__lede">
+        Professional email on the domain you own — set up in an afternoon, paid
+        for in shillings, and hosted for businesses in Tanzania.
+      </p>
+      <div class="b-chapter__actions">
+        <a class="b-btn b-btn--primary b-btn--lg" href="#pricing">Start free trial</a>
+        <a class="b-link" href="#mail">See how it works &rsaquo;</a>
+      </div>
+      <div class="b-hero__media b-container b-container--xl">
+        <figure class="b-figure">
+          <div class="b-figure__frame">
+            <img src="assets/landing-hero.svg" alt="The Barua inbox on a laptop" width="1600" height="900" loading="eager">
+          </div>
+        </figure>
+      </div>
+    </header>
+
+    <!-- Chapters alternate: picture, then prose, then picture. -->
+    <section class="b-chapter" id="mail">
+      <div class="b-container b-container--xl">
+        <div class="b-feature-row">
+          <figure class="b-figure">
+            <div class="b-figure__frame">
+              <img src="assets/landing-mail.svg" alt="Threads, labels and search in Barua Mail" width="1200" height="900" loading="lazy">
+            </div>
+          </figure>
+          <div>
+            <p class="b-chapter__eyebrow">Mail</p>
+            <h2 class="b-feature-row__title">An inbox that behaves like an application.</h2>
+            <p class="b-feature-row__body">
+              Threads, labels, search that reads the whole message, and a
+              conversation view that stays where you left it. Everything is one
+              keystroke away — press ⌘K anywhere.
+            </p>
+            <p class="b-chapter__actions"><a class="b-link" href="#pricing">Open an inbox &rsaquo;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="b-chapter" id="domains">
+      <div class="b-container b-container--xl">
+        <div class="b-feature-row b-feature-row--flip">
+          <figure class="b-figure">
+            <div class="b-figure__frame">
+              <img src="assets/landing-domains.svg" alt="Domain records verifying themselves" width="1200" height="900" loading="lazy">
+            </div>
+          </figure>
+          <div>
+            <p class="b-chapter__eyebrow">Domains</p>
+            <h2 class="b-feature-row__title">The records write themselves.</h2>
+            <p class="b-feature-row__body">
+              Buy a domain or connect one you already own. Barua generates every
+              DNS record, checks them against public resolvers, and tells you in
+              plain words which one is wrong — not which one is missing a
+              semicolon.
+            </p>
+            <p class="b-chapter__actions"><a class="b-link" href="#pricing">Find a domain &rsaquo;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento: the rest of the platform, at a glance. -->
+    <section class="b-chapter b-chapter--tight" id="storage">
+      <h2 class="b-chapter__title">One account, the whole platform.</h2>
+      <p class="b-chapter__lede">Five things that would normally be five companies, on one balance.</p>
+      <div class="b-container b-container--xl" style="margin-block-start: var(--b-space-8)">
+        <div class="b-bento">
+          <article class="b-bento__tile b-bento__tile--wide">
+            <span class="b-icon-tile b-icon-tile--solid" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4.5" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m4.5 7 5.5 4 5.5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3 class="b-bento__title">Mail</h3>
+            <p class="b-bento__body">Mailboxes on your domain, shared inboxes for the team, and IMAP for the app you already use.</p>
+          </article>
+          <article class="b-bento__tile">
+            <span class="b-icon-tile b-icon-tile--sm b-icon-tile--teal" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M3.5 5.5A1.5 1.5 0 0 1 5 4h3l1.5 2H15a1.5 1.5 0 0 1 1.5 1.5V14a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 14V5.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </span>
+            <h3 class="b-bento__title">Storage</h3>
+            <p class="b-bento__body">Files beside the mailbox they belong to, shared with the people who need them.</p>
+          </article>
+          <article class="b-bento__tile">
+            <span class="b-icon-tile b-icon-tile--sm b-icon-tile--indigo" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 10h13M10 3.5c-4.5 4-4.5 9 0 13 4.5-4 4.5-9 0-13" stroke="currentColor" stroke-width="1.3"/></svg>
+            </span>
+            <h3 class="b-bento__title">Domains</h3>
+            <p class="b-bento__body">Buy, connect and manage names — with the DNS you can actually read.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- A strip of numbers, then the ask. -->
+    <section class="b-chapter b-chapter--tight">
+      <div class="b-container b-container--xl">
+        <div class="b-spec-strip">
+          <div><span class="b-spec__value b-tabular-nums">10 min</span><span class="b-spec__label">From signup to first email</span></div>
+          <div><span class="b-spec__value b-tabular-nums">99.9%</span><span class="b-spec__label">Delivery to the major providers</span></div>
+          <div><span class="b-spec__value">TZS</span><span class="b-spec__label">Billed in shillings, paid by mobile money</span></div>
+          <div><span class="b-spec__value b-tabular-nums">1 GB</span><span class="b-spec__label">Storage with every mailbox</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="b-chapter" id="pricing">
+      <h2 class="b-chapter__title">Start with one mailbox.</h2>
+      <p class="b-chapter__lede">
+        TZS 10,000 a mailbox each month. No setup fee, no contract, and the
+        domain stays yours if you ever leave.
+      </p>
+      <div class="b-chapter__actions">
+        <a class="b-btn b-btn--primary b-btn--lg b-btn--liquid" href="#pricing">Create your account</a>
+        <a class="b-link" href="#support">Talk to us first &rsaquo;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="b-site-footer" id="support">
+    <div class="b-site-footer__groups">
+      <div class="b-site-footer__group">
+        <div class="b-site-footer__heading">Barua</div>
+        <a href="#mail">Mail</a><a href="#domains">Domains</a><a href="#storage">Storage</a><a href="#pricing">Pricing</a>
+      </div>
+      <div class="b-site-footer__group">
+        <div class="b-site-footer__heading">For business</div>
+        <a href="#main">Teams</a><a href="#main">Shared mailboxes</a><a href="#main">Sending API</a><a href="#main">Migrating to Barua</a>
+      </div>
+      <div class="b-site-footer__group">
+        <div class="b-site-footer__heading">Support</div>
+        <a href="#main">Help centre</a><a href="#main">Set up your mail app</a><a href="#main">Status</a><a href="#main">Contact</a>
+      </div>
+      <div class="b-site-footer__group">
+        <div class="b-site-footer__heading">Company</div>
+        <a href="#main">About</a><a href="#main">Developers</a><a href="#main">Privacy</a><a href="#main">Terms</a>
+      </div>
+    </div>
+    <p class="b-site-footer__legal">
+      Prices include VAT where it applies. Mobile money payments are processed
+      by our payment partner; delivery figures are measured across the last
+      ninety days to Gmail, Outlook and Yahoo.
+      <br>Copyright &copy; 2026 Barua. Dar es Salaam, Tanzania.
+    </p>
+  </footer>
+</body>
+</html>
