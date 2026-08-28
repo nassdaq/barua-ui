@@ -169,7 +169,7 @@
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Barua UI
     </a>
-    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-badge b-badge--accent">v0.2</span>
     <nav class="b-topnav__links b-hide-mobile" aria-label="Primary">
       <a class="b-topnav__link" href="docs/foundations.html">Foundations</a>
       <a class="b-topnav__link" href="docs/icons.html">Icons</a>
@@ -225,7 +225,8 @@
         <p>
           Copy <code>css/</code> and <code>js/</code> into your project and link
           them. The script is optional sugar — toasts, tabs, ⌘K — everything
-          else is pure CSS on semantic HTML.
+          else is pure CSS on semantic HTML. In React, install the package
+          instead: same markup, typed.
         </p>
       </div>
       <div class="land-body quickstart">
@@ -238,6 +239,21 @@
 
 &lt;button class="b-btn b-btn--primary"&gt;Habari, Barua!&lt;/button&gt;</code></pre>
           </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>React</span>
+            <button class="b-code__copy" data-b-copy="#qs-react">Copy</button>
+          </div>
+          <pre><code id="qs-react">npm install barua-ui</code></pre>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>app.tsx</span>
+            <button class="b-code__copy" data-b-copy="#qs-react-use">Copy</button>
+          </div>
+          <pre><code id="qs-react-use">import "barua-ui/css";
+import { Button } from "barua-ui";
+
+&lt;Button variant="primary"&gt;Habari, Barua!&lt;/Button&gt;</code></pre>
+        </div>
         <div class="b-stack b-gap-3">
           <div class="b-hstack b-gap-3 b-stack--wrap">
             <button class="b-btn b-btn--primary" onclick="Barua.toast({title:'Karibu!',description:'Barua UI is wired up.',variant:'success'})">Try a toast</button>
