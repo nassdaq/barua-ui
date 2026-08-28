@@ -73,10 +73,39 @@ def known_classes() -> set[str]:
     return names
 
 
+def suppressions(text: str) -> dict[int, set[str]]:
+    """
+    Deliberate exceptions, stated in the file where they apply:
+
+        <!-- barua-lint disable emoji-icon: the picker's content IS emoji -->
+        ...
+        <!-- barua-lint enable -->
+
+    A rule is only silenced between the two, so an exception cannot leak into
+    the rest of a file, and it has to be written down next to what it excuses.
+    """
+    active: set[str] = set()
+    by_line: dict[int, set[str]] = {}
+    for number, line in enumerate(text.splitlines(), start=1):
+        disable = re.search(r"barua-lint disable ([a-z-,\s]+)", line)
+        if disable:
+            active |= {r.strip() for r in disable.group(1).split(",") if r.strip()}
+        if "barua-lint enable" in line:
+            active = set()
+        by_line[number] = set(active)
+    return by_line
+
+
 def check(path: pathlib.Path, known: set[str], knobs: set[str]) -> list[str]:
     text = path.read_text()
     problems: list[str] = []
     is_markup = path.suffix in {".html", ".htm"}
+    allowed = suppressions(text)
+
+    def report(line: int, rule: str, message: str) -> None:
+        if rule in allowed.get(line, set()):
+            return
+        problems.append(f"{path}:{line}: {message}")
 
     # 1. Only classes the system actually has.
     for match in CLASS_ATTR.finditer(text):
@@ -84,7 +113,7 @@ def check(path: pathlib.Path, known: set[str], knobs: set[str]) -> list[str]:
         line = text[: match.start()].count("\n") + 1
         for name in re.split(r"[\s`${}()?:'\"]+", value):
             if name.startswith("b-") and name not in known:
-                problems.append(f"{path}:{line}: unknown class '{name}' — it is not in the system")
+                report(line, "unknown-class", f"unknown class '{name}' — it is not in the system")
 
     # 2. Colour belongs to tokens.
     for match in STYLE_ATTR.finditer(text):
@@ -92,32 +121,32 @@ def check(path: pathlib.Path, known: set[str], knobs: set[str]) -> list[str]:
         line = text[: match.start()].count("\n") + 1
         if HEX.search(value) or RGB.search(value):
             if "gradient" not in value and "background" not in value:
-                problems.append(f"{path}:{line}: hardcoded colour in a style attribute — use a --b-* token")
+                report(line, "hardcoded-colour", "hardcoded colour in a style attribute — use a --b-* token")
         for prop in re.findall(r"(--[a-zA-Z0-9-]+)\s*:", value):
             if prop not in knobs:
-                problems.append(f"{path}:{line}: inline custom property '{prop}' is not a documented knob")
+                report(line, "inline-knob", f"inline custom property '{prop}' is not a documented knob")
 
     # 3. Surfaces the browser owns and we cannot style.
-    for pattern, message in (
-        (NATIVE_SELECT, "native <select> — its popup cannot be styled; use the menu select"),
-        (NATIVE_DATE, "native date/time input — its picker cannot be styled; use the Barua date picker"),
+    for pattern, rule, message in (
+        (NATIVE_SELECT, "native-select", "native <select> — its popup cannot be styled; use the menu select"),
+        (NATIVE_DATE, "native-date", "native date/time input — its picker cannot be styled; use the Barua date picker"),
     ):
         for match in pattern.finditer(text):
             line = text[: match.start()].count("\n") + 1
-            problems.append(f"{path}:{line}: {message}")
+            report(line, rule, message)
 
     # 4. Icons are drawn, not typed.
     if is_markup:
         for match in EMOJI.finditer(text):
             line = text[: match.start()].count("\n") + 1
-            problems.append(f"{path}:{line}: emoji used as an icon — use a glyph from the icon library")
+            report(line, "emoji-icon", "emoji used as an icon — use a glyph from the icon library")
 
     # 5. A scroll pane whose child is pinned to its height cannot scroll.
     for match in re.finditer(r'class(?:Name)?="[^"]*b-scroll-area[^"]*"', text):
         tail = text[match.end() : match.end() + 400]
         if re.search(r'class(?:Name)?="[^"]*\bh-full\b', tail):
             line = text[: match.start()].count("\n") + 1
-            problems.append(f"{path}:{line}: a child pinned to h-full inside .b-scroll-area — scrolling will die")
+            report(line, "scroll-pane", "a child pinned to h-full inside .b-scroll-area — scrolling will die")
 
     return problems
 

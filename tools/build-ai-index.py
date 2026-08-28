@@ -98,6 +98,51 @@ def parse_page(path: pathlib.Path) -> list[dict]:
     return out
 
 
+CSS_RULE = re.compile(r"([^{}]+)\{([^{}]*)\}", re.S)
+
+
+def css_rules() -> list[tuple[str, str]]:
+    rules = []
+    for path in sorted((ROOT / "css").rglob("*.css")):
+        rules += [(sel.strip(), body) for sel, body in CSS_RULE.findall(path.read_text())]
+    return rules
+
+
+def system_knobs(rules: list[tuple[str, str]]) -> set[str]:
+    """
+    The custom properties a component reads but the system never declares for
+    itself — the values that must come from the markup. Tokens (declared in
+    tokens.css or on the root) are deliberately excluded: those are the
+    system's own vocabulary, not knobs to set inline.
+    """
+    read, tokens = set(), set()
+    for path in sorted((ROOT / "css").rglob("*.css")):
+        text = path.read_text()
+        read.update(re.findall(r"var\(\s*(--[a-zA-Z0-9_-]+)", text))
+        if path.name == "tokens.css":
+            tokens.update(re.findall(r"^\s*(--[a-zA-Z0-9_-]+)\s*:", text, re.M))
+        for block in re.findall(r"(?::root|^\s*html)[^{]*\{([^}]*)\}", text, re.M):
+            tokens.update(re.findall(r"(--[a-zA-Z0-9_-]+)\s*:", block))
+    return (read - tokens) | {"--v"}
+
+
+def contracts(classes: list[str], rules: list[tuple[str, str]], knobs: set[str]):
+    """
+    What a component needs from whoever uses it: the knobs it reads from the
+    markup, and the states it responds to. Derived from the stylesheets, so an
+    agent never has to open the CSS to find out.
+    """
+    used_knobs, states = set(), set()
+    for name in classes:
+        for selector, body in rules:
+            if name not in selector:
+                continue
+            used_knobs |= {k for k in re.findall(r"var\(\s*(--[a-zA-Z0-9_-]+)", body) if k in knobs}
+            states |= set(re.findall(rf"\.{re.escape(name)}[^{{,]*?(\.is-[a-z-]+)", selector))
+            states |= set(re.findall(rf"(\.is-[a-z-]+)[^{{,]*?\.{re.escape(name)}", selector))
+    return sorted(used_knobs), sorted(s.lstrip(".") for s in states)
+
+
 def main() -> None:
     categories = []
     for page in CATEGORY_TITLES:
@@ -117,6 +162,17 @@ def main() -> None:
 
     every_class = sorted({c for cat in categories for comp in cat["components"] for c in comp["classes"]})
 
+    rules = css_rules()
+    knobs = system_knobs(rules)
+    defined = sorted({m for _, (sel, _) in enumerate(rules) for m in re.findall(r"\.(b-[a-zA-Z0-9_-]+)", sel)})
+    for cat in categories:
+        for comp in cat["components"]:
+            comp_knobs, comp_states = contracts(comp["classes"], rules, knobs)
+            if comp_knobs:
+                comp["knobs"] = comp_knobs
+            if comp_states:
+                comp["states"] = comp_states
+
     index = {
         "name": "Barua UI",
         "description": "An interface design system with Apple's design language, rebuilt natively for the web. Plain HTML and CSS, no build step.",
@@ -132,8 +188,19 @@ def main() -> None:
             "icons": "inline 20x20 SVG, 1.5px stroke, currentColor, from the icon library",
         },
         "rules": RULES,
-        "classCount": len(every_class),
-        "classes": every_class,
+        "classCount": len(defined),
+        "classes": defined,
+        "documentedClasses": every_class,
+        "knobs": sorted(knobs),
+        "spans": sorted(
+            {m for sel, _ in rules for m in re.findall(r"\.(b-span-\d+)", sel)},
+            key=lambda s: int(s.rsplit("-", 1)[1]),
+        ),
+        "lint": {
+            "command": "python3 tools/barua-lint.py <files or directory>",
+            "rules": ["unknown-class", "hardcoded-colour", "inline-knob", "native-select", "native-date", "emoji-icon", "scroll-pane"],
+            "suppress": "<!-- barua-lint disable <rule>: reason --> ... <!-- barua-lint enable -->",
+        },
         "categories": categories,
     }
 

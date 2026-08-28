@@ -1342,6 +1342,7 @@ Classes: b-dropdown b-field b-help b-label b-menu b-menu__item b-select
 ```html
 <div class="b-field" style="max-width: 26rem">
             <label class="b-label" for="sel-region">Region</label>
+            <!-- barua-lint disable native-select: documenting the platform control itself; product surfaces use the menu select above -->
             <select class="b-select" id="sel-region">
               <option value="" disabled>Choose a region…</option>
               <option selected>Dar es Salaam</option>
@@ -3264,6 +3265,7 @@ Classes: b-emoji-picker b-emoji-picker__grid b-input b-input--sm
 ```html
 <div class="b-emoji-picker">
             <input class="b-input b-input--sm" type="search" placeholder="Search emoji" aria-label="Search emoji">
+            <!-- barua-lint disable emoji-icon: in an emoji picker the emoji are the content, not icons -->
             <div class="b-emoji-picker__grid">
               <button aria-label="Grinning face">😀</button>
               <button aria-label="Tears of joy">😂</button>
@@ -3284,9 +3286,7 @@ Classes: b-emoji-picker b-emoji-picker__grid b-input b-input--sm
               <button aria-label="Lion">🦁</button>
               <button aria-label="Elephant">🐘</button>
               <button aria-label="Giraffe">🦒</button>
-              <button aria-label="Zebra">🦓</button>
-              <button aria-label="Coffee">☕</button>
-              <button aria
+              <button a
 ```
 
 ### Mention Picker  (https://ui.barua.tz/docs/specialized.html#mention-picker)
@@ -4188,15 +4188,14 @@ Classes: b-btn b-btn--ghost b-btn--sm b-dl b-icon-btn b-input b-inspector b-insp
                 </div>
                 <div class="b-props__row">
                   <label class="b-props__key" for="insp-status">Status</label>
+                  <!-- barua-lint disable native-select: a stand-in control inside a layout demo; forms.html documents the menu select -->
                   <select class="b-select" id="insp-status">
                     <option>Backlog</option>
                     <option selected>In progress</option>
                     <option>Done</option>
                   </select>
                 </div>
-                <div class="b-props__row">
-                  <label class="b-props__key" for="insp-width">Width</label>
-                  <inp
+   
 ```
 
 ### Detail View & Master-Detail  (https://ui.barua.tz/docs/productivity.html#detail-view-and-master-detail)
@@ -4243,16 +4242,14 @@ Classes: b-panel b-resizable b-resize-handle b-split
 
 ### Dock  (https://ui.barua.tz/docs/productivity.html#dock)
 A macOS-style app switcher. In production the glass .b-dock__tray sits inside .b-dock , which fixes it to the bottom of the viewport — shown statically here. Items magnify and lift on hover ( scale 1.28 with a bounce ease) and .is-active draws the running-app dot.
-Classes: b-dock__item b-dock__tray
+Classes: b-dock__item b-dock__tray b-icon
 
 ```html
 <div class="b-dock__tray">
-            <button class="b-dock__item is-active" aria-label="Calls">📞</button>
-            <button class="b-dock__item" aria-label="Inbox">📥</button>
-            <button class="b-dock__item" aria-label="Contacts">👥</button>
-            <button class="b-dock__item" aria-label="Reports">📊</button>
-            <button class="b-dock__item" aria-label="Settings">⚙️</button>
-          </div>
+            <button class="b-dock__item is-active" aria-label="Calls"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 3.5 8 6.2 6.4 8a9 9 0 0 0 5.6 5.6l1.8-1.6 2.7 1.5v2.2a1.3 1.3 0 0 1-1.4 1.3A13.5 13.5 0 0 1 3 5.2 1.3 1.3 0 0 1 4.3 3.8h2.2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+            <button class="b-dock__item" aria-label="Inbox"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 11.5 5 5h10l1.5 6.5v2.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3.5 11.5h4l1 1.5h3l1-1.5h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button>
+            <button class="b-dock__item" aria-label="Contacts"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="7.5" cy="7" r="2.6" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 16a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 4.6a2.6 2.6 0 0 1 0 4.9M14.5 11.6a5 5 0 0 1 3 4.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            <button class="b-dock__item" aria-label="Reports"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 16.5V9M10 16.5V4M16 
 ```
 
 ### Toolbar  (https://ui.barua.tz/docs/productivity.html#toolbar)
@@ -4436,6 +4433,7 @@ Classes: b-btn b-btn--primary b-checkbox b-input b-select b-switch
 <button class="b-btn b-btn--primary" disabled>Send</button>
           <button class="b-btn is-disabled" aria-disabled="true">Archive</button>
           <input class="b-input" style="width: 11rem;" placeholder="Recipient" disabled>
+          <!-- barua-lint disable native-select: showing the disabled state of a platform control -->
           <select class="b-select" style="width: 9rem;" disabled>
             <option>Read only</option>
           </select>

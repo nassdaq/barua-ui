@@ -22,6 +22,18 @@ Never guess a class name. The system is published in machine-readable form:
 uses, and **the canonical markup taken from its live demo**. Copy that anatomy —
 same wrapper elements, same slots — and change the content, not the structure.
 
+It also carries the contract, so you never have to open the stylesheets:
+
+- `knobs` on a component — the custom properties it reads from your markup
+  (there are 44 in the system; the four named in rule 4 are only examples)
+- `states` on a component — the `.is-*` classes it responds to
+- `spans` at the top level — every grid span that exists, so you never write
+  one that silently does nothing
+- `classes` — the real inventory, taken from the stylesheets, not just what
+  the demos happen to show
+- `lint` — the command, the rule ids, and how to annotate a deliberate
+  exception
+
 Locally, regenerate it with `python3 tools/build-ai-index.py`.
 
 ## Check your work
@@ -35,6 +47,20 @@ unknown classes, hardcoded colour, undocumented inline custom properties,
 native `<select>` and date inputs, emoji used as icons, and scroll panes that
 cannot scroll. Run it on anything you generate, and fix what it reports before
 you call the work done.
+
+If a rule is genuinely wrong for one case — an emoji picker whose content
+really is emoji, a demo of a platform control — say so in place instead of
+ignoring the linter:
+
+```html
+<!-- barua-lint disable emoji-icon: in a picker the emoji are the content -->
+…
+<!-- barua-lint enable -->
+```
+
+The exception has to name the rule and give the reason, and it stops at the
+`enable`. The documentation itself passes the linter under this rule, so a
+suppression without a reason is a smell, not a habit.
 
 `python3 tools/check-docs.py` validates the documentation pages and examples.
 
