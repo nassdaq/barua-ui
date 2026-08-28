@@ -358,10 +358,15 @@ Classes: b-card b-card__body b-card__subtitle b-card__title
 Mobile first, always: base styles serve the smallest screen, and each of the six breakpoints only adds. Most layouts shouldn't need media queries at all — .b-grid--auto , .b-card-grid and the stack primitives reflow on their own. When you do write one, use min-width at a shared stop.
 
 ### View Transitions  (https://ui.barua.tz/docs/foundations.html#view-transitions)
-SwiftUI's matched-geometry fluidity between pages, on the platform's View Transitions API. Opt in with data-vt on <html> and same-origin navigations cross-fade on the system's motion tokens (180ms out, 220ms in). Off by default, disabled automatically under reduced motion, and inert in browsers without the API.
+Two things, on the platform's View Transitions API. Opt in with data-vt on <html> and same-origin navigations cross-fade on the system's motion tokens (180ms out, 220ms in). Off by default, disabled automatically under reduced motion, and inert in browsers without the API.
+Variants: Shared elements
+Classes: b-btn b-btn--ghost b-btn--glass b-btn--sm b-card b-card__body b-card__subtitle b-card__title b-code b-code__header b-footnote b-gap-3 b-hstack b-stack b-text-secondary b-thumb
 
 ```html
-<pre style="margin:0"><code>&lt;html data-vt&gt;   &lt;!-- pages now cross-fade on navigation --&gt;</code></pre>
+<div class="b-code">
+            <div class="b-code__header"><span>Page transitions</span></div>
+            <pre><code>&lt;html data-vt&gt;   &lt;!-- pages now cross-fade on navigation --&gt;</code></pre>
+          </div>
 ```
 
 

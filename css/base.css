@@ -33,6 +33,10 @@
   input, button, textarea, select { font: inherit; color: inherit; letter-spacing: inherit; }
   p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
 
+  /* The hidden attribute means hidden. A display utility on the same element
+     would otherwise win on specificity and quietly keep it on screen. */
+  [hidden] { display: none !important; }
+
   /* ---- Typographic elements -------------------------------------------- */
   h1, h2, h3, h4, h5, h6 {
     font-weight: var(--b-weight-semibold);
@@ -222,6 +226,17 @@ html:not([data-vt])::view-transition-old(root),
 html:not([data-vt])::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 [data-vt]::view-transition-old(root) { animation-duration: 180ms; }
 [data-vt]::view-transition-new(root) { animation-duration: 220ms; }
+/* Matched elements: any two elements sharing a data-vt-name — a thumbnail here
+   and the hero it opens into there — are morphed by the browser instead of
+   cross-faded. The group carries the position and size change, so it wants the
+   system's spring rather than a linear tween. */
+[data-vt]::view-transition-group(*) {
+  animation-duration: var(--b-duration-slow, 400ms);
+  animation-timing-function: var(--b-ease-spring, cubic-bezier(0.32, 0.72, 0, 1));
+}
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) {
+    animation: none;
+  }
 }

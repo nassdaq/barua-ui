@@ -172,6 +172,65 @@
     delete document.documentElement.dataset.wallScheme;
   };
 
+  /* ---- Shared elements -----------------------------------------------------
+     A thumbnail in a list and the hero it opens into are the same thing to the
+     person looking at them, so they should be the same thing to the browser.
+     Give both `data-vt-name="cover-42"` and it morphs one into the other —
+     across a navigation, or around a Barua.transition() call in one page.
+     The name must be unique on a page: two elements sharing one name is the
+     one way this breaks, so it is checked in development. */
+  function applyTransitionNames(root) {
+    if (!CSS.supports("view-transition-name", "x")) return;
+    const seen = new Set();
+    (root || document).querySelectorAll("[data-vt-name]").forEach((el) => {
+      const name = el.dataset.vtName;
+      if (!name) return;
+      // An element that isn't rendered cannot be morphed, and must not hold
+      // the name hostage: this is exactly the list-to-detail case, where the
+      // thumbnail is hidden as the hero it becomes appears.
+      if (!el.getClientRects().length) {
+        el.style.viewTransitionName = "";
+        return;
+      }
+      if (seen.has(name)) {
+        console.warn("[barua] duplicate data-vt-name on this page:", name, el);
+        return;
+      }
+      seen.add(name);
+      el.style.viewTransitionName = name;
+    });
+  }
+  Barua.transitionNames = applyTransitionNames;
+
+  /**
+   * Run a change to the page inside a view transition. Matched elements morph,
+   * everything else cross-fades, and where the API is missing — or the person
+   * asked for less motion — the change simply happens.
+   */
+  Barua.transition = function (update) {
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (still || !document.startViewTransition) {
+      const result = update();
+      applyTransitionNames();
+      return Promise.resolve(result);
+    }
+    const transition = document.startViewTransition(() => {
+      update();
+      applyTransitionNames();
+    });
+    return transition.finished.catch(() => {});
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => applyTransitionNames());
+  } else {
+    applyTransitionNames();
+  }
+  // Cross-document transitions snapshot before the new page has run its
+  // scripts, so the incoming page names its elements at reveal time.
+  addEventListener("pagereveal", () => applyTransitionNames());
+  addEventListener("pageswap", () => applyTransitionNames());
+
   /* ---- Wallpaper -----------------------------------------------------------
      Setting a wallpaper is a first-class act in this system, not a theme
      preference: it is what makes the glass legible. Barua.wallpaper.set()

@@ -1074,9 +1074,32 @@
           "title": "View Transitions",
           "category": "foundations",
           "url": "https://ui.barua.tz/docs/foundations.html#view-transitions",
-          "summary": "SwiftUI's matched-geometry fluidity between pages, on the platform's View Transitions API. Opt in with data-vt on <html> and same-origin navigations cross-fade on the system's motion tokens (180ms out, 220ms in). Off by default, disabled automatically under reduced motion, and inert in browsers without the API.",
-          "classes": [],
-          "markup": "<pre style=\"margin:0\"><code>&lt;html data-vt&gt;   &lt;!-- pages now cross-fade on navigation --&gt;</code></pre>"
+          "summary": "Two things, on the platform's View Transitions API. Opt in with data-vt on <html> and same-origin navigations cross-fade on the system's motion tokens (180ms out, 220ms in). Off by default, disabled automatically under reduced motion, and inert in browsers without the API.",
+          "classes": [
+            "b-btn",
+            "b-btn--ghost",
+            "b-btn--glass",
+            "b-btn--sm",
+            "b-card",
+            "b-card__body",
+            "b-card__subtitle",
+            "b-card__title",
+            "b-code",
+            "b-code__header",
+            "b-footnote",
+            "b-gap-3",
+            "b-hstack",
+            "b-stack",
+            "b-text-secondary",
+            "b-thumb"
+          ],
+          "markup": "<div class=\"b-code\">\n            <div class=\"b-code__header\"><span>Page transitions</span></div>\n            <pre><code>&lt;html data-vt&gt;   &lt;!-- pages now cross-fade on navigation --&gt;</code></pre>\n          </div>",
+          "variants": [
+            {
+              "id": "shared-elements",
+              "title": "Shared elements"
+            }
+          ]
         }
       ]
     },

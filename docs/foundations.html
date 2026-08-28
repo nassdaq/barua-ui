@@ -1273,16 +1273,80 @@
       <section class="docs-section" id="view-transitions">
         <h2>View Transitions</h2>
         <p>
-          SwiftUI's matched-geometry fluidity between pages, on the platform's
-          View Transitions API. Opt in with <code>data-vt</code> on
-          <code>&lt;html&gt;</code> and same-origin navigations cross-fade on
-          the system's motion tokens (180ms out, 220ms in). Off by default,
-          disabled automatically under reduced motion, and inert in browsers
-          without the API.
+          Two things, on the platform's View Transitions API. Opt in with
+          <code>data-vt</code> on <code>&lt;html&gt;</code> and same-origin
+          navigations cross-fade on the system's motion tokens (180ms out,
+          220ms in). Off by default, disabled automatically under reduced
+          motion, and inert in browsers without the API.
         </p>
-        <div class="docs-demo" data-no-code>
-          <pre style="margin:0"><code>&lt;html data-vt&gt;   &lt;!-- pages now cross-fade on navigation --&gt;</code></pre>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-code">
+            <div class="b-code__header"><span>Page transitions</span></div>
+            <pre><code>&lt;html data-vt&gt;   &lt;!-- pages now cross-fade on navigation --&gt;</code></pre>
+          </div>
         </div>
+
+        <h3 id="shared-elements">Shared elements</h3>
+        <p>
+          The second thing is the one that matters: a thumbnail in a list and
+          the hero it opens into are the same object to the person looking at
+          them, so they should be the same object to the browser. Give both
+          <code>data-vt-name="cover-42"</code> and it morphs one into the
+          other — across a navigation, or around a
+          <code>Barua.transition()</code> call within one page. Everything
+          unnamed still cross-fades. A name must be unique on the page; a
+          duplicate is warned about rather than silently mis-morphed.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div id="vt-demo">
+            <div class="b-hstack b-gap-3" id="vt-thumbs">
+              <button class="b-btn b-btn--ghost" style="padding: 0" onclick="vtOpen('teal')">
+                <span class="b-thumb" data-vt-name="vt-teal" style="--b-thumb-size: 4.5rem; background: linear-gradient(140deg, var(--b-color-teal), var(--b-color-indigo))"></span>
+              </button>
+              <button class="b-btn b-btn--ghost" style="padding: 0" onclick="vtOpen('amber')">
+                <span class="b-thumb" data-vt-name="vt-amber" style="--b-thumb-size: 4.5rem; background: linear-gradient(140deg, var(--b-color-orange), var(--b-color-pink))"></span>
+              </button>
+            </div>
+            <article class="b-card" id="vt-detail" hidden>
+              <div class="b-card__body b-stack b-gap-3">
+                <span class="b-thumb" id="vt-hero" style="--b-thumb-size: 11rem"></span>
+                <div>
+                  <div class="b-card__title" id="vt-title">Cover</div>
+                  <div class="b-card__subtitle">The thumbnail became this — one element, two places.</div>
+                </div>
+                <span><button class="b-btn b-btn--glass b-btn--sm" onclick="vtClose()">Back</button></span>
+              </div>
+            </article>
+          </div>
+          <p class="b-footnote b-text-secondary" style="margin: 0">
+            Open one, then close it. In a browser without the API the panel
+            simply appears, and under reduced motion it never animates.
+          </p>
+        </div>
+
+        <script>
+          const VT_ART = {
+            teal: "linear-gradient(140deg, var(--b-color-teal), var(--b-color-indigo))",
+            amber: "linear-gradient(140deg, var(--b-color-orange), var(--b-color-pink))",
+          };
+          function vtOpen(key) {
+            Barua.transition(function () {
+              const hero = document.getElementById("vt-hero");
+              hero.style.background = VT_ART[key];
+              hero.dataset.vtName = "vt-" + key;
+              document.getElementById("vt-title").textContent =
+                key === "teal" ? "Deep water" : "Ember";
+              document.getElementById("vt-thumbs").hidden = true;
+              document.getElementById("vt-detail").hidden = false;
+            });
+          }
+          function vtClose() {
+            Barua.transition(function () {
+              document.getElementById("vt-detail").hidden = true;
+              document.getElementById("vt-thumbs").hidden = false;
+            });
+          }
+        </script>
       </section>
 
       <nav class="docs-pager">
