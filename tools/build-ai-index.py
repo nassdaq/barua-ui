@@ -180,6 +180,7 @@ def main() -> None:
         "description": "An interface design system with Apple's design language, rebuilt natively for the web. Plain HTML and CSS, no build step.",
         "docs": SITE,
         "repository": "https://github.com/nassdaq/barua-ui",
+        "mcp": {"url": "https://mcp.barua.tz/mcp", "transport": "streamable-http", "docs": f"{SITE}/docs/infrastructure.html#mcp"},
         "stylesheet": f"{SITE}/css/barua.css",
         "script": f"{SITE}/js/barua.js",
         "conventions": {
@@ -215,6 +216,9 @@ def main() -> None:
         "> An interface design system with Apple's design language, rebuilt natively",
         "> for the web: plain HTML and CSS, one stylesheet, no build step. Build",
         "> interfaces by composing documented components — never by inventing CSS.",
+        "",
+        "Ask the system directly (MCP, streamable HTTP):",
+        "- https://mcp.barua.tz/mcp — search_components, get_component, get_rules, lint_markup",
         "",
         "Machine-readable index of every component, with canonical markup:",
         f"- [barua-ui.json]({SITE}/barua-ui.json): complete component index",

@@ -17,6 +17,7 @@ import { tmpdir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createInterface } from "node:readline";
+import { createServer } from "node:http";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const index = JSON.parse(readFileSync(join(ROOT, "barua-ui.json"), "utf8"));
@@ -153,36 +154,101 @@ const HANDLERS = {
   lint_markup: lintMarkup,
 };
 
+/** One place decides what a request means; the transports only carry it. */
+function handle(message) {
+  const { id, method, params } = message ?? {};
+  if (method === "initialize") {
+    return {
+      protocolVersion: "2024-11-05",
+      capabilities: { tools: {} },
+      serverInfo: { name: "barua-ui", version: "0.1.0" },
+    };
+  }
+  if (method === "tools/list") return { tools: TOOLS };
+  if (method === "tools/call") {
+    const handler = HANDLERS[params?.name];
+    if (!handler) return { ...text(`Unknown tool: ${params?.name}`), isError: true };
+    try {
+      return handler(params?.arguments ?? {});
+    } catch (error) {
+      return { ...text(`${error}`), isError: true };
+    }
+  }
+  return {};
+}
+
 function respond(id, result) {
   process.stdout.write(JSON.stringify({ jsonrpc: "2.0", id, result }) + "\n");
 }
 
-createInterface({ input: process.stdin }).on("line", (line) => {
-  if (!line.trim()) return;
-  let message;
-  try {
-    message = JSON.parse(line);
-  } catch {
-    return;
-  }
-  const { id, method, params } = message;
-
-  if (method === "initialize") {
-    return respond(id, {
-      protocolVersion: "2024-11-05",
-      capabilities: { tools: {} },
-      serverInfo: { name: "barua-ui", version: "0.1.0" },
-    });
-  }
-  if (method === "tools/list") return respond(id, { tools: TOOLS });
-  if (method === "tools/call") {
-    const handler = HANDLERS[params?.name];
-    if (!handler) return respond(id, { ...text(`Unknown tool: ${params?.name}`), isError: true });
-    try {
-      return respond(id, handler(params.arguments ?? {}));
-    } catch (error) {
-      return respond(id, { ...text(`${error}`), isError: true });
+/**
+ * Hosted transport. The same four tools over HTTP, so an agent that has never
+ * seen this repository can still ask the system questions:
+ *
+ *   claude mcp add --transport http barua-ui https://mcp.barua.tz/mcp
+ */
+function serveHttp(port) {
+  createServer((request, response) => {
+    const cors = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "content-type, mcp-session-id, mcp-protocol-version",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+    };
+    if (request.method === "OPTIONS") {
+      response.writeHead(204, cors);
+      return response.end();
     }
-  }
-  if (id !== undefined) respond(id, {});
-});
+    if (request.method === "GET") {
+      response.writeHead(200, { ...cors, "content-type": "application/json" });
+      return response.end(
+        JSON.stringify({
+          name: "barua-ui",
+          description: index.description,
+          docs: index.docs,
+          transport: "streamable-http",
+          endpoint: "/mcp",
+          tools: TOOLS.map((t) => t.name),
+        }),
+      );
+    }
+    let body = "";
+    request.on("data", (chunk) => {
+      body += chunk;
+      // A design system answers questions; it does not accept uploads.
+      if (body.length > 1_000_000) request.destroy();
+    });
+    request.on("end", () => {
+      let message;
+      try {
+        message = JSON.parse(body || "{}");
+      } catch {
+        response.writeHead(400, { ...cors, "content-type": "application/json" });
+        return response.end(JSON.stringify({ jsonrpc: "2.0", id: null, error: { code: -32700, message: "Parse error" } }));
+      }
+      const payload = Array.isArray(message) ? message : [message];
+      const results = payload
+        .filter((m) => m.id !== undefined)
+        .map((m) => ({ jsonrpc: "2.0", id: m.id, result: handle(m) }));
+      response.writeHead(200, { ...cors, "content-type": "application/json" });
+      response.end(JSON.stringify(Array.isArray(message) ? results : (results[0] ?? {})));
+    });
+  }).listen(port, "127.0.0.1", () => {
+    console.log(`barua-ui MCP on http://127.0.0.1:${port}/mcp`);
+  });
+}
+
+const httpPort = process.env.PORT || (process.argv.includes("--http") ? 3030 : null);
+if (httpPort) {
+  serveHttp(Number(httpPort));
+} else {
+  createInterface({ input: process.stdin }).on("line", (line) => {
+    if (!line.trim()) return;
+    let message;
+    try {
+      message = JSON.parse(line);
+    } catch {
+      return;
+    }
+    if (message.id !== undefined) respond(message.id, handle(message));
+  });
+}

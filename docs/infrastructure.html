@@ -96,6 +96,53 @@
         </p>
       </header>
 
+      <section class="docs-section" id="mcp">
+        <h2>MCP server</h2>
+        <p>
+          The system is also a service. Rather than loading a 500&nbsp;KB index
+          into context, an agent can ask it questions — and, more usefully,
+          hand back the markup it just wrote to be judged before shipping it.
+          Hosted, so a coding agent that has never seen this repository can
+          still use the system correctly:
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>Connect</span>
+            <button class="b-code__copy" data-b-copy="#mcp-remote">Copy</button>
+          </div>
+          <pre><code id="mcp-remote">claude mcp add --transport http barua-ui https://mcp.barua.tz/mcp</code></pre>
+        </div>
+        <p>
+          Four tools. <code>search_components</code> finds things by name,
+          purpose or class. <code>get_component</code> returns one
+          component&rsquo;s anatomy — every class, the knobs it reads from your
+          markup, the states it answers to, and the canonical markup taken from
+          its own live demo. <code>get_rules</code> returns the rules, the grid
+          spans that exist and all 44 knobs. <code>lint_markup</code> takes
+          HTML or JSX and reports every violation: invented classes, hardcoded
+          colour, inline properties that are not knobs, native
+          <code>&lt;select&gt;</code> and date inputs, emoji used as icons, and
+          scroll panes that cannot scroll.
+        </p>
+        <p>
+          The endpoint answers a plain <code>GET</code> with its own
+          description, so <a href="https://mcp.barua.tz">mcp.barua.tz</a> is
+          readable in a browser. Requests are rate limited and nothing is
+          stored; markup you send for linting is written to a temporary file,
+          checked against the stylesheets, and discarded.
+        </p>
+        <p>
+          To run it beside your own copy of the system instead — which keeps
+          your markup on your machine — point the same server at a local
+          checkout:
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>Local</span>
+            <button class="b-code__copy" data-b-copy="#mcp-local">Copy</button>
+          </div>
+          <pre><code id="mcp-local">claude mcp add barua-ui -- node /path/to/barua-ui/mcp/barua-ui-mcp.mjs</code></pre>
+        </div>
+      </section>
+
       <section class="docs-section" id="design-tokens">
         <h2>Design Tokens</h2>
         <p>

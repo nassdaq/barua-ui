@@ -73,6 +73,15 @@ scroll.
 Rather than loading the whole index into context, an agent can interrogate the
 system directly:
 
+It is hosted, so an agent that has never seen this repository can still use the
+system correctly:
+
+```bash
+claude mcp add --transport http barua-ui https://mcp.barua.tz/mcp
+```
+
+Or run it beside your own checkout, which keeps your markup on your machine:
+
 ```bash
 claude mcp add barua-ui -- node /path/to/barua-ui/mcp/barua-ui-mcp.mjs
 ```

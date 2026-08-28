@@ -3,6 +3,11 @@
   "description": "An interface design system with Apple's design language, rebuilt natively for the web. Plain HTML and CSS, no build step.",
   "docs": "https://ui.barua.tz",
   "repository": "https://github.com/nassdaq/barua-ui",
+  "mcp": {
+    "url": "https://mcp.barua.tz/mcp",
+    "transport": "streamable-http",
+    "docs": "https://ui.barua.tz/docs/infrastructure.html#mcp"
+  },
   "stylesheet": "https://ui.barua.tz/css/barua.css",
   "script": "https://ui.barua.tz/js/barua.js",
   "conventions": {
@@ -8426,6 +8431,19 @@
       "title": "Infrastructure \u2014 naming, theming, accessibility, contribution",
       "url": "https://ui.barua.tz/docs/infrastructure.html",
       "components": [
+        {
+          "id": "mcp",
+          "title": "MCP server",
+          "category": "infrastructure",
+          "url": "https://ui.barua.tz/docs/infrastructure.html#mcp",
+          "summary": "The system is also a service. Rather than loading a 500 KB index into context, an agent can ask it questions \u2014 and, more usefully, hand back the markup it just wrote to be judged before shipping it. Hosted, so a coding agent that has never seen this repository can still use the system correctly:",
+          "classes": [
+            "b-code",
+            "b-code__copy",
+            "b-code__header"
+          ],
+          "markup": ""
+        },
         {
           "id": "design-tokens",
           "title": "Design Tokens",

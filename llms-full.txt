@@ -5138,6 +5138,10 @@ Classes: b-site-footer b-site-footer__group b-site-footer__groups b-site-footer_
 
 ## Infrastructure — naming, theming, accessibility, contribution
 
+### MCP server  (https://ui.barua.tz/docs/infrastructure.html#mcp)
+The system is also a service. Rather than loading a 500 KB index into context, an agent can ask it questions — and, more usefully, hand back the markup it just wrote to be judged before shipping it. Hosted, so a coding agent that has never seen this repository can still use the system correctly:
+Classes: b-code b-code__copy b-code__header
+
 ### Design Tokens  (https://ui.barua.tz/docs/infrastructure.html#design-tokens)
 Every visual decision is a custom property prefixed --b- , defined once in css/tokens.css . Tokens come in three tiers: primitives are raw values ( --b-blue-500 is Barua blue), semantic tokens give values meaning and carry the light/dark pair ( --b-color-accent ), and components consume the semantic tier — never the primitives.
 Variants: Token families
