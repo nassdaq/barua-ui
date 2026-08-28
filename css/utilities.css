@@ -30,15 +30,15 @@
      known-dark backdrop resolves every light-dark() token that way, so text,
      glass and fills answer to the picture rather than to the app theme.
      Set [data-wall-scheme] on <html>; mark the surface .b-wallpaper-scope. */
-  [data-wall-scheme="light"] .b-wallpaper-scope,
-  [data-wall-scheme="dark"]  .b-wallpaper-scope {
+  [data-wall-scheme="light"] :is(.b-wallpaper-scope, .b-wall),
+  [data-wall-scheme="dark"]  :is(.b-wallpaper-scope, .b-wall) {
     /* Re-anchor the ink inside the scope: text colour is resolved further up
        and inherited down, so without this the scheme would flip the glass but
        not the words sitting on it. */
     color: var(--b-text);
   }
-  [data-wall-scheme="light"] .b-wallpaper-scope { color-scheme: light; }
-  [data-wall-scheme="dark"]  .b-wallpaper-scope { color-scheme: dark; }
+  [data-wall-scheme="light"] :is(.b-wallpaper-scope, .b-wall) { color-scheme: light; }
+  [data-wall-scheme="dark"]  :is(.b-wallpaper-scope, .b-wall) { color-scheme: dark; }
 
   /* Stage — a full-viewport, non-scrolling surface (ambient walls, kiosks,
      TV/CarPlay-style screens). Desktop locks to the viewport and clips;

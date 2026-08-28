@@ -182,6 +182,7 @@
     /** Hang a picture. `src` is any CSS image source: a URL or a data URI. */
     async set(src, { adapt = true, remember = true } = {}) {
       document.documentElement.style.setProperty("--b-wall-image", 'url("' + src + '")');
+      document.documentElement.classList.add("b-has-wallpaper");
       if (remember) {
         try { localStorage.setItem(WALL_KEY, src); } catch (_) {}
       }
@@ -208,6 +209,7 @@
     /** Back to the bare wall, and back to the stock accent. */
     clear() {
       document.documentElement.style.removeProperty("--b-wall-image");
+      document.documentElement.classList.remove("b-has-wallpaper");
       try { localStorage.removeItem(WALL_KEY); } catch (_) {}
       if (Barua.adapt) Barua.adapt.reset();
     },

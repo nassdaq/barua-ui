@@ -779,3 +779,24 @@
   }
   .b-empty .b-btn { margin-block-start: var(--b-space-3); }
 }
+  /* A picture behind flat cards is a picture nobody sees. When a wallpaper is
+     hanging (Barua.wallpaper adds .b-has-wallpaper), surfaces on the wall
+     become the neutral material — derived from whatever is behind them, so it
+     holds over any picture. A product that wants opaque surfaces simply never
+     hangs one. */
+  .b-has-wallpaper .b-workspace,
+  .b-has-wallpaper .b-workspace__main,
+  .b-has-wallpaper .b-inspector { background: transparent; }
+  .b-has-wallpaper .b-card {
+    background: var(--b-material-neutral-bg);
+    -webkit-backdrop-filter: blur(var(--b-blur-lg)) saturate(1.1);
+    backdrop-filter: blur(var(--b-blur-lg)) saturate(1.1);
+    border-color: var(--b-material-neutral-edge);
+  }
+  /* A panel inside glass is a fill, never a second material. */
+  .b-has-wallpaper .b-card .b-card {
+    background: var(--b-fill-quaternary);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
