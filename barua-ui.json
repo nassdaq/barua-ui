@@ -28,7 +28,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 671,
+  "classCount": 672,
   "classes": [
     "b-accordion",
     "b-account",
@@ -696,6 +696,7 @@
     "b-video__overlay",
     "b-video__play",
     "b-vstack",
+    "b-wall",
     "b-wallpaper-scope",
     "b-waveform",
     "b-web",
@@ -724,6 +725,7 @@
             "b-btn--sm",
             "b-card",
             "b-card--glass",
+            "b-card--neutral",
             "b-card__body",
             "b-card__header",
             "b-card__title",
@@ -735,9 +737,10 @@
             "b-stack",
             "b-stack--wrap",
             "b-text-secondary",
+            "b-wall",
             "b-wallpaper-scope"
           ],
-          "markup": "<div class=\"b-hstack b-stack--wrap b-gap-3\">\n            <button class=\"b-btn b-btn--glass\" onclick=\"Barua.adapt('../examples/assets/ambient-bg.svg').then(function(r){ if (r) Barua.toast({title: 'Adapted to ' + r.accent, variant: 'success', duration: 2200}); })\">\n              <img src=\"../examples/assets/ambient-bg.svg\" alt=\"\" width=\"28\" height=\"18\" style=\"border-radius: 4px; object-fit: cover\">\n              Adapt to the ambient art\n            </button>\n            <button class=\"b-btn b-btn--glass\" onclick=\"Barua.adapt(document.getElementById('adapt-ember')).then(function(r){ if (r) Barua.toast({title: 'Adapted to ' + r.accent, variant: 'success', duration: 2200}); })\">\n              <img id=\"adapt-ember\" width=\"28\" height=\"18\" style=\"border-radius: 4px\" alt=\"\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='18'%3E%3Crect width='28' height='18' fill='%238c3d2a'/%3E%3Ccircle cx='20' cy='6' r='9' fill='%23d97a3f'/%3E%3Ccircle cx='6' cy='14' r='7' fill='%235b2418'/%3E%3C/svg%3E\">\n              Adapt to ember\n            </button>\n            <button class=\"b-btn b-btn--ghost\" onclick=\"Barua.adapt.reset(); Barua.toast({title: 'Stock accent restored', duration: 1800})\">Reset</button>\n          </div>\n          <div class=\"b-hstack b-stack--wrap b-gap-2\">\n            <button class=\"b-btn b-btn--primary\">Primary follows</button>\n            <sp",
+          "markup": "<div class=\"b-hstack b-stack--wrap b-gap-2\">\n            <button class=\"b-btn b-btn--glass b-btn--sm\" onclick=\"baruaWallDemo('../examples/assets/ambient-bg.svg')\">Papercut</button>\n            <button class=\"b-btn b-btn--glass b-btn--sm\" onclick=\"baruaWallDemo('../examples/assets/cave-wall.svg')\">Cave wall</button>\n            <label class=\"b-btn b-btn--primary b-btn--sm\">\n              Choose an image\u2026\n              <input type=\"file\" accept=\"image/*\" style=\"display: none\" onchange=\"baruaWallFile(this.files[0])\">\n            </label>\n            <button class=\"b-btn b-btn--ghost b-btn--sm\" onclick=\"baruaWallDemo(null)\">Bare wall</button>\n          </div>\n\n          <div id=\"wall-demo-frame\">\n            <div class=\"b-wall b-wallpaper-scope\" id=\"wall-demo\" style=\"padding: var(--b-space-6); border-radius: var(--b-radius-xl)\">\n              <article class=\"b-card b-card--neutral\" style=\"max-width: 21rem\">\n                <div class=\"b-card__header\">\n                  <div class=\"b-card__title\">Glass needs a backdrop</div>\n                  <span class=\"b-badge b-badge--accent\">Live</span>\n                </div>\n                <div class=\"b-card__body b-stack b-gap-2\">\n                  <p class=\"b-footnote b-text-secondary\" style=\"margin: 0\">\n                    Change the wall and watch the material, the ink and the\n                    accent all answer to the picture.\n        ",
           "variants": [
             {
               "id": "system-colors",
@@ -754,6 +757,10 @@
             {
               "id": "text-hierarchy",
               "title": "Text hierarchy"
+            },
+            {
+              "id": "wallpaper",
+              "title": "Wallpaper"
             },
             {
               "id": "adaptive-accent",

@@ -377,6 +377,85 @@
           </div>
         </div>
       
+        <h3 id="wallpaper">Wallpaper</h3>
+        <p>
+          Glass is a material, and a material only reads as one when there is
+          something behind it. Over a flat page every level of glass collapses
+          into the same grey — the blur has nothing to blur, the specular edge
+          has nothing to catch. Give the wall a picture and the whole system
+          comes alive at once.
+        </p>
+        <p>
+          So changing the background is not a decoration setting in Barua, it
+          is part of the system: put <code>.b-wall</code> on the surface that
+          carries it — usually <code>&lt;body&gt;</code> — and let the person
+          using the interface choose the picture. It costs nothing until one is
+          set, and the system learns its accent and its light/dark scheme from
+          whatever they choose. Some people will leave the wall bare; the ones
+          who don&rsquo;t should be rewarded for it.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-hstack b-stack--wrap b-gap-2">
+            <button class="b-btn b-btn--glass b-btn--sm" onclick="baruaWallDemo('../examples/assets/ambient-bg.svg')">Papercut</button>
+            <button class="b-btn b-btn--glass b-btn--sm" onclick="baruaWallDemo('../examples/assets/cave-wall.svg')">Cave wall</button>
+            <label class="b-btn b-btn--primary b-btn--sm">
+              Choose an image…
+              <input type="file" accept="image/*" style="display: none" onchange="baruaWallFile(this.files[0])">
+            </label>
+            <button class="b-btn b-btn--ghost b-btn--sm" onclick="baruaWallDemo(null)">Bare wall</button>
+          </div>
+
+          <div id="wall-demo-frame">
+            <div class="b-wall b-wallpaper-scope" id="wall-demo" style="padding: var(--b-space-6); border-radius: var(--b-radius-xl)">
+              <article class="b-card b-card--neutral" style="max-width: 21rem">
+                <div class="b-card__header">
+                  <div class="b-card__title">Glass needs a backdrop</div>
+                  <span class="b-badge b-badge--accent">Live</span>
+                </div>
+                <div class="b-card__body b-stack b-gap-2">
+                  <p class="b-footnote b-text-secondary" style="margin: 0">
+                    Change the wall and watch the material, the ink and the
+                    accent all answer to the picture.
+                  </p>
+                  <span><button class="b-btn b-btn--primary b-btn--sm">Action</button></span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <p class="b-footnote b-text-secondary" style="margin: 0">
+            In a product you put <code>.b-wall</code> on <code>&lt;body&gt;</code>
+            and call <code>Barua.wallpaper.set(src)</code> or
+            <code>Barua.wallpaper.setFile(file)</code> — the picture is
+            remembered, resized in the browser, and the system learns from it.
+            The documentation site itself stays bare on purpose: reading
+            surfaces want quiet, application surfaces want a wall.
+          </p>
+        </div>
+
+        <script>
+          function baruaWallDemo(src) {
+            const wall = document.getElementById("wall-demo");
+            const frame = document.getElementById("wall-demo-frame");
+            if (!src) {
+              wall.style.removeProperty("--b-wall-image");
+              delete frame.dataset.wallScheme;
+              Barua.adapt.reset();
+              return;
+            }
+            wall.style.setProperty("--b-wall-image", 'url("' + src + '")');
+            Barua.adapt(src, { scheme: false }).then(function (learned) {
+              if (learned) frame.dataset.wallScheme = learned.scheme;
+            });
+          }
+          function baruaWallFile(file) {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => baruaWallDemo(reader.result);
+            reader.readAsDataURL(file);
+          }
+        </script>
+
         <h3 id="adaptive-accent">Adaptive accent &amp; scheme</h3>
         <p>
           The system can learn from a picture — a user&rsquo;s wallpaper.

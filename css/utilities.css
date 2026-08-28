@@ -14,6 +14,18 @@
   }
   .b-container--sm { max-width: var(--b-container-sm); }
 
+  /* The wall — the surface a wallpaper hangs on.
+     Glass is a material, and a material only reads as one when there is
+     something behind it: over a flat page, five levels of glass all look like
+     the same grey. Give the wall a picture and the whole system comes alive,
+     which is why changing it belongs to the person using the interface.
+     Harmless until a picture is set: --b-wall-image defaults to none. */
+  .b-wall {
+    background:
+      var(--b-wall-image, none) center / cover no-repeat fixed
+      var(--b-wall-ground, var(--b-bg));
+  }
+
   /* Wallpaper-driven scheme: a surface pinned to a known-bright or
      known-dark backdrop resolves every light-dark() token that way, so text,
      glass and fills answer to the picture rather than to the app theme.

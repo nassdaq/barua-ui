@@ -172,6 +172,61 @@
     delete document.documentElement.dataset.wallScheme;
   };
 
+  /* ---- Wallpaper -----------------------------------------------------------
+     Setting a wallpaper is a first-class act in this system, not a theme
+     preference: it is what makes the glass legible. Barua.wallpaper.set()
+     hangs a picture on every .b-wall, remembers it, and asks Barua.adapt()
+     to learn the accent and the light/dark scheme from it. */
+  const WALL_KEY = "barua-wallpaper";
+  Barua.wallpaper = {
+    /** Hang a picture. `src` is any CSS image source: a URL or a data URI. */
+    async set(src, { adapt = true, remember = true } = {}) {
+      document.documentElement.style.setProperty("--b-wall-image", 'url("' + src + '")');
+      if (remember) {
+        try { localStorage.setItem(WALL_KEY, src); } catch (_) {}
+      }
+      if (adapt && Barua.adapt) {
+        try { return await Barua.adapt(src); } catch (_) { return null; }
+      }
+      return null;
+    },
+    /**
+     * Hang a picture the person chose from their device. The image is resized
+     * and re-encoded here, in the browser: a wallpaper is decoration, and
+     * shipping a 12-megapixel original around to decorate with is rude.
+     */
+    async setFile(file, { maxEdge = 2560, quality = 0.82 } = {}) {
+      const bitmap = await createImageBitmap(file);
+      const scale = Math.min(1, maxEdge / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(bitmap.width * scale);
+      canvas.height = Math.round(bitmap.height * scale);
+      canvas.getContext("2d").drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      const src = canvas.toDataURL("image/webp", quality);
+      return this.set(src);
+    },
+    /** Back to the bare wall, and back to the stock accent. */
+    clear() {
+      document.documentElement.style.removeProperty("--b-wall-image");
+      try { localStorage.removeItem(WALL_KEY); } catch (_) {}
+      if (Barua.adapt) Barua.adapt.reset();
+    },
+    get() {
+      try { return localStorage.getItem(WALL_KEY); } catch (_) { return null; }
+    },
+    /** Re-hang the remembered picture. Called once on load. */
+    restore() {
+      const src = this.get();
+      if (src) return this.set(src, { remember: false });
+      return Promise.resolve(null);
+    },
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => Barua.wallpaper.restore());
+  } else {
+    Barua.wallpaper.restore();
+  }
+
   /* ---- Real refraction (Tier 2 glass) --------------------------------------
      Injects an SVG displacement-map filter and enables `backdrop-filter:
      url(#b-refract)` on liquid objects via the `b-refract` root class.

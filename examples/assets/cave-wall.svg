@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="stone" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#c6c5c8"/>
+      <stop offset="0.35" stop-color="#d2cfc8"/>
+      <stop offset="0.7" stop-color="#ccc7bc"/>
+      <stop offset="1" stop-color="#b9b6b1"/>
+    </linearGradient>
+    <radialGradient id="warm" cx="0.62" cy="0.28" r="0.55">
+      <stop offset="0" stop-color="#dbc9a4" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#dbc9a4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cool" cx="0.12" cy="0.15" r="0.5">
+      <stop offset="0" stop-color="#c4c8cf" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#c4c8cf" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="shade" cx="0.5" cy="1.1" r="0.9">
+      <stop offset="0" stop-color="#9a948a" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#a49f96" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(38)">
+      <path d="M0 0v14" stroke="#7d786e" stroke-width="1.1"/>
+    </pattern>
+    <filter id="soften" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.4"/>
+    </filter>
+    <filter id="melt" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.3  0 0 0 0 0.28  0 0 0 0 0.25  0 0 0 0.1 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <!-- stencilled hand: palm + five fingers -->
+    <g id="hand" filter="url(#soften)">
+      <ellipse cx="0" cy="6" rx="7.5" ry="9"/>
+      <ellipse cx="-7.5" cy="-2" rx="2.4" ry="6.5" transform="rotate(-34 -7.5 -2)"/>
+      <ellipse cx="-3.4" cy="-7" rx="2.3" ry="7.6" transform="rotate(-12 -3.4 -7)"/>
+      <ellipse cx="0.8" cy="-8.4" rx="2.3" ry="8" transform="rotate(1 0.8 -8.4)"/>
+      <ellipse cx="5" cy="-6.6" rx="2.2" ry="7" transform="rotate(14 5 -6.6)"/>
+      <ellipse cx="9.4" cy="1.4" rx="2.1" ry="5" transform="rotate(52 9.4 1.4)"/>
+    </g>
+  </defs>
+
+  <!-- wall -->
+  <rect width="1600" height="1000" fill="url(#stone)"/>
+  <rect width="1600" height="1000" fill="url(#cool)"/>
+  <rect width="1600" height="1000" fill="url(#warm)"/>
+
+  <!-- large facets: slightly lighter slabs -->
+  <path d="M180 0 C 300 160 240 380 380 520 C 520 660 470 840 560 1000 L 60 1000 C 20 760 120 600 60 420 C 10 280 90 120 40 0 Z" fill="#dcd8d0" opacity="0.4" filter="url(#melt)"/>
+  <path d="M760 0 C 700 200 820 340 780 520 C 740 700 850 860 800 1000 L 1140 1000 C 1180 800 1090 640 1150 470 C 1210 300 1120 140 1180 0 Z" fill="#ded9cf" opacity="0.38" filter="url(#melt)"/>
+  <path d="M1600 180 C 1440 240 1400 420 1470 560 C 1530 680 1470 840 1520 1000 L 1600 1000 Z" fill="#cfccc6" opacity="0.6" filter="url(#melt)"/>
+  <path d="M430 340 C 560 300 660 360 700 470 C 740 580 660 690 540 700 C 420 710 340 620 350 500 C 358 420 380 360 430 340 Z" fill="#e0dbd0" opacity="0.35" filter="url(#melt)"/>
+  <rect width="1600" height="1000" fill="url(#shade)"/>
+
+  <!-- fissures -->
+  <g stroke="#7c7568" fill="none" stroke-linecap="round" opacity="0.75">
+    <path d="M640 0 C 660 140 590 260 640 400 C 690 540 620 700 690 830 C 720 900 700 960 710 1000" stroke-width="2.4"/>
+    <path d="M640 400 C 720 430 770 520 760 610" stroke-width="1.4"/>
+    <path d="M180 0 C 230 120 190 260 250 380 C 310 500 270 620 330 760 C 370 850 350 940 370 1000" stroke-width="1.8"/>
+    <path d="M1180 0 C 1140 150 1210 300 1160 450 C 1110 600 1190 760 1150 900 C 1140 940 1145 970 1150 1000" stroke-width="2"/>
+    <path d="M1160 450 C 1080 480 1040 560 1050 640" stroke-width="1.2"/>
+    <path d="M0 620 C 140 590 260 640 400 610 C 520 585 600 640 700 620" stroke-width="1.3" opacity="0.7"/>
+    <path d="M900 700 C 1020 680 1120 730 1260 710 C 1380 693 1480 740 1600 720" stroke-width="1.2" opacity="0.6"/>
+    <path d="M250 380 C 320 360 380 390 430 370" stroke-width="1"/>
+  </g>
+  <g stroke="#b7b1a5" fill="none" stroke-linecap="round" opacity="0.8">
+    <path d="M646 6 C 666 146 596 262 646 402 C 696 542 626 702 696 832" stroke-width="1"/>
+    <path d="M1186 6 C 1146 152 1216 302 1166 452" stroke-width="1"/>
+  </g>
+
+  <!-- engraved sweeping arcs crossing the wall -->
+  <g stroke="#847d74" fill="none" opacity="0.55" stroke-width="3.5">
+    <path d="M60 180 C 420 60 620 300 900 260 C 1180 220 1300 80 1560 140"/>
+    <path d="M100 300 C 460 180 640 420 920 380 C 1200 340 1340 200 1580 260"/>
+    <path d="M700 1000 C 820 800 1060 760 1200 600 C 1330 452 1420 470 1560 380"/>
+    <path d="M780 1000 C 900 820 1140 780 1280 620 C 1400 480 1480 500 1600 420"/>
+  </g>
+  <!-- hatched band between the lower arcs -->
+  <path d="M760 1000 C 890 810 1120 770 1250 610 C 1380 460 1470 480 1600 400 L 1600 430 C 1480 500 1400 490 1280 630 C 1140 790 900 830 790 1000 Z" fill="url(#hatch)" opacity="0.5"/>
+  <path d="M40 60 C 180 20 320 60 420 160 L 400 190 C 300 100 180 60 60 96 Z" fill="url(#hatch)" opacity="0.35"/>
+  <path d="M1290 750 C 1380 700 1470 720 1560 790 L 1545 815 C 1460 750 1380 730 1305 775 Z" fill="url(#hatch)" opacity="0.45"/>
+
+  <!-- fauna: charcoal sketches -->
+  <g stroke="#544e45" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
+    <!-- great bull, top centre -->
+    <path d="M830 190 C 870 150 950 130 1010 150 C 1060 165 1090 150 1100 125 M1085 130 C 1090 112 1102 104 1116 102 M1096 132 C 1106 120 1122 116 1134 118 M1010 150 C 1060 170 1080 220 1060 260 C 1040 300 970 310 910 300 C 860 292 830 260 830 220 M845 300 L 840 350 M905 302 L 902 352 M1020 285 L 1025 335 M1055 262 L 1062 310"/>
+    <!-- horse, mid left -->
+    <path d="M300 480 C 340 455 400 450 440 470 C 470 485 480 505 475 525 C 468 550 430 560 390 556 C 350 552 320 535 312 512 M440 470 C 460 462 470 445 466 430 C 480 438 490 452 488 468 M330 556 L 325 600 M370 558 L 368 602 M430 552 L 432 596 M460 540 L 466 582"/>
+    <!-- second horse, smaller, behind -->
+    <path d="M470 430 C 500 412 545 408 575 422 C 598 433 604 450 599 464 C 592 482 562 490 532 487 C 502 484 480 470 475 452 M560 488 L 562 520 M510 488 L 508 522"/>
+    <!-- deer with antlers, right -->
+    <path d="M1250 330 C 1285 312 1330 310 1360 326 C 1382 338 1388 356 1382 372 C 1374 392 1340 400 1308 396 C 1276 392 1256 376 1252 356 M1360 326 C 1372 314 1376 298 1372 284 M1372 284 C 1364 270 1368 254 1380 244 M1372 284 C 1382 272 1398 268 1410 272 M1378 250 C 1370 240 1370 228 1376 218 M1382 248 C 1392 240 1404 238 1414 242 M1268 396 L 1264 434 M1300 398 L 1298 436 M1350 392 L 1354 428 M1372 376 L 1378 410"/>
+    <!-- ibex, lower left -->
+    <path d="M180 780 C 210 762 250 760 275 772 C 295 782 300 798 295 810 C 288 826 260 832 234 829 C 208 826 190 813 186 796 M275 772 C 290 760 294 742 288 726 C 300 734 308 750 305 766 M200 830 L 196 862 M250 831 L 249 864"/>
+    <!-- hunter with spear, bottom centre -->
+    <path d="M870 730 L 870 790 M870 745 L 845 775 M870 745 L 898 770 M870 790 L 850 835 M870 790 L 890 835 M862 722 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0 M830 700 L 940 760"/>
+    <!-- small antelope fleeing the hunter -->
+    <path d="M960 790 C 985 776 1018 774 1040 784 C 1056 792 1060 804 1056 814 C 1050 826 1028 831 1006 828 C 984 825 968 815 965 802 M1040 784 C 1052 776 1056 764 1052 752 M990 830 L 986 858 M1030 829 L 1032 856"/>
+  </g>
+
+  <!-- ochre handprints -->
+  <g fill="#9c5c49">
+    <use href="#hand" transform="translate(918 62) scale(2.1)" opacity="0.5"/>
+    <use href="#hand" transform="translate(998 74) scale(2.0) rotate(8)" opacity="0.44"/>
+    <use href="#hand" transform="translate(1478 372) scale(2.2) rotate(-6)" opacity="0.5"/>
+    <use href="#hand" transform="translate(1002 452) scale(1.9) rotate(4)" opacity="0.42"/>
+    <use href="#hand" transform="translate(96 520) scale(2.0) rotate(-8)" opacity="0.46"/>
+    <use href="#hand" transform="translate(120 560) scale(1.7) rotate(10)" opacity="0.4"/>
+    <use href="#hand" transform="translate(886 748) scale(1.8)" opacity="0.44"/>
+    <use href="#hand" transform="translate(368 792) scale(1.9) rotate(-12)" opacity="0.4"/>
+  </g>
+  <g fill="#7d7469">
+    <use href="#hand" transform="translate(438 668) scale(2.0) rotate(6)" opacity="0.5"/>
+    <use href="#hand" transform="translate(646 812) scale(1.8) rotate(-4)" opacity="0.42"/>
+  </g>
+  <g fill="#cdbaa0">
+    <use href="#hand" transform="translate(492 416) scale(1.9) rotate(-10)" opacity="0.6"/>
+    <use href="#hand" transform="translate(1250 106) scale(1.9) rotate(12)" opacity="0.55"/>
+    <use href="#hand" transform="translate(1338 88) scale(1.8) rotate(-4)" opacity="0.5"/>
+    <use href="#hand" transform="translate(238 214) scale(1.8) rotate(6)" opacity="0.5"/>
+  </g>
+  <!-- ochre halos behind a few prints (negative stencil effect) -->
+  <g fill="#a2604e" filter="url(#melt)" opacity="0.16">
+    <circle cx="958" cy="72" r="70"/>
+    <circle cx="1480" cy="376" r="52"/>
+    <circle cx="108" cy="540" r="58"/>
+  </g>
+
+  <!-- grain -->
+  <rect width="1600" height="1000" filter="url(#grain)" opacity="0.8" fill="none"/>
+</svg>
