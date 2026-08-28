@@ -50,12 +50,12 @@ Classes: b-badge b-badge--accent b-btn b-btn--ghost b-btn--glass b-btn--primary 
 ```
 
 ### Typography  (https://ui.barua.tz/docs/foundations.html#typography)
-SF first. --b-font-sans resolves to SF Pro on Apple hardware and degrades gracefully everywhere else, so the system feels native without shipping a webfont. Weight, tracking and leading are tokens too — pair tight tracking with large sizes, wide tracking with uppercase labels, and leave body text alone.
+A text style is a whole set of metrics, not a size: every role below states its own size, weight, leading and tracking together. Small text is not body text made smaller — a caption opens its tracking slightly and tightens its leading, which is why inheriting those values from the page would be wrong. Headings of the same size as a role use the same metrics as that role, so <h5> and .b-headline are typographically identical.
 Classes: b-table b-table-wrap
 
 ### Font Scale  (https://ui.barua.tz/docs/foundations.html#font-scale)
 The Apple HIG scale, exposed as one class per role. Elements h1 – h6 map onto it automatically; use the classes when semantics and size need to differ — a card title that is an h3 but should read as a headline, for instance.
-Classes: b-body b-callout b-caption b-footnote b-headline b-large-title b-overline b-subheadline b-tabular-nums b-text-tertiary b-title1 b-title2 b-title3
+Classes: b-body b-callout b-caption b-footnote b-headline b-large-title b-overline b-subheadline b-tabular-nums b-text-tertiary b-text-uppercase b-title1 b-title2 b-title3 b-truncate
 
 ### Spacing  (https://ui.barua.tz/docs/foundations.html#spacing)
 A 4px base scale. Use 1–3 for padding inside controls, 4–6 between related elements, 8–12 between groups, and 16–24 between page sections. If a gap isn't on the scale, it isn't in the system.

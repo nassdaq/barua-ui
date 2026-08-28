@@ -204,6 +204,7 @@
 
     --b-tracking-tight: -0.022em;   /* large titles */
     --b-tracking-text:  -0.011em;   /* body */
+    --b-tracking-small:  0.006em;   /* footnotes, captions — small text opens up */
     --b-tracking-wide:   0.06em;    /* overlines, labels */
 
     /* ------------------------------------------------------------------ *

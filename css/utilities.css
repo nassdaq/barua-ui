@@ -384,13 +384,15 @@
   .b-title1 { font-size: var(--b-text-title1); font-weight: var(--b-weight-bold); line-height: var(--b-leading-tight); letter-spacing: var(--b-tracking-tight); }
   .b-title2 { font-size: var(--b-text-title2); font-weight: var(--b-weight-semibold); line-height: var(--b-leading-tight); }
   .b-title3 { font-size: var(--b-text-title3); font-weight: var(--b-weight-semibold); line-height: var(--b-leading-snug); }
-  .b-headline { font-size: var(--b-text-headline); font-weight: var(--b-weight-semibold); }
-  .b-body { font-size: var(--b-text-body); }
-  .b-callout { font-size: var(--b-text-callout); }
-  .b-subheadline { font-size: var(--b-text-subheadline); }
-  .b-footnote { font-size: var(--b-text-footnote); }
-  .b-caption { font-size: var(--b-text-caption); }
-  .b-caption2 { font-size: var(--b-text-caption2); }
+  /* Each role states its own leading and tracking: inheriting them from body
+     gave a 12px caption the metrics tuned for 17px reading text. */
+  .b-headline { font-size: var(--b-text-headline); font-weight: var(--b-weight-semibold); line-height: var(--b-leading-snug); letter-spacing: var(--b-tracking-text); }
+  .b-body { font-size: var(--b-text-body); line-height: var(--b-leading-body); letter-spacing: var(--b-tracking-text); }
+  .b-callout { font-size: var(--b-text-callout); line-height: var(--b-leading-body); letter-spacing: var(--b-tracking-text); }
+  .b-subheadline { font-size: var(--b-text-subheadline); line-height: var(--b-leading-body); letter-spacing: 0; }
+  .b-footnote { font-size: var(--b-text-footnote); line-height: var(--b-leading-snug); letter-spacing: var(--b-tracking-small); }
+  .b-caption { font-size: var(--b-text-caption); line-height: var(--b-leading-snug); letter-spacing: var(--b-tracking-small); }
+  .b-caption2 { font-size: var(--b-text-caption2); line-height: var(--b-leading-snug); letter-spacing: var(--b-tracking-small); }
   .b-overline { font-size: var(--b-text-caption); font-weight: var(--b-weight-semibold);
     text-transform: uppercase; letter-spacing: var(--b-tracking-wide); color: var(--b-text-secondary); }
 
@@ -400,8 +402,13 @@
   .b-text-success    { color: var(--b-color-success); }
   .b-text-warning    { color: var(--b-color-warning); }
   .b-text-danger     { color: var(--b-color-danger); }
+  .b-text-start      { text-align: start; }
   .b-text-center     { text-align: center; }
   .b-text-end        { text-align: end; }
+  /* Case as its own concern: .b-overline bundles case with colour and tracking,
+     which is right for a label and wrong for everything else. */
+  .b-text-uppercase  { text-transform: uppercase; }
+  .b-text-lowercase  { text-transform: lowercase; }
   .b-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .b-line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .b-line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }

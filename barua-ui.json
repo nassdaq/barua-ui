@@ -28,7 +28,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 672,
+  "classCount": 674,
   "classes": [
     "b-accordion",
     "b-account",
@@ -640,6 +640,7 @@
     "b-text-center",
     "b-text-secondary",
     "b-text-tertiary",
+    "b-text-uppercase",
     "b-textarea",
     "b-thumb",
     "b-thumb--video",
@@ -682,6 +683,7 @@
     "b-tree",
     "b-tree-item",
     "b-tree-item__row",
+    "b-truncate",
     "b-upload",
     "b-upload-item",
     "b-upload-item__meta",
@@ -773,7 +775,7 @@
           "title": "Typography",
           "category": "foundations",
           "url": "https://ui.barua.tz/docs/foundations.html#typography",
-          "summary": "SF first. --b-font-sans resolves to SF Pro on Apple hardware and degrades gracefully everywhere else, so the system feels native without shipping a webfont. Weight, tracking and leading are tokens too \u2014 pair tight tracking with large sizes, wide tracking with uppercase labels, and leave body text alone.",
+          "summary": "A text style is a whole set of metrics, not a size: every role below states its own size, weight, leading and tracking together. Small text is not body text made smaller \u2014 a caption opens its tracking slightly and tightens its leading, which is why inheriting those values from the page would be wrong. Headings of the same size as a role use the same metrics as that role, so <h5> and .b-headline are typographically identical.",
           "classes": [
             "b-table",
             "b-table-wrap"
@@ -797,9 +799,11 @@
             "b-subheadline",
             "b-tabular-nums",
             "b-text-tertiary",
+            "b-text-uppercase",
             "b-title1",
             "b-title2",
-            "b-title3"
+            "b-title3",
+            "b-truncate"
           ],
           "markup": ""
         },

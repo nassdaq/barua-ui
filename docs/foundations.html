@@ -527,6 +527,15 @@
       <section class="docs-section" id="typography">
         <h2>Typography</h2>
         <p>
+          A text style is a whole set of metrics, not a size: every role below
+          states its own size, weight, leading and tracking together. Small text
+          is not body text made smaller — a caption opens its tracking slightly
+          and tightens its leading, which is why inheriting those values from
+          the page would be wrong. Headings of the same size as a role use the
+          same metrics as that role, so <code>&lt;h5&gt;</code> and
+          <code>.b-headline</code> are typographically identical.
+        </p>
+        <p>
           SF first. <code>--b-font-sans</code> resolves to SF Pro on Apple
           hardware and degrades gracefully everywhere else, so the system feels
           native without shipping a webfont. Weight, tracking and leading are
@@ -642,6 +651,20 @@
             <div>
               <div class="b-overline">Overline</div>
               <div class="b-caption b-text-tertiary">--b-text-caption · 0.75rem / 12px · uppercase, wide tracking</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-truncate</code>
+            <div>
+              <div class="b-truncate" style="max-width: 18rem">One line only — the rest is cut with an ellipsis rather than wrapping</div>
+              <div class="b-caption b-text-tertiary">Also <code>.b-line-clamp-2</code> and <code>.b-line-clamp-3</code> for a fixed number of lines</div>
+            </div>
+          </div>
+          <div class="docs-type-row">
+            <code>.b-text-uppercase</code>
+            <div>
+              <div class="b-text-uppercase">Case as its own concern</div>
+              <div class="b-caption b-text-tertiary">With <code>.b-text-lowercase</code>; the overline bundles case with colour and tracking, these do not</div>
             </div>
           </div>
           <div class="docs-type-row">

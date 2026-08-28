@@ -44,7 +44,9 @@
   h2 { font-size: var(--b-text-title1); }
   h3 { font-size: var(--b-text-title2); }
   h4 { font-size: var(--b-text-title3); }
-  h5 { font-size: var(--b-text-headline); }
+  /* At headline size and below, tight tracking is wrong — these match the
+     .b-headline / .b-subheadline roles exactly rather than diverging. */
+  h5 { font-size: var(--b-text-headline); line-height: var(--b-leading-snug); letter-spacing: var(--b-tracking-text); }
   h6 { font-size: var(--b-text-subheadline); text-transform: uppercase;
        letter-spacing: var(--b-tracking-wide); color: var(--b-text-secondary); }
 
@@ -84,6 +86,23 @@
     padding: var(--b-space-1) var(--b-space-4);
     color: var(--b-text-secondary);
   }
+
+  /* Lists in prose. The reset strips markers from every list so that navigation
+     and component lists are unadorned; these put them back where a list is
+     actually a list — rendered markdown, a card body, an article. Component
+     lists opt out with .b-list, which is unaffected. */
+  :where(ul, ol):not([class]) {
+    padding-inline-start: var(--b-space-6);
+    list-style-position: outside;
+  }
+  :where(ul):not([class]) { list-style-type: disc; }
+  :where(ol):not([class]) { list-style-type: decimal; }
+  :where(ul, ol):not([class]) :where(ul, ol) {
+    margin-block-start: var(--b-space-1);
+  }
+  :where(ul, ol):not([class]) :where(ul):not([class]) { list-style-type: circle; }
+  :where(ul, ol):not([class]) > li + li { margin-block-start: var(--b-space-1); }
+  :where(ul, ol):not([class]) > li::marker { color: var(--b-text-tertiary); }
 
   ::selection {
     background: color-mix(in srgb, var(--b-color-accent) 28%, transparent);
