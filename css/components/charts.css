@@ -218,7 +218,11 @@
   --------------------------------------------------------------------------- */
   .b-heatmap {
     display: grid;
-    grid-template-columns: repeat(var(--b-heatmap-cols, 7), 1fr);
+    /* A heatmap cell is a mark to be scanned, not a tile to be filled: without
+       a ceiling, a square cell in a wide card grows until the chart is taller
+       than the screen and drags the height of everything beside it. */
+    grid-template-columns: repeat(var(--b-heatmap-cols, 7), minmax(0, var(--b-heatmap-cell, 2rem)));
+    justify-content: start;
     gap: 3px;
   }
   .b-heatmap > i {
