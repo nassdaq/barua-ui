@@ -114,12 +114,12 @@
           <pre><code id="mcp-remote">claude mcp add --transport http barua-ui https://mcp.barua.tz/mcp</code></pre>
         </div>
         <p>
-          Four tools. <code>search_components</code> finds things by name,
+          Five tools. <code>search_components</code> finds things by name,
           purpose or class. <code>get_component</code> returns one
           component&rsquo;s anatomy — every class, the knobs it reads from your
           markup, the states it answers to, and the canonical markup taken from
           its own live demo. <code>get_rules</code> returns the rules, the grid
-          spans that exist and all 44 knobs. <code>lint_markup</code> takes
+          spans that exist and all 44 knobs. <code>get_react</code> answers the same question for the React package — the import line and the JSX for a component's documented example — and <code>lint_markup</code> takes
           HTML or JSX and reports every violation: invented classes, hardcoded
           colour, inline properties that are not knobs, native
           <code>&lt;select&gt;</code> and date inputs, emoji used as icons, and

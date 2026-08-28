@@ -14,9 +14,13 @@ import html
 import json
 import pathlib
 import re
+import html_to_jsx
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
+REACT_MAP_PATH = pathlib.Path(__file__).resolve().parent.parent / "docs/react-map.json"
+REACT_MAP = json.loads(REACT_MAP_PATH.read_text()) if REACT_MAP_PATH.exists() else None
+
 SITE = "https://ui.barua.tz"
 
 CATEGORY_TITLES = {
@@ -90,6 +94,22 @@ def parse_page(path: pathlib.Path) -> list[dict]:
             "classes": classes_in(body),
             "markup": first_demo(body),
         }
+        markup = component["markup"]
+        if markup and REACT_MAP:
+            try:
+                jsx, used = html_to_jsx.convert(markup, REACT_MAP)
+                if used:
+                    # The list is alphabetical; the component someone asked about
+                    # is the one the example starts with.
+                    root = re.match(r"<([A-Z]\w*)", jsx.lstrip())
+                    component["react"] = {
+                        "import": f'import {{ {", ".join(used)} }} from "barua-ui";',
+                        "components": used,
+                        "root": root.group(1) if root else used[0],
+                        "jsx": jsx,
+                    }
+            except Exception:
+                pass  # A demo we cannot parse still ships its HTML.
         variants = [
             {"id": vid, "title": text_of(vtitle)}
             for vid, vtitle in re.findall(r'<h3 id="([^"]+)">(.*?)</h3>', body, re.S)

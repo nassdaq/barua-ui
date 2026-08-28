@@ -50,6 +50,17 @@ const TOOLS = [
     },
   },
   {
+    name: "get_react",
+    description:
+      "How to build this system in React. With no argument: how to install the package, load the stylesheet, and what the provider is for. With a component: the import line, the props that replace its modifier classes, and the JSX for its documented example — copy that rather than writing class strings.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        component: { type: "string", description: "Component id, e.g. 'card' — or leave empty for setup" },
+      },
+    },
+  },
+  {
     name: "get_rules",
     description:
       "The rules an interface built with Barua UI must follow, the naming conventions, the grid spans that exist, and every knob in the system. Read before composing anything.",
@@ -76,9 +87,12 @@ function searchComponents({ query, limit = 8 }) {
   const needle = String(query).toLowerCase();
   const scored = components
     .map((c) => {
-      const haystack = `${c.id} ${c.title} ${c.summary} ${c.classes.join(" ")}`.toLowerCase();
+      /* React names are how half the callers will ask — <Dropdown>, not b-dropdown. */
+      const react = c.react?.components ?? [];
+      const haystack = `${c.id} ${c.title} ${c.summary} ${c.classes.join(" ")} ${react.join(" ")}`.toLowerCase();
       let score = 0;
       if (c.id === needle || c.title.toLowerCase() === needle) score += 100;
+      if (react.some((n) => n.toLowerCase() === needle)) score += 90;
       if (c.title.toLowerCase().includes(needle)) score += 40;
       if (c.classes.some((cls) => cls.toLowerCase() === needle)) score += 60;
       if (haystack.includes(needle)) score += 10;
@@ -92,7 +106,12 @@ function searchComponents({ query, limit = 8 }) {
   if (!scored.length) return text(`Nothing matches "${query}". Try get_rules, or search a broader word.`);
   return text(
     scored
-      .map(({ c }) => `${c.id} — ${c.title}\n  ${c.categoryTitle.split("—")[0].trim()} · ${c.url}\n  ${c.summary}`)
+      .map(({ c }) => {
+        const react = c.react?.components?.length
+          ? `\n  React: <${c.react.root ?? c.react.components[0]}> — call get_react for the JSX`
+          : "";
+        return `${c.id} — ${c.title}\n  ${c.categoryTitle.split("—")[0].trim()} · ${c.url}${react}\n  ${c.summary}`;
+      })
       .join("\n\n"),
   );
 }
@@ -112,6 +131,61 @@ function getComponent({ id }) {
   if (c.variants?.length) lines.push(`Variants: ${c.variants.map((v) => v.title).join(", ")}`);
   if (c.markup) lines.push("", "Canonical markup — copy this anatomy:", "```html", c.markup, "```");
   return text(lines.join("\n"));
+}
+
+/**
+ * The React answer for a component, taken from the generated index — the same
+ * example the documentation shows, already translated.
+ */
+function getReact({ component }) {
+  const setup = [
+    "# Barua UI in React",
+    "",
+    "    npm install barua-ui",
+    "",
+    'Load the stylesheet once at the root: `import "barua-ui/css";`. That is the',
+    "system — the components only spare you the class names, and every one of them",
+    "renders exactly the markup the documentation shows.",
+    "",
+    "The bundle carries its own \"use client\", so importing from a Server Component",
+    "works. Light and dark already follow the OS through light-dark(); reach for",
+    "BaruaProvider only to override that, and ToastProvider only if you want toasts.",
+    "",
+    "Every component forwards className and its ref, so a class the props do not",
+    "cover can still be added by hand. Nothing here is a gate.",
+    "",
+    `Full reference: ${index.docs}/docs/react.html`,
+  ].join("\n");
+
+  if (!component) return text(setup);
+
+  const found = components.find((c) => c.id === component);
+  if (!found) return text(`No component with id "${component}". Use search_components first.`);
+  if (!found.react) {
+    return text(
+      [
+        `# ${found.title} in React`,
+        "",
+        "This one has no generated React example — its demo is raw markup rather than",
+        "components. Use the HTML from get_component and add the classes directly; that",
+        "is supported, not a workaround.",
+        "",
+        `Documentation: ${found.url}`,
+      ].join("\n"),
+    );
+  }
+  return text(
+    [
+      `# ${found.title} in React`,
+      "",
+      found.react.import,
+      "",
+      found.react.jsx,
+      "",
+      `Documentation: ${found.url}`,
+      "Setup, provider and escape hatches: call get_react with no argument.",
+    ].join("\n"),
+  );
 }
 
 function getRules() {
@@ -150,11 +224,14 @@ function lintMarkup({ markup, language = "html" }) {
 const HANDLERS = {
   search_components: searchComponents,
   get_component: getComponent,
+  get_react: getReact,
   get_rules: getRules,
   lint_markup: lintMarkup,
 };
 
 /** One place decides what a request means; the transports only carry it. */
+const REQUIRED = { get_component: "id", search_components: "query", lint_markup: "markup" };
+
 function handle(message) {
   const { id, method, params } = message ?? {};
   if (method === "initialize") {
@@ -168,6 +245,13 @@ function handle(message) {
   if (method === "tools/call") {
     const handler = HANDLERS[params?.name];
     if (!handler) return { ...text(`Unknown tool: ${params?.name}`), isError: true };
+    const needs = REQUIRED[params?.name];
+    if (needs && params?.arguments?.[needs] === undefined) {
+      return {
+        ...text(`${params.name} needs the "${needs}" argument. You sent: ${JSON.stringify(params?.arguments ?? {})}`),
+        isError: true,
+      };
+    }
     try {
       return handler(params?.arguments ?? {});
     } catch (error) {
