@@ -333,3 +333,29 @@
   body.docs .docs-toc { position: static; max-height: none; height: 100%; overflow-y: auto; padding-block: var(--b-space-6); }
   body.docs > main { flex: 1; min-height: 0; overflow-y: auto; }
 }
+
+/* ---- HTML / React tabs on generated code blocks ---------------------------------- */
+.docs-code__tabs {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--b-fill-quaternary);
+  border-radius: var(--b-radius-full);
+}
+.docs-code__tab {
+  padding: 0.15rem var(--b-space-3);
+  font: inherit;
+  font-size: var(--b-text-caption2);
+  font-weight: var(--b-weight-semibold);
+  color: var(--b-text-secondary);
+  background: none;
+  border: none;
+  border-radius: var(--b-radius-full);
+  cursor: pointer;
+}
+.docs-code__tab:hover { color: var(--b-text); }
+.docs-code__tab.is-active {
+  color: var(--b-text);
+  background: var(--b-surface);
+  box-shadow: var(--b-shadow-1);
+}

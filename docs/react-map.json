@@ -1,0 +1,686 @@
+{
+ "blocks": {
+  "b-accordion": "Accordion",
+  "b-account": "Account",
+  "b-account-switcher": "AccountSwitcher",
+  "b-action-sheet": "ActionSheet",
+  "b-alert": "Alert",
+  "b-app-grid": "AppGrid",
+  "b-app-tile": "AppTile",
+  "b-area-svg": "AreaChart",
+  "b-async-img": "AsyncImage",
+  "b-audio": "Audio",
+  "b-auth": "Auth",
+  "b-auth-card": "AuthCard",
+  "b-avatar": "Avatar",
+  "b-avatar-group": "AvatarGroup",
+  "b-axis": "Axis",
+  "b-back-btn": "BackButton",
+  "b-badge": "Badge",
+  "b-banner": "Banner",
+  "b-bars": "Bars",
+  "b-bento": "Bento",
+  "b-bottom-sheet": "BottomSheet",
+  "b-bottomnav": "BottomNav",
+  "b-breadcrumbs": "Breadcrumbs",
+  "b-btn": "Button",
+  "b-btn-group": "ButtonGroup",
+  "b-bulk-actions": "BulkActions",
+  "b-calendar": "Calendar",
+  "b-calendar__grid": "CalendarGrid",
+  "b-calendar__header": "CalendarHeader",
+  "b-calendar__month": "CalendarMonth",
+  "b-calendar__weekday": "CalendarWeekday",
+  "b-callout": "Callout",
+  "b-calview": "CalendarView",
+  "b-calview__cell": "CalendarViewCell",
+  "b-calview__head": "CalendarViewHead",
+  "b-card": "Card",
+  "b-card-grid": "CardGrid",
+  "b-card-rail": "CardRail",
+  "b-card__body": "CardBody",
+  "b-card__eyebrow": "CardEyebrow",
+  "b-card__footer": "CardFooter",
+  "b-card__header": "CardHeader",
+  "b-card__subtitle": "CardSubtitle",
+  "b-card__title": "CardTitle",
+  "b-carousel": "Carousel",
+  "b-carousel__dots": "CarouselDots",
+  "b-carousel__slide": "CarouselSlide",
+  "b-carousel__track": "CarouselTrack",
+  "b-cc__label": "CommandCenterLabel",
+  "b-cc__status": "CommandCenterStatus",
+  "b-cc__tile": "CommandCenterTile",
+  "b-chapter": "Chapter",
+  "b-chart": "Chart",
+  "b-chart-tip": "ChartTip",
+  "b-checkbox": "Checkbox",
+  "b-chip": "Chip",
+  "b-circular": "CircularProgress",
+  "b-cmdk": "CommandPalette",
+  "b-cmdk__footer": "CommandFooter",
+  "b-cmdk__group-label": "CommandGroupLabel",
+  "b-cmdk__list": "CommandList",
+  "b-code": "CodeBlock",
+  "b-columns": "Columns",
+  "b-combobox": "Combobox",
+  "b-combobox__empty": "ComboboxEmpty",
+  "b-combobox__list": "ComboboxList",
+  "b-command-center": "CommandCenter",
+  "b-container": "Container",
+  "b-dashboard": "Dashboard",
+  "b-datagrid": "DataGrid",
+  "b-datepicker": "DatePicker",
+  "b-disclosure": "Disclosure",
+  "b-divider": "Divider",
+  "b-dl": "DescriptionList",
+  "b-dock": "Dock",
+  "b-dock__tray": "DockTray",
+  "b-donut": "Donut",
+  "b-drag-handle": "DragHandle",
+  "b-drawer": "Drawer",
+  "b-drawer__body": "DrawerBody",
+  "b-drawer__header": "DrawerHeader",
+  "b-dropdown": "Dropdown",
+  "b-dropzone": "Dropzone",
+  "b-empty": "EmptyState",
+  "b-error": "ErrorText",
+  "b-event": "Event",
+  "b-fab": "Fab",
+  "b-feature-row": "FeatureRow",
+  "b-feed": "Feed",
+  "b-field": "Field",
+  "b-fieldset": "Fieldset",
+  "b-figure": "Figure",
+  "b-file-browser": "FileBrowser",
+  "b-file-grid": "FileGrid",
+  "b-file-tile": "FileTile",
+  "b-filter-bar": "FilterBar",
+  "b-filter-chip": "FilterChip",
+  "b-footnote": "Footnote",
+  "b-footnotes": "Footnotes",
+  "b-form": "Form",
+  "b-form-actions": "FormActions",
+  "b-form-row": "FormRow",
+  "b-form-section": "FormSection",
+  "b-gallery": "Gallery",
+  "b-gantt": "Gantt",
+  "b-gantt__bar": "GanttBar",
+  "b-gantt__row": "GanttRow",
+  "b-gauge": "Gauge",
+  "b-gauge-linear": "LinearGauge",
+  "b-glass-container": "GlassContainer",
+  "b-glass-interactive": "GlassInteractive",
+  "b-grid": "Grid",
+  "b-gridlines": "GridLines",
+  "b-groupbox": "GroupBox",
+  "b-grow": "Grow",
+  "b-heatmap": "Heatmap",
+  "b-help": "Help",
+  "b-hero": "Hero",
+  "b-hover-card": "HoverCard",
+  "b-hover-card-host": "HoverCardHost",
+  "b-icon": "Icon",
+  "b-icon-tile": "IconTile",
+  "b-image-viewer": "ImageViewer",
+  "b-image-viewer__bar": "ImageViewerBar",
+  "b-input": "Input",
+  "b-input-group": "InputGroup",
+  "b-inspector": "Inspector",
+  "b-kanban": "Kanban",
+  "b-kanban-col": "KanbanColumn",
+  "b-kanban-col__list": "KanbanList",
+  "b-kbd": "Kbd",
+  "b-label": "Label",
+  "b-labeled": "Labeled",
+  "b-landing": "Landing",
+  "b-legend": "Legend",
+  "b-lens": "ImageLens",
+  "b-lightbox": "Lightbox",
+  "b-line-svg": "LineChart",
+  "b-link": "Link",
+  "b-link-group": "LinkGroup",
+  "b-liquid-toggle": "LiquidToggle",
+  "b-list": "List",
+  "b-list-item": "ListItem",
+  "b-list__footer": "ListFooter",
+  "b-list__header": "ListHeader",
+  "b-log": "Log",
+  "b-marketing-nav": "MarketingNav",
+  "b-marketing-nav__brand": "MarketingNavBrand",
+  "b-marketing-nav__links": "MarketingNavLinks",
+  "b-media-placeholder": "MediaPlaceholder",
+  "b-menu": "Menu",
+  "b-menu__label": "MenuLabel",
+  "b-menu__separator": "MenuSeparator",
+  "b-menubar": "MenuBar",
+  "b-menubar__item": "MenuBarItem",
+  "b-modal": "Modal",
+  "b-notification": "Notification",
+  "b-onboarding": "Onboarding",
+  "b-onboarding__hero": "OnboardingHero",
+  "b-optional": "Optional",
+  "b-otp": "OtpInput",
+  "b-overline": "Overline",
+  "b-pagination": "Pagination",
+  "b-pagination__ellipsis": "PaginationEllipsis",
+  "b-pagination__item": "PaginationItem",
+  "b-pill-nav": "PillNav",
+  "b-popover": "Popover",
+  "b-progress": "Progress",
+  "b-promo-band": "PromoBand",
+  "b-quote": "Quote",
+  "b-radar-svg": "RadarChart",
+  "b-radio": "Radio",
+  "b-rail": "Rail",
+  "b-rail__item": "RailItem",
+  "b-range": "Range",
+  "b-resizable": "Resizable",
+  "b-resize-handle": "ResizeHandle",
+  "b-result": "Result",
+  "b-safe-area": "SafeArea",
+  "b-scatter-svg": "ScatterChart",
+  "b-scroll-area": "ScrollArea",
+  "b-search": "SearchField",
+  "b-search-result": "SearchResult",
+  "b-search-results": "SearchResults",
+  "b-section": "Section",
+  "b-segmented": "Segmented",
+  "b-select": "Select",
+  "b-selection-count": "SelectionCount",
+  "b-share": "Share",
+  "b-sheet": "Sheet",
+  "b-sidebar": "Sidebar",
+  "b-sidebar__group": "SidebarGroup",
+  "b-sidebar__heading": "SidebarHeading",
+  "b-site-footer": "SiteFooter",
+  "b-site-footer__group": "SiteFooterGroup",
+  "b-site-footer__groups": "SiteFooterGroups",
+  "b-site-footer__heading": "SiteFooterHeading",
+  "b-site-footer__legal": "SiteFooterLegal",
+  "b-skeleton": "Skeleton",
+  "b-skip-link": "SkipLink",
+  "b-slider": "Slider",
+  "b-sort-control": "SortControl",
+  "b-spacer": "Spacer",
+  "b-sparkline": "Sparkline",
+  "b-spec-strip": "SpecStrip",
+  "b-spinner": "Spinner",
+  "b-split": "Split",
+  "b-split-btn": "SplitButton",
+  "b-stage": "Stage",
+  "b-stat": "Stat",
+  "b-status": "StatusDot",
+  "b-statusbar": "StatusBar",
+  "b-statusbar__item": "StatusBarItem",
+  "b-stepper-input": "StepperInput",
+  "b-steps": "Steps",
+  "b-swatch": "Swatch",
+  "b-swatches": "Swatches",
+  "b-switch": "Switch",
+  "b-syspage": "SysPage",
+  "b-table": "Table",
+  "b-table-wrap": "TableWrap",
+  "b-table__num": "TableNum",
+  "b-tabs": "Tabs",
+  "b-tag": "Tag",
+  "b-task": "Task",
+  "b-task-list": "TaskList",
+  "b-task-row": "TaskRow",
+  "b-textarea": "Textarea",
+  "b-thumb": "Thumb",
+  "b-timeline": "Timeline",
+  "b-tip": "Tip",
+  "b-toggle-btn": "ToggleButton",
+  "b-toolbar": "Toolbar",
+  "b-tooltip-host": "Tooltip",
+  "b-topnav": "TopNav",
+  "b-topnav__brand": "TopNavBrand",
+  "b-topnav__links": "TopNavLinks",
+  "b-tree": "Tree",
+  "b-tree-item": "TreeItem",
+  "b-upload": "Upload",
+  "b-upload-item": "UploadItem",
+  "b-upload-preview": "UploadPreview",
+  "b-upload-previews": "UploadPreviews",
+  "b-video": "Video",
+  "b-wall": "Wall",
+  "b-waveform": "Waveform",
+  "b-web": "Web",
+  "b-workspace": "Workspace",
+  "b-workspace__main": "WorkspaceMain"
+ },
+ "byTag": {
+  "b-btn": {
+   "a": "ButtonLink"
+  }
+ },
+ "classProps": {
+  "Button": {
+   "b-icon-btn": [
+    "icon",
+    true
+   ]
+  }
+ },
+ "mods": {
+  "Alert": {
+   "prop": "variant",
+   "values": [
+    "success",
+    "warning",
+    "danger",
+    "info"
+   ]
+  },
+  "Badge": {
+   "extra": {
+    "dot": [
+     "dot",
+     true
+    ]
+   },
+   "prop": "variant",
+   "values": [
+    "accent",
+    "success",
+    "warning",
+    "danger",
+    "neutral"
+   ]
+  },
+  "Banner": {
+   "extra": {
+    "neutral": [
+     "neutral",
+     true
+    ]
+   }
+  },
+  "Button": {
+   "extra": {
+    "block": [
+     "block",
+     true
+    ],
+    "lg": [
+     "size",
+     "lg"
+    ],
+    "pill": [
+     "pill",
+     true
+    ],
+    "sm": [
+     "size",
+     "sm"
+    ],
+    "xl": [
+     "size",
+     "xl"
+    ],
+    "xs": [
+     "size",
+     "xs"
+    ]
+   },
+   "prop": "variant",
+   "values": [
+    "primary",
+    "tinted",
+    "outline",
+    "ghost",
+    "glass",
+    "danger",
+    "danger-tinted",
+    "success",
+    "provider",
+    "liquid"
+   ]
+  },
+  "ButtonGroup": {
+   "extra": {
+    "attached": [
+     "attached",
+     true
+    ]
+   }
+  },
+  "ButtonLink": {
+   "extra": {
+    "block": [
+     "block",
+     true
+    ],
+    "lg": [
+     "size",
+     "lg"
+    ],
+    "pill": [
+     "pill",
+     true
+    ],
+    "sm": [
+     "size",
+     "sm"
+    ],
+    "xl": [
+     "size",
+     "xl"
+    ],
+    "xs": [
+     "size",
+     "xs"
+    ]
+   },
+   "prop": "variant",
+   "values": [
+    "primary",
+    "tinted",
+    "outline",
+    "ghost",
+    "glass",
+    "danger",
+    "danger-tinted",
+    "success",
+    "provider",
+    "liquid"
+   ]
+  },
+  "Card": {
+   "extra": {
+    "accent": [
+     "accent",
+     true
+    ],
+    "compact": [
+     "compact",
+     true
+    ],
+    "flush": [
+     "flush",
+     true
+    ],
+    "glass": [
+     "glass",
+     true
+    ]
+   }
+  },
+  "Chapter": {
+   "extra": {
+    "dark": [
+     "dark",
+     true
+    ],
+    "start": [
+     "start",
+     true
+    ],
+    "tight": [
+     "tight",
+     true
+    ]
+   }
+  },
+  "Container": {
+   "prop": "size",
+   "values": [
+    "sm",
+    "md",
+    "xl",
+    "fluid"
+   ]
+  },
+  "DescriptionList": {
+   "extra": {
+    "stacked": [
+     "stacked",
+     true
+    ]
+   }
+  },
+  "Disclosure": {
+   "extra": {
+    "plain": [
+     "plain",
+     true
+    ]
+   }
+  },
+  "Divider": {
+   "extra": {
+    "inset": [
+     "inset",
+     true
+    ],
+    "label": [
+     "label",
+     true
+    ],
+    "vertical": [
+     "vertical",
+     true
+    ]
+   }
+  },
+  "Drawer": {
+   "extra": {
+    "end": [
+     "end",
+     true
+    ]
+   }
+  },
+  "Dropdown": {
+   "extra": {
+    "end": [
+     "end",
+     true
+    ]
+   }
+  },
+  "Event": {
+   "prop": "tone",
+   "values": [
+    "green",
+    "orange",
+    "purple"
+   ]
+  },
+  "Fab": {
+   "extra": {
+    "extended": [
+     "extended",
+     true
+    ]
+   }
+  },
+  "FeatureRow": {
+   "extra": {
+    "flip": [
+     "flip",
+     true
+    ]
+   }
+  },
+  "Figure": {
+   "extra": {
+    "bleed": [
+     "bleed",
+     true
+    ]
+   }
+  },
+  "Grid": {
+   "prop": "cols",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "6",
+    "auto"
+   ]
+  },
+  "List": {
+   "extra": {
+    "inset-divider": [
+     "insetDividers",
+     true
+    ],
+    "plain": [
+     "plain",
+     true
+    ]
+   }
+  },
+  "ListItem": {
+   "extra": {
+    "interactive": [
+     "interactive",
+     true
+    ]
+   }
+  },
+  "Modal": {
+   "extra": {
+    "glass": [
+     "glass",
+     true
+    ],
+    "lg": [
+     "size",
+     "lg"
+    ],
+    "sm": [
+     "size",
+     "sm"
+    ]
+   }
+  },
+  "Rail": {
+   "prop": "material",
+   "values": [
+    "glass"
+   ]
+  },
+  "Result": {
+   "prop": "tone",
+   "values": [
+    "success",
+    "warning",
+    "error",
+    "confirm"
+   ]
+  },
+  "Segmented": {
+   "extra": {
+    "block": [
+     "block",
+     true
+    ]
+   }
+  },
+  "Sidebar": {
+   "prop": "material",
+   "values": [
+    "glass",
+    "surface"
+   ]
+  },
+  "Spinner": {
+   "extra": {
+    "lg": [
+     "size",
+     "lg"
+    ],
+    "sm": [
+     "size",
+     "sm"
+    ]
+   }
+  },
+  "Stack": {
+   "extra": {
+    "wrap": [
+     "wrap",
+     true
+    ]
+   },
+   "prop": "align",
+   "values": [
+    "start",
+    "center",
+    "end",
+    "between",
+    "stretch"
+   ]
+  },
+  "Switch": {
+   "extra": {
+    "sm": [
+     "small",
+     true
+    ]
+   }
+  },
+  "Table": {
+   "extra": {
+    "compact": [
+     "compact",
+     true
+    ],
+    "hover": [
+     "hover",
+     true
+    ],
+    "striped": [
+     "striped",
+     true
+    ]
+   }
+  },
+  "Toolbar": {
+   "extra": {
+    "glass": [
+     "glass",
+     true
+    ]
+   }
+  }
+ },
+ "states": {
+  "is-active": [
+   "active",
+   true
+  ],
+  "is-invalid": [
+   "invalid",
+   true
+  ],
+  "is-loading": [
+   "loading",
+   true
+  ],
+  "is-muted": [
+   "muted",
+   true
+  ],
+  "is-selected": [
+   "selected",
+   true
+  ],
+  "is-today": [
+   "today",
+   true
+  ]
+ },
+ "weak": [
+  "b-modal",
+  "b-btn",
+  "b-card",
+  "b-input",
+  "b-stack",
+  "b-hstack"
+ ]
+}

@@ -146,7 +146,7 @@ export function AvatarGroup(p: HTMLAttributes<HTMLSpanElement>) {
 
 /* ---- Icon tile ---------------------------------------------------------------- */
 
-export interface IconTileProps extends HTMLAttributes<HTMLSpanElement> {
+export interface IconTileProps extends Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
   color?: "accent" | "solid" | "green" | "orange" | "red" | "purple" | "teal" | "indigo" | "gray";
   small?: boolean;
 }

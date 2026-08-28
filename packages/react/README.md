@@ -5,6 +5,29 @@ glass materials, HIG type) built on **pure CSS**, with thin typed React
 bindings on top. The CSS is the source of truth; components just compose the
 `.b-*` class system and add the interactive behaviors the React way.
 
+## What is in it
+
+278 components and hooks — every block in the system has one. The full
+list, grouped, is at <https://ui.barua.tz/docs/react.html>, and every example in
+the documentation carries a **React** tab with the JSX that produces it.
+
+```tsx
+import { Card, CardBody, Stat, Button, Icon } from "barua-ui";
+
+<Card compact>
+  <CardBody>
+    <Stat label="Outstanding" value="TZS 4.2M" />
+    <Button variant="primary">
+      <Icon name="check" /> Mark paid
+    </Button>
+  </CardBody>
+</Card>
+```
+
+Components render the documented markup and nothing else, so anything you read
+on the docs pages applies unchanged. Each one forwards `className` and its ref,
+so you are never boxed in.
+
 ## Install
 
 ```sh

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>React — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+<script src="react-code.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.1</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <a class="b-btn b-icon-btn b-btn--ghost b-tooltip-host" data-tooltip="Source on GitHub" href="https://github.com/nassdaq/barua-ui" target="_blank" rel="noreferrer" aria-label="Barua UI on GitHub">
+      <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="principles.html">Principles</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="react.html">React</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+        <a class="b-sidebar__item" href="../examples/landing.html">Landing</a>
+        <a class="b-sidebar__item" href="../examples/product.html">Product page</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+        <a class="b-sidebar__item" href="marketing.html">Marketing</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+        <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Start</div>
+        <h1>React</h1>
+        <p class="docs-hero__lede">
+          The same system, typed. <code>barua-ui</code> is a thin React layer over
+          the CSS — every component renders the exact markup documented on these
+          pages, so nothing behaves differently for having been imported. Every
+          example in these docs has a <strong>React</strong> tab showing the JSX
+          that produces it.
+        </p>
+      </header>
+
+      <section class="docs-section" id="install">
+        <h2>Install</h2>
+        <p>
+          One package, one stylesheet. The CSS is the system; the components only
+          spare you from typing class names.
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>Terminal</span></div>
+          <pre><code>npm install barua-ui</code></pre>
+        </div>
+        <p>
+          Import the stylesheet once, at the root of the app. Everything else is
+          a component import.
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>app/layout.tsx</span></div>
+          <pre><code>import "barua-ui/css";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;html lang="en"&gt;
+      &lt;body&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section" id="first">
+        <h2>The first component</h2>
+        <p>
+          Props are the modifiers you already know. <code>b-btn--primary</code> is
+          <code>variant="primary"</code>; there is nothing else to learn.
+        </p>
+        <div class="docs-demo">
+          <div class="b-hstack b-gap-2">
+            <button class="b-btn b-btn--primary">Send invoice</button>
+            <button class="b-btn b-btn--ghost">Save draft</button>
+          </div>
+        </div>
+        <p>
+          Open the React tab above. That JSX is generated from this very demo, so
+          it cannot fall out of step with the HTML beside it.
+        </p>
+      </section>
+
+      <section class="docs-section" id="server-components">
+        <h2>Server Components</h2>
+        <p>
+          The bundle carries its own <code>"use client"</code>, so importing from
+          a Server Component works. Components that hold state — the provider,
+          toasts, the command palette — still need a client boundary of their own,
+          which is ordinary React, not a quirk of this library.
+        </p>
+        <div class="docs-a11y">
+          <div>
+            <strong>Fixed in 0.1.1.</strong> Earlier builds shipped without that
+            banner and created their contexts at module scope, so a Server
+            Component import failed during evaluation. If you pinned
+            <code>0.1.0</code> and wrote a client-boundary file to work around it,
+            you can delete that file.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="theme">
+        <h2>Theme</h2>
+        <p>
+          Light and dark come from <code>light-dark()</code> in the CSS, so the
+          system already follows the operating system with no JavaScript at all.
+          Reach for the provider only to override that choice, and add
+          <code>ThemeScript</code> to stop the first paint flashing the wrong way.
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>app/providers.tsx</span></div>
+          <pre><code>"use client";
+
+import { BaruaProvider, ToastProvider } from "barua-ui";
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;BaruaProvider theme="auto" accent="blue"&gt;
+      &lt;ToastProvider&gt;{children}&lt;/ToastProvider&gt;
+    &lt;/BaruaProvider&gt;
+  );
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section" id="icons">
+        <h2>Icons</h2>
+        <p>
+          The glyph library ships as a component, generated from
+          <a href="icons.html">the icons page</a> — the same 59 glyphs, by name,
+          with the sizes on the <code>.b-icon</code> scale.
+        </p>
+        <div class="docs-demo">
+          <div class="b-hstack b-gap-3">
+            <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8.5 15 16 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5A4.5 4.5 0 0 1 14.5 8c0 3 1 4 1.5 4.5H4c.5-.5 1.5-1.5 1.5-4.5A4.5 4.5 0 0 1 10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15.5a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>Named, not pasted</span></div>
+          <pre><code>import { Icon } from "barua-ui";
+
+&lt;Icon name="check" /&gt;
+&lt;Icon name="search" size="sm" /&gt;
+&lt;Icon name="bell" title="Notifications" /&gt;   {/* labelled when it stands alone */}</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section" id="escape-hatch">
+        <h2>When a component is in the way</h2>
+        <p>
+          Nothing here is compulsory. Every component forwards
+          <code>className</code> and its ref, so a class the props do not cover
+          can always be added by hand — and any element can carry a system class
+          directly. The React layer is a convenience, never a gate.
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>Both are the same system</span></div>
+          <pre><code>&lt;Card compact className="b-span-4"&gt;…&lt;/Card&gt;
+
+&lt;article className="b-card b-card--compact b-span-4"&gt;…&lt;/article&gt;</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section" id="components">
+        <h2>What is exported</h2>
+        <p>
+          278 components and hooks, covering every block in the system. The list
+          is generated from the package, so it never claims more than it ships.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead><tr><th>Area</th><th>Exports</th></tr></thead>
+            <tbody>
+          <tr><td><strong>Theme</strong></td><td><code>BaruaProvider</code>, <code>ThemeScript</code>, <code>useBaruaTheme</code></td></tr>
+          <tr><td><strong>Toast</strong></td><td><code>ToastProvider</code>, <code>useToast</code></td></tr>
+          <tr><td><strong>Actions</strong></td><td><code>Button</code>, <code>ButtonLink</code>, <code>Fab</code>, <code>Toolbar</code>, <code>buttonClasses</code></td></tr>
+          <tr><td><strong>Forms</strong></td><td><code>Checkbox</code>, <code>Field</code>, <code>Input</code>, <code>OtpInput</code>, <code>Radio</code>, <code>Select</code>, <code>Slider</code>, <code>Switch</code>, <code>Textarea</code></td></tr>
+          <tr><td><strong>Content</strong></td><td><code>Avatar</code>, <code>AvatarGroup</code>, <code>Badge</code>, <code>Card</code>, <code>CardBody</code>, <code>CardEyebrow</code>, <code>CardFooter</code>, <code>CardHeader</code>, <code>CardSubtitle</code>, <code>CardTitle</code>, <code>Chip</code>, <code>EmptyState</code>, <code>GroupBox</code>, <code>IconTile</code>, <code>Labeled</code>, <code>List</code>, <code>ListFooter</code>, <code>ListHeader</code>, <code>ListItem</code>, <code>Stat</code>, <code>StoryCard</code>, <code>Tag</code></td></tr>
+          <tr><td><strong>Feedback</strong></td><td><code>Alert</code>, <code>LinearGauge</code>, <code>Progress</code>, <code>Skeleton</code>, <code>Spinner</code>, <code>StatusDot</code>, <code>Tip</code></td></tr>
+          <tr><td><strong>Overlays</strong></td><td><code>ActionSheet</code>, <code>AlertDialog</code>, <code>BottomSheet</code>, <code>Modal</code>, <code>Popover</code>, <code>Sheet</code>, <code>Tooltip</code></td></tr>
+          <tr><td><strong>Navigation</strong></td><td><code>Breadcrumbs</code>, <code>Segmented</code>, <code>TabPanel</code>, <code>Tabs</code></td></tr>
+          <tr><td><strong>Icons</strong></td><td><code>Icon</code>, <code>iconNames</code></td></tr>
+          <tr><td><strong>Primitive</strong></td><td><code>block</code></td></tr>
+          <tr><td><strong>Layout</strong></td><td><code>Bento</code>, <code>CardGrid</code>, <code>Container</code>, <code>Dashboard</code>, <code>Divider</code>, <code>Grid</code>, <code>Grow</code>, <code>HStack</code>, <code>Inspector</code>, <code>SafeArea</code>, <code>ScrollArea</code>, <code>Section</code>, <code>Sidebar</code>, <code>SidebarGroup</code>, <code>SidebarHeading</code>, <code>SidebarItem</code>, <code>SkipLink</code>, <code>Spacer</code>, <code>Span</code>, <code>Split</code>, <code>Stack</code>, <code>Stage</code>, <code>VStack</code>, <code>Workspace</code>, <code>WorkspaceMain</code></td></tr>
+          <tr><td><strong>Typography</strong></td><td><code>CodeBlock</code>, <code>DescriptionList</code>, <code>Footnote</code>, <code>Footnotes</code>, <code>Kbd</code>, <code>Link</code>, <code>LinkGroup</code>, <code>Overline</code>, <code>Quote</code>, <code>Text</code></td></tr>
+          <tr><td><strong>Data</strong></td><td><code>Bars</code>, <code>Chart</code>, <code>ChartTip</code>, <code>Columns</code>, <code>Donut</code>, <code>Gauge</code>, <code>Heatmap</code>, <code>Legend</code>, <code>Sparkline</code>, <code>Table</code>, <code>TableNum</code>, <code>TableSortHeader</code>, <code>TableWrap</code></td></tr>
+          <tr><td><strong>Navigation — chrome</strong></td><td><code>BackButton</code>, <code>BottomNav</code>, <code>BottomNavItem</code>, <code>Dock</code>, <code>DockItem</code>, <code>DockTray</code>, <code>Drawer</code>, <code>DrawerBody</code>, <code>DrawerHeader</code>, <code>Dropdown</code>, <code>MarketingNav</code>, <code>MarketingNavBrand</code>, <code>MarketingNavLinks</code>, <code>Menu</code>, <code>MenuItem</code>, <code>MenuLabel</code>, <code>MenuSeparator</code>, <code>PillNav</code>, <code>StatusBar</code>, <code>StatusBarItem</code>, <code>Steps</code>, <code>TopNav</code>, <code>TopNavBrand</code>, <code>TopNavLink</code>, <code>TopNavLinks</code></td></tr>
+          <tr><td><strong>Forms — structure</strong></td><td><code>Dropzone</code>, <code>ErrorText</code>, <code>Fieldset</code>, <code>FilterBar</code>, <code>FilterChip</code>, <code>Form</code>, <code>FormActions</code>, <code>FormRow</code>, <code>FormSection</code>, <code>Help</code>, <code>InputGroup</code>, <code>Label</code>, <code>Optional</code>, <code>Range</code>, <code>SearchField</code>, <code>StepperInput</code>, <code>Swatch</code>, <code>Swatches</code>, <code>Upload</code>, <code>UploadItem</code></td></tr>
+          <tr><td><strong>Productivity</strong></td><td><code>BulkActions</code>, <code>DataGrid</code>, <code>DragHandle</code>, <code>Feed</code>, <code>FileBrowser</code>, <code>FileGrid</code>, <code>FileTile</code>, <code>Kanban</code>, <code>KanbanColumn</code>, <code>KanbanList</code>, <code>Log</code>, <code>Resizable</code>, <code>ResizeHandle</code>, <code>SelectionCount</code>, <code>Task</code>, <code>TaskList</code>, <code>TaskRow</code>, <code>Timeline</code>, <code>Tree</code>, <code>TreeItem</code></td></tr>
+          <tr><td><strong>Marketing</strong></td><td><code>CardRail</code>, <code>Chapter</code>, <code>FeatureRow</code>, <code>Figure</code>, <code>Hero</code>, <code>Landing</code>, <code>PromoBand</code>, <code>SiteFooter</code>, <code>SiteFooterGroup</code>, <code>SiteFooterGroups</code>, <code>SiteFooterHeading</code>, <code>SiteFooterLegal</code>, <code>SpecStrip</code></td></tr>
+          <tr><td><strong>System</strong></td><td><code>AppGrid</code>, <code>AppTile</code>, <code>Auth</code>, <code>AuthCard</code>, <code>Banner</code>, <code>Callout</code>, <code>GlassContainer</code>, <code>Notification</code>, <code>Onboarding</code>, <code>OnboardingHero</code>, <code>Result</code>, <code>SysPage</code>, <code>Wall</code></td></tr>
+          <tr><td><strong>Command palette</strong></td><td><code>CommandFooter</code>, <code>CommandGroupLabel</code>, <code>CommandInput</code>, <code>CommandItem</code>, <code>CommandList</code>, <code>CommandPalette</code>, <code>HoverCard</code></td></tr>
+          <tr><td><strong>Extras</strong></td><td><code>Accordion</code>, <code>Account</code>, <code>AccountSwitcher</code>, <code>ButtonGroup</code>, <code>Calendar</code>, <code>CalendarDay</code>, <code>CalendarGrid</code>, <code>CalendarHeader</code>, <code>CalendarMonth</code>, <code>CalendarView</code>, <code>CalendarViewCell</code>, <code>CalendarViewHead</code>, <code>CalendarWeekday</code>, <code>Carousel</code>, <code>CarouselDots</code>, <code>CarouselSlide</code>, <code>CarouselTrack</code>, <code>Combobox</code>, <code>ComboboxEmpty</code>, <code>ComboboxList</code>, <code>ComboboxOption</code>, <code>CommandCenter</code>, <code>DatePicker</code>, <code>Disclosure</code>, <code>Event</code>, <code>Gallery</code>, <code>Gantt</code>, <code>GanttBar</code>, <code>GanttRow</code>, <code>GlassInteractive</code>, <code>HoverCardHost</code>, <code>ImageViewer</code>, <code>ImageViewerBar</code>, <code>Lightbox</code>, <code>OnboardingFeature</code>, <code>Rail</code>, <code>RailItem</code>, <code>SearchResult</code>, <code>SearchResults</code>, <code>Share</code>, <code>SortControl</code>, <code>SplitButton</code>, <code>ToggleButton</code>, <code>UploadPreview</code>, <code>UploadPreviews</code></td></tr>
+          <tr><td><strong>Media</strong></td><td><code>AreaChart</code>, <code>AsyncImage</code>, <code>Audio</code>, <code>Axis</code>, <code>CircularProgress</code>, <code>CommandCenterLabel</code>, <code>CommandCenterStatus</code>, <code>CommandCenterTile</code>, <code>GridLines</code>, <code>ImageLens</code>, <code>LineChart</code>, <code>LiquidToggle</code>, <code>MediaPlaceholder</code>, <code>MenuBar</code>, <code>MenuBarItem</code>, <code>Pagination</code>, <code>PaginationEllipsis</code>, <code>PaginationItem</code>, <code>RadarChart</code>, <code>ScatterChart</code>, <code>Thumb</code>, <code>Video</code>, <code>Waveform</code>, <code>Web</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

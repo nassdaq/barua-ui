@@ -82,7 +82,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSel
   }
 );
 
-export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "label"> {
   label?: ReactNode;
 }
 
@@ -110,7 +110,7 @@ export const Radio = forwardRef<HTMLInputElement, CheckboxProps>(function Radio(
   );
 });
 
-export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "label"> {
   label?: ReactNode;
   small?: boolean;
 }
