@@ -28,7 +28,7 @@ Machine-readable index of every component, with canonical markup:
 ## Documentation
 
 - [Foundations — tokens, colour, type, materials, motion](https://ui.barua.tz/docs/foundations.html): 20 components
-- [Icons — the 20×20 glyph set](https://ui.barua.tz/docs/icons.html): 2 components
+- [Icons — the 20×20 glyph set](https://ui.barua.tz/docs/icons.html): 3 components
 - [Layout — stacks, grids, containers, stage, scroll areas](https://ui.barua.tz/docs/layout.html): 17 components
 - [Actions — buttons, icon buttons, toolbars, links](https://ui.barua.tz/docs/actions.html): 11 components
 - [Navigation — bars, sidebars, tabs, menus, command palette](https://ui.barua.tz/docs/navigation.html): 15 components

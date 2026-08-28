@@ -385,6 +385,21 @@ Classes: b-btn b-btn--ghost b-btn--glass b-btn--primary b-icon b-icon--sm b-icon
           </button>
 ```
 
+### Symbol effects  (https://ui.barua.tz/docs/icons.html#symbol-effects)
+A glyph can answer an action. .b-icon--bounce plays once — the acknowledgement when something is sent, saved or added — and .b-icon--pulse repeats while something is genuinely ongoing. Both respect reduced motion, and both are effects on the icon rather than on the control, so a button keeps its own states.
+Classes: b-btn b-btn--ghost b-btn--glass b-icon b-icon--bounce b-icon--pulse b-icon--sm
+
+```html
+<button class="b-btn b-btn--glass" onclick="this.querySelector('svg').classList.remove('b-icon--bounce'); void this.offsetWidth; this.querySelector('svg').classList.add('b-icon--bounce')">
+            <svg class="b-icon b-icon--sm b-icon--bounce" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Send again
+          </button>
+          <span class="b-btn b-btn--ghost" aria-live="polite">
+            <svg class="b-icon b-icon--sm b-icon--pulse" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5V10l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Syncing
+          </span>
+```
+
 ### Library  (https://ui.barua.tz/docs/icons.html#icon-library)
 Fifty-nine core glyphs. Click to copy the SVG — paste it inline and add .b-icon . New icons must keep the grid, stroke and naming conventions; propose them here before using them in product.
 Classes: b-icon
