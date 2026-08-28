@@ -49,6 +49,7 @@
     .b-dashboard > .b-span-8 { grid-column: span 8; }
     .b-dashboard > .b-span-9 { grid-column: span 9; }
     .b-dashboard > .b-span-10 { grid-column: span 10; }
+    .b-dashboard > .b-span-11 { grid-column: span 11; }
     .b-dashboard > .b-span-12 { grid-column: span 12; }
   }
 

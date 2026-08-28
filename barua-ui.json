@@ -33,7 +33,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 806,
+  "classCount": 807,
   "classes": [
     "b-accordion",
     "b-account",
@@ -690,6 +690,7 @@
     "b-sort-control",
     "b-spacer",
     "b-span-10",
+    "b-span-11",
     "b-span-12",
     "b-span-2",
     "b-span-3",
@@ -1614,6 +1615,7 @@
     "b-span-8",
     "b-span-9",
     "b-span-10",
+    "b-span-11",
     "b-span-12"
   ],
   "lint": {
@@ -2357,7 +2359,7 @@
           "title": "Stack (VStack)",
           "category": "layout",
           "url": "https://ui.barua.tz/docs/layout.html#stack",
-          "summary": ".b-stack (alias .b-vstack ) is a vertical flex column with a token gap \u2014 the default building block for any view. Tune spacing with .b-gap-* instead of margins on children.",
+          "summary": ".b-stack (alias .b-vstack ) is a vertical flex column with a token gap \u2014 the default building block for any view. Tune spacing with the gap scale \u2014 .b-gap-0 , .b-gap-1 , .b-gap-2 , .b-gap-3 , .b-gap-4 , .b-gap-6 , .b-gap-8 \u2014 instead of margins on children.",
           "classes": [
             "b-card__body",
             "b-gap-2",
@@ -6993,7 +6995,7 @@
           "title": "Dashboard",
           "category": "productivity",
           "url": "https://ui.barua.tz/docs/productivity.html#dashboard",
-          "summary": ".b-dashboard is a 12-column grid. Cards claim width with .b-span-3/4/6/8/9 from 768px up and stack to a single column below. Compose it from .b-card + .b-stat for KPIs and the CSS charts from Data Visualization for trends.",
+          "summary": ".b-dashboard is a 12-column grid. Cards claim width with one of .b-span-2 , .b-span-3 , .b-span-4 , .b-span-5 , .b-span-6 , .b-span-7 , .b-span-8 , .b-span-9 , .b-span-10 , .b-span-11 or .b-span-12 from 768px up, and stack to a single column below. Spans in one row should total twelve \u2014 5 + 4 + 3 reads as well as 4 + 4 + 4 , and a row that overflows wraps a card onto its own line. Compose it from .b-card + .b-stat for KPIs and the CSS charts from Data Visualization for trends.",
           "classes": [
             "b-avatar",
             "b-avatar--sm",

@@ -546,7 +546,7 @@ Classes: b-card__body b-container b-container--fluid b-container--md b-container
 ```
 
 ### Stack (VStack)  (https://ui.barua.tz/docs/layout.html#stack)
-.b-stack (alias .b-vstack ) is a vertical flex column with a token gap — the default building block for any view. Tune spacing with .b-gap-* instead of margins on children.
+.b-stack (alias .b-vstack ) is a vertical flex column with a token gap — the default building block for any view. Tune spacing with the gap scale — .b-gap-0 , .b-gap-1 , .b-gap-2 , .b-gap-3 , .b-gap-4 , .b-gap-6 , .b-gap-8 — instead of margins on children.
 Variants: Alignment
 Classes: b-card__body b-gap-2 b-grid b-grid--3 b-stack b-stack--center b-stack--end b-stack--start
 
@@ -4094,7 +4094,7 @@ Classes: b-avatar b-avatar--xs b-card b-card__body b-dl b-dl--stacked b-inspecto
 ```
 
 ### Dashboard  (https://ui.barua.tz/docs/productivity.html#dashboard)
-.b-dashboard is a 12-column grid. Cards claim width with .b-span-3/4/6/8/9 from 768px up and stack to a single column below. Compose it from .b-card + .b-stat for KPIs and the CSS charts from Data Visualization for trends.
+.b-dashboard is a 12-column grid. Cards claim width with one of .b-span-2 , .b-span-3 , .b-span-4 , .b-span-5 , .b-span-6 , .b-span-7 , .b-span-8 , .b-span-9 , .b-span-10 , .b-span-11 or .b-span-12 from 768px up, and stack to a single column below. Spans in one row should total twelve — 5 + 4 + 3 reads as well as 4 + 4 + 4 , and a row that overflows wraps a card onto its own line. Compose it from .b-card + .b-stat for KPIs and the CSS charts from Data Visualization for trends.
 Classes: b-avatar b-avatar--sm b-card b-card__body b-card__header b-card__title b-chart b-chart__title b-columns b-columns__bar b-dashboard b-list b-list--plain b-list-item b-list-item__content b-list-item__leading b-list-item__subtitle b-list-item__title b-list-item__trailing b-span-4 b-span-8 b-sparkline b-stat b-stat__delta b-stat__label b-stat__value
 
 ```html

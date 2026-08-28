@@ -181,8 +181,14 @@
         <h2>Dashboard</h2>
         <p>
           <code>.b-dashboard</code> is a 12-column grid. Cards claim width with
-          <code>.b-span-3/4/6/8/9</code> from <code>768px</code> up and stack to
-          a single column below. Compose it from <code>.b-card</code> +
+          one of <code>.b-span-2</code>, <code>.b-span-3</code>,
+          <code>.b-span-4</code>, <code>.b-span-5</code>, <code>.b-span-6</code>,
+          <code>.b-span-7</code>, <code>.b-span-8</code>, <code>.b-span-9</code>,
+          <code>.b-span-10</code>, <code>.b-span-11</code> or
+          <code>.b-span-12</code> from <code>768px</code> up, and stack to a
+          single column below. Spans in one row should total twelve — <code>5 + 4 + 3</code> reads as well as
+          <code>4 + 4 + 4</code>, and a row that overflows wraps a card onto its
+          own line. Compose it from <code>.b-card</code> +
           <code>.b-stat</code> for KPIs and the CSS charts from
           <a href="data-viz.html">Data Visualization</a> for trends.
         </p>
