@@ -1626,6 +1626,117 @@
   },
   "categories": [
     {
+      "id": "principles",
+      "title": "Principles \u2014 the eight ideas the system is built on, and what enforces each",
+      "url": "https://ui.barua.tz/docs/principles.html",
+      "components": [
+        {
+          "id": "purpose",
+          "title": "Purpose",
+          "category": "principles",
+          "url": "https://ui.barua.tz/docs/principles.html#purpose",
+          "summary": "Make something meaningful.",
+          "classes": [
+            "b-footnote",
+            "b-list__header",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-list__header\">What holds it up</div>\n          <ul>\n            <li>Every component is documented with a live demo; if it cannot be demonstrated, it is not ready.</li>\n            <li>The linter rejects invented classes, so a new idea must be promoted into the system rather than smuggled into a page.</li>\n            <li>The examples are built only from documented components \u2014 they are proof, not decoration.</li>\n          </ul>"
+        },
+        {
+          "id": "agency",
+          "title": "Agency",
+          "category": "principles",
+          "url": "https://ui.barua.tz/docs/principles.html#agency",
+          "summary": "Let people do things their own way.",
+          "classes": [
+            "b-footnote",
+            "b-list__header",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-list__header\">What holds it up</div>\n          <ul>\n            <li>Theme, accent and wallpaper belong to the person: <code>data-theme</code>, <code>data-accent</code> and <code>Barua.wallpaper</code>.</li>\n            <li>Overlays close the way people expect \u2014 Escape, outside click, and a visible control, everywhere.</li>\n            <li>Destructive actions say what they will do, and are never the default in a row of buttons.</li>\n          </ul>"
+        },
+        {
+          "id": "responsibility",
+          "title": "Responsibility",
+          "category": "principles",
+          "url": "https://ui.barua.tz/docs/principles.html#responsibility",
+          "summary": "Act in people\u2019s best interest.",
+          "classes": [
+            "b-footnote",
+            "b-list__header",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-list__header\">What holds it up</div>\n          <ul>\n            <li><code>.b-redacted</code> and its privacy variant hide sensitive content deliberately, and look different from loading.</li>\n            <li>Empty and error states explain the situation and the way out rather than apologising.</li>\n            <li>Marketing claims carry footnotes: a figure with its conditions stated is worth more than a figure without.</li>\n          </ul>"
+        },
+        {
+          "id": "familiarity",
+          "title": "Familiarity",
+          "category": "principles",
+          "url": "https://ui.barua.tz/docs/principles.html#familiarity",
+          "summary": "Build on what people know.",
+          "classes": [
+            "b-footnote",
+            "b-list__header",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-list__header\">What holds it up</div>\n          <ul>\n            <li>Native elements first \u2014 <code>&lt;dialog&gt;</code>, the Popover API, <code>&lt;details&gt;</code> \u2014 so platform behaviour arrives correct and free.</li>\n            <li>One grammar throughout: <code>.b-block__element--modifier</code>, <code>.is-*</code> for state, <code>--b-*</code> for values.</li>\n            <li>States stay distinct and consistent: hover is a quiet fill, selection is accent-soft, focus is the ring.</li>\n          </ul>"
+        },
+        {
+          "id": "flexibility",
+          "title": "Flexibility",
+          "category": "principles",
+          "url": "https://ui.barua.tz/docs/principles.html#flexibility",
+          "summary": "Adapt to diverse contexts and needs.",
+          "classes": [
+            "b-footnote",
+            "b-list__header",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-list__header\">What holds it up</div>\n          <ul>\n            <li>Light and dark through <code>light-dark()</code>; a wallpaper can set the scheme for the surface it backs.</li>\n            <li>Every size is in <code>rem</code>, so the system text-size preference scales the whole interface.</li>\n            <li>Reduced motion is honoured globally; every interactive element carries its keyboard path and accessible name.</li>\n            <li>Components reflow on their own \u2014 most layouts need no media query at all.</li>\n          </ul>"
+        },
+        {
+          "id": "simplicity",
+          "title": "Simplicity",
+          "category": "principles",
+          "url": "https://ui.barua.tz/docs/principles.html#simplicity",
+          "summary": "Be clear and direct.",
+          "classes": [
+            "b-footnote",
+            "b-list__header",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-list__header\">What holds it up</div>\n          <ul>\n            <li>The type ramp is eleven roles, each with complete metrics \u2014 hierarchy is a decision, not a font size.</li>\n            <li>A screen ends at the screen: chrome stays put and only designated panes scroll.</li>\n            <li>Surfaces never stack materials; a panel inside glass is a fill.</li>\n            <li>Labels are written, not generated: a button says what will happen.</li>\n          </ul>"
+        },
+        {
+          "id": "craft",
+          "title": "Craft",
+          "category": "principles",
+          "url": "https://ui.barua.tz/docs/principles.html#craft",
+          "summary": "Care about every detail.",
+          "classes": [
+            "b-footnote",
+            "b-list__header",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-list__header\">What holds it up</div>\n          <ul>\n            <li>Every text style carries its own leading and tracking; small text opens up rather than borrowing body metrics.</li>\n            <li>Charts have ceilings as well as floors, so a component that reads correctly in a demo still reads correctly in a wide card.</li>\n            <li>Glass carries a specular edge, and the mail pane is literally the same card as everything else rather than a copy of its values.</li>\n            <li>The validator and the linter run over the documentation itself \u2014 the docs obey the rules they publish.</li>\n          </ul>"
+        },
+        {
+          "id": "delight",
+          "title": "Delight",
+          "category": "principles",
+          "url": "https://ui.barua.tz/docs/principles.html#delight",
+          "summary": "Make it human.",
+          "classes": [
+            "b-footnote",
+            "b-list__header",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-list__header\">What holds it up</div>\n          <ul>\n            <li>Motion runs on spring easings, and shared elements morph rather than cross-fade.</li>\n            <li>Symbol effects answer an action: a bounce on send, a pulse while something is genuinely happening.</li>\n            <li>Liquid Glass is one attribute, so a product can change its whole character without changing its markup.</li>\n            <li>A wallpaper makes the glass mean something \u2014 the person&rsquo;s own picture, and the system learning its colour from it.</li>\n          </ul>"
+        }
+      ]
+    },
+    {
       "id": "foundations",
       "title": "Foundations \u2014 tokens, colour, type, materials, motion",
       "url": "https://ui.barua.tz/docs/foundations.html",

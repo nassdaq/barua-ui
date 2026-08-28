@@ -20,6 +20,7 @@ DOCS = ROOT / "docs"
 SITE = "https://ui.barua.tz"
 
 CATEGORY_TITLES = {
+    "principles": "Principles — the eight ideas the system is built on, and what enforces each",
     "foundations": "Foundations — tokens, colour, type, materials, motion",
     "icons": "Icons — the 20×20 glyph set",
     "layout": "Layout — stacks, grids, containers, stage, scroll areas",
