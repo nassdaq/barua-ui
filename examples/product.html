@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product page example — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+</head>
+<body class="b-landing">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <nav class="b-marketing-nav" aria-label="Barua">
+    <a class="b-marketing-nav__brand" href="#main">Barua</a>
+    <div class="b-marketing-nav__links b-hide-mobile">
+      <a href="#work">Overview</a><a href="#team">Teams</a><a href="#places">Coverage</a><a href="#pricing">Pricing</a>
+    </div>
+    <a class="b-btn b-btn--primary b-btn--sm" href="#pricing">Get started</a>
+  </nav>
+
+  <!-- One product, several surfaces: the pill switcher Apple uses under the bar. -->
+  <nav class="b-pill-nav" aria-label="Surfaces">
+    <a class="is-active" href="#main">Mail</a>
+    <a href="#work">Storage</a>
+    <a href="#team">Teams</a>
+    <a href="#places">Domains</a>
+    <a href="#pricing">Pricing</a>
+  </nav>
+
+  <main id="main">
+    <!-- Dark opening chapter with moving footage behind the claim. -->
+    <header class="b-chapter b-hero b-chapter--dark">
+      <p class="b-chapter__eyebrow">Barua for business</p>
+      <h1 class="b-chapter__title b-hero__title">Work that arrives.</h1>
+      <p class="b-chapter__lede">
+        Email on your own domain, files beside the messages they belong to, and
+        a team that can find both. Built in Dar es Salaam, priced in shillings.
+      </p>
+      <div class="b-chapter__actions">
+        <a class="b-btn b-btn--primary b-btn--lg" href="#pricing">Start free trial</a>
+        <a class="b-link" href="#work">See it working &rsaquo;</a>
+      </div>
+      <div class="b-hero__media b-container b-container--xl">
+        <figure class="b-figure">
+          <div class="b-figure__frame">
+            <video src="assets/media/typing.mp4" poster="assets/landing-hero.svg"
+                   autoplay muted loop playsinline preload="metadata"
+                   aria-label="Someone typing at a desk"></video>
+          </div>
+          <figcaption class="b-figure__caption">Ten seconds of work, on loop — motion belongs in a hero, noise does not.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <section class="b-chapter" id="work">
+      <div class="b-container b-container--xl">
+        <div class="b-feature-row">
+          <figure class="b-figure">
+            <div class="b-figure__frame">
+              <img src="assets/media/desk.jpg" alt="A desk with a notebook and laptop" width="1500" height="1000" loading="lazy">
+            </div>
+          </figure>
+          <div>
+            <p class="b-chapter__eyebrow">Every day</p>
+            <h2 class="b-feature-row__title">The inbox is the smallest part of the job.</h2>
+            <p class="b-feature-row__body">
+              Invoices to send, contracts to keep, a domain that must not lapse.
+              Barua puts them in one account with one balance, so the work is
+              the work and not the admin around it.
+            </p>
+            <p class="b-chapter__actions"><a class="b-link" href="#pricing">Open an account &rsaquo;</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A rail you push sideways, the way Apple shows a set of features. -->
+    <section class="b-chapter b-chapter--dark b-chapter--tight" id="team">
+      <h2 class="b-chapter__title">Built for a team of five, not five hundred.</h2>
+      <p class="b-chapter__lede">Shared mailboxes, files people can actually find, and a bill that stays legible.</p>
+      <div class="b-container b-container--xl" style="margin-block-start: var(--b-space-8)">
+        <div class="b-card-rail">
+          <article>
+            <figure class="b-figure">
+              <div class="b-figure__frame"><img src="assets/media/team.jpg" alt="A small team meeting" width="1500" height="1000" loading="lazy"></div>
+            </figure>
+            <div class="b-rail-card__body">
+              <div class="b-rail-card__title">Shared mailboxes</div>
+              <p class="b-rail-card__text">sales@ and support@ belong to the team, not to whoever set them up.</p>
+            </div>
+          </article>
+          <article>
+            <figure class="b-figure">
+              <div class="b-figure__frame"><img src="assets/media/desk.jpg" alt="Files on a desk" width="1500" height="1000" loading="lazy"></div>
+            </figure>
+            <div class="b-rail-card__body">
+              <div class="b-rail-card__title">Files where the mail is</div>
+              <p class="b-rail-card__text">Storage sits beside the mailbox, so the contract is next to the thread about it.</p>
+            </div>
+          </article>
+          <article>
+            <figure class="b-figure">
+              <div class="b-figure__frame"><img src="assets/media/city.jpg" alt="A city at dusk" width="1500" height="1000" loading="lazy"></div>
+            </figure>
+            <div class="b-rail-card__body">
+              <div class="b-rail-card__title">Paid in shillings</div>
+              <p class="b-rail-card__text">Mobile money or card, one balance for every app on the account.</p>
+            </div>
+          </article>
+          <article>
+            <figure class="b-figure">
+              <div class="b-figure__frame"><img src="assets/media/team.jpg" alt="People working together" width="1500" height="1000" loading="lazy"></div>
+            </figure>
+            <div class="b-rail-card__body">
+              <div class="b-rail-card__title">Nobody left behind</div>
+              <p class="b-rail-card__text">Add a person and their mailbox, storage and access arrive together.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="b-chapter b-chapter--tight" id="places">
+      <div class="b-container b-container--xl">
+        <div class="b-spec-strip">
+          <div><span class="b-spec__value b-tabular-nums">10 min</span><span class="b-spec__label">From signup to first email<sup>1</sup></span></div>
+          <div><span class="b-spec__value b-tabular-nums">99.9%</span><span class="b-spec__label">Delivery to major providers<sup>2</sup></span></div>
+          <div><span class="b-spec__value b-tabular-nums">5</span><span class="b-spec__label">Regions served from Dar</span></div>
+          <div><span class="b-spec__value b-tabular-nums">1 GB</span><span class="b-spec__label">Storage with every mailbox</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The offer, in its own colour. -->
+    <section class="b-promo-band" id="pricing">
+      <h2 class="b-promo-band__title">Start with one mailbox.</h2>
+      <p class="b-promo-band__body">
+        TZS 10,000 a mailbox each month, no setup fee and no contract. The
+        domain stays yours if you ever leave — that is the whole point of
+        owning it.
+      </p>
+      <p class="b-chapter__actions">
+        <a class="b-btn b-btn--glass b-btn--lg" href="#pricing">Create your account</a>
+      </p>
+    </section>
+
+    <div class="b-footnotes">
+      <ol>
+        <li>Measured from account creation to first delivered message on a domain with working nameservers.</li>
+        <li>Delivery to Gmail, Outlook and Yahoo across the last ninety days, excluding messages rejected for content.</li>
+      </ol>
+    </div>
+  </main>
+
+  <footer class="b-site-footer">
+    <div class="b-site-footer__groups">
+      <div class="b-site-footer__group">
+        <div class="b-site-footer__heading">Barua</div>
+        <a href="#main">Mail</a><a href="#work">Storage</a><a href="#places">Domains</a><a href="#pricing">Pricing</a>
+      </div>
+      <div class="b-site-footer__group">
+        <div class="b-site-footer__heading">For business</div>
+        <a href="#team">Teams</a><a href="#team">Shared mailboxes</a><a href="#main">Sending API</a>
+      </div>
+      <div class="b-site-footer__group">
+        <div class="b-site-footer__heading">Support</div>
+        <a href="#main">Help centre</a><a href="#main">Status</a><a href="#main">Contact</a>
+      </div>
+      <div class="b-site-footer__group">
+        <div class="b-site-footer__heading">Company</div>
+        <a href="#main">About</a><a href="#main">Privacy</a><a href="#main">Terms</a>
+      </div>
+    </div>
+    <p class="b-site-footer__legal">
+      Demo photography and footage from Pixabay, used under the Pixabay Content
+      License — see examples/assets/media/CREDITS.md.
+      <br>Copyright &copy; 2026 Barua. Dar es Salaam, Tanzania.
+    </p>
+  </footer>
+</body>
+</html>

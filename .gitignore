@@ -6,3 +6,4 @@ dist/
 .env.*
 packages/react/css/
 .npmrc
+.gstack/

@@ -28,7 +28,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 796,
+  "classCount": 806,
   "classes": [
     "b-accordion",
     "b-account",
@@ -170,6 +170,7 @@
     "b-card--media-overlay",
     "b-card--neutral",
     "b-card-grid",
+    "b-card-rail",
     "b-card__art",
     "b-card__body",
     "b-card__eyebrow",
@@ -205,6 +206,7 @@
     "b-cc__tile--round",
     "b-cc__transport",
     "b-chapter",
+    "b-chapter--dark",
     "b-chapter--start",
     "b-chapter--tight",
     "b-chapter__actions",
@@ -336,6 +338,7 @@
     "b-flex--wrap",
     "b-focus-ring",
     "b-footnote",
+    "b-footnotes",
     "b-form",
     "b-form-actions",
     "b-form-row",
@@ -564,6 +567,7 @@
     "b-passkey__icon",
     "b-passkey__title",
     "b-pie",
+    "b-pill-nav",
     "b-popover",
     "b-popover--anchored",
     "b-popover--arrow-bottom",
@@ -588,6 +592,9 @@
     "b-progress-chart__head",
     "b-progress-chart__row",
     "b-progress__fill",
+    "b-promo-band",
+    "b-promo-band__body",
+    "b-promo-band__title",
     "b-props",
     "b-props__key",
     "b-props__row",
@@ -602,6 +609,9 @@
     "b-radius-xl",
     "b-rail",
     "b-rail--glass",
+    "b-rail-card__body",
+    "b-rail-card__text",
+    "b-rail-card__title",
     "b-rail__item",
     "b-range",
     "b-range__fill",
@@ -960,6 +970,7 @@
     "b-card--media-overlay",
     "b-card--neutral",
     "b-card-grid",
+    "b-card-rail",
     "b-card__art",
     "b-card__body",
     "b-card__eyebrow",
@@ -994,6 +1005,7 @@
     "b-cc__tile--round",
     "b-cc__transport",
     "b-chapter",
+    "b-chapter--dark",
     "b-chapter--tight",
     "b-chapter__actions",
     "b-chapter__eyebrow",
@@ -1107,6 +1119,7 @@
     "b-flex--between",
     "b-flex--center",
     "b-footnote",
+    "b-footnotes",
     "b-form",
     "b-form-actions",
     "b-form-row",
@@ -1303,6 +1316,7 @@
     "b-passkey__icon",
     "b-passkey__title",
     "b-pie",
+    "b-pill-nav",
     "b-popover",
     "b-popover--arrow-bottom",
     "b-popover--card",
@@ -1323,6 +1337,9 @@
     "b-progress-chart__head",
     "b-progress-chart__row",
     "b-progress__fill",
+    "b-promo-band",
+    "b-promo-band__body",
+    "b-promo-band__title",
     "b-props",
     "b-props__key",
     "b-props__row",
@@ -1332,6 +1349,9 @@
     "b-radio",
     "b-radius-lg",
     "b-rail",
+    "b-rail-card__body",
+    "b-rail-card__text",
+    "b-rail-card__title",
     "b-rail__item",
     "b-range",
     "b-range__fill",
@@ -8171,6 +8191,107 @@
             "b-tabular-nums"
           ],
           "markup": "<div class=\"b-spec-strip\">\n            <div><span class=\"b-spec__value b-tabular-nums\">10 min</span><span class=\"b-spec__label\">From signup to first email</span></div>\n            <div><span class=\"b-spec__value b-tabular-nums\">99.9%</span><span class=\"b-spec__label\">Delivery to the major providers</span></div>\n            <div><span class=\"b-spec__value\">TZS</span><span class=\"b-spec__label\">Billed in shillings</span></div>\n          </div>"
+        },
+        {
+          "id": "dark-chapter",
+          "title": "Dark chapter",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#dark-chapter",
+          "summary": "Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working.",
+          "classes": [
+            "b-chapter",
+            "b-chapter--dark",
+            "b-chapter--tight",
+            "b-chapter__eyebrow",
+            "b-chapter__lede",
+            "b-chapter__title"
+          ],
+          "markup": "<div class=\"b-chapter b-chapter--dark b-chapter--tight\" style=\"border-radius: var(--b-radius-xl)\">\n            <p class=\"b-chapter__eyebrow\">Barua for business</p>\n            <h2 class=\"b-chapter__title\">Work that arrives.</h2>\n            <p class=\"b-chapter__lede\">The same chapter, on the other ground.</p>\n          </div>",
+          "knobs": [
+            "--b-chapter-gap"
+          ]
+        },
+        {
+          "id": "pill-nav",
+          "title": "Pill switcher",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#pill-nav",
+          "summary": "One product across several surfaces, switched from a row of pills under the bar \u2014 .b-pill-nav , with .is-active on the current one. Use it when the surfaces are peers; use tabs when one contains the others.",
+          "classes": [
+            "b-pill-nav"
+          ],
+          "markup": "<nav class=\"b-pill-nav\" aria-label=\"Surfaces\">\n            <a class=\"is-active\" href=\"#pill-nav\">Mail</a><a href=\"#pill-nav\">Storage</a><a href=\"#pill-nav\">Teams</a><a href=\"#pill-nav\">Domains</a>\n          </nav>",
+          "states": [
+            "is-active"
+          ]
+        },
+        {
+          "id": "card-rail",
+          "title": "Card rail",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#card-rail",
+          "summary": "A row you push sideways, snapping card to card \u2014 for a set of features that reads better as a sequence than a grid. Every figure in a rail is forced to one aspect so the captions line up; photographs arrive at whatever shape they were taken.",
+          "classes": [
+            "b-card-rail",
+            "b-figure",
+            "b-figure__frame",
+            "b-rail-card__body",
+            "b-rail-card__text",
+            "b-rail-card__title"
+          ],
+          "markup": "<div class=\"b-card-rail\">\n            <article>\n              <figure class=\"b-figure\"><div class=\"b-figure__frame\"><img src=\"../examples/assets/media/team.jpg\" alt=\"A small team meeting\" width=\"1500\" height=\"1000\" loading=\"lazy\"></div></figure>\n              <div class=\"b-rail-card__body\">\n                <div class=\"b-rail-card__title\">Shared mailboxes</div>\n                <p class=\"b-rail-card__text\">sales@ and support@ belong to the team.</p>\n              </div>\n            </article>\n            <article>\n              <figure class=\"b-figure\"><div class=\"b-figure__frame\"><img src=\"../examples/assets/media/desk.jpg\" alt=\"Files on a desk\" width=\"1500\" height=\"1000\" loading=\"lazy\"></div></figure>\n              <div class=\"b-rail-card__body\">\n                <div class=\"b-rail-card__title\">Files where the mail is</div>\n                <p class=\"b-rail-card__text\">Storage sits beside the mailbox.</p>\n              </div>\n            </article>\n            <article>\n              <figure class=\"b-figure\"><div class=\"b-figure__frame\"><img src=\"../examples/assets/media/city.jpg\" alt=\"The coast\" width=\"1500\" height=\"1000\" loading=\"lazy\"></div></figure>\n              <div class=\"b-rail-card__body\">\n                <div class=\"b-rail-card__title\">Paid in shillings</div>\n                <p class=\"b-rail-card__text\">Mobile money or card, one balance.</p>\n              </div>\n       "
+        },
+        {
+          "id": "moving-media",
+          "title": "Moving media",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#moving-media",
+          "summary": "A hero can move. Put a <video> in the figure frame with autoplay muted loop playsinline \u2014 muted because a page that makes noise is a page people close, and playsinline so phones do not take it fullscreen. Keep it short, keep it small, and give it a poster so something is there before it loads.",
+          "classes": [
+            "b-figure",
+            "b-figure__caption",
+            "b-figure__frame"
+          ],
+          "markup": "<figure class=\"b-figure\" style=\"max-width: 30rem\">\n            <div class=\"b-figure__frame\">\n              <video src=\"../examples/assets/media/typing.mp4\" autoplay muted loop playsinline preload=\"metadata\" aria-label=\"Someone typing at a desk\"></video>\n            </div>\n            <figcaption class=\"b-figure__caption\">Ten seconds on loop, under a megabyte.</figcaption>\n          </figure>"
+        },
+        {
+          "id": "promo-band",
+          "title": "Promo band",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#promo-band",
+          "summary": "One offer, full width, in its own colour \u2014 the band near the end of a product page that carries the ask. It sets a dark scheme so the controls inside it come out right.",
+          "classes": [
+            "b-btn",
+            "b-btn--glass",
+            "b-btn--lg",
+            "b-chapter__actions",
+            "b-promo-band",
+            "b-promo-band__body",
+            "b-promo-band__title"
+          ],
+          "markup": "",
+          "knobs": [
+            "--b-lg-border",
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong"
+          ],
+          "states": [
+            "is-active",
+            "is-loading",
+            "is-pressed"
+          ]
+        },
+        {
+          "id": "footnotes",
+          "title": "Footnotes",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#footnotes",
+          "summary": "The small print a claim earns. Numbered, caption-sized and tertiary, sitting between the last chapter and the footer \u2014 with <sup> markers on the claims themselves. A figure with a footnote is worth more than a figure without one.",
+          "classes": [
+            "b-footnotes"
+          ],
+          "markup": "<div class=\"b-footnotes\" style=\"padding-block-start: 0\">\n            <ol>\n              <li>Measured from account creation to first delivered message on a domain with working nameservers.</li>\n              <li>Delivery to Gmail, Outlook and Yahoo across the last ninety days.</li>\n            </ol>\n          </div>"
         },
         {
           "id": "site-footer",

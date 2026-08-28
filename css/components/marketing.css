@@ -158,6 +158,94 @@
   }
   .b-spec__label { display: block; margin-block-start: var(--b-space-1); font-size: var(--b-text-footnote); color: var(--b-text-secondary); }
 
+  /* ---- A chapter that inverts ---------------------------------------------
+     Product pages alternate light and dark full-bleed sections so a page has
+     chapters you can feel while scrolling. Flipping color-scheme rather than
+     hardcoding colours means every token inside resolves for the dark ground,
+     so components dropped in keep working. */
+  .b-chapter--dark {
+    color-scheme: dark;
+    background: var(--b-bg);
+    color: var(--b-text);
+  }
+
+  /* ---- Pill switcher: one product, several platforms ----------------------- */
+  .b-pill-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--b-space-2);
+    padding: var(--b-space-4) var(--b-space-6);
+  }
+  .b-pill-nav a {
+    padding: var(--b-space-2) var(--b-space-4);
+    font-size: var(--b-text-subheadline);
+    color: var(--b-text-secondary);
+    text-decoration: none;
+    background: var(--b-fill-quaternary);
+    border-radius: var(--b-radius-full);
+    transition: background var(--b-duration-fast) var(--b-ease-out), color var(--b-duration-fast) var(--b-ease-out);
+  }
+  .b-pill-nav a:hover { background: var(--b-fill-tertiary); color: var(--b-text); }
+  .b-pill-nav a.is-active { background: var(--b-text); color: var(--b-bg); }
+
+  /* ---- Card rail: a row you push sideways ---------------------------------- */
+  .b-card-rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(min(17rem, 78vw), 21rem);
+    gap: var(--b-space-4);
+    padding-block-end: var(--b-space-3);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    text-align: start;
+  }
+  .b-card-rail::-webkit-scrollbar { display: none; }
+  .b-card-rail > * { scroll-snap-align: start; }
+  /* Photographs arrive at whatever shape they were taken; a rail needs one
+     shape, or the captions sit at four different heights. */
+  .b-card-rail .b-figure__frame { aspect-ratio: 4 / 3; }
+  .b-card-rail .b-figure__frame :is(img, video) { height: 100%; object-fit: cover; }
+  .b-rail-card__body { margin-block-start: var(--b-space-3); }
+  .b-rail-card__title { font-weight: var(--b-weight-semibold); }
+  .b-rail-card__text { margin-block-start: var(--b-space-1); font-size: var(--b-text-subheadline); color: var(--b-text-secondary); }
+
+  /* ---- Promo band: one offer, full width, its own colour ------------------- */
+  .b-promo-band {
+    color-scheme: dark;
+    padding: clamp(3rem, 6vw, 5rem) var(--b-space-6);
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(135deg,
+      var(--b-color-accent),
+      color-mix(in srgb, var(--b-color-indigo) 80%, var(--b-color-purple)));
+  }
+  .b-promo-band__title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: var(--b-weight-bold);
+    letter-spacing: var(--b-tracking-tight);
+  }
+  .b-promo-band__body {
+    max-width: 52ch;
+    margin: var(--b-space-3) auto 0;
+    line-height: var(--b-leading-body);
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  /* ---- Footnotes: the small print a claim earns ---------------------------- */
+  .b-footnotes {
+    max-width: var(--b-container-xl);
+    margin-inline: auto;
+    padding: var(--b-space-8) var(--b-space-6) 0;
+    font-size: var(--b-text-caption);
+    line-height: var(--b-leading-body);
+    color: var(--b-text-tertiary);
+  }
+  .b-footnotes ol { padding-inline-start: var(--b-space-5); }
+  .b-footnotes li + li { margin-block-start: var(--b-space-2); }
+
   /* ---- The footer: small, dense, and unafraid of links --------------------- */
   .b-site-footer {
     padding: var(--b-space-10) var(--b-space-6) var(--b-space-8);

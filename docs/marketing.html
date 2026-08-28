@@ -54,6 +54,7 @@
         <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
         <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
         <a class="b-sidebar__item" href="../examples/landing.html">Landing</a>
+        <a class="b-sidebar__item" href="../examples/product.html">Product page</a>
       </nav>
       <nav class="b-sidebar__group">
         <div class="b-sidebar__heading">Components</div>
@@ -224,6 +225,128 @@
             <div><span class="b-spec__value b-tabular-nums">10 min</span><span class="b-spec__label">From signup to first email</span></div>
             <div><span class="b-spec__value b-tabular-nums">99.9%</span><span class="b-spec__label">Delivery to the major providers</span></div>
             <div><span class="b-spec__value">TZS</span><span class="b-spec__label">Billed in shillings</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="dark-chapter">
+        <h2>Dark chapter</h2>
+        <p>
+          Product pages alternate light and dark full-bleed sections so the
+          page has chapters you can feel while scrolling.
+          <code>.b-chapter--dark</code> flips <code>color-scheme</code> rather
+          than hardcoding colours, so every token inside resolves for the dark
+          ground and any component dropped in keeps working.
+        </p>
+        <div class="docs-demo">
+          <div class="b-chapter b-chapter--dark b-chapter--tight" style="border-radius: var(--b-radius-xl)">
+            <p class="b-chapter__eyebrow">Barua for business</p>
+            <h2 class="b-chapter__title">Work that arrives.</h2>
+            <p class="b-chapter__lede">The same chapter, on the other ground.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="pill-nav">
+        <h2>Pill switcher</h2>
+        <p>
+          One product across several surfaces, switched from a row of pills
+          under the bar — <code>.b-pill-nav</code>, with
+          <code>.is-active</code> on the current one. Use it when the surfaces
+          are peers; use tabs when one contains the others.
+        </p>
+        <div class="docs-demo">
+          <nav class="b-pill-nav" aria-label="Surfaces">
+            <a class="is-active" href="#pill-nav">Mail</a><a href="#pill-nav">Storage</a><a href="#pill-nav">Teams</a><a href="#pill-nav">Domains</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="docs-section" id="card-rail">
+        <h2>Card rail</h2>
+        <p>
+          A row you push sideways, snapping card to card — for a set of
+          features that reads better as a sequence than a grid. Every figure in
+          a rail is forced to one aspect so the captions line up; photographs
+          arrive at whatever shape they were taken.
+        </p>
+        <div class="docs-demo">
+          <div class="b-card-rail">
+            <article>
+              <figure class="b-figure"><div class="b-figure__frame"><img src="../examples/assets/media/team.jpg" alt="A small team meeting" width="1500" height="1000" loading="lazy"></div></figure>
+              <div class="b-rail-card__body">
+                <div class="b-rail-card__title">Shared mailboxes</div>
+                <p class="b-rail-card__text">sales@ and support@ belong to the team.</p>
+              </div>
+            </article>
+            <article>
+              <figure class="b-figure"><div class="b-figure__frame"><img src="../examples/assets/media/desk.jpg" alt="Files on a desk" width="1500" height="1000" loading="lazy"></div></figure>
+              <div class="b-rail-card__body">
+                <div class="b-rail-card__title">Files where the mail is</div>
+                <p class="b-rail-card__text">Storage sits beside the mailbox.</p>
+              </div>
+            </article>
+            <article>
+              <figure class="b-figure"><div class="b-figure__frame"><img src="../examples/assets/media/city.jpg" alt="The coast" width="1500" height="1000" loading="lazy"></div></figure>
+              <div class="b-rail-card__body">
+                <div class="b-rail-card__title">Paid in shillings</div>
+                <p class="b-rail-card__text">Mobile money or card, one balance.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="moving-media">
+        <h2>Moving media</h2>
+        <p>
+          A hero can move. Put a <code>&lt;video&gt;</code> in the figure frame
+          with <code>autoplay muted loop playsinline</code> — muted because a
+          page that makes noise is a page people close, and
+          <code>playsinline</code> so phones do not take it fullscreen. Keep it
+          short, keep it small, and give it a poster so something is there
+          before it loads.
+        </p>
+        <div class="docs-demo">
+          <figure class="b-figure" style="max-width: 30rem">
+            <div class="b-figure__frame">
+              <video src="../examples/assets/media/typing.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Someone typing at a desk"></video>
+            </div>
+            <figcaption class="b-figure__caption">Ten seconds on loop, under a megabyte.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="docs-section" id="promo-band">
+        <h2>Promo band</h2>
+        <p>
+          One offer, full width, in its own colour — the band near the end of a
+          product page that carries the ask. It sets a dark scheme so the
+          controls inside it come out right.
+        </p>
+        <div class="docs-demo">
+          <section class="b-promo-band" style="border-radius: var(--b-radius-xl)">
+            <h2 class="b-promo-band__title">Start with one mailbox.</h2>
+            <p class="b-promo-band__body">TZS 10,000 a mailbox each month, no setup fee and no contract.</p>
+            <p class="b-chapter__actions"><a class="b-btn b-btn--glass b-btn--lg" href="#promo-band">Create your account</a></p>
+          </section>
+        </div>
+      </section>
+
+      <section class="docs-section" id="footnotes">
+        <h2>Footnotes</h2>
+        <p>
+          The small print a claim earns. Numbered, caption-sized and tertiary,
+          sitting between the last chapter and the footer — with
+          <code>&lt;sup&gt;</code> markers on the claims themselves. A figure
+          with a footnote is worth more than a figure without one.
+        </p>
+        <div class="docs-demo">
+          <div class="b-footnotes" style="padding-block-start: 0">
+            <ol>
+              <li>Measured from account creation to first delivered message on a domain with working nameservers.</li>
+              <li>Delivery to Gmail, Outlook and Yahoo across the last ninety days.</li>
+            </ol>
           </div>
         </div>
       </section>

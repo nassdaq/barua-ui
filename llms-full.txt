@@ -4919,6 +4919,87 @@ Classes: b-spec-strip b-spec__label b-spec__value b-tabular-nums
           </div>
 ```
 
+### Dark chapter  (https://ui.barua.tz/docs/marketing.html#dark-chapter)
+Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working.
+Classes: b-chapter b-chapter--dark b-chapter--tight b-chapter__eyebrow b-chapter__lede b-chapter__title
+
+```html
+<div class="b-chapter b-chapter--dark b-chapter--tight" style="border-radius: var(--b-radius-xl)">
+            <p class="b-chapter__eyebrow">Barua for business</p>
+            <h2 class="b-chapter__title">Work that arrives.</h2>
+            <p class="b-chapter__lede">The same chapter, on the other ground.</p>
+          </div>
+```
+
+### Pill switcher  (https://ui.barua.tz/docs/marketing.html#pill-nav)
+One product across several surfaces, switched from a row of pills under the bar — .b-pill-nav , with .is-active on the current one. Use it when the surfaces are peers; use tabs when one contains the others.
+Classes: b-pill-nav
+
+```html
+<nav class="b-pill-nav" aria-label="Surfaces">
+            <a class="is-active" href="#pill-nav">Mail</a><a href="#pill-nav">Storage</a><a href="#pill-nav">Teams</a><a href="#pill-nav">Domains</a>
+          </nav>
+```
+
+### Card rail  (https://ui.barua.tz/docs/marketing.html#card-rail)
+A row you push sideways, snapping card to card — for a set of features that reads better as a sequence than a grid. Every figure in a rail is forced to one aspect so the captions line up; photographs arrive at whatever shape they were taken.
+Classes: b-card-rail b-figure b-figure__frame b-rail-card__body b-rail-card__text b-rail-card__title
+
+```html
+<div class="b-card-rail">
+            <article>
+              <figure class="b-figure"><div class="b-figure__frame"><img src="../examples/assets/media/team.jpg" alt="A small team meeting" width="1500" height="1000" loading="lazy"></div></figure>
+              <div class="b-rail-card__body">
+                <div class="b-rail-card__title">Shared mailboxes</div>
+                <p class="b-rail-card__text">sales@ and support@ belong to the team.</p>
+              </div>
+            </article>
+            <article>
+              <figure class="b-figure"><div class="b-figure__frame"><img src="../examples/assets/media/desk.jpg" alt="Files on a desk" width="1500" height="1000" loading="lazy"></div></figure>
+              <div class="b-rail-card__body">
+                <div class="b-rail-card__title">Files where the mail is</div>
+                <p class="b-rail-card__text">Storage sits beside the mailbox.</p>
+              </div>
+            </article>
+            <article>
+              <figure class="b-figure"><div class="b-figure__frame"><img src="../examples/assets/media/city.jpg" alt="The coast" width="1500" height="1000" loading="lazy"></div></figure>
+              <div class="b-rail-card__body">
+                <div class="b-rail-card__title">Paid in shillings</div>
+                <p class="b-rail-card__text">Mobile money or card, one balance.</p>
+              </div>
+       
+```
+
+### Moving media  (https://ui.barua.tz/docs/marketing.html#moving-media)
+A hero can move. Put a <video> in the figure frame with autoplay muted loop playsinline — muted because a page that makes noise is a page people close, and playsinline so phones do not take it fullscreen. Keep it short, keep it small, and give it a poster so something is there before it loads.
+Classes: b-figure b-figure__caption b-figure__frame
+
+```html
+<figure class="b-figure" style="max-width: 30rem">
+            <div class="b-figure__frame">
+              <video src="../examples/assets/media/typing.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Someone typing at a desk"></video>
+            </div>
+            <figcaption class="b-figure__caption">Ten seconds on loop, under a megabyte.</figcaption>
+          </figure>
+```
+
+### Promo band  (https://ui.barua.tz/docs/marketing.html#promo-band)
+One offer, full width, in its own colour — the band near the end of a product page that carries the ask. It sets a dark scheme so the controls inside it come out right.
+Classes: b-btn b-btn--glass b-btn--lg b-chapter__actions b-promo-band b-promo-band__body b-promo-band__title
+
+### Footnotes  (https://ui.barua.tz/docs/marketing.html#footnotes)
+The small print a claim earns. Numbered, caption-sized and tertiary, sitting between the last chapter and the footer — with <sup> markers on the claims themselves. A figure with a footnote is worth more than a figure without one.
+Classes: b-footnotes
+
+```html
+<div class="b-footnotes" style="padding-block-start: 0">
+            <ol>
+              <li>Measured from account creation to first delivered message on a domain with working nameservers.</li>
+              <li>Delivery to Gmail, Outlook and Yahoo across the last ninety days.</li>
+            </ol>
+          </div>
+```
+
 ### Site Footer  (https://ui.barua.tz/docs/marketing.html#site-footer)
 Small, dense, and unafraid of links: groups of destinations in columns, then the legal line that carries the footnotes the page made. Caption-sized throughout — a footer is for finding, not for reading.
 Classes: b-site-footer b-site-footer__group b-site-footer__groups b-site-footer__heading b-site-footer__legal
