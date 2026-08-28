@@ -46,9 +46,14 @@ you call the work done.
    exist inside that block. Slots are not decoration.
 3. **Tokens, never values.** No raw hex, rgb or px colour in product code. If a
    value feels missing, it is a token that needs adding, not a literal.
-4. **Inline styles are for knobs only** — the custom properties a component
-   reads from its content (`--v`, `--b-progress`, `--b-thumb-size`,
-   `--b-heatmap-cols`) plus artwork backgrounds.
+4. **Inline custom properties must be knobs** — the properties a component
+   reads from its content rather than declaring for itself (`--v`,
+   `--b-progress`, `--b-thumb-size`, `--b-heatmap-cols`, `--b-chart-h`,
+   `--b-column-w`, `--b-bars-label-w`, and about thirty more). The complete
+   list is whatever `system_knobs()` in `tools/barua-lint.py` returns — it is
+   derived from the stylesheets, so it is always current. Plain CSS properties
+   inline (`max-width`, `position`) are allowed for structure; colour is not,
+   ever.
 5. **Icons come from the library.** Inline 20×20 SVG, 1.5px stroke,
    `currentColor`, sized with `.b-icon`. Never emoji. Never letters.
 6. **No native `<select>`, no native date or time inputs** on product surfaces:

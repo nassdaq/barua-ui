@@ -38,11 +38,18 @@
   }
   .b-dashboard > * { grid-column: span 12; }
   @media (min-width: 768px) {
+    /* The full scale: a twelve-column grid that only answers to five of the
+       twelve is a trap — b-span-7 silently did nothing. */
+    .b-dashboard > .b-span-2 { grid-column: span 2; }
     .b-dashboard > .b-span-3 { grid-column: span 3; }
     .b-dashboard > .b-span-4 { grid-column: span 4; }
+    .b-dashboard > .b-span-5 { grid-column: span 5; }
     .b-dashboard > .b-span-6 { grid-column: span 6; }
+    .b-dashboard > .b-span-7 { grid-column: span 7; }
     .b-dashboard > .b-span-8 { grid-column: span 8; }
     .b-dashboard > .b-span-9 { grid-column: span 9; }
+    .b-dashboard > .b-span-10 { grid-column: span 10; }
+    .b-dashboard > .b-span-12 { grid-column: span 12; }
   }
 
   /* Command center hero (search-first) */

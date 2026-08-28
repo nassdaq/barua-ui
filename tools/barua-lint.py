@@ -83,7 +83,7 @@ def check(path: pathlib.Path, known: set[str], knobs: set[str]) -> list[str]:
         value = next(g for g in match.groups() if g is not None)
         line = text[: match.start()].count("\n") + 1
         for name in re.split(r"[\s`${}()?:'\"]+", value):
-            if name.startswith("b-") and name not in known and not name.startswith("b-span-"):
+            if name.startswith("b-") and name not in known:
                 problems.append(f"{path}:{line}: unknown class '{name}' — it is not in the system")
 
     # 2. Colour belongs to tokens.

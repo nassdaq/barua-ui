@@ -74,6 +74,7 @@
   .b-columns {
     display: flex;
     align-items: flex-end;
+    justify-content: space-evenly;
     gap: var(--b-space-2);
     height: var(--b-chart-h, 10rem);
     padding-block-end: 1.4rem;
@@ -81,9 +82,12 @@
   }
   .b-columns__bar {
     position: relative;
-    flex: 1;
+    flex: 1 1 0;
     height: var(--v, 50%);
     min-width: 0.5rem;
+    /* A column is a mark, not a slab: past this width a bar stops reading as
+       data and starts reading as a shape, especially when rounded. */
+    max-width: var(--b-column-w, 3rem);
     background: var(--b-chart-color, var(--b-chart-1));
     border-radius: var(--b-radius-xs) var(--b-radius-xs) 0 0;
     transition: height var(--b-duration-slow) var(--b-ease-out),
@@ -228,7 +232,7 @@
 
   /* ---- Sparkline & SVG chart styling ------------------------------------------ */
   .b-sparkline { width: 100%; height: 2rem; overflow: visible; }
-  .b-sparkline path, .b-line-svg path.b-series {
+  .b-sparkline path, .b-line-svg path.b-series, .b-area-svg path.b-series {
     fill: none;
     stroke: var(--b-chart-color, var(--b-chart-1));
     stroke-width: 2;
@@ -239,6 +243,10 @@
   .b-line-svg, .b-area-svg, .b-scatter-svg, .b-radar-svg {
     width: 100%;
     height: auto;
+    /* A viewBox scales everything it contains, labels included: without a
+       ceiling the same chart that reads correctly in a narrow card renders
+       its axis type at twice the size in a wide one. */
+    max-height: var(--b-chart-h, 13rem);
     overflow: visible;
   }
   .b-area-fill {
