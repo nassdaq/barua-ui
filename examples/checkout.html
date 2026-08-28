@@ -109,15 +109,19 @@
         </div>
         <div class="b-form-row">
           <div class="b-field">
-            <label class="b-label" for="co-region">Region</label>
-            <select class="b-select" id="co-region">
-              <option value="" disabled>Choose a region…</option>
-              <option selected>Dar es Salaam</option>
-              <option>Arusha</option>
-              <option>Dodoma</option>
-              <option>Mwanza</option>
-              <option>Zanzibar West</option>
-            </select>
+            <span class="b-label" id="co-region-label">Region</span>
+            <details class="b-dropdown" style="display: block">
+              <summary class="b-select" aria-labelledby="co-region-label" style="display: flex; align-items: center; justify-content: space-between; gap: var(--b-space-2); cursor: pointer">
+                Dar es Salaam
+                <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <div class="b-menu" role="listbox" style="width: 100%">
+                <button type="button" role="option" aria-selected="true" class="b-menu__item"><span style="width: 1.1rem; flex: none">✓</span>Dar es Salaam</button>
+                <button type="button" role="option" aria-selected="false" class="b-menu__item"><span style="width: 1.1rem; flex: none"></span>Arusha</button>
+                <button type="button" role="option" aria-selected="false" class="b-menu__item"><span style="width: 1.1rem; flex: none"></span>Dodoma</button>
+                <button type="button" role="option" aria-selected="false" class="b-menu__item"><span style="width: 1.1rem; flex: none"></span>Mwanza</button>
+              </div>
+            </details>
             <p class="b-help">Sets your delivery zone.</p>
           </div>
           <div class="b-field">

@@ -169,23 +169,34 @@
       <div class="b-card">
         <div class="b-card__body b-stack b-gap-4">
           <div class="b-field">
-            <label class="b-label" for="set-language">App language</label>
-            <select class="b-select" id="set-language">
-              <option selected>Kiswahili</option>
-              <option>English (UK)</option>
-              <option>Français</option>
-            </select>
+            <span class="b-label" id="set-language-label">App language</span>
+            <details class="b-dropdown" style="display: block">
+              <summary class="b-select" aria-labelledby="set-language-label" style="display: flex; align-items: center; justify-content: space-between; gap: var(--b-space-2); cursor: pointer">
+                Kiswahili
+                <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <div class="b-menu" role="listbox" style="width: 100%">
+                <button type="button" role="option" aria-selected="true" class="b-menu__item"><span style="width: 1.1rem; flex: none">✓</span>Kiswahili</button>
+                <button type="button" role="option" aria-selected="false" class="b-menu__item"><span style="width: 1.1rem; flex: none"></span>English (UK)</button>
+                <button type="button" role="option" aria-selected="false" class="b-menu__item"><span style="width: 1.1rem; flex: none"></span>Français</button>
+              </div>
+            </details>
             <p class="b-help">Dates, times and TZS prices follow this language.</p>
           </div>
           <div class="b-field">
-            <label class="b-label" for="set-region">Region</label>
-            <select class="b-select" id="set-region">
-              <option selected>Dar es Salaam</option>
-              <option>Arusha</option>
-              <option>Dodoma</option>
-              <option>Mwanza</option>
-              <option>Zanzibar West</option>
-            </select>
+            <span class="b-label" id="set-region-label">Region</span>
+            <details class="b-dropdown" style="display: block">
+              <summary class="b-select" aria-labelledby="set-region-label" style="display: flex; align-items: center; justify-content: space-between; gap: var(--b-space-2); cursor: pointer">
+                Dar es Salaam
+                <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="m5 8 5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <div class="b-menu" role="listbox" style="width: 100%">
+                <button type="button" role="option" aria-selected="true" class="b-menu__item"><span style="width: 1.1rem; flex: none">✓</span>Dar es Salaam</button>
+                <button type="button" role="option" aria-selected="false" class="b-menu__item"><span style="width: 1.1rem; flex: none"></span>Arusha</button>
+                <button type="button" role="option" aria-selected="false" class="b-menu__item"><span style="width: 1.1rem; flex: none"></span>Dodoma</button>
+                <button type="button" role="option" aria-selected="false" class="b-menu__item"><span style="width: 1.1rem; flex: none"></span>Mwanza</button>
+              </div>
+            </details>
           </div>
         </div>
       </div>

@@ -1,0 +1,58 @@
+# Barua UI
+
+> An interface design system with Apple's design language, rebuilt natively
+> for the web: plain HTML and CSS, one stylesheet, no build step. Build
+> interfaces by composing documented components — never by inventing CSS.
+
+Machine-readable index of every component, with canonical markup:
+- [barua-ui.json](https://ui.barua.tz/barua-ui.json): complete component index
+- [llms-full.txt](https://ui.barua.tz/llms-full.txt): the whole system as markdown
+
+## Rules
+
+1. Compose from documented components. If a pattern is not in the docs, use a documented alternative or promote a new component into the docs first — never invent markup or CSS in product code.
+2. Copy the anatomy from the docs demo: same wrapper elements, same slots, same class combinations. A component's parts (__header, __body, __footer) only exist inside their block.
+3. Never hardcode colour, spacing, radius or shadow. Use --b-* tokens. A raw hex in product code is a bug.
+4. Inline styles are only for documented knobs (--v, --b-progress, --b-thumb-size, --b-heatmap-cols, --b-circular-size) and artwork backgrounds.
+5. Icons come from the icon library (docs/icons.html): inline 20x20 SVG, 1.5px stroke, currentColor, sized with .b-icon/--sm/--lg. Never emoji, never letters as icons.
+6. Never use a native <select> or native date/time inputs in product surfaces: their popups cannot be styled. Use the menu select and the calendar-in-dropdown patterns.
+7. On desktop a surface does not page-scroll. Use .b-stage for screens that must fit, and .b-scroll-area for the panes that may grow.
+8. A scroll pane's children must never be forced to the pane's height (no h-full inside a scroll area) or scrolling silently dies.
+9. Hover, selection and active are different states and must look different: hover is a quiet fill, selection is accent-soft, focus is the focus ring.
+10. Surfaces never stack materials. A panel inside glass is a fill, not a second material.
+11. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
+12. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
+13. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
+14. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
+
+## Documentation
+
+- [Foundations — tokens, colour, type, materials, motion](https://ui.barua.tz/docs/foundations.html): 20 components
+- [Icons — the 20×20 glyph set](https://ui.barua.tz/docs/icons.html): 2 components
+- [Layout — stacks, grids, containers, stage, scroll areas](https://ui.barua.tz/docs/layout.html): 17 components
+- [Actions — buttons, icon buttons, toolbars, links](https://ui.barua.tz/docs/actions.html): 11 components
+- [Navigation — bars, sidebars, tabs, menus, command palette](https://ui.barua.tz/docs/navigation.html): 15 components
+- [Forms — fields, selects, switches, sliders, validation](https://ui.barua.tz/docs/forms.html): 19 components
+- [Content — cards, lists, tables, badges, avatars](https://ui.barua.tz/docs/content.html): 22 components
+- [Feedback — alerts, toasts, progress, skeletons, empty states](https://ui.barua.tz/docs/feedback.html): 13 components
+- [Overlays — modals, sheets, popovers, tooltips, lightbox](https://ui.barua.tz/docs/overlays.html): 14 components
+- [Data visualization — CSS charts](https://ui.barua.tz/docs/data-viz.html): 18 components
+- [Media — galleries, players, thumbnails](https://ui.barua.tz/docs/media.html): 10 components
+- [Specialized — calendars, pickers, file browser](https://ui.barua.tz/docs/specialized.html): 18 components
+- [Authentication — sign in, OTP, account switching](https://ui.barua.tz/docs/authentication.html): 10 components
+- [System pages — errors, empty, onboarding](https://ui.barua.tz/docs/system.html): 11 components
+- [Productivity — dashboards, workspace, dock, control centre](https://ui.barua.tz/docs/productivity.html): 18 components
+- [Interaction — states, drag and drop, shortcuts](https://ui.barua.tz/docs/interaction.html): 12 components
+- [Mobile — headers, tab bars, sheets, safe areas](https://ui.barua.tz/docs/mobile.html): 11 components
+- [Infrastructure — naming, theming, accessibility, contribution](https://ui.barua.tz/docs/infrastructure.html): 16 components
+
+## Examples
+
+- [dashboard](https://ui.barua.tz/examples/dashboard.html): a complete screen, documented components only
+- [ambient](https://ui.barua.tz/examples/ambient.html): a complete screen, documented components only
+- [music](https://ui.barua.tz/examples/music.html): a complete screen, documented components only
+- [settings](https://ui.barua.tz/examples/settings.html): a complete screen, documented components only
+- [checkout](https://ui.barua.tz/examples/checkout.html): a complete screen, documented components only
+- [auth](https://ui.barua.tz/examples/auth.html): a complete screen, documented components only
+- [analytics](https://ui.barua.tz/examples/analytics.html): a complete screen, documented components only
+- [inbox](https://ui.barua.tz/examples/inbox.html): a complete screen, documented components only

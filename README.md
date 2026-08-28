@@ -1,10 +1,13 @@
 # Barua UI
 
-An interface design system with Apple's design language, rebuilt natively for
-the web. Plain HTML and CSS you can read — one stylesheet, no build step, and a
-small vanilla JavaScript file for the parts that genuinely need it.
+A web design system with Apple DNA — Barua blue, glass materials, precise
+typography — built as **pure HTML + CSS** (plus a small optional JS
+enhancement layer). For any product, any team. No build step, no framework.
 
-**Documentation and live demos → [ui.barua.tz](https://ui.barua.tz)**
+Barua ("letter" in Swahili) layers our look on top of Apple's design language.
+The `apple-docs/` mirror of the SwiftUI documentation (fetched with
+`apple-docs-dl.py`) is the reference DNA for naming, type scale, palette and
+motion feel.
 
 ## Quick start
 
@@ -15,63 +18,64 @@ small vanilla JavaScript file for the parts that genuinely need it.
 <button class="b-btn b-btn--primary">Habari, Barua!</button>
 ```
 
-That is the whole installation. The script is optional sugar — toasts, tabs,
-⌘K, the adaptive accent — everything else is CSS on semantic HTML.
+### React
 
-## What's inside
+The system also ships as an npm module (`packages/react` → package name
+`barua-ui`): typed React components over the same CSS.
 
-- **200+ documented components**, from buttons and forms through to command
-  palettes, file browsers, calendars and control-centre panels.
-- **Real materials**, not flat cards: five levels of glass with specular edges,
-  plus a Liquid Glass mode that re-skins the whole system
-  (`<html data-glass="liquid">`).
-- **Adaptive accent** — `Barua.adapt(image)` learns the accent colour from a
-  picture and whether the interface should be light or dark.
-- **A neutral card material** that stays readable over any background, photo or
-  artwork.
-- **Light and dark** through `light-dark()` and `data-theme`, with the entire
-  palette re-tintable from one `data-accent` attribute.
-- **Eight complete example screens** in [`examples/`](examples): a dashboard, an
-  ambient widget wall, settings, checkout, sign-in, analytics, an inbox and a
-  music player.
+```tsx
+import "barua-ui/css";
+import { BaruaProvider, Button } from "barua-ui";
 
-## The opinion
+<BaruaProvider theme="auto">
+  <Button variant="primary">Habari, Barua!</Button>
+</BaruaProvider>
+```
 
-On desktop, surfaces don't scroll. A screen ends at the screen — chrome stays
-put, and only the panes that should move, move. `.b-stage` and
-`.b-scroll-area` exist to make that easy, and every example is built that way.
+Build with `cd packages/react && npm run build`; `npm pack` produces the
+installable tarball. See `packages/react/README.md`.
+
+Open `index.html` for the docs site (serve the folder with any static server,
+e.g. `python3 -m http.server`, so CSS `@import` and fonts behave).
+
+## Layout
+
+```
+css/
+  barua.css          entry point — @layer order + imports
+  tokens.css         design tokens (color, type, space, radius, shadow,
+                     materials, motion, z) — light-dark() theming
+  base.css           reset, typography, focus ring, states, scrollbars
+  utilities.css      Stack/HStack/Grid/Container/Divider/materials/text roles
+  components/        actions, nav, forms, content, feedback, overlays,
+                     charts, media, specialized, productivity, mobile, auth
+js/barua.js          optional: toasts, tabs, theme, OTP, carousel, palette
+docs/                documentation site (one page per category)
+index.html           landing + getting started
+apple-docs-dl.py     Apple Developer docs mirror tool (any framework)
+apple-docs/          downloaded SwiftUI reference (8,965 pages)
+```
 
 ## Conventions
 
-Classes are `.b-block__element--modifier`, states are `.is-*` plus the matching
-ARIA attribute, design tokens are `--b-*`, and JavaScript hooks are `data-b-*`
-and progressive-enhancement only. Icons are inline 20×20 SVGs on a 1.5px stroke
-using `currentColor`; the set lives in
-[the icon library](https://ui.barua.tz/docs/icons.html).
+- Classes: `.b-block`, `.b-block__element`, `.b-block--modifier`
+- States: `.is-active`, `.is-selected`, `.is-dragging` + native `aria-*`
+- Tokens: `--b-*` custom properties; components consume semantic tokens only
+- Theming: `<html data-theme="light|dark">` (unset = follow system);
+  re-tint with `data-accent="indigo|purple|pink|teal|green"`
+- Layers: `tokens < base < utilities < components`; your unlayered
+  overrides always win
+- JS hooks: `data-b-*` attributes; everything degrades gracefully without JS
 
-Every component is documented on its category page with a live demo, and the
-code block under each demo is generated from that demo's own markup — so the
-documentation cannot drift from what the component actually is.
+## Browser support
 
-## Repository layout
+Modern evergreen browsers (Safari 17.5+, Chrome 123+, Firefox 127+):
+uses `light-dark()`, `color-mix()`, `@layer`, `:has()`, Popover API,
+`<dialog>`, `@starting-style`.
 
-```
-css/        the system: tokens, base, utilities, one file per component family
-js/         barua.js — progressive enhancement helpers, no dependencies
-docs/       the documentation site (static HTML)
-examples/   eight complete screens built only from documented components
-packages/   the React wrapper (barua-ui), typed thin components over the CSS
-tools/      check-docs.py — validates every page against the component list
-```
+## Docs
 
-## React
-
-`packages/react` publishes as the `barua-ui` npm module: typed wrappers over the
-same CSS, with a `BaruaProvider` for theme, accent, glass and refraction. It is
-built but not yet on the npm registry.
-
-## Licence
-
-MIT — see [LICENSE](LICENSE).
-
-Made in Dar es Salaam. *Barua* means "letter" in Swahili.
+Start at `index.html` → Foundations. Every component page shows live demos;
+the code block under each demo is generated from the demo markup itself
+(`docs/docs.js`), so examples can't drift from reality. ⌘K opens the
+component search palette.
