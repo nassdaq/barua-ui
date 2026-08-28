@@ -1,7 +1,10 @@
+"use client";
+
 import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -69,9 +72,18 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     [dismiss]
   );
 
+  /*
+   * The region is portalled only after mounting. Creating it during render
+   * meant the first client render disagreed with the server's markup —
+   * React discarded the tree and re-ran every effect, which is a hydration
+   * error in production and duplicated one-time setup in development.
+   */
+  const [container, setContainer] = useState<HTMLElement | null>(null);
+  useEffect(() => setContainer(document.body), []);
+
   const region = useMemo(
     () =>
-      typeof document === "undefined"
+      container === null
         ? null
         : createPortal(
             <div className="b-toast-region" aria-live="polite">
@@ -100,9 +112,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 </div>
               ))}
             </div>,
-            document.body
+            container
           ),
-    [items, dismiss]
+    [items, dismiss, container]
   );
 
   return (

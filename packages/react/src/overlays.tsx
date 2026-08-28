@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, type DialogHTMLAttributes, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "./cn";
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { useId, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "./cn";
 
