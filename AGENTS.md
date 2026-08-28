@@ -36,6 +36,14 @@ It also carries the contract, so you never have to open the stylesheets:
 
 Locally, regenerate it with `python3 tools/build-ai-index.py`.
 
+## Or ask the system directly
+
+If the `barua-ui` MCP server is connected, prefer it over reading files:
+`search_components` to find something, `get_component` for its anatomy and
+contract, `get_rules` for the rules and knobs, and `lint_markup` to have your
+own output judged before you finish. It reads the same generated index, so the
+answers cannot disagree with the documentation.
+
 ## Check your work
 
 ```bash

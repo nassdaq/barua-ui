@@ -68,6 +68,27 @@ classes, hardcoded colour, undocumented inline custom properties, native
 `<select>` and date inputs, emoji used as icons, and scroll panes that cannot
 scroll.
 
+### The MCP server
+
+Rather than loading the whole index into context, an agent can interrogate the
+system directly:
+
+```bash
+claude mcp add barua-ui -- node /path/to/barua-ui/mcp/barua-ui-mcp.mjs
+```
+
+Four tools, no dependencies and no build step:
+
+| Tool | What it answers |
+| --- | --- |
+| `search_components` | "What does this system have for a file browser?" |
+| `get_component` | The anatomy, classes, knobs, states and canonical markup of one component |
+| `get_rules` | The rules, conventions, every grid span and all 44 knobs |
+| `lint_markup` | "Here is what I generated — what did I get wrong?" |
+
+The last one is the point: an agent can have its own output judged against the
+stylesheets before it ships, instead of after someone notices.
+
 The rules an agent must follow are in [AGENTS.md](AGENTS.md), and
 [`skills/barua-ui`](skills/barua-ui/SKILL.md) packages them as a Claude Code
 skill.
