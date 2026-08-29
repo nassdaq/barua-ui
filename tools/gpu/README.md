@@ -45,6 +45,43 @@ The bootstrap is copied from the photo fleet in `nasiemails`, reboot and all —
 the NVIDIA module is built for the kernel `apt` just installed, not the one
 running. That project has already paid for those lessons.
 
+## Why `ubuntu-drivers install --gpgpu` is not enough
+
+It reports success and leaves you without a GPU. On a fresh Ubuntu 24.04 GPU
+node it selects the **no-dkms** packages:
+
+```
+nvidia-headless-no-dkms-595-server-open
+linux-modules-nvidia-595-server-open-generic
+```
+
+Those ship modules prebuilt for one kernel ABI. Nothing builds one for the
+kernel actually running, so:
+
+```
+dkms:            command not found
+modprobe nvidia: Module nvidia not found in /lib/modules/6.8.0-134-generic
+nvidia-smi:      command not found
+```
+
+A reboot does not help — you cannot load a module that was never compiled — and
+the utilities are missing too, so the usual way you would notice is absent. The
+install command exits 0 throughout.
+
+What works is the DKMS path: `dkms`, `build-essential` and
+`linux-headers-$(uname -r)` first, then `nvidia-driver-<v>` and
+`nvidia-utils-<v>`, which compile against the running kernel. No reboot.
+
+**Do not suppress this output.** Sending the install to `/dev/null` with
+`|| true` — which is what the original bootstrap did, and what this tool copied
+— makes a failed install look exactly like a working one until generation
+silently starts on the CPU. Two runs and about ten cents went that way.
+
+`build-image.sh` does the install once and snapshots the result, so the answer
+is kept rather than rediscovered. It refuses to take the image unless
+`nvidia-smi` answers *and* torch reports the card, because an image of a broken
+machine is worse than no image.
+
 ## Then bake
 
 Generation is the expensive half; baking is what makes the result shippable.
