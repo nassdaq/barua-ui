@@ -1,0 +1,6 @@
+# Barua UI is public, and meant to be read by machines.
+User-agent: *
+Allow: /
+
+Sitemap: https://ui.barua.tz/sitemap.xml
+# Start here: https://ui.barua.tz/llms.txt

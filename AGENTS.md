@@ -36,6 +36,19 @@ It also carries the contract, so you never have to open the stylesheets:
 
 Locally, regenerate it with `python3 tools/build-ai-index.py`.
 
+## Reading the documentation
+
+Every page is published twice. `https://ui.barua.tz/docs/forms.html` is also
+`https://ui.barua.tz/docs/forms.md` — the same components, summaries, canonical
+markup and React, as plain markdown. Prefer the `.md`: there is no HTML to
+parse, and one page is a few kilobytes where the full index is most of a
+megabyte.
+
+- `llms.txt` — the short map, read it first
+- `docs/<page>.md` — one page in full, with HTML and React for each component
+- `barua-ui.json` — everything, when you want to query rather than read
+- `https://mcp.barua.tz/mcp` — the same answers as tools, if your agent speaks MCP
+
 ## Or ask the system directly
 
 If the `barua-ui` MCP server is connected, prefer it over reading files:
@@ -89,7 +102,11 @@ suppression without a reason is a smell, not a habit.
    inline (`max-width`, `position`) are allowed for structure; colour is not,
    ever.
 5. **Icons come from the library.** Inline 20×20 SVG, 1.5px stroke,
-   `currentColor`, sized with `.b-icon`. Never emoji. Never letters.
+   `currentColor`, sized with `.b-icon`. Never emoji. Never letters. A
+   directional mark inside a sentence is text, not an icon — the `↑` in a
+   `.b-stat__delta` sits on the baseline, scales with the number and needs no
+   box, so it stays. The rule governs icon slots: anywhere a glyph stands on
+   its own, it is drawn.
 6. **No native `<select>`, no native date or time inputs** on product surfaces:
    their popups cannot be styled and will break the illusion instantly. Use the
    menu select and the calendar-in-a-dropdown.

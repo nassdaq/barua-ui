@@ -5,11 +5,12 @@
 > interfaces by composing documented components — never by inventing CSS.
 
 Ask the system directly (MCP, streamable HTTP):
-- https://mcp.barua.tz/mcp — search_components, get_component, get_rules, lint_markup
+- https://mcp.barua.tz/mcp — search_components, get_component, get_react, get_rules, lint_markup
 
 Machine-readable index of every component, with canonical markup:
 - [barua-ui.json](https://ui.barua.tz/barua-ui.json): complete component index
 - [llms-full.txt](https://ui.barua.tz/llms-full.txt): the whole system as markdown
+- Every documentation page has a markdown twin at the same address: https://ui.barua.tz/docs/forms.html is also https://ui.barua.tz/docs/forms.md — same content, no HTML to parse, and one page instead of the whole index.
 
 ## Rules
 
@@ -17,7 +18,7 @@ Machine-readable index of every component, with canonical markup:
 2. Copy the anatomy from the docs demo: same wrapper elements, same slots, same class combinations. A component's parts (__header, __body, __footer) only exist inside their block.
 3. Never hardcode colour, spacing, radius or shadow. Use --b-* tokens. A raw hex in product code is a bug.
 4. Inline styles are only for documented knobs (--v, --b-progress, --b-thumb-size, --b-heatmap-cols, --b-circular-size) and artwork backgrounds.
-5. Icons come from the icon library (docs/icons.html): inline 20x20 SVG, 1.5px stroke, currentColor, sized with .b-icon/--sm/--lg. Never emoji, never letters as icons.
+5. Icons come from the icon library (docs/icons.html): inline 20x20 SVG, 1.5px stroke, currentColor, sized with .b-icon/--sm/--lg. Never emoji, never letters as icons. A directional mark inside a sentence is text, not an icon: the arrow in a .b-stat__delta stays. The rule governs icon slots, where a glyph stands on its own.
 6. Never use a native <select> or native date/time inputs in product surfaces: their popups cannot be styled. Use the menu select and the calendar-in-dropdown patterns.
 7. On desktop a surface does not page-scroll. Use .b-stage for screens that must fit, and .b-scroll-area for the panes that may grow.
 8. A scroll pane's children must never be forced to the pane's height (no h-full inside a scroll area) or scrolling silently dies.
@@ -31,6 +32,8 @@ Machine-readable index of every component, with canonical markup:
 ## Documentation
 
 - [Principles — the eight ideas the system is built on, and what enforces each](https://ui.barua.tz/docs/principles.html): 8 components
+- [Theming — light and dark, the named accents, and carrying a brand colour without breaking danger](https://ui.barua.tz/docs/theming.html): 5 components
+- [React — the typed bindings: install, Server Components, and the component index](https://ui.barua.tz/docs/react.html): 7 components
 - [Foundations — tokens, colour, type, materials, motion](https://ui.barua.tz/docs/foundations.html): 20 components
 - [Icons — the 20×20 glyph set](https://ui.barua.tz/docs/icons.html): 3 components
 - [Layout — stacks, grids, containers, stage, scroll areas](https://ui.barua.tz/docs/layout.html): 17 components

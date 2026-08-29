@@ -359,3 +359,17 @@
   background: var(--b-surface);
   box-shadow: var(--b-shadow-1);
 }
+
+/* ---- Brand theming demo ---------------------------------------------------------- */
+/* A worked example for the theming page: one brand colour, five tokens, plus the
+   danger shift a warm accent forces. Scoped to the demo so the page itself stays blue. */
+.docs-brand {
+  --b-color-accent:        light-dark(#f43308, #ff5a33);
+  --b-color-accent-hover:  light-dark(#d92c06, #ff7a5c);
+  --b-color-accent-active: light-dark(#b02404, #ff9880);
+  --b-color-accent-soft:   light-dark(rgba(244, 51, 8, 0.12), rgba(255, 90, 51, 0.18));
+  --b-color-accent-text:   light-dark(#c62905, #ff8566);
+  /* The default danger red now sits beside a red accent, so it moves to crimson. */
+  --b-color-danger:        light-dark(#c8005a, #ff4d94);
+  --b-color-danger-soft:   light-dark(rgba(200, 0, 90, 0.12), rgba(255, 77, 148, 0.18));
+}

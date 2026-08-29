@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Theming — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+<script src="react-code.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.2</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <a class="b-btn b-icon-btn b-btn--ghost b-tooltip-host" data-tooltip="Source on GitHub" href="https://github.com/nassdaq/barua-ui" target="_blank" rel="noreferrer" aria-label="Barua UI on GitHub">
+      <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="principles.html">Principles</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="theming.html">Theming</a>
+        <a class="b-sidebar__item" href="react.html">React</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+        <a class="b-sidebar__item" href="../examples/landing.html">Landing</a>
+        <a class="b-sidebar__item" href="../examples/product.html">Product page</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+        <a class="b-sidebar__item" href="marketing.html">Marketing</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+            <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Foundations</div>
+        <h1>Theming</h1>
+        <p class="docs-hero__lede">
+          Light and dark are already handled — every colour is a
+          <code>light-dark()</code> pair, so the system follows the operating
+          system with nothing switched on. This page is about the other job:
+          making the system carry <em>your</em> colour without breaking the
+          meanings the rest of it depends on.
+        </p>
+      </header>
+
+      <section class="docs-section" id="named-accents">
+        <h2>The named accents</h2>
+        <p>
+          Five accents ship with the system. Set one attribute on
+          <code>&lt;html&gt;</code> and every button, focus ring, link and
+          selected state re-tints.
+        </p>
+        <div class="docs-demo">
+          <div class="b-hstack b-gap-2 b-stack--wrap">
+            <button class="b-btn b-btn--primary">Default blue</button>
+            <span data-accent="indigo"><button class="b-btn b-btn--primary">Indigo</button></span>
+            <span data-accent="purple"><button class="b-btn b-btn--primary">Purple</button></span>
+            <span data-accent="teal"><button class="b-btn b-btn--primary">Teal</button></span>
+            <span data-accent="green"><button class="b-btn b-btn--primary">Green</button></span>
+          </div>
+        </div>
+        <p>
+          <code>data-accent</code> works at any depth, not only on the root, so
+          a single view can carry its own accent when it genuinely means
+          something — a workspace colour, a tenant, a status board.
+        </p>
+      </section>
+
+      <section class="docs-section" id="brand-colour">
+        <h2>A brand colour that is not on the list</h2>
+        <p>
+          A brand rarely matches a palette. Override the accent tokens in
+          <strong>unlayered CSS</strong> — a plain stylesheet loaded after
+          <code>barua.css</code>. Unlayered rules beat every layer in the
+          system, which is the documented seam for exactly this. It is the
+          supported route, not a workaround.
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>brand.css — loaded after barua.css</span></div>
+          <pre><code>:root {
+  --b-color-accent:        light-dark(#f43308, #ff5a33);
+  --b-color-accent-hover:  light-dark(#d92c06, #ff7a5c);
+  --b-color-accent-active: light-dark(#b02404, #ff9880);
+  --b-color-accent-soft:   light-dark(rgba(244, 51, 8, .12), rgba(255, 90, 51, .18));
+  --b-color-accent-text:   light-dark(#c62905, #ff8566);
+}</code></pre>
+        </div>
+        <p>
+          Five tokens, and always as a <code>light-dark()</code> pair. A colour
+          chosen against white is usually too dark on black — the dark value is
+          typically the same hue lifted in lightness and dropped in saturation.
+          Give both, or dark mode inherits a brand colour nobody checked.
+        </p>
+        <div class="docs-demo docs-brand">
+          <div class="b-stack b-gap-3">
+            <div class="b-hstack b-gap-2 b-stack--wrap">
+              <button class="b-btn b-btn--primary">Deploy agent</button>
+              <button class="b-btn b-btn--tinted">Configure</button>
+              <button class="b-btn b-btn--ghost">Cancel</button>
+              <span class="b-badge b-badge--accent">Live</span>
+            </div>
+            <div class="b-field" style="max-width: 22rem">
+              <label class="b-label" for="brand-demo-input">Focus this field</label>
+              <input class="b-input" id="brand-demo-input" type="text" placeholder="The ring follows the accent">
+            </div>
+          </div>
+        </div>
+        <p>
+          Nothing above was restyled. The focus ring, the tinted button, the
+          badge and the accent shadow are all <code>color-mix()</code> over
+          <code>--b-color-accent</code>, so they follow on their own.
+        </p>
+      </section>
+
+      <section class="docs-section" id="collisions">
+        <h2>Check what your colour now collides with</h2>
+        <p>
+          This is the part that bites. Two system colours are defined in terms
+          of the accent or sit close to it, and a brand colour can quietly
+          erase a distinction the interface relies on.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead><tr><th>Token</th><th>Default</th><th>What breaks</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><code>--b-color-info</code></td>
+                <td><code>var(--b-color-accent)</code></td>
+                <td>Follows your brand by design. Usually right — informational
+                    and accent are the same voice.</td>
+              </tr>
+              <tr>
+                <td><code>--b-color-danger</code></td>
+                <td><code>var(--b-color-red)</code></td>
+                <td><strong>A warm accent kills it.</strong> With a red or
+                    orange brand, a destructive button and a primary button read
+                    as the same thing, and a breach notice reads as a link.</td>
+              </tr>
+              <tr>
+                <td><code>--b-color-warning</code></td>
+                <td>orange</td>
+                <td>Collides with an orange or amber brand for the same reason.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          When your accent lands in the red-to-amber arc, move danger rather
+          than accepting the collision. Crimson keeps the alarm and separates
+          cleanly from an orange brand:
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>brand.css, continued</span></div>
+          <pre><code>:root {
+  --b-color-danger:      light-dark(#c8005a, #ff4d94);
+  --b-color-danger-soft: light-dark(rgba(200, 0, 90, .12), rgba(255, 77, 148, .18));
+}</code></pre>
+        </div>
+        <div class="docs-demo docs-brand">
+          <div class="b-hstack b-gap-2 b-stack--wrap">
+            <button class="b-btn b-btn--primary">Primary — your brand</button>
+            <button class="b-btn b-btn--danger">Delete — still unmistakably not that</button>
+          </div>
+        </div>
+        <div class="docs-a11y">
+          <div>
+            <strong>The test.</strong> Put the primary button and the danger
+            button side by side, then look at them in both themes. If you have
+            to read the label to tell which one destroys something, the colours
+            are wrong however good each looks alone.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="leave-alone">
+        <h2>What not to override</h2>
+        <p>
+          Accent tokens are yours. The greyscale is not:
+          <code>--b-text</code>, <code>--b-text-secondary</code>,
+          <code>--b-surface</code>, <code>--b-separator</code> and the fills
+          carry the contrast contract that every component is built against,
+          in both themes at once. Change those and you are not theming the
+          system, you are replacing its foundation — and the accessible
+          contrast that came free stops being guaranteed.
+        </p>
+        <p>
+          If a surface needs to be a different colour in one place, reach for
+          the material tokens or a scoped accent instead of moving the global
+          greyscale.
+        </p>
+      </section>
+
+      <section class="docs-section" id="scoping">
+        <h2>Scope it when the colour means something</h2>
+        <p>
+          Overriding on <code>:root</code> themes the product. Putting the same
+          tokens on a class themes a region — useful for a tenant, an
+          environment banner, or one board among many. The tokens cascade, so
+          anything inside picks them up.
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>Scoped instead of global</span></div>
+          <pre><code>.tenant-agentic {
+  --b-color-accent:       light-dark(#f43308, #ff5a33);
+  --b-color-accent-hover: light-dark(#d92c06, #ff7a5c);
+}</code></pre>
+        </div>
+        <p>
+          In React, nothing changes: the tokens are CSS, so a
+          <code>className</code> or a <code>style</code> holding custom
+          properties themes any subtree.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

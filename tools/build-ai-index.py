@@ -14,6 +14,7 @@ import html
 import json
 import pathlib
 import re
+import textwrap
 import html_to_jsx
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -25,6 +26,8 @@ SITE = "https://ui.barua.tz"
 
 CATEGORY_TITLES = {
     "principles": "Principles — the eight ideas the system is built on, and what enforces each",
+    "theming": "Theming — light and dark, the named accents, and carrying a brand colour without breaking danger",
+    "react": "React — the typed bindings: install, Server Components, and the component index",
     "foundations": "Foundations — tokens, colour, type, materials, motion",
     "icons": "Icons — the 20×20 glyph set",
     "layout": "Layout — stacks, grids, containers, stage, scroll areas",
@@ -72,7 +75,50 @@ def first_demo(section: str) -> str:
     # Drop the auto-generated code block that follows a demo in the page.
     snippet = re.split(r'<div class="docs-code', snippet)[0]
     snippet = "\n".join(line.rstrip() for line in snippet.strip().splitlines())
-    return snippet[:1400]
+    snippet = unwrap_display_frame(snippet)
+    return reindent(snippet)[:1400]
+
+
+def reindent(snippet: str) -> str:
+    """Strip the page's own indentation so the markup pastes in clean.
+
+    The first line arrives already trimmed and the rest still carry the docs
+    page's nesting, so textwrap.dedent alone sees a zero-width common prefix
+    and does nothing.
+    """
+    lines = snippet.splitlines()
+    if len(lines) < 2:
+        return snippet
+    rest = [ln for ln in lines[1:] if ln.strip()]
+    if not rest:
+        return snippet
+    pad = min(len(ln) - len(ln.lstrip()) for ln in rest)
+    return "\n".join([lines[0]] + [ln[pad:] if ln.strip() else "" for ln in lines[1:]])
+
+
+def unwrap_display_frame(snippet: str) -> str:
+    """Drop the box a demo is displayed in, if it is only a display box.
+
+    Some demos are shown inside a fixed-height, clipped frame so a full app
+    shell fits on the page. That frame is scenery: it carries inline styles and
+    no system class. Left in, it reads as part of the component's anatomy, and
+    someone copying the anatomy copies a 18rem clip with it.
+    """
+    for _ in range(2):  # frames are occasionally doubled
+        opening = re.match(r'<div style="[^"]*"\s*>\s*\n?', snippet)
+        if not opening:
+            break
+        inner = snippet[opening.end():]
+        closing = inner.rstrip()
+        if not closing.endswith("</div>"):
+            break
+        inner = closing[: -len("</div>")].rstrip()
+        # Only unwrap when the frame holds exactly one element, which is the
+        # component. Anything else and the wrapper may be part of the example.
+        if len(re.findall(r"^<", inner, re.M)) < 1:
+            break
+        snippet = textwrap.dedent(inner).strip()
+    return snippet
 
 
 def parse_page(path: pathlib.Path) -> list[dict]:
@@ -238,11 +284,14 @@ def main() -> None:
         "> interfaces by composing documented components — never by inventing CSS.",
         "",
         "Ask the system directly (MCP, streamable HTTP):",
-        "- https://mcp.barua.tz/mcp — search_components, get_component, get_rules, lint_markup",
+        "- https://mcp.barua.tz/mcp — search_components, get_component, get_react, get_rules, lint_markup",
         "",
         "Machine-readable index of every component, with canonical markup:",
         f"- [barua-ui.json]({SITE}/barua-ui.json): complete component index",
         f"- [llms-full.txt]({SITE}/llms-full.txt): the whole system as markdown",
+        f"- Every documentation page has a markdown twin at the same address: "
+        f"{SITE}/docs/forms.html is also {SITE}/docs/forms.md — same content, "
+        f"no HTML to parse, and one page instead of the whole index.",
         "",
         "## Rules",
         "",
@@ -274,6 +323,55 @@ def main() -> None:
             full.append("")
     (ROOT / "llms-full.txt").write_text("\n".join(full) + "\n")
 
+    # Per-page Markdown. An agent that cannot fetch HTML — or that should not
+    # have to hold a 780 KB index in context to read one page — gets the same
+    # content at the same address with a different extension.
+    pages = {}
+    for category in index["categories"]:
+        pages.setdefault(category["id"], []).append(category)
+    for page, cats in pages.items():
+        md = [f"# {cats[0]['title']}", ""]
+        md.append(f"Source: {SITE}/docs/{page}.html")
+        md.append(f"Rules and conventions: {SITE}/llms.txt")
+        md.append("")
+        for category in cats:
+            for comp in category["components"]:
+                md.append(f"## {comp['title']}")
+                md.append("")
+                if comp["summary"]:
+                    md += [comp["summary"], ""]
+                md.append(f"- Documentation: {comp['url']}")
+                if comp["classes"]:
+                    md.append(f"- Classes: `{'` `'.join(comp['classes'])}`")
+                md.append("")
+                if comp["markup"]:
+                    md += ["```html", comp["markup"], "```", ""]
+                if comp.get("react"):
+                    md += ["```tsx", comp["react"]["import"], "", comp["react"]["jsx"], "```", ""]
+        (ROOT / "docs" / f"{page}.md").write_text("\n".join(md) + "\n")
+    print(f"docs/*.md:  {len(pages)} pages")
+
+    # Robots that fail open. A missing file makes a careful fetcher guess, and
+    # some of them guess "no".
+    (ROOT / "robots.txt").write_text(
+        "# Barua UI is public, and meant to be read by machines.\n"
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        f"Sitemap: {SITE}/sitemap.xml\n"
+        f"# Start here: {SITE}/llms.txt\n"
+    )
+
+    # A sitemap so a crawler can enumerate without guessing filenames.
+    urls = [f"{SITE}/", f"{SITE}/llms.txt", f"{SITE}/llms-full.txt", f"{SITE}/barua-ui.json"]
+    for page in sorted(pages):
+        urls += [f"{SITE}/docs/{page}.html", f"{SITE}/docs/{page}.md"]
+    sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
+               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    sitemap += [f"  <url><loc>{u}</loc></url>" for u in urls]
+    sitemap.append("</urlset>")
+    (ROOT / "sitemap.xml").write_text("\n".join(sitemap) + "\n")
+
     print(f"categories: {len(categories)}")
     print(f"components: {sum(len(c['components']) for c in categories)}")
     print(f"classes:    {len(every_class)}")
@@ -286,7 +384,7 @@ RULES = [
     "Copy the anatomy from the docs demo: same wrapper elements, same slots, same class combinations. A component's parts (__header, __body, __footer) only exist inside their block.",
     "Never hardcode colour, spacing, radius or shadow. Use --b-* tokens. A raw hex in product code is a bug.",
     "Inline styles are only for documented knobs (--v, --b-progress, --b-thumb-size, --b-heatmap-cols, --b-circular-size) and artwork backgrounds.",
-    "Icons come from the icon library (docs/icons.html): inline 20x20 SVG, 1.5px stroke, currentColor, sized with .b-icon/--sm/--lg. Never emoji, never letters as icons.",
+    "Icons come from the icon library (docs/icons.html): inline 20x20 SVG, 1.5px stroke, currentColor, sized with .b-icon/--sm/--lg. Never emoji, never letters as icons. A directional mark inside a sentence is text, not an icon: the arrow in a .b-stat__delta stays. The rule governs icon slots, where a glyph stands on its own.",
     "Never use a native <select> or native date/time inputs in product surfaces: their popups cannot be styled. Use the menu select and the calendar-in-dropdown patterns.",
     "On desktop a surface does not page-scroll. Use .b-stage for screens that must fit, and .b-scroll-area for the panes that may grow.",
     "A scroll pane's children must never be forced to the pane's height (no h-full inside a scroll area) or scrolling silently dies.",
