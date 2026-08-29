@@ -43,6 +43,8 @@ def main() -> None:
     parser.add_argument("--height", type=int, default=1024)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--dry-run", action="store_true", help="show the plan, load nothing")
+    parser.add_argument("--require-gpu", action="store_true",
+                        help="stop rather than fall back to the CPU (always set on a rented card)")
     args = parser.parse_args()
 
     if args.prompt:
@@ -68,7 +70,14 @@ def main() -> None:
     from diffusers import StableDiffusionXLPipeline
 
     device, dtype, label = pick_device()
-    print(f"device: {label}")
+    print(f"device: {label}", flush=True)
+    if args.require_gpu and device == "cpu":
+        raise SystemExit(
+            "refusing to run on the CPU.\n"
+            "This machine was rented for a GPU and torch cannot see one — usually the\n"
+            "driver is installed but not loaded, which needs a reboot. Fix that rather\n"
+            "than waiting: SDXL on these cores is hours per picture, billed by the hour."
+        )
 
     pipe = StableDiffusionXLPipeline.from_pretrained(
         args.model, torch_dtype=dtype, use_safetensors=True, variant="fp16" if dtype == torch.float16 else None

@@ -106,13 +106,30 @@ python3 -m venv /opt/gen
 /opt/gen/bin/pip install -q --upgrade pip
 /opt/gen/bin/pip install -q torch --index-url https://download.pytorch.org/whl/cu124
 /opt/gen/bin/pip install -q diffusers transformers accelerate safetensors
-nvidia-smi || echo "no nvidia-smi yet — the generator will say what it found"
 REMOTE
+
+# The reboot is not optional, and skipping it is what made the first attempts
+# generate on the CPU: ubuntu-drivers builds the NVIDIA module against the
+# kernel apt just installed, not the one currently running. The driver is
+# present, unloaded, and torch reports no GPU at all.
+echo "→ rebooting for the nvidia module"
+ssh -o StrictHostKeyChecking=no "root@$IP" "nohup sh -c 'sleep 1; reboot' >/dev/null 2>&1 &" || true
+sleep 20
+for _ in $(seq 1 60); do
+  ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 "root@$IP" true 2>/dev/null && break
+  sleep 5
+done
+
+echo "→ checking the card is actually there"
+if ! ssh -o StrictHostKeyChecking=no "root@$IP" "nvidia-smi --query-gpu=name,memory.total --format=csv,noheader"; then
+  echo "!! no working GPU after the reboot — stopping before this costs anything more"
+  exit 1
+fi
 
 echo "→ generating"
 scp -o StrictHostKeyChecking=no -q "$HERE/generate.py" "$HERE/prompts.json" "root@$IP:/opt/gen/"
 ssh -o StrictHostKeyChecking=no "root@$IP" \
-  "cd /opt/gen && ./bin/python generate.py $ARGS --out /opt/gen/out"
+  "cd /opt/gen && ./bin/python generate.py $ARGS --require-gpu --out /opt/gen/out"
 
 echo "→ collecting"
 mkdir -p "$OUT"
