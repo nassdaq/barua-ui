@@ -1087,8 +1087,8 @@
           <div class="b-code__header"><span>Two ways to the same picture</span></div>
           <pre><code>&lt;html data-b-glass="baked"&gt;      &lt;!-- no backdrop-filter anywhere --&gt;
 
-Barua.glass.mode("baked");        &lt;!-- or at runtime, remembered --&gt;
-Barua.glass.mode("live");</code></pre>
+Barua.glass.baked(true);          &lt;!-- or at runtime, remembered --&gt;
+Barua.glass.baked(false);</code></pre>
         </div>
         <p>
           There is no <code>backdrop-filter</code> left in baked mode, so no

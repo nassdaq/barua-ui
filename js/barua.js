@@ -55,6 +55,7 @@
 
   /* ---- Liquid Glass mode --------------------------------------------------- */
   const GLASS_KEY = "barua-glass";
+  const BAKED_KEY = "barua-glass-mode";
   Barua.glass = {
     on() {
       document.documentElement.dataset.glass = "liquid";
@@ -339,25 +340,28 @@
      already blurred by being small, pinned to the viewport so it lines up with
      the wall behind. Only meaningful over a wallpaper, which is why the CSS is
      scoped to .b-has-wallpaper. */
-  Barua.glass = {
-    /** "live" (GPU blur) or "baked" (pre-computed). Returns the mode set. */
-    mode(next) {
+  /*
+   * Baked glass is a technique, not a look — it lives alongside the liquid
+   * toggle rather than replacing it. Assigning a fresh object over Barua.glass
+   * is what broke the toolbar button: on/off/toggle vanished and the click
+   * handler called a method that no longer existed.
+   */
+  Object.assign(Barua.glass, {
+    /** true to draw the wallpaper's baked copy, false for a live GPU blur. */
+    baked(on) {
       const root = document.documentElement;
-      if (next === "baked") root.setAttribute("data-b-glass", "baked");
+      if (on) root.setAttribute("data-b-glass", "baked");
       else root.removeAttribute("data-b-glass");
-      try { localStorage.setItem("barua-glass-mode", next === "baked" ? "baked" : "live"); } catch (_) {}
-      return next === "baked" ? "baked" : "live";
+      try { localStorage.setItem(BAKED_KEY, on ? "baked" : "live"); } catch (_) {}
+      return !!on;
     },
-    get() {
-      return document.documentElement.getAttribute("data-b-glass") === "baked" ? "baked" : "live";
+    isBaked() {
+      return document.documentElement.getAttribute("data-b-glass") === "baked";
     },
-    restore() {
-      let saved = null;
-      try { saved = localStorage.getItem("barua-glass-mode"); } catch (_) {}
-      if (saved === "baked") this.mode("baked");
-    },
-  };
-  Barua.glass.restore();
+  });
+  try {
+    if (localStorage.getItem(BAKED_KEY) === "baked") Barua.glass.baked(true);
+  } catch (_) {}
 
   /* ---- Real refraction (Tier 2 glass) --------------------------------------
      Injects an SVG displacement-map filter and enables `backdrop-filter:
