@@ -688,6 +688,31 @@
         <a class="b-btn b-btn--ghost" href="foundations.html">← Foundations</a>
         <a class="b-btn b-btn--ghost" href="actions.html">Actions →</a>
       </nav>
+      <section class="docs-section" id="fit-text">
+        <h2>Text that fits</h2>
+        <p>
+          SwiftUI has <code>minimumScaleFactor</code>; CSS has no direct
+          equivalent, but a container query unit does the same job honestly.
+          <code>.b-fit-text</code> sizes its child as a fraction of the
+          container's width, clamped so it can never become unreadable at one
+          end or absurd at the other.
+        </p>
+        <div class="docs-demo">
+          <div class="b-stack b-gap-3">
+            <div class="b-fit-text" style="width: 100%"><div class="b-stat__value">TZS 4,208,500</div></div>
+            <div class="b-fit-text" style="width: 60%"><div class="b-stat__value">TZS 4,208,500</div></div>
+            <div class="b-fit-text" style="width: 34%"><div class="b-stat__value">TZS 4,208,500</div></div>
+          </div>
+        </div>
+        <p>
+          Same figure, three widths, one class. Tune it with
+          <code>--b-fit-min</code>, <code>--b-fit-max</code> and
+          <code>--b-fit-scale</code>. It is for a single line that must not wrap
+          — a total, a headline figure, a name in a narrow column — not for
+          paragraphs, which should wrap rather than shrink.
+        </p>
+      </section>
+
     </main>
 
     <aside class="docs-toc" aria-label="On this page"></aside>

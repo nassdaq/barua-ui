@@ -199,15 +199,15 @@ Four numbers, evenly spaced, with the claim underneath each. Use tabular numeral
 ```
 
 ```tsx
-import { SpecStrip } from "barua-ui";
+import { CountUp, SpecStrip } from "barua-ui";
 
 <SpecStrip>
   <div>
-    <span className="b-spec__value b-tabular-nums">10 min</span>
+    <CountUp className="b-spec__value">10 min</CountUp>
     <span className="b-spec__label">From signup to first email</span>
   </div>
   <div>
-    <span className="b-spec__value b-tabular-nums">99.9%</span>
+    <CountUp className="b-spec__value">99.9%</CountUp>
     <span className="b-spec__label">Delivery to the major providers</span>
   </div>
   <div>

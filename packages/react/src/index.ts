@@ -118,4 +118,7 @@ export {
 } from "./media";
 export type { ThumbProps, CircularProgressProps, AxisProps, PaginationProps, PaginationItemProps, LiquidToggleProps } from "./media";
 
+export { Reveal, FitText, CountUp, ContextMenuTarget } from "./motion";
+export type { RevealProps, RevealVariant, FitTextProps, CountUpProps, ContextMenuTargetProps } from "./motion";
+
 export { cn } from "./cn";

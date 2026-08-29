@@ -824,3 +824,34 @@ import { Card, CardBody, Footnote } from "barua-ui";
 </Card>
 ```
 
+## Text that fits
+
+SwiftUI has minimumScaleFactor ; CSS has no direct equivalent, but a container query unit does the same job honestly. .b-fit-text sizes its child as a fraction of the container's width, clamped so it can never become unreadable at one end or absurd at the other.
+
+- Documentation: https://ui.barua.tz/docs/layout.html#fit-text
+- Classes: `b-fit-text` `b-gap-3` `b-stack` `b-stat__value`
+
+```html
+<div class="b-stack b-gap-3">
+  <div class="b-fit-text" style="width: 100%"><div class="b-stat__value">TZS 4,208,500</div></div>
+  <div class="b-fit-text" style="width: 60%"><div class="b-stat__value">TZS 4,208,500</div></div>
+  <div class="b-fit-text" style="width: 34%"><div class="b-stat__value">TZS 4,208,500</div></div>
+</div>
+```
+
+```tsx
+import { FitText } from "barua-ui";
+
+<div className="b-stack b-gap-3">
+  <FitText style={{ width: "100%" }}>
+    <div className="b-stat__value">TZS 4,208,500</div>
+  </FitText>
+  <FitText style={{ width: "60%" }}>
+    <div className="b-stat__value">TZS 4,208,500</div>
+  </FitText>
+  <FitText style={{ width: "34%" }}>
+    <div className="b-stat__value">TZS 4,208,500</div>
+  </FitText>
+</div>
+```
+

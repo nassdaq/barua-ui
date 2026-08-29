@@ -363,6 +363,120 @@
     if (localStorage.getItem(BAKED_KEY) === "baked") Barua.glass.baked(true);
   } catch (_) {}
 
+  /* ---- Context menu --------------------------------------------------------
+   *
+   * SwiftUI's .contextMenu, on the platform's own event. Put
+   * `data-b-contextmenu="#menu-id"` on anything and a right-click — or a long
+   * press, which the browser reports as the same event — opens that .b-menu
+   * where the pointer is.
+   *
+   * The menu is positioned after it is measured, so one near the right or
+   * bottom edge opens inward instead of off the screen. */
+  let openContextMenu = null;
+
+  function closeContextMenu() {
+    if (!openContextMenu) return;
+    openContextMenu.hidden = true;
+    openContextMenu.style.removeProperty("position");
+    openContextMenu.style.removeProperty("inset-inline-start");
+    openContextMenu.style.removeProperty("inset-block-start");
+    openContextMenu = null;
+  }
+
+  document.addEventListener("contextmenu", (event) => {
+    const host = event.target.closest("[data-b-contextmenu]");
+    if (!host) return;
+    const menu = document.querySelector(host.getAttribute("data-b-contextmenu"));
+    if (!menu) return;
+    event.preventDefault();
+    closeContextMenu();
+
+    menu.hidden = false;
+    menu.style.position = "fixed";
+    menu.style.insetInlineStart = "0px";
+    menu.style.insetBlockStart = "0px";
+    const box = menu.getBoundingClientRect();
+    const pad = 8;
+    const x = Math.min(event.clientX, window.innerWidth - box.width - pad);
+    const y = Math.min(event.clientY, window.innerHeight - box.height - pad);
+    menu.style.insetInlineStart = Math.max(pad, x) + "px";
+    menu.style.insetBlockStart = Math.max(pad, y) + "px";
+    openContextMenu = menu;
+    const first = menu.querySelector("button, a, [tabindex]");
+    if (first) first.focus();
+  });
+
+  document.addEventListener("pointerdown", (event) => {
+    if (openContextMenu && !openContextMenu.contains(event.target)) closeContextMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeContextMenu();
+  });
+  document.addEventListener("click", (event) => {
+    if (openContextMenu && openContextMenu.contains(event.target)) closeContextMenu();
+  });
+
+  /* ---- Rolling numbers -----------------------------------------------------
+   *
+   * SwiftUI's .contentTransition(.numericText()). A figure that changes should
+   * travel to its new value rather than blink to it — on a dashboard the
+   * movement is what tells you something happened.
+   *
+   * Counts on a spring-ish ease and preserves the formatting it found, so
+   * "TZS 4.2M" stays "TZS 4.2M" rather than becoming a bare number. */
+  Barua.count = function (element, to, { duration = 700, decimals = null } = {}) {
+    const el = typeof element === "string" ? document.querySelector(element) : element;
+    if (!el) return;
+    const text = el.textContent.trim();
+    const match = text.match(/-?[\d,.]+/);
+    const from = match ? parseFloat(match[0].replace(/,/g, "")) : 0;
+    const places = decimals !== null ? decimals
+      : (match && match[0].includes(".") ? (match[0].split(".")[1] || "").length : 0);
+    const prefix = match ? text.slice(0, match.index) : "";
+    const suffix = match ? text.slice(match.index + match[0].length) : "";
+    const grouped = match ? match[0].includes(",") : false;
+
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.textContent = prefix + to.toFixed(places) + suffix;
+      return;
+    }
+
+    const start = performance.now();
+    el.classList.add("b-tabular-nums");  // or the width jitters as digits change
+    function frame(now) {
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const value = from + (to - from) * eased;
+      const shown = places ? value.toFixed(places) : Math.round(value).toString();
+      el.textContent = prefix + (grouped ? Number(shown).toLocaleString(undefined, {
+        minimumFractionDigits: places, maximumFractionDigits: places,
+      }) : shown) + suffix;
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  };
+
+  /* Anything carrying data-b-count rolls to that value once it is on screen. */
+  function armCounters() {
+    const targets = document.querySelectorAll("[data-b-count]:not([data-b-counted])");
+    if (!targets.length || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const el = entry.target;
+        el.setAttribute("data-b-counted", "");
+        Barua.count(el, parseFloat(el.getAttribute("data-b-count")));
+        io.unobserve(el);
+      }
+    }, { threshold: 0.6 });
+    targets.forEach((el) => io.observe(el));
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", armCounters);
+  } else {
+    armCounters();
+  }
+
   /* ---- Real refraction (Tier 2 glass) --------------------------------------
      Injects an SVG displacement-map filter and enables `backdrop-filter:
      url(#b-refract)` on liquid objects via the `b-refract` root class.

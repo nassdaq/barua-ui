@@ -672,6 +672,101 @@
         <a class="b-btn b-btn--ghost" href="productivity.html">← Productivity</a>
         <a class="b-btn b-btn--ghost" href="mobile.html">Mobile →</a>
       </nav>
+      <section class="docs-section" id="scroll-reveal">
+        <h2>Scroll reveal</h2>
+        <p>
+          SwiftUI has <code>scrollTransition</code>; the web now has a scroll
+          timeline. <code>.b-reveal</code> ties an entrance animation to the
+          element's own position in the scrollport, so the browser drives it —
+          no observer, no scroll listener, nothing on the main thread.
+        </p>
+        <div class="docs-demo">
+          <div class="b-stack b-gap-3">
+            <article class="b-card b-reveal"><div class="b-card__body">Rises as it enters</div></article>
+            <article class="b-card b-reveal b-reveal--fade"><div class="b-card__body"><code>--fade</code></div></article>
+            <article class="b-card b-reveal b-reveal--scale"><div class="b-card__body"><code>--scale</code></div></article>
+            <article class="b-card b-reveal b-reveal--start"><div class="b-card__body"><code>--start</code>, from the leading edge</div></article>
+          </div>
+        </div>
+        <p>
+          The animation finishes while the element is still travelling up the
+          screen rather than when it reaches the middle, because a reader should
+          never be watching something fade in that they are already trying to
+          read.
+        </p>
+        <div class="docs-a11y">
+          <div>
+            <strong>It fails open.</strong> The whole block sits inside
+            <code>@supports (animation-timeline: view())</code>, so where the
+            timeline is unsupported everything is simply visible. An entrance
+            animation that fails closed hides the page — which is the one
+            outcome worse than no animation at all. Reduced motion disables it
+            like everything else.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="context-menu">
+        <h2>Context menu</h2>
+        <p>
+          SwiftUI's <code>contextMenu</code>, on the platform's own event. Point
+          any element at a <code>.b-menu</code> and a right-click — or a long
+          press, which the browser reports as the same event — opens it where
+          the pointer is.
+        </p>
+        <div class="docs-demo">
+          <div class="b-list">
+            <div class="b-list-item" data-b-contextmenu="#demo-context">
+              <div class="b-list-item__content">
+                <div class="b-list-item__title">Q3 invoice.pdf</div>
+                <div class="b-list-item__subtitle">Right-click, or long-press on a touch screen</div>
+              </div>
+            </div>
+          </div>
+          <ul class="b-menu" id="demo-context" hidden>
+            <li><button class="b-menu__item">Open<span class="b-menu__shortcut">⏎</span></button></li>
+            <li><button class="b-menu__item">Rename<span class="b-menu__shortcut">⌘R</span></button></li>
+            <li><button class="b-menu__item">Duplicate<span class="b-menu__shortcut">⌘D</span></button></li>
+            <li><button class="b-menu__item b-menu__item--danger">Delete</button></li>
+          </ul>
+        </div>
+        <p>
+          The menu is measured before it is placed, so one opened near the right
+          or bottom edge turns inward instead of off the screen. Escape closes
+          it, a click outside closes it, and focus moves to the first item so
+          the keyboard can take over immediately.
+        </p>
+      </section>
+
+      <section class="docs-section" id="rolling-numbers">
+        <h2>Rolling numbers</h2>
+        <p>
+          SwiftUI's <code>contentTransition(.numericText())</code>. A figure that
+          changes should travel to its new value rather than blink to it — on a
+          dashboard the movement is what tells you something happened at all.
+        </p>
+        <div class="docs-demo">
+          <div class="b-hstack b-gap-6 b-stack--wrap">
+            <div class="b-stat">
+              <span class="b-stat__label">Messages sent</span>
+              <span class="b-stat__value" data-b-count="12480">0</span>
+            </div>
+            <div class="b-stat">
+              <span class="b-stat__label">Outstanding</span>
+              <span class="b-stat__value" data-b-count="4.2">TZS 0.0M</span>
+            </div>
+          </div>
+        </div>
+        <p>
+          Anything carrying <code>data-b-count</code> rolls once it scrolls into
+          view. Call it directly with <code>Barua.count(el, value)</code> when a
+          figure changes in place. The formatting it finds is kept — thousands
+          separators, a currency prefix, a unit suffix — and the element is
+          given tabular figures for the duration so its width does not jitter as
+          the digits change.
+        </p>
+      </section>
+
     </main>
 
     <aside class="docs-toc" aria-label="On this page"></aside>

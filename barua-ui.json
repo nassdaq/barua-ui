@@ -34,7 +34,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 807,
+  "classCount": 818,
   "classes": [
     "b-accordion",
     "b-account",
@@ -338,6 +338,7 @@
     "b-filter-bar",
     "b-filter-chip",
     "b-filter-chip__value",
+    "b-fit-text",
     "b-flex",
     "b-flex--between",
     "b-flex--center",
@@ -407,9 +408,14 @@
     "b-hstack",
     "b-icon",
     "b-icon--bounce",
+    "b-icon--breathe",
     "b-icon--lg",
     "b-icon--pulse",
+    "b-icon--replace",
+    "b-icon--rotate",
+    "b-icon--scale",
     "b-icon--sm",
+    "b-icon--wiggle",
     "b-icon--xl",
     "b-icon-btn",
     "b-icon-tile",
@@ -636,6 +642,11 @@
     "b-result__desc",
     "b-result__icon",
     "b-result__title",
+    "b-reveal",
+    "b-reveal--end",
+    "b-reveal--fade",
+    "b-reveal--scale",
+    "b-reveal--start",
     "b-row-actions",
     "b-rule",
     "b-rule--accent",
@@ -1122,6 +1133,7 @@
     "b-filter-bar",
     "b-filter-chip",
     "b-filter-chip__value",
+    "b-fit-text",
     "b-flex",
     "b-flex--between",
     "b-flex--center",
@@ -1146,6 +1158,7 @@
     "b-gap-2",
     "b-gap-3",
     "b-gap-4",
+    "b-gap-6",
     "b-gauge",
     "b-gauge-linear",
     "b-gauge-linear__labels",
@@ -1377,6 +1390,10 @@
     "b-result__desc",
     "b-result__icon",
     "b-result__title",
+    "b-reveal",
+    "b-reveal--fade",
+    "b-reveal--scale",
+    "b-reveal--start",
     "b-row-actions",
     "b-rule",
     "b-rule__label",
@@ -1578,6 +1595,9 @@
     "--b-datagrid-h",
     "--b-disabled-pointer",
     "--b-donut-hole",
+    "--b-fit-max",
+    "--b-fit-min",
+    "--b-fit-scale",
     "--b-gantt-units",
     "--b-gap",
     "--b-gauge-size",
@@ -3666,6 +3686,34 @@
           "knobs": [
             "--b-lg-border",
             "--b-lg-pane"
+          ]
+        },
+        {
+          "id": "fit-text",
+          "title": "Text that fits",
+          "category": "layout",
+          "url": "https://ui.barua.tz/docs/layout.html#fit-text",
+          "summary": "SwiftUI has minimumScaleFactor ; CSS has no direct equivalent, but a container query unit does the same job honestly. .b-fit-text sizes its child as a fraction of the container's width, clamped so it can never become unreadable at one end or absurd at the other.",
+          "classes": [
+            "b-fit-text",
+            "b-gap-3",
+            "b-stack",
+            "b-stat__value"
+          ],
+          "markup": "<div class=\"b-stack b-gap-3\">\n  <div class=\"b-fit-text\" style=\"width: 100%\"><div class=\"b-stat__value\">TZS 4,208,500</div></div>\n  <div class=\"b-fit-text\" style=\"width: 60%\"><div class=\"b-stat__value\">TZS 4,208,500</div></div>\n  <div class=\"b-fit-text\" style=\"width: 34%\"><div class=\"b-stat__value\">TZS 4,208,500</div></div>\n</div>",
+          "react": {
+            "import": "import { FitText } from \"barua-ui\";",
+            "components": [
+              "FitText"
+            ],
+            "root": "FitText",
+            "jsx": "<div className=\"b-stack b-gap-3\">\n  <FitText style={{ width: \"100%\" }}>\n    <div className=\"b-stat__value\">TZS 4,208,500</div>\n  </FitText>\n  <FitText style={{ width: \"60%\" }}>\n    <div className=\"b-stat__value\">TZS 4,208,500</div>\n  </FitText>\n  <FitText style={{ width: \"34%\" }}>\n    <div className=\"b-stat__value\">TZS 4,208,500</div>\n  </FitText>\n</div>"
+          },
+          "knobs": [
+            "--b-fit-max",
+            "--b-fit-min",
+            "--b-fit-scale",
+            "--b-gap"
           ]
         }
       ]
@@ -10626,6 +10674,107 @@
             "is-pressed",
             "is-selected"
           ]
+        },
+        {
+          "id": "scroll-reveal",
+          "title": "Scroll reveal",
+          "category": "interaction",
+          "url": "https://ui.barua.tz/docs/interaction.html#scroll-reveal",
+          "summary": "SwiftUI has scrollTransition ; the web now has a scroll timeline. .b-reveal ties an entrance animation to the element's own position in the scrollport, so the browser drives it \u2014 no observer, no scroll listener, nothing on the main thread.",
+          "classes": [
+            "b-card",
+            "b-card__body",
+            "b-gap-3",
+            "b-reveal",
+            "b-reveal--fade",
+            "b-reveal--scale",
+            "b-reveal--start",
+            "b-stack"
+          ],
+          "markup": "<div class=\"b-stack b-gap-3\">\n  <article class=\"b-card b-reveal\"><div class=\"b-card__body\">Rises as it enters</div></article>\n  <article class=\"b-card b-reveal b-reveal--fade\"><div class=\"b-card__body\"><code>--fade</code></div></article>\n  <article class=\"b-card b-reveal b-reveal--scale\"><div class=\"b-card__body\"><code>--scale</code></div></article>\n  <article class=\"b-card b-reveal b-reveal--start\"><div class=\"b-card__body\"><code>--start</code>, from the leading edge</div></article>\n</div>",
+          "react": {
+            "import": "import { CardBody, Reveal } from \"barua-ui\";",
+            "components": [
+              "CardBody",
+              "Reveal"
+            ],
+            "root": "CardBody",
+            "jsx": "<div className=\"b-stack b-gap-3\">\n  <Reveal className=\"b-card\">\n    <CardBody>Rises as it enters</CardBody>\n  </Reveal>\n  <Reveal className=\"b-card b-reveal--fade\">\n    <CardBody>\n      <code>--fade</code>\n    </CardBody>\n  </Reveal>\n  <Reveal className=\"b-card b-reveal--scale\">\n    <CardBody>\n      <code>--scale</code>\n    </CardBody>\n  </Reveal>\n  <Reveal className=\"b-card b-reveal--start\">\n    <CardBody>\n      <code>--start</code>\n      , from the leading edge\n    </CardBody>\n  </Reveal>\n</div>"
+          },
+          "knobs": [
+            "--b-gap",
+            "--b-lg-border",
+            "--b-lg-pane"
+          ]
+        },
+        {
+          "id": "context-menu",
+          "title": "Context menu",
+          "category": "interaction",
+          "url": "https://ui.barua.tz/docs/interaction.html#context-menu",
+          "summary": "SwiftUI's contextMenu , on the platform's own event. Point any element at a .b-menu and a right-click \u2014 or a long press, which the browser reports as the same event \u2014 opens it where the pointer is.",
+          "classes": [
+            "b-list",
+            "b-list-item",
+            "b-list-item__content",
+            "b-list-item__subtitle",
+            "b-list-item__title",
+            "b-menu",
+            "b-menu__item",
+            "b-menu__item--danger",
+            "b-menu__shortcut"
+          ],
+          "markup": "<div class=\"b-list\">\n  <div class=\"b-list-item\" data-b-contextmenu=\"#demo-context\">\n    <div class=\"b-list-item__content\">\n      <div class=\"b-list-item__title\">Q3 invoice.pdf</div>\n      <div class=\"b-list-item__subtitle\">Right-click, or long-press on a touch screen</div>\n    </div>\n  </div>\n</div>\n<ul class=\"b-menu\" id=\"demo-context\" hidden>\n  <li><button class=\"b-menu__item\">Open<span class=\"b-menu__shortcut\">\u23ce</span></button></li>\n  <li><button class=\"b-menu__item\">Rename<span class=\"b-menu__shortcut\">\u2318R</span></button></li>\n  <li><button class=\"b-menu__item\">Duplicate<span class=\"b-menu__shortcut\">\u2318D</span></button></li>\n  <li><button class=\"b-menu__item b-menu__item--danger\">Delete</button></li>\n</ul>",
+          "react": {
+            "import": "import { List, ListItem, Menu } from \"barua-ui\";",
+            "components": [
+              "List",
+              "ListItem",
+              "Menu"
+            ],
+            "root": "List",
+            "jsx": "<List>\n  <ListItem data-b-contextmenu=\"#demo-context\">\n    <div className=\"b-list-item__content\">\n      <div className=\"b-list-item__title\">Q3 invoice.pdf</div>\n      <div className=\"b-list-item__subtitle\">Right-click, or long-press on a touch screen</div>\n    </div>\n  </ListItem>\n</List>\n<Menu id=\"demo-context\" hidden>\n  <li>\n    <button className=\"b-menu__item\">\n      Open\n      <span className=\"b-menu__shortcut\">\u23ce</span>\n    </button>\n  </li>\n  <li>\n    <button className=\"b-menu__item\">\n      Rename\n      <span className=\"b-menu__shortcut\">\u2318R</span>\n    </button>\n  </li>\n  <li>\n    <button className=\"b-menu__item\">\n      Duplicate\n      <span className=\"b-menu__shortcut\">\u2318D</span>\n    </button>\n  </li>\n  <li>\n    <button className=\"b-menu__item b-menu__item--danger\">Delete</button>\n  </li>\n</Menu>"
+          },
+          "knobs": [
+            "--b-lg-border",
+            "--b-lg-pane"
+          ],
+          "states": [
+            "is-active",
+            "is-disabled",
+            "is-selected"
+          ]
+        },
+        {
+          "id": "rolling-numbers",
+          "title": "Rolling numbers",
+          "category": "interaction",
+          "url": "https://ui.barua.tz/docs/interaction.html#rolling-numbers",
+          "summary": "SwiftUI's contentTransition(.numericText()) . A figure that changes should travel to its new value rather than blink to it \u2014 on a dashboard the movement is what tells you something happened at all.",
+          "classes": [
+            "b-gap-6",
+            "b-hstack",
+            "b-stack--wrap",
+            "b-stat",
+            "b-stat__label",
+            "b-stat__value"
+          ],
+          "markup": "<div class=\"b-hstack b-gap-6 b-stack--wrap\">\n  <div class=\"b-stat\">\n    <span class=\"b-stat__label\">Messages sent</span>\n    <span class=\"b-stat__value\" data-b-count=\"12480\">0</span>\n  </div>\n  <div class=\"b-stat\">\n    <span class=\"b-stat__label\">Outstanding</span>\n    <span class=\"b-stat__value\" data-b-count=\"4.2\">TZS 0.0M</span>\n  </div>\n</div>",
+          "react": {
+            "import": "import { Stat } from \"barua-ui\";",
+            "components": [
+              "Stat"
+            ],
+            "root": "Stat",
+            "jsx": "<div className=\"b-hstack b-gap-6 b-stack--wrap\">\n  <Stat>\n    <span className=\"b-stat__label\">Messages sent</span>\n    <span className=\"b-stat__value\" data-b-count=\"12480\">0</span>\n  </Stat>\n  <Stat>\n    <span className=\"b-stat__label\">Outstanding</span>\n    <span className=\"b-stat__value\" data-b-count=\"4.2\">TZS 0.0M</span>\n  </Stat>\n</div>"
+          },
+          "knobs": [
+            "--b-gap"
+          ],
+          "states": [
+            "is-down",
+            "is-up"
+          ]
         }
       ]
     },
@@ -11163,12 +11312,13 @@
           ],
           "markup": "<div class=\"b-spec-strip\">\n  <div><span class=\"b-spec__value b-tabular-nums\">10 min</span><span class=\"b-spec__label\">From signup to first email</span></div>\n  <div><span class=\"b-spec__value b-tabular-nums\">99.9%</span><span class=\"b-spec__label\">Delivery to the major providers</span></div>\n  <div><span class=\"b-spec__value\">TZS</span><span class=\"b-spec__label\">Billed in shillings</span></div>\n</div>",
           "react": {
-            "import": "import { SpecStrip } from \"barua-ui\";",
+            "import": "import { CountUp, SpecStrip } from \"barua-ui\";",
             "components": [
+              "CountUp",
               "SpecStrip"
             ],
             "root": "SpecStrip",
-            "jsx": "<SpecStrip>\n  <div>\n    <span className=\"b-spec__value b-tabular-nums\">10 min</span>\n    <span className=\"b-spec__label\">From signup to first email</span>\n  </div>\n  <div>\n    <span className=\"b-spec__value b-tabular-nums\">99.9%</span>\n    <span className=\"b-spec__label\">Delivery to the major providers</span>\n  </div>\n  <div>\n    <span className=\"b-spec__value\">TZS</span>\n    <span className=\"b-spec__label\">Billed in shillings</span>\n  </div>\n</SpecStrip>"
+            "jsx": "<SpecStrip>\n  <div>\n    <CountUp className=\"b-spec__value\">10 min</CountUp>\n    <span className=\"b-spec__label\">From signup to first email</span>\n  </div>\n  <div>\n    <CountUp className=\"b-spec__value\">99.9%</CountUp>\n    <span className=\"b-spec__label\">Delivery to the major providers</span>\n  </div>\n  <div>\n    <span className=\"b-spec__value\">TZS</span>\n    <span className=\"b-spec__label\">Billed in shillings</span>\n  </div>\n</SpecStrip>"
           }
         },
         {

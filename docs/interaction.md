@@ -514,3 +514,140 @@ import { Button, List, ListItem } from "barua-ui";
 </List>
 ```
 
+## Scroll reveal
+
+SwiftUI has scrollTransition ; the web now has a scroll timeline. .b-reveal ties an entrance animation to the element's own position in the scrollport, so the browser drives it — no observer, no scroll listener, nothing on the main thread.
+
+- Documentation: https://ui.barua.tz/docs/interaction.html#scroll-reveal
+- Classes: `b-card` `b-card__body` `b-gap-3` `b-reveal` `b-reveal--fade` `b-reveal--scale` `b-reveal--start` `b-stack`
+
+```html
+<div class="b-stack b-gap-3">
+  <article class="b-card b-reveal"><div class="b-card__body">Rises as it enters</div></article>
+  <article class="b-card b-reveal b-reveal--fade"><div class="b-card__body"><code>--fade</code></div></article>
+  <article class="b-card b-reveal b-reveal--scale"><div class="b-card__body"><code>--scale</code></div></article>
+  <article class="b-card b-reveal b-reveal--start"><div class="b-card__body"><code>--start</code>, from the leading edge</div></article>
+</div>
+```
+
+```tsx
+import { CardBody, Reveal } from "barua-ui";
+
+<div className="b-stack b-gap-3">
+  <Reveal className="b-card">
+    <CardBody>Rises as it enters</CardBody>
+  </Reveal>
+  <Reveal className="b-card b-reveal--fade">
+    <CardBody>
+      <code>--fade</code>
+    </CardBody>
+  </Reveal>
+  <Reveal className="b-card b-reveal--scale">
+    <CardBody>
+      <code>--scale</code>
+    </CardBody>
+  </Reveal>
+  <Reveal className="b-card b-reveal--start">
+    <CardBody>
+      <code>--start</code>
+      , from the leading edge
+    </CardBody>
+  </Reveal>
+</div>
+```
+
+## Context menu
+
+SwiftUI's contextMenu , on the platform's own event. Point any element at a .b-menu and a right-click — or a long press, which the browser reports as the same event — opens it where the pointer is.
+
+- Documentation: https://ui.barua.tz/docs/interaction.html#context-menu
+- Classes: `b-list` `b-list-item` `b-list-item__content` `b-list-item__subtitle` `b-list-item__title` `b-menu` `b-menu__item` `b-menu__item--danger` `b-menu__shortcut`
+
+```html
+<div class="b-list">
+  <div class="b-list-item" data-b-contextmenu="#demo-context">
+    <div class="b-list-item__content">
+      <div class="b-list-item__title">Q3 invoice.pdf</div>
+      <div class="b-list-item__subtitle">Right-click, or long-press on a touch screen</div>
+    </div>
+  </div>
+</div>
+<ul class="b-menu" id="demo-context" hidden>
+  <li><button class="b-menu__item">Open<span class="b-menu__shortcut">⏎</span></button></li>
+  <li><button class="b-menu__item">Rename<span class="b-menu__shortcut">⌘R</span></button></li>
+  <li><button class="b-menu__item">Duplicate<span class="b-menu__shortcut">⌘D</span></button></li>
+  <li><button class="b-menu__item b-menu__item--danger">Delete</button></li>
+</ul>
+```
+
+```tsx
+import { List, ListItem, Menu } from "barua-ui";
+
+<List>
+  <ListItem data-b-contextmenu="#demo-context">
+    <div className="b-list-item__content">
+      <div className="b-list-item__title">Q3 invoice.pdf</div>
+      <div className="b-list-item__subtitle">Right-click, or long-press on a touch screen</div>
+    </div>
+  </ListItem>
+</List>
+<Menu id="demo-context" hidden>
+  <li>
+    <button className="b-menu__item">
+      Open
+      <span className="b-menu__shortcut">⏎</span>
+    </button>
+  </li>
+  <li>
+    <button className="b-menu__item">
+      Rename
+      <span className="b-menu__shortcut">⌘R</span>
+    </button>
+  </li>
+  <li>
+    <button className="b-menu__item">
+      Duplicate
+      <span className="b-menu__shortcut">⌘D</span>
+    </button>
+  </li>
+  <li>
+    <button className="b-menu__item b-menu__item--danger">Delete</button>
+  </li>
+</Menu>
+```
+
+## Rolling numbers
+
+SwiftUI's contentTransition(.numericText()) . A figure that changes should travel to its new value rather than blink to it — on a dashboard the movement is what tells you something happened at all.
+
+- Documentation: https://ui.barua.tz/docs/interaction.html#rolling-numbers
+- Classes: `b-gap-6` `b-hstack` `b-stack--wrap` `b-stat` `b-stat__label` `b-stat__value`
+
+```html
+<div class="b-hstack b-gap-6 b-stack--wrap">
+  <div class="b-stat">
+    <span class="b-stat__label">Messages sent</span>
+    <span class="b-stat__value" data-b-count="12480">0</span>
+  </div>
+  <div class="b-stat">
+    <span class="b-stat__label">Outstanding</span>
+    <span class="b-stat__value" data-b-count="4.2">TZS 0.0M</span>
+  </div>
+</div>
+```
+
+```tsx
+import { Stat } from "barua-ui";
+
+<div className="b-hstack b-gap-6 b-stack--wrap">
+  <Stat>
+    <span className="b-stat__label">Messages sent</span>
+    <span className="b-stat__value" data-b-count="12480">0</span>
+  </Stat>
+  <Stat>
+    <span className="b-stat__label">Outstanding</span>
+    <span className="b-stat__value" data-b-count="4.2">TZS 0.0M</span>
+  </Stat>
+</div>
+```
+
