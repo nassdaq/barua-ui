@@ -1162,6 +1162,7 @@
     "b-groupbox",
     "b-groupbox__label",
     "b-grow",
+    "b-has-wallpaper",
     "b-headline",
     "b-heatmap",
     "b-help",
@@ -1964,6 +1965,100 @@
             "b-code__header"
           ],
           "markup": ""
+        }
+      ]
+    },
+    {
+      "id": "wallpapers",
+      "title": "Wallpapers \u2014 pictures shipped finished: sized, blurred, with the accent and scheme already worked out",
+      "url": "https://ui.barua.tz/docs/wallpapers.html",
+      "components": [
+        {
+          "id": "what-is-baked",
+          "title": "What was worked out beforehand",
+          "category": "wallpapers",
+          "url": "https://ui.barua.tz/docs/wallpapers.html#what-is-baked",
+          "summary": "Four things, each with exactly one answer per picture, so computing them per visitor is repeating a settled question:",
+          "classes": [],
+          "markup": ""
+        },
+        {
+          "id": "wall-city",
+          "title": "City",
+          "category": "wallpapers",
+          "url": "https://ui.barua.tz/docs/wallpapers.html#wall-city",
+          "summary": "",
+          "classes": [
+            "b-caption",
+            "b-code",
+            "b-code__copy",
+            "b-code__header",
+            "b-gap-4",
+            "b-has-wallpaper",
+            "b-hstack",
+            "b-stack--wrap",
+            "b-text-secondary",
+            "b-wall"
+          ],
+          "markup": "<div class=\"docs-wall\" style=\"background-image: url('../wallpapers/city/full.jpg')\">\n  <div class=\"docs-wall__panel\">\n    <div class=\"docs-wall__panel-label\">Baked glass over this picture</div>\n    <p class=\"b-caption b-text-secondary\">Blurred once, at build time.</p>\n  </div>\n</div>",
+          "knobs": [
+            "--b-gap",
+            "--b-wall-blur",
+            "--b-wall-ground",
+            "--b-wall-image"
+          ]
+        },
+        {
+          "id": "wall-desk",
+          "title": "Desk",
+          "category": "wallpapers",
+          "url": "https://ui.barua.tz/docs/wallpapers.html#wall-desk",
+          "summary": "",
+          "classes": [
+            "b-caption",
+            "b-code",
+            "b-code__copy",
+            "b-code__header",
+            "b-gap-4",
+            "b-has-wallpaper",
+            "b-hstack",
+            "b-stack--wrap",
+            "b-text-secondary",
+            "b-wall"
+          ],
+          "markup": "<div class=\"docs-wall\" style=\"background-image: url('../wallpapers/desk/full.jpg')\">\n  <div class=\"docs-wall__panel\">\n    <div class=\"docs-wall__panel-label\">Baked glass over this picture</div>\n    <p class=\"b-caption b-text-secondary\">Blurred once, at build time.</p>\n  </div>\n</div>",
+          "knobs": [
+            "--b-gap",
+            "--b-wall-blur",
+            "--b-wall-ground",
+            "--b-wall-image"
+          ]
+        },
+        {
+          "id": "wall-team",
+          "title": "Team",
+          "category": "wallpapers",
+          "url": "https://ui.barua.tz/docs/wallpapers.html#wall-team",
+          "summary": "",
+          "classes": [
+            "b-caption",
+            "b-code",
+            "b-code__copy",
+            "b-code__header",
+            "b-gap-4",
+            "b-has-wallpaper",
+            "b-hstack",
+            "b-stack--wrap",
+            "b-text-secondary",
+            "b-wall"
+          ],
+          "markup": "<div class=\"docs-wall\" style=\"background-image: url('../wallpapers/team/full.jpg')\">\n  <div class=\"docs-wall__panel\">\n    <div class=\"docs-wall__panel-label\">Baked glass over this picture</div>\n    <p class=\"b-caption b-text-secondary\">Blurred once, at build time.</p>\n  </div>\n</div>",
+          "knobs": [
+            "--b-gap",
+            "--b-wall-blur",
+            "--b-wall-ground",
+            "--b-wall-image"
+          ]
         }
       ]
     },

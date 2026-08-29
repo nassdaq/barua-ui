@@ -1,0 +1,55 @@
+{
+  "wallpapers": [
+    {
+      "name": "city",
+      "credit": "Pixabay",
+      "full": "wallpapers/city/full.jpg",
+      "blur": "wallpapers/city/blur.jpg",
+      "width": 1500,
+      "height": 999,
+      "bytes": {
+        "full": 617480,
+        "blur": 1986
+      },
+      "accent": "#ca9f5e",
+      "accentHover": "#bc8a3e",
+      "accentText": "#b38237",
+      "scheme": "light",
+      "luminance": 0.557
+    },
+    {
+      "name": "desk",
+      "credit": "Pixabay",
+      "full": "wallpapers/desk/full.jpg",
+      "blur": "wallpapers/desk/blur.jpg",
+      "width": 1500,
+      "height": 1125,
+      "bytes": {
+        "full": 319101,
+        "blur": 2058
+      },
+      "accent": "#c48564",
+      "accentHover": "#b56c45",
+      "accentText": "#ad643e",
+      "scheme": "light",
+      "luminance": 0.863
+    },
+    {
+      "name": "team",
+      "credit": "Pixabay",
+      "full": "wallpapers/team/full.jpg",
+      "blur": "wallpapers/team/blur.jpg",
+      "width": 1500,
+      "height": 903,
+      "bytes": {
+        "full": 337810,
+        "blur": 2289
+      },
+      "accent": "#da9c4b",
+      "accentHover": "#cc862a",
+      "accentText": "#c68024",
+      "scheme": "light",
+      "luminance": 0.503
+    }
+  ]
+}

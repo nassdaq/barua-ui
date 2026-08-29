@@ -27,6 +27,7 @@ SITE = "https://ui.barua.tz"
 CATEGORY_TITLES = {
     "principles": "Principles — the eight ideas the system is built on, and what enforces each",
     "theming": "Theming — light and dark, the named accents, and carrying a brand colour without breaking danger",
+    "wallpapers": "Wallpapers — pictures shipped finished: sized, blurred, with the accent and scheme already worked out",
     "react": "React — the typed bindings: install, Server Components, and the component index",
     "foundations": "Foundations — tokens, colour, type, materials, motion",
     "icons": "Icons — the 20×20 glyph set",

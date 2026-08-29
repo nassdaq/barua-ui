@@ -183,6 +183,48 @@ Overriding on :root themes the product. Putting the same tokens on a class theme
 Classes: b-code b-code__header
 
 
+## Wallpapers — pictures shipped finished: sized, blurred, with the accent and scheme already worked out
+
+### What was worked out beforehand  (https://ui.barua.tz/docs/wallpapers.html#what-is-baked)
+Four things, each with exactly one answer per picture, so computing them per visitor is repeating a settled question:
+
+### City  (https://ui.barua.tz/docs/wallpapers.html#wall-city)
+Classes: b-caption b-code b-code__copy b-code__header b-gap-4 b-has-wallpaper b-hstack b-stack--wrap b-text-secondary b-wall
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/city/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+### Desk  (https://ui.barua.tz/docs/wallpapers.html#wall-desk)
+Classes: b-caption b-code b-code__copy b-code__header b-gap-4 b-has-wallpaper b-hstack b-stack--wrap b-text-secondary b-wall
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/desk/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+### Team  (https://ui.barua.tz/docs/wallpapers.html#wall-team)
+Classes: b-caption b-code b-code__copy b-code__header b-gap-4 b-has-wallpaper b-hstack b-stack--wrap b-text-secondary b-wall
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/team/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+
 ## React — the typed bindings: install, Server Components, and the component index
 
 ### Install  (https://ui.barua.tz/docs/react.html#install)

@@ -412,3 +412,37 @@
   font-weight: var(--b-weight-semibold);
   color: var(--b-text-secondary);
 }
+
+/* ---- Wallpaper gallery ----------------------------------------------------------- */
+.docs-wall {
+  display: grid;
+  place-items: center;
+  min-height: 15rem;
+  padding: var(--b-space-6);
+  border-radius: var(--b-radius-xl);
+  background-size: cover;
+  background-position: center;
+}
+.docs-wall__panel {
+  padding: var(--b-space-4) var(--b-space-5);
+  border-radius: var(--b-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: var(--b-material-regular-bg);
+  -webkit-backdrop-filter: var(--b-glass);
+  backdrop-filter: var(--b-glass);
+  box-shadow: var(--b-glass-ambient);
+}
+.docs-wall__panel-label { font-weight: var(--b-weight-semibold); }
+.docs-wall__meta { margin-block-start: var(--b-space-3); }
+.docs-wall__fact {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-space-2);
+  font-size: var(--b-text-caption);
+  color: var(--b-text-secondary);
+}
+.docs-wall__swatch {
+  width: 0.9rem; height: 0.9rem;
+  border-radius: var(--b-radius-full);
+  border: 1px solid var(--b-separator);
+}
