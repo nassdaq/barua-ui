@@ -64,51 +64,81 @@ import { Button, Icon, Tooltip } from "barua-ui";
 
 ## Symbol effects
 
-A glyph can answer an action. .b-icon--bounce plays once — the acknowledgement when something is sent, saved or added — and .b-icon--pulse repeats while something is genuinely ongoing. Both respect reduced motion, and both are effects on the icon rather than on the control, so a button keeps its own states.
+A glyph that answers an action is the cheapest feedback an interface has. Add one class to the icon rather than to the control, so a button keeps its own states. The division that matters is whether an effect plays once or repeats : one acknowledges something that just happened, the other describes something still happening. A repeating effect used as an acknowledgement is just noise.
 
 - Documentation: https://ui.barua.tz/docs/icons.html#symbol-effects
-- Classes: `b-btn` `b-btn--ghost` `b-btn--glass` `b-icon` `b-icon--bounce` `b-icon--pulse` `b-icon--sm`
+- Classes: `b-btn` `b-btn--primary` `b-btn--sm` `b-btn--tinted` `b-caption` `b-caption2` `b-code` `b-code__header` `b-gap-2` `b-gap-4` `b-hstack` `b-icon` `b-icon--bounce` `b-icon--breathe` `b-icon--pulse` `b-icon--replace` `b-icon--rotate` `b-icon--scale` `b-icon--sm` `b-icon--wiggle` `b-stack--wrap` `b-table` `b-table-wrap` `b-text-secondary` `b-vstack`
 
 ```html
-<button class="b-btn b-btn--glass" onclick="this.querySelector('svg').classList.remove('b-icon--bounce'); void this.offsetWidth; this.querySelector('svg').classList.add('b-icon--bounce')">
-  <svg class="b-icon b-icon--sm b-icon--bounce" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-  Send again
-</button>
-<span class="b-btn b-btn--ghost" aria-live="polite">
-  <svg class="b-icon b-icon--sm b-icon--pulse" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5V10l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  Syncing
-</span>
+<div class="docs-replay">
+  <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#symbol-demo">Play</button>
+  <span class="b-caption b-text-secondary">the one-shot effects have already run — press to see them</span>
+</div>
+<div class="b-hstack b-gap-4 b-stack--wrap">
+  <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+    <svg class="b-icon b-icon--bounce" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    <code class="b-caption2">--bounce</code>
+  </span>
+  <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+    <svg class="b-icon b-icon--scale" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    <code class="b-caption2">--scale</code>
+  </span>
+  <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+    <svg class="b-icon b-icon--wiggle" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5 3.5 15h13L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v3M10 13h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <code class="b-capti
 ```
 
 ```tsx
 import { Button, Icon } from "barua-ui";
 
-<Button
-  variant="glass"
-  onclick="this.querySelector('svg').classList.remove('b-icon--bounce'); void this.offsetWidth; this.querySelector('svg').classList.add('b-icon--bounce')"
->
-  <Icon
-    className="b-icon--sm b-icon--bounce"
-    viewBox="0 0 20 20"
-    fill="none"
-    aria-hidden="true"
+<div className="docs-replay">
+  <Button variant="tinted" size="sm" data-docs-replay="#symbol-demo">Play</Button>
+  <span className="b-caption b-text-secondary">the one-shot effects have already run — press to see them</span>
+</div>
+<div className="b-hstack b-gap-4 b-stack--wrap">
+  <span
+    className="b-vstack b-gap-2"
+    style={{ alignItems: "center", minWidth: "5rem" }}
   >
-    <path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-  </Icon>
-  Send again
-</Button>
-<Button variant="ghost" aria-live="polite">
-  <Icon
-    className="b-icon--sm b-icon--pulse"
-    viewBox="0 0 20 20"
-    fill="none"
-    aria-hidden="true"
+    <Icon
+      className="b-icon--bounce"
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </Icon>
+    <code className="b-caption2">--bounce</code>
+  </span>
+  <span
+    className="b-vstack b-gap-2"
+    style={{ alignItems: "center", minWidth: "5rem" }}
   >
-    <circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="1.5" />
-    <path d="M10 6.5V10l2.5 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </Icon>
-  Syncing
-</Button>
+    <Icon
+      className="b-icon--scale"
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </Icon>
+    <code className="b-caption2">--scale</code>
+  </span>
+  <span
+    className="b-vstack b-gap-2"
+    style={{ alignItems: "center", minWidth: "5rem" }}
+  >
+    <Icon
+      className="b-icon--wiggle"
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="M10 3.5 3.5 15h13L10 3.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M10 8v3M10 13h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </Icon>
+  </span>
+</div>
 ```
 
 ## Library

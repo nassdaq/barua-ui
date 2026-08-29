@@ -730,18 +730,26 @@ Classes: b-btn b-btn--ghost b-btn--glass b-btn--primary b-icon b-icon--sm b-icon
 ```
 
 ### Symbol effects  (https://ui.barua.tz/docs/icons.html#symbol-effects)
-A glyph can answer an action. .b-icon--bounce plays once — the acknowledgement when something is sent, saved or added — and .b-icon--pulse repeats while something is genuinely ongoing. Both respect reduced motion, and both are effects on the icon rather than on the control, so a button keeps its own states.
-Classes: b-btn b-btn--ghost b-btn--glass b-icon b-icon--bounce b-icon--pulse b-icon--sm
+A glyph that answers an action is the cheapest feedback an interface has. Add one class to the icon rather than to the control, so a button keeps its own states. The division that matters is whether an effect plays once or repeats : one acknowledges something that just happened, the other describes something still happening. A repeating effect used as an acknowledgement is just noise.
+Classes: b-btn b-btn--primary b-btn--sm b-btn--tinted b-caption b-caption2 b-code b-code__header b-gap-2 b-gap-4 b-hstack b-icon b-icon--bounce b-icon--breathe b-icon--pulse b-icon--replace b-icon--rotate b-icon--scale b-icon--sm b-icon--wiggle b-stack--wrap b-table b-table-wrap b-text-secondary b-vstack
 
 ```html
-<button class="b-btn b-btn--glass" onclick="this.querySelector('svg').classList.remove('b-icon--bounce'); void this.offsetWidth; this.querySelector('svg').classList.add('b-icon--bounce')">
-  <svg class="b-icon b-icon--sm b-icon--bounce" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-  Send again
-</button>
-<span class="b-btn b-btn--ghost" aria-live="polite">
-  <svg class="b-icon b-icon--sm b-icon--pulse" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5V10l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  Syncing
-</span>
+<div class="docs-replay">
+  <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#symbol-demo">Play</button>
+  <span class="b-caption b-text-secondary">the one-shot effects have already run — press to see them</span>
+</div>
+<div class="b-hstack b-gap-4 b-stack--wrap">
+  <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+    <svg class="b-icon b-icon--bounce" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    <code class="b-caption2">--bounce</code>
+  </span>
+  <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+    <svg class="b-icon b-icon--scale" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    <code class="b-caption2">--scale</code>
+  </span>
+  <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+    <svg class="b-icon b-icon--wiggle" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5 3.5 15h13L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v3M10 13h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <code class="b-capti
 ```
 
 ### Library  (https://ui.barua.tz/docs/icons.html#icon-library)
@@ -5076,14 +5084,23 @@ Classes: b-btn b-btn--ghost b-btn--sm b-icon-btn b-list b-list-item b-list-item_
 
 ### Scroll reveal  (https://ui.barua.tz/docs/interaction.html#scroll-reveal)
 SwiftUI has scrollTransition ; the web now has a scroll timeline. .b-reveal ties an entrance animation to the element's own position in the scrollport, so the browser drives it — no observer, no scroll listener, nothing on the main thread.
-Classes: b-card b-card__body b-gap-3 b-reveal b-reveal--fade b-reveal--scale b-reveal--start b-stack
+Classes: b-btn b-btn--sm b-btn--tinted b-caption b-card b-card__body b-code b-code__header b-footnote b-gap-3 b-reveal b-reveal--end b-reveal--fade b-reveal--scale b-reveal--start b-stack b-text-secondary
 
 ```html
-<div class="b-stack b-gap-3">
-  <article class="b-card b-reveal"><div class="b-card__body">Rises as it enters</div></article>
-  <article class="b-card b-reveal b-reveal--fade"><div class="b-card__body"><code>--fade</code></div></article>
-  <article class="b-card b-reveal b-reveal--scale"><div class="b-card__body"><code>--scale</code></div></article>
-  <article class="b-card b-reveal b-reveal--start"><div class="b-card__body"><code>--start</code>, from the leading edge</div></article>
+<div class="docs-replay">
+  <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#reveal-box">Play</button>
+  <span class="b-caption b-text-secondary">or scroll inside the box</span>
+</div>
+<div class="docs-scrollbox" id="reveal-box">
+  <div class="docs-scrollbox__spacer">scroll down ↓</div>
+  <div class="b-stack b-gap-3">
+    <article class="b-card b-reveal"><div class="b-card__body">Rises as it enters</div></article>
+    <article class="b-card b-reveal b-reveal--fade"><div class="b-card__body"><code>--fade</code></div></article>
+    <article class="b-card b-reveal b-reveal--scale"><div class="b-card__body"><code>--scale</code></div></article>
+    <article class="b-card b-reveal b-reveal--start"><div class="b-card__body"><code>--start</code>, from the leading edge</div></article>
+    <article class="b-card b-reveal b-reveal--end"><div class="b-card__body"><code>--end</code>, from the trailing edge</div></article>
+  </div>
+  <div class="docs-scrollbox__spacer">scroll back up to replay ↑</div>
 </div>
 ```
 
@@ -5110,17 +5127,20 @@ Classes: b-list b-list-item b-list-item__content b-list-item__subtitle b-list-it
 
 ### Rolling numbers  (https://ui.barua.tz/docs/interaction.html#rolling-numbers)
 SwiftUI's contentTransition(.numericText()) . A figure that changes should travel to its new value rather than blink to it — on a dashboard the movement is what tells you something happened at all.
-Classes: b-gap-6 b-hstack b-stack--wrap b-stat b-stat__label b-stat__value
+Classes: b-btn b-btn--sm b-btn--tinted b-code b-code__header b-gap-6 b-hstack b-stack--wrap b-stat b-stat__label b-stat__value
 
 ```html
+<div class="docs-replay">
+  <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#count-demo">Play</button>
+</div>
 <div class="b-hstack b-gap-6 b-stack--wrap">
   <div class="b-stat">
     <span class="b-stat__label">Messages sent</span>
-    <span class="b-stat__value" data-b-count="12480">0</span>
+    <span class="b-stat__value" data-b-count="12480" data-docs-from="0">0</span>
   </div>
   <div class="b-stat">
     <span class="b-stat__label">Outstanding</span>
-    <span class="b-stat__value" data-b-count="4.2">TZS 0.0M</span>
+    <span class="b-stat__value" data-b-count="4.2" data-docs-from="TZS 0.0M">TZS 0.0M</span>
   </div>
 </div>
 ```

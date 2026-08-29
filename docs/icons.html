@@ -128,21 +128,79 @@
       <section class="docs-section" id="symbol-effects">
         <h2>Symbol effects</h2>
         <p>
-          A glyph can answer an action. <code>.b-icon--bounce</code> plays once
-          — the acknowledgement when something is sent, saved or added — and
-          <code>.b-icon--pulse</code> repeats while something is genuinely
-          ongoing. Both respect reduced motion, and both are effects on the
-          icon rather than on the control, so a button keeps its own states.
+          A glyph that answers an action is the cheapest feedback an interface
+          has. Add one class to the icon rather than to the control, so a button
+          keeps its own states. The division that matters is whether an effect
+          <strong>plays once</strong> or <strong>repeats</strong>: one
+          acknowledges something that just happened, the other describes
+          something still happening. A repeating effect used as an
+          acknowledgement is just noise.
         </p>
-        <div class="docs-demo docs-demo--row">
-          <button class="b-btn b-btn--glass" onclick="this.querySelector('svg').classList.remove('b-icon--bounce'); void this.offsetWidth; this.querySelector('svg').classList.add('b-icon--bounce')">
-            <svg class="b-icon b-icon--sm b-icon--bounce" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-            Send again
-          </button>
-          <span class="b-btn b-btn--ghost" aria-live="polite">
-            <svg class="b-icon b-icon--sm b-icon--pulse" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5V10l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Syncing
-          </span>
+        <div class="docs-demo" data-no-code id="symbol-demo">
+          <div class="docs-replay">
+            <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#symbol-demo">Play</button>
+            <span class="b-caption b-text-secondary">the one-shot effects have already run — press to see them</span>
+          </div>
+          <div class="b-hstack b-gap-4 b-stack--wrap">
+            <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+              <svg class="b-icon b-icon--bounce" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              <code class="b-caption2">--bounce</code>
+            </span>
+            <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+              <svg class="b-icon b-icon--scale" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              <code class="b-caption2">--scale</code>
+            </span>
+            <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+              <svg class="b-icon b-icon--wiggle" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5 3.5 15h13L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v3M10 13h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <code class="b-caption2">--wiggle</code>
+            </span>
+            <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+              <svg class="b-icon b-icon--replace" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 7.5v5l4-2.5-4-2.5Z" fill="currentColor"/><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              <code class="b-caption2">--replace</code>
+            </span>
+            <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+              <svg class="b-icon b-icon--pulse" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 16.5S3.5 12.6 3.5 8.2A3.7 3.7 0 0 1 10 5.9a3.7 3.7 0 0 1 6.5 2.3c0 4.4-6.5 8.3-6.5 8.3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              <code class="b-caption2">--pulse</code>
+            </span>
+            <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+              <svg class="b-icon b-icon--rotate" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10a6 6 0 1 1-1.8-4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 3.5V7h-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <code class="b-caption2">--rotate</code>
+            </span>
+            <span class="b-vstack b-gap-2" style="align-items: center; min-width: 5rem">
+              <svg class="b-icon b-icon--breathe" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5" opacity=".5"/></svg>
+              <code class="b-caption2">--breathe</code>
+            </span>
+          </div>
+        </div>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead><tr><th>Class</th><th>Runs</th><th>Use it for</th></tr></thead>
+            <tbody>
+              <tr><td><code>.b-icon--bounce</code></td><td>once</td><td>An action landed — sent, saved, added.</td></tr>
+              <tr><td><code>.b-icon--scale</code></td><td>once</td><td>A press was received, before the result is known.</td></tr>
+              <tr><td><code>.b-icon--wiggle</code></td><td>once</td><td>A refusal — wrong password, locked row.</td></tr>
+              <tr><td><code>.b-icon--replace</code></td><td>once</td><td>The glyph itself changed: play became pause.</td></tr>
+              <tr><td><code>.b-icon--pulse</code></td><td>repeats</td><td>Waiting on something outside your control.</td></tr>
+              <tr><td><code>.b-icon--rotate</code></td><td>repeats</td><td>Work in progress with no known end.</td></tr>
+              <tr><td><code>.b-icon--breathe</code></td><td>repeats</td><td>Live and listening — recording, connected.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>On the icon, not the button</span></div>
+          <pre><code>&lt;button class="b-btn b-btn--primary"&gt;
+  &lt;svg class="b-icon b-icon--sm b-icon--bounce"&gt;…&lt;/svg&gt;
+  Send again
+&lt;/button&gt;</code></pre>
+        </div>
+        <div class="docs-a11y">
+          <div>
+            <strong>Accessibility.</strong> All of these stop under
+            <code>prefers-reduced-motion</code>, handled once for the whole
+            system. A repeating effect must never be the only way a state is
+            announced — pair it with text, as the demo above pairs each glyph
+            with its name.
+          </div>
         </div>
       </section>
 

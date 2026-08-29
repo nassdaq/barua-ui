@@ -1187,9 +1187,14 @@
     "b-hstack",
     "b-icon",
     "b-icon--bounce",
+    "b-icon--breathe",
     "b-icon--lg",
     "b-icon--pulse",
+    "b-icon--replace",
+    "b-icon--rotate",
+    "b-icon--scale",
     "b-icon--sm",
+    "b-icon--wiggle",
     "b-icon--xl",
     "b-icon-btn",
     "b-icon-tile",
@@ -1391,6 +1396,7 @@
     "b-result__icon",
     "b-result__title",
     "b-reveal",
+    "b-reveal--end",
     "b-reveal--fade",
     "b-reveal--scale",
     "b-reveal--start",
@@ -3043,17 +3049,35 @@
           "title": "Symbol effects",
           "category": "icons",
           "url": "https://ui.barua.tz/docs/icons.html#symbol-effects",
-          "summary": "A glyph can answer an action. .b-icon--bounce plays once \u2014 the acknowledgement when something is sent, saved or added \u2014 and .b-icon--pulse repeats while something is genuinely ongoing. Both respect reduced motion, and both are effects on the icon rather than on the control, so a button keeps its own states.",
+          "summary": "A glyph that answers an action is the cheapest feedback an interface has. Add one class to the icon rather than to the control, so a button keeps its own states. The division that matters is whether an effect plays once or repeats : one acknowledges something that just happened, the other describes something still happening. A repeating effect used as an acknowledgement is just noise.",
           "classes": [
             "b-btn",
-            "b-btn--ghost",
-            "b-btn--glass",
+            "b-btn--primary",
+            "b-btn--sm",
+            "b-btn--tinted",
+            "b-caption",
+            "b-caption2",
+            "b-code",
+            "b-code__header",
+            "b-gap-2",
+            "b-gap-4",
+            "b-hstack",
             "b-icon",
             "b-icon--bounce",
+            "b-icon--breathe",
             "b-icon--pulse",
-            "b-icon--sm"
+            "b-icon--replace",
+            "b-icon--rotate",
+            "b-icon--scale",
+            "b-icon--sm",
+            "b-icon--wiggle",
+            "b-stack--wrap",
+            "b-table",
+            "b-table-wrap",
+            "b-text-secondary",
+            "b-vstack"
           ],
-          "markup": "<button class=\"b-btn b-btn--glass\" onclick=\"this.querySelector('svg').classList.remove('b-icon--bounce'); void this.offsetWidth; this.querySelector('svg').classList.add('b-icon--bounce')\">\n  <svg class=\"b-icon b-icon--sm b-icon--bounce\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/></svg>\n  Send again\n</button>\n<span class=\"b-btn b-btn--ghost\" aria-live=\"polite\">\n  <svg class=\"b-icon b-icon--sm b-icon--pulse\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"6.5\" stroke=\"currentColor\" stroke-width=\"1.5\"/><path d=\"M10 6.5V10l2.5 2\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n  Syncing\n</span>",
+          "markup": "<div class=\"docs-replay\">\n  <button class=\"b-btn b-btn--tinted b-btn--sm\" data-docs-replay=\"#symbol-demo\">Play</button>\n  <span class=\"b-caption b-text-secondary\">the one-shot effects have already run \u2014 press to see them</span>\n</div>\n<div class=\"b-hstack b-gap-4 b-stack--wrap\">\n  <span class=\"b-vstack b-gap-2\" style=\"align-items: center; min-width: 5rem\">\n    <svg class=\"b-icon b-icon--bounce\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/></svg>\n    <code class=\"b-caption2\">--bounce</code>\n  </span>\n  <span class=\"b-vstack b-gap-2\" style=\"align-items: center; min-width: 5rem\">\n    <svg class=\"b-icon b-icon--scale\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/></svg>\n    <code class=\"b-caption2\">--scale</code>\n  </span>\n  <span class=\"b-vstack b-gap-2\" style=\"align-items: center; min-width: 5rem\">\n    <svg class=\"b-icon b-icon--wiggle\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M10 3.5 3.5 15h13L10 3.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"M10 8v3M10 13h.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg>\n    <code class=\"b-capti",
           "react": {
             "import": "import { Button, Icon } from \"barua-ui\";",
             "components": [
@@ -3061,9 +3085,10 @@
               "Icon"
             ],
             "root": "Button",
-            "jsx": "<Button\n  variant=\"glass\"\n  onclick=\"this.querySelector('svg').classList.remove('b-icon--bounce'); void this.offsetWidth; this.querySelector('svg').classList.add('b-icon--bounce')\"\n>\n  <Icon\n    className=\"b-icon--sm b-icon--bounce\"\n    viewBox=\"0 0 20 20\"\n    fill=\"none\"\n    aria-hidden=\"true\"\n  >\n    <path d=\"m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n  </Icon>\n  Send again\n</Button>\n<Button variant=\"ghost\" aria-live=\"polite\">\n  <Icon\n    className=\"b-icon--sm b-icon--pulse\"\n    viewBox=\"0 0 20 20\"\n    fill=\"none\"\n    aria-hidden=\"true\"\n  >\n    <circle cx=\"10\" cy=\"10\" r=\"6.5\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n    <path d=\"M10 6.5V10l2.5 2\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n  </Icon>\n  Syncing\n</Button>"
+            "jsx": "<div className=\"docs-replay\">\n  <Button variant=\"tinted\" size=\"sm\" data-docs-replay=\"#symbol-demo\">Play</Button>\n  <span className=\"b-caption b-text-secondary\">the one-shot effects have already run \u2014 press to see them</span>\n</div>\n<div className=\"b-hstack b-gap-4 b-stack--wrap\">\n  <span\n    className=\"b-vstack b-gap-2\"\n    style={{ alignItems: \"center\", minWidth: \"5rem\" }}\n  >\n    <Icon\n      className=\"b-icon--bounce\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      aria-hidden=\"true\"\n    >\n      <path d=\"m3.5 10 13-6-3.5 13-3.5-4.5L3.5 10Zm6 2.5L13 7\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n    </Icon>\n    <code className=\"b-caption2\">--bounce</code>\n  </span>\n  <span\n    className=\"b-vstack b-gap-2\"\n    style={{ alignItems: \"center\", minWidth: \"5rem\" }}\n  >\n    <Icon\n      className=\"b-icon--scale\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      aria-hidden=\"true\"\n    >\n      <path d=\"M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n    </Icon>\n    <code className=\"b-caption2\">--scale</code>\n  </span>\n  <span\n    className=\"b-vstack b-gap-2\"\n    style={{ alignItems: \"center\", minWidth: \"5rem\" }}\n  >\n    <Icon\n      className=\"b-icon--wiggle\"\n      viewBox=\"0 0 20 20\"\n      fill=\"none\"\n      aria-hidden=\"true\"\n    >\n      <path d=\"M10 3.5 3.5 15h13L10 3.5Z\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n      <path d=\"M10 8v3M10 13h.01\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinecap=\"round\" />\n    </Icon>\n  </span>\n</div>"
           },
           "knobs": [
+            "--b-gap",
             "--b-lg-border",
             "--b-lg-inset",
             "--b-lg-pane",
@@ -3071,8 +3096,11 @@
           ],
           "states": [
             "is-active",
+            "is-asc",
+            "is-desc",
             "is-loading",
-            "is-pressed"
+            "is-pressed",
+            "is-selected"
           ]
         },
         {
@@ -10682,29 +10710,46 @@
           "url": "https://ui.barua.tz/docs/interaction.html#scroll-reveal",
           "summary": "SwiftUI has scrollTransition ; the web now has a scroll timeline. .b-reveal ties an entrance animation to the element's own position in the scrollport, so the browser drives it \u2014 no observer, no scroll listener, nothing on the main thread.",
           "classes": [
+            "b-btn",
+            "b-btn--sm",
+            "b-btn--tinted",
+            "b-caption",
             "b-card",
             "b-card__body",
+            "b-code",
+            "b-code__header",
+            "b-footnote",
             "b-gap-3",
             "b-reveal",
+            "b-reveal--end",
             "b-reveal--fade",
             "b-reveal--scale",
             "b-reveal--start",
-            "b-stack"
+            "b-stack",
+            "b-text-secondary"
           ],
-          "markup": "<div class=\"b-stack b-gap-3\">\n  <article class=\"b-card b-reveal\"><div class=\"b-card__body\">Rises as it enters</div></article>\n  <article class=\"b-card b-reveal b-reveal--fade\"><div class=\"b-card__body\"><code>--fade</code></div></article>\n  <article class=\"b-card b-reveal b-reveal--scale\"><div class=\"b-card__body\"><code>--scale</code></div></article>\n  <article class=\"b-card b-reveal b-reveal--start\"><div class=\"b-card__body\"><code>--start</code>, from the leading edge</div></article>\n</div>",
+          "markup": "<div class=\"docs-replay\">\n  <button class=\"b-btn b-btn--tinted b-btn--sm\" data-docs-replay=\"#reveal-box\">Play</button>\n  <span class=\"b-caption b-text-secondary\">or scroll inside the box</span>\n</div>\n<div class=\"docs-scrollbox\" id=\"reveal-box\">\n  <div class=\"docs-scrollbox__spacer\">scroll down \u2193</div>\n  <div class=\"b-stack b-gap-3\">\n    <article class=\"b-card b-reveal\"><div class=\"b-card__body\">Rises as it enters</div></article>\n    <article class=\"b-card b-reveal b-reveal--fade\"><div class=\"b-card__body\"><code>--fade</code></div></article>\n    <article class=\"b-card b-reveal b-reveal--scale\"><div class=\"b-card__body\"><code>--scale</code></div></article>\n    <article class=\"b-card b-reveal b-reveal--start\"><div class=\"b-card__body\"><code>--start</code>, from the leading edge</div></article>\n    <article class=\"b-card b-reveal b-reveal--end\"><div class=\"b-card__body\"><code>--end</code>, from the trailing edge</div></article>\n  </div>\n  <div class=\"docs-scrollbox__spacer\">scroll back up to replay \u2191</div>\n</div>",
           "react": {
-            "import": "import { CardBody, Reveal } from \"barua-ui\";",
+            "import": "import { Button, CardBody, Reveal } from \"barua-ui\";",
             "components": [
+              "Button",
               "CardBody",
               "Reveal"
             ],
-            "root": "CardBody",
-            "jsx": "<div className=\"b-stack b-gap-3\">\n  <Reveal className=\"b-card\">\n    <CardBody>Rises as it enters</CardBody>\n  </Reveal>\n  <Reveal className=\"b-card b-reveal--fade\">\n    <CardBody>\n      <code>--fade</code>\n    </CardBody>\n  </Reveal>\n  <Reveal className=\"b-card b-reveal--scale\">\n    <CardBody>\n      <code>--scale</code>\n    </CardBody>\n  </Reveal>\n  <Reveal className=\"b-card b-reveal--start\">\n    <CardBody>\n      <code>--start</code>\n      , from the leading edge\n    </CardBody>\n  </Reveal>\n</div>"
+            "root": "Button",
+            "jsx": "<div className=\"docs-replay\">\n  <Button variant=\"tinted\" size=\"sm\" data-docs-replay=\"#reveal-box\">Play</Button>\n  <span className=\"b-caption b-text-secondary\">or scroll inside the box</span>\n</div>\n<div className=\"docs-scrollbox\" id=\"reveal-box\">\n  <div className=\"docs-scrollbox__spacer\">scroll down \u2193</div>\n  <div className=\"b-stack b-gap-3\">\n    <Reveal className=\"b-card\">\n      <CardBody>Rises as it enters</CardBody>\n    </Reveal>\n    <Reveal className=\"b-card b-reveal--fade\">\n      <CardBody>\n        <code>--fade</code>\n      </CardBody>\n    </Reveal>\n    <Reveal className=\"b-card b-reveal--scale\">\n      <CardBody>\n        <code>--scale</code>\n      </CardBody>\n    </Reveal>\n    <Reveal className=\"b-card b-reveal--start\">\n      <CardBody>\n        <code>--start</code>\n        , from the leading edge\n      </CardBody>\n    </Reveal>\n    <Reveal className=\"b-card b-reveal--end\">\n      <CardBody>\n        <code>--end</code>\n        , from the trailing edge\n      </CardBody>\n    </Reveal>\n  </div>\n  <div className=\"docs-scrollbox__spacer\">scroll back up to replay \u2191</div>\n</div>"
           },
           "knobs": [
             "--b-gap",
             "--b-lg-border",
-            "--b-lg-pane"
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong"
+          ],
+          "states": [
+            "is-active",
+            "is-loading",
+            "is-pressed"
           ]
         },
         {
@@ -10752,6 +10797,11 @@
           "url": "https://ui.barua.tz/docs/interaction.html#rolling-numbers",
           "summary": "SwiftUI's contentTransition(.numericText()) . A figure that changes should travel to its new value rather than blink to it \u2014 on a dashboard the movement is what tells you something happened at all.",
           "classes": [
+            "b-btn",
+            "b-btn--sm",
+            "b-btn--tinted",
+            "b-code",
+            "b-code__header",
             "b-gap-6",
             "b-hstack",
             "b-stack--wrap",
@@ -10759,20 +10809,28 @@
             "b-stat__label",
             "b-stat__value"
           ],
-          "markup": "<div class=\"b-hstack b-gap-6 b-stack--wrap\">\n  <div class=\"b-stat\">\n    <span class=\"b-stat__label\">Messages sent</span>\n    <span class=\"b-stat__value\" data-b-count=\"12480\">0</span>\n  </div>\n  <div class=\"b-stat\">\n    <span class=\"b-stat__label\">Outstanding</span>\n    <span class=\"b-stat__value\" data-b-count=\"4.2\">TZS 0.0M</span>\n  </div>\n</div>",
+          "markup": "<div class=\"docs-replay\">\n  <button class=\"b-btn b-btn--tinted b-btn--sm\" data-docs-replay=\"#count-demo\">Play</button>\n</div>\n<div class=\"b-hstack b-gap-6 b-stack--wrap\">\n  <div class=\"b-stat\">\n    <span class=\"b-stat__label\">Messages sent</span>\n    <span class=\"b-stat__value\" data-b-count=\"12480\" data-docs-from=\"0\">0</span>\n  </div>\n  <div class=\"b-stat\">\n    <span class=\"b-stat__label\">Outstanding</span>\n    <span class=\"b-stat__value\" data-b-count=\"4.2\" data-docs-from=\"TZS 0.0M\">TZS 0.0M</span>\n  </div>\n</div>",
           "react": {
-            "import": "import { Stat } from \"barua-ui\";",
+            "import": "import { Button, Stat } from \"barua-ui\";",
             "components": [
+              "Button",
               "Stat"
             ],
-            "root": "Stat",
-            "jsx": "<div className=\"b-hstack b-gap-6 b-stack--wrap\">\n  <Stat>\n    <span className=\"b-stat__label\">Messages sent</span>\n    <span className=\"b-stat__value\" data-b-count=\"12480\">0</span>\n  </Stat>\n  <Stat>\n    <span className=\"b-stat__label\">Outstanding</span>\n    <span className=\"b-stat__value\" data-b-count=\"4.2\">TZS 0.0M</span>\n  </Stat>\n</div>"
+            "root": "Button",
+            "jsx": "<div className=\"docs-replay\">\n  <Button variant=\"tinted\" size=\"sm\" data-docs-replay=\"#count-demo\">Play</Button>\n</div>\n<div className=\"b-hstack b-gap-6 b-stack--wrap\">\n  <Stat>\n    <span className=\"b-stat__label\">Messages sent</span>\n    <span className=\"b-stat__value\" data-b-count=\"12480\" data-docs-from=\"0\">0</span>\n  </Stat>\n  <Stat>\n    <span className=\"b-stat__label\">Outstanding</span>\n    <span\n      className=\"b-stat__value\"\n      data-b-count=\"4.2\"\n      data-docs-from=\"TZS 0.0M\"\n    >\n      TZS 0.0M\n    </span>\n  </Stat>\n</div>"
           },
           "knobs": [
-            "--b-gap"
+            "--b-gap",
+            "--b-lg-border",
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong"
           ],
           "states": [
+            "is-active",
             "is-down",
+            "is-loading",
+            "is-pressed",
             "is-up"
           ]
         }

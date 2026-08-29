@@ -680,14 +680,34 @@
           element's own position in the scrollport, so the browser drives it —
           no observer, no scroll listener, nothing on the main thread.
         </p>
-        <div class="docs-demo">
-          <div class="b-stack b-gap-3">
-            <article class="b-card b-reveal"><div class="b-card__body">Rises as it enters</div></article>
-            <article class="b-card b-reveal b-reveal--fade"><div class="b-card__body"><code>--fade</code></div></article>
-            <article class="b-card b-reveal b-reveal--scale"><div class="b-card__body"><code>--scale</code></div></article>
-            <article class="b-card b-reveal b-reveal--start"><div class="b-card__body"><code>--start</code>, from the leading edge</div></article>
+        <div class="docs-demo" data-no-code>
+          <div class="docs-replay">
+            <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#reveal-box">Play</button>
+            <span class="b-caption b-text-secondary">or scroll inside the box</span>
+          </div>
+          <div class="docs-scrollbox" id="reveal-box">
+            <div class="docs-scrollbox__spacer">scroll down ↓</div>
+            <div class="b-stack b-gap-3">
+              <article class="b-card b-reveal"><div class="b-card__body">Rises as it enters</div></article>
+              <article class="b-card b-reveal b-reveal--fade"><div class="b-card__body"><code>--fade</code></div></article>
+              <article class="b-card b-reveal b-reveal--scale"><div class="b-card__body"><code>--scale</code></div></article>
+              <article class="b-card b-reveal b-reveal--start"><div class="b-card__body"><code>--start</code>, from the leading edge</div></article>
+              <article class="b-card b-reveal b-reveal--end"><div class="b-card__body"><code>--end</code>, from the trailing edge</div></article>
+            </div>
+            <div class="docs-scrollbox__spacer">scroll back up to replay ↑</div>
           </div>
         </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>The markup</span></div>
+          <pre><code>&lt;article class="b-card b-reveal"&gt;…&lt;/article&gt;
+&lt;article class="b-card b-reveal b-reveal--fade"&gt;…&lt;/article&gt;
+&lt;article class="b-card b-reveal b-reveal--scale"&gt;…&lt;/article&gt;</code></pre>
+        </div>
+        <p class="b-footnote b-text-secondary">
+          The box is its own scrollport, which is why the effect repeats every
+          time you scroll it. On a page the timeline is the page itself, so each
+          element reveals once as it comes up.
+        </p>
         <p>
           The animation finishes while the element is still travelling up the
           screen rather than when it reaches the middle, because a reader should
@@ -745,17 +765,25 @@
           changes should travel to its new value rather than blink to it — on a
           dashboard the movement is what tells you something happened at all.
         </p>
-        <div class="docs-demo">
+        <div class="docs-demo" data-no-code id="count-demo">
+          <div class="docs-replay">
+            <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#count-demo">Play</button>
+          </div>
           <div class="b-hstack b-gap-6 b-stack--wrap">
             <div class="b-stat">
               <span class="b-stat__label">Messages sent</span>
-              <span class="b-stat__value" data-b-count="12480">0</span>
+              <span class="b-stat__value" data-b-count="12480" data-docs-from="0">0</span>
             </div>
             <div class="b-stat">
               <span class="b-stat__label">Outstanding</span>
-              <span class="b-stat__value" data-b-count="4.2">TZS 0.0M</span>
+              <span class="b-stat__value" data-b-count="4.2" data-docs-from="TZS 0.0M">TZS 0.0M</span>
             </div>
           </div>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>The markup</span></div>
+          <pre><code>&lt;span class="b-stat__value" data-b-count="12480"&gt;0&lt;/span&gt;
+&lt;span class="b-stat__value" data-b-count="4.2"&gt;TZS 0.0M&lt;/span&gt;</code></pre>
         </div>
         <p>
           Anything carrying <code>data-b-count</code> rolls once it scrolls into

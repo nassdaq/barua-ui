@@ -519,40 +519,63 @@ import { Button, List, ListItem } from "barua-ui";
 SwiftUI has scrollTransition ; the web now has a scroll timeline. .b-reveal ties an entrance animation to the element's own position in the scrollport, so the browser drives it — no observer, no scroll listener, nothing on the main thread.
 
 - Documentation: https://ui.barua.tz/docs/interaction.html#scroll-reveal
-- Classes: `b-card` `b-card__body` `b-gap-3` `b-reveal` `b-reveal--fade` `b-reveal--scale` `b-reveal--start` `b-stack`
+- Classes: `b-btn` `b-btn--sm` `b-btn--tinted` `b-caption` `b-card` `b-card__body` `b-code` `b-code__header` `b-footnote` `b-gap-3` `b-reveal` `b-reveal--end` `b-reveal--fade` `b-reveal--scale` `b-reveal--start` `b-stack` `b-text-secondary`
 
 ```html
-<div class="b-stack b-gap-3">
-  <article class="b-card b-reveal"><div class="b-card__body">Rises as it enters</div></article>
-  <article class="b-card b-reveal b-reveal--fade"><div class="b-card__body"><code>--fade</code></div></article>
-  <article class="b-card b-reveal b-reveal--scale"><div class="b-card__body"><code>--scale</code></div></article>
-  <article class="b-card b-reveal b-reveal--start"><div class="b-card__body"><code>--start</code>, from the leading edge</div></article>
+<div class="docs-replay">
+  <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#reveal-box">Play</button>
+  <span class="b-caption b-text-secondary">or scroll inside the box</span>
+</div>
+<div class="docs-scrollbox" id="reveal-box">
+  <div class="docs-scrollbox__spacer">scroll down ↓</div>
+  <div class="b-stack b-gap-3">
+    <article class="b-card b-reveal"><div class="b-card__body">Rises as it enters</div></article>
+    <article class="b-card b-reveal b-reveal--fade"><div class="b-card__body"><code>--fade</code></div></article>
+    <article class="b-card b-reveal b-reveal--scale"><div class="b-card__body"><code>--scale</code></div></article>
+    <article class="b-card b-reveal b-reveal--start"><div class="b-card__body"><code>--start</code>, from the leading edge</div></article>
+    <article class="b-card b-reveal b-reveal--end"><div class="b-card__body"><code>--end</code>, from the trailing edge</div></article>
+  </div>
+  <div class="docs-scrollbox__spacer">scroll back up to replay ↑</div>
 </div>
 ```
 
 ```tsx
-import { CardBody, Reveal } from "barua-ui";
+import { Button, CardBody, Reveal } from "barua-ui";
 
-<div className="b-stack b-gap-3">
-  <Reveal className="b-card">
-    <CardBody>Rises as it enters</CardBody>
-  </Reveal>
-  <Reveal className="b-card b-reveal--fade">
-    <CardBody>
-      <code>--fade</code>
-    </CardBody>
-  </Reveal>
-  <Reveal className="b-card b-reveal--scale">
-    <CardBody>
-      <code>--scale</code>
-    </CardBody>
-  </Reveal>
-  <Reveal className="b-card b-reveal--start">
-    <CardBody>
-      <code>--start</code>
-      , from the leading edge
-    </CardBody>
-  </Reveal>
+<div className="docs-replay">
+  <Button variant="tinted" size="sm" data-docs-replay="#reveal-box">Play</Button>
+  <span className="b-caption b-text-secondary">or scroll inside the box</span>
+</div>
+<div className="docs-scrollbox" id="reveal-box">
+  <div className="docs-scrollbox__spacer">scroll down ↓</div>
+  <div className="b-stack b-gap-3">
+    <Reveal className="b-card">
+      <CardBody>Rises as it enters</CardBody>
+    </Reveal>
+    <Reveal className="b-card b-reveal--fade">
+      <CardBody>
+        <code>--fade</code>
+      </CardBody>
+    </Reveal>
+    <Reveal className="b-card b-reveal--scale">
+      <CardBody>
+        <code>--scale</code>
+      </CardBody>
+    </Reveal>
+    <Reveal className="b-card b-reveal--start">
+      <CardBody>
+        <code>--start</code>
+        , from the leading edge
+      </CardBody>
+    </Reveal>
+    <Reveal className="b-card b-reveal--end">
+      <CardBody>
+        <code>--end</code>
+        , from the trailing edge
+      </CardBody>
+    </Reveal>
+  </div>
+  <div className="docs-scrollbox__spacer">scroll back up to replay ↑</div>
 </div>
 ```
 
@@ -621,32 +644,44 @@ import { List, ListItem, Menu } from "barua-ui";
 SwiftUI's contentTransition(.numericText()) . A figure that changes should travel to its new value rather than blink to it — on a dashboard the movement is what tells you something happened at all.
 
 - Documentation: https://ui.barua.tz/docs/interaction.html#rolling-numbers
-- Classes: `b-gap-6` `b-hstack` `b-stack--wrap` `b-stat` `b-stat__label` `b-stat__value`
+- Classes: `b-btn` `b-btn--sm` `b-btn--tinted` `b-code` `b-code__header` `b-gap-6` `b-hstack` `b-stack--wrap` `b-stat` `b-stat__label` `b-stat__value`
 
 ```html
+<div class="docs-replay">
+  <button class="b-btn b-btn--tinted b-btn--sm" data-docs-replay="#count-demo">Play</button>
+</div>
 <div class="b-hstack b-gap-6 b-stack--wrap">
   <div class="b-stat">
     <span class="b-stat__label">Messages sent</span>
-    <span class="b-stat__value" data-b-count="12480">0</span>
+    <span class="b-stat__value" data-b-count="12480" data-docs-from="0">0</span>
   </div>
   <div class="b-stat">
     <span class="b-stat__label">Outstanding</span>
-    <span class="b-stat__value" data-b-count="4.2">TZS 0.0M</span>
+    <span class="b-stat__value" data-b-count="4.2" data-docs-from="TZS 0.0M">TZS 0.0M</span>
   </div>
 </div>
 ```
 
 ```tsx
-import { Stat } from "barua-ui";
+import { Button, Stat } from "barua-ui";
 
+<div className="docs-replay">
+  <Button variant="tinted" size="sm" data-docs-replay="#count-demo">Play</Button>
+</div>
 <div className="b-hstack b-gap-6 b-stack--wrap">
   <Stat>
     <span className="b-stat__label">Messages sent</span>
-    <span className="b-stat__value" data-b-count="12480">0</span>
+    <span className="b-stat__value" data-b-count="12480" data-docs-from="0">0</span>
   </Stat>
   <Stat>
     <span className="b-stat__label">Outstanding</span>
-    <span className="b-stat__value" data-b-count="4.2">TZS 0.0M</span>
+    <span
+      className="b-stat__value"
+      data-b-count="4.2"
+      data-docs-from="TZS 0.0M"
+    >
+      TZS 0.0M
+    </span>
   </Stat>
 </div>
 ```

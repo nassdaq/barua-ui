@@ -100,4 +100,43 @@
       palette.appendChild(li);
     });
   }
+
+  /* ---- Replay for the motion demos -----------------------------------------
+     A one-shot animation runs before anyone scrolls to it, so without this the
+     demos are just static screenshots of the finished state. */
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest("[data-docs-replay]");
+    if (!button) return;
+    var target = document.querySelector(button.getAttribute("data-docs-replay"));
+    if (!target) return;
+
+    /* A scrollport replays by going back to the top. */
+    if (target.classList.contains("docs-scrollbox")) {
+      target.scrollTo({ top: 0, behavior: "instant" });
+      requestAnimationFrame(function () {
+        target.scrollTo({ top: target.scrollHeight, behavior: "smooth" });
+      });
+      return;
+    }
+
+    /* Anything else: strip the effect classes, force a reflow, put them back. */
+    var animated = target.querySelectorAll("[class*='b-icon--']");
+    animated.forEach(function (el) {
+      var classes = Array.prototype.filter.call(el.classList, function (c) {
+        return c.indexOf("b-icon--") === 0;
+      });
+      classes.forEach(function (c) { el.classList.remove(c); });
+      void el.offsetWidth;
+      classes.forEach(function (c) { el.classList.add(c); });
+    });
+
+    /* Counters restart from zero. */
+    target.querySelectorAll("[data-b-count]").forEach(function (el) {
+      var to = parseFloat(el.getAttribute("data-b-count"));
+      var reset = el.getAttribute("data-docs-from");
+      if (reset !== null) el.textContent = reset;
+      if (window.Barua && Barua.count) Barua.count(el, to);
+    });
+  });
+
 })();

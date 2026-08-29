@@ -446,3 +446,29 @@
   border-radius: var(--b-radius-full);
   border: 1px solid var(--b-separator);
 }
+
+/* ---- Replayable demos ------------------------------------------------------------ */
+/* An animation you cannot re-run is a screenshot. These give the motion demos a
+   way to happen again: a scrollport you can scroll inside, and a replay button. */
+.docs-scrollbox {
+  height: 17rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--b-space-4);
+  border: 1px solid var(--b-separator);
+  border-radius: var(--b-radius-lg);
+  background: var(--b-surface-2);
+}
+.docs-scrollbox__spacer {
+  height: 13rem;
+  display: grid;
+  place-items: center;
+  color: var(--b-text-tertiary);
+  font-size: var(--b-text-caption);
+}
+.docs-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--b-space-2);
+  margin-block-end: var(--b-space-3);
+}
