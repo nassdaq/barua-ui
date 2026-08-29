@@ -1,0 +1,34 @@
+{
+  "default": "ambient",
+  "sets": {
+    "ambient": {
+      "about": "Backdrops for the wall: things to put glass in front of. They have to hold text, so they stay quiet in the middle and keep their interest at the edges.",
+      "prompts": [
+        {"name": "dusk-ridge", "prompt": "a distant mountain ridge at dusk, deep indigo sky grading to warm amber at the horizon, soft atmospheric haze, minimal, vast negative space, photographic, calm"},
+        {"name": "still-water", "prompt": "still water at first light, pale mist, a single dark shoreline low in the frame, muted teal and grey, enormous empty sky, meditative"},
+        {"name": "dune-light", "prompt": "sand dunes in late afternoon light, long soft shadows, warm ochre and cream, smooth gradients, abstract and uncluttered"},
+        {"name": "forest-fog", "prompt": "conifer forest under heavy fog, receding layers of muted green fading to grey, soft diffuse light, tranquil, plenty of empty space"},
+        {"name": "night-coast", "prompt": "a coastline at night under starlight, deep navy and black, faint warm glow at the horizon, very dark, restful, room for bright text"},
+        {"name": "salt-flat", "prompt": "a salt flat at golden hour, thin reflective water, pale lilac and gold, near-symmetrical, wide and empty, serene"},
+        {"name": "granite", "prompt": "weathered granite rock face, close but abstract, cool grey with faint mineral warmth, soft directional light, texture without busyness"},
+        {"name": "rain-glass", "prompt": "rain on a dark window at night, bokeh city light far behind, deep blue-black with amber points, moody and quiet"}
+      ]
+    },
+    "cave": {
+      "about": "The Barua wall: ochre pigment on stone, the house look.",
+      "prompts": [
+        {"name": "cave-ochre", "prompt": "ancient cave wall, warm ochre and umber pigment on rough stone, faint hand-painted animal forms, soft raking firelight, weathered, earthy, muted"},
+        {"name": "cave-charcoal", "prompt": "prehistoric cave painting in charcoal and red earth on pale limestone, sparse marks, deep shadow, quiet and old"},
+        {"name": "cave-dark", "prompt": "a dark cave interior, faint warm pigment marks on stone catching low firelight, mostly deep shadow, mysterious, generous darkness"}
+      ]
+    },
+    "gradient": {
+      "about": "Mesh gradients — genuinely expensive at runtime, free once baked to an image.",
+      "prompts": [
+        {"name": "mesh-blue", "prompt": "smooth abstract mesh gradient, deep blue through violet to soft rose, no banding, glossy, minimal, no shapes or objects"},
+        {"name": "mesh-warm", "prompt": "smooth abstract mesh gradient, amber through coral to deep plum, soft blended transitions, minimal, no objects"},
+        {"name": "mesh-cool", "prompt": "smooth abstract mesh gradient, teal through emerald to deep navy, soft blended, minimal, no objects"}
+      ]
+    }
+  }
+}

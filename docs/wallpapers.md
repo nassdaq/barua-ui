@@ -9,6 +9,13 @@ Four things, each with exactly one answer per picture, so computing them per vis
 
 - Documentation: https://ui.barua.tz/docs/wallpapers.html#what-is-baked
 
+## Making more of them
+
+The pictures above are stock photographs standing in for a real pack — they prove the pipeline, they are not the product. Generating the pack is the one part that genuinely wants a GPU, and it is the front of the same conveyor: generate, bake, publish.
+
+- Documentation: https://ui.barua.tz/docs/wallpapers.html#making-more
+- Classes: `b-code` `b-code__header`
+
 ## City
 
 - Documentation: https://ui.barua.tz/docs/wallpapers.html#wall-city

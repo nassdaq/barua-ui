@@ -126,7 +126,34 @@
         </p>
       </section>
 
-      <section class="docs-section" id="wall-city">
+            <section class="docs-section" id="making-more">
+        <h2>Making more of them</h2>
+        <p>
+          The pictures above are stock photographs standing in for a real pack —
+          they prove the pipeline, they are not the product. Generating the pack
+          is the one part that genuinely wants a GPU, and it is the front of the
+          same conveyor: generate, bake, publish.
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>Either GPU, one script</span></div>
+          <pre><code># on an Apple GPU, for judging a look
+python3 tools/gpu/generate.py --set ambient --count 2
+
+# on a rented card, for producing the pack
+LINODE_TOKEN=... tools/gpu/on-linode.sh --set ambient
+
+# then the part that makes it shippable
+python3 tools/bake-wallpaper.py tools/gpu/out/*.png
+python3 tools/build-wallpaper-gallery.py</code></pre>
+        </div>
+        <p>
+          The rented machine is destroyed from a trap that fires whether the run
+          finishes, fails or is interrupted, and everything it creates is tagged
+          — a GPU nobody remembered bills all night.
+        </p>
+      </section>
+
+<section class="docs-section" id="wall-city">
         <h2>City</h2>
         <div class="docs-demo" data-no-code>
           <div class="docs-wall" style="background-image: url('../wallpapers/city/full.jpg')">

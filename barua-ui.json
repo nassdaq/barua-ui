@@ -1983,6 +1983,18 @@
           "markup": ""
         },
         {
+          "id": "making-more",
+          "title": "Making more of them",
+          "category": "wallpapers",
+          "url": "https://ui.barua.tz/docs/wallpapers.html#making-more",
+          "summary": "The pictures above are stock photographs standing in for a real pack \u2014 they prove the pipeline, they are not the product. Generating the pack is the one part that genuinely wants a GPU, and it is the front of the same conveyor: generate, bake, publish.",
+          "classes": [
+            "b-code",
+            "b-code__header"
+          ],
+          "markup": ""
+        },
+        {
           "id": "wall-city",
           "title": "City",
           "category": "wallpapers",

@@ -34,7 +34,7 @@ Machine-readable index of every component, with canonical markup:
 
 - [Principles — the eight ideas the system is built on, and what enforces each](https://ui.barua.tz/docs/principles.html): 8 components
 - [Theming — light and dark, the named accents, and carrying a brand colour without breaking danger](https://ui.barua.tz/docs/theming.html): 5 components
-- [Wallpapers — pictures shipped finished: sized, blurred, with the accent and scheme already worked out](https://ui.barua.tz/docs/wallpapers.html): 4 components
+- [Wallpapers — pictures shipped finished: sized, blurred, with the accent and scheme already worked out](https://ui.barua.tz/docs/wallpapers.html): 5 components
 - [React — the typed bindings: install, Server Components, and the component index](https://ui.barua.tz/docs/react.html): 7 components
 - [Foundations — tokens, colour, type, materials, motion](https://ui.barua.tz/docs/foundations.html): 20 components
 - [Icons — the 20×20 glyph set](https://ui.barua.tz/docs/icons.html): 3 components
