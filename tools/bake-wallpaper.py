@@ -185,7 +185,13 @@ def main() -> None:
 
     args.out.mkdir(parents=True, exist_ok=True)
     index_path.write_text(json.dumps({"wallpapers": index}, indent=2) + "\n")
-    print(f"\n{index_path.relative_to(ROOT)}: {len(index)} wallpaper(s)")
+    # A tidy relative path when the output is inside the project, the real one
+    # when it is not. Printing a path should never be the thing that fails.
+    try:
+        shown = index_path.relative_to(ROOT)
+    except ValueError:
+        shown = index_path
+    print(f"\n{shown}: {len(index)} wallpaper(s)")
 
 
 if __name__ == "__main__":
