@@ -6,3 +6,5 @@ Demo media from Pixabay, used under the Pixabay Content License.
 - `team` — Pixabay #5382501 by RonaldCandonga — https://pixabay.com/photos/job-office-team-business-internet-5382501/
 - `typing.mp4` — Pixabay #1046 by Coverr-Free-Footage — https://pixabay.com/videos/id-1046/
 - `city` — Pixabay #5189837 by Starkvisuals — https://pixabay.com/photos/rock-formation-rock-cliff-geology-5189837/
+
+`docs/assets/city-baked.jpg` is the same `city` photograph reduced to 64px for the baked-glass demonstration, under the same licence.

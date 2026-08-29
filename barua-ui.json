@@ -2456,6 +2456,7 @@
             "b-code__header",
             "b-flex",
             "b-flex--center",
+            "b-footnote",
             "b-gap-2",
             "b-material-chrome",
             "b-material-regular",
@@ -2464,7 +2465,9 @@
             "b-material-ultrathin",
             "b-radius-lg",
             "b-stack",
-            "b-stack--center"
+            "b-stack--center",
+            "b-subheadline",
+            "b-text-secondary"
           ],
           "markup": "<div class=\"b-stack b-stack--center b-gap-2\">\n  <div class=\"b-material-ultrathin b-radius-lg b-flex b-flex--center b-callout\" style=\"width: 7rem; height: 4.5rem\">Aa</div>\n  <code>.b-material-ultrathin</code>\n</div>\n<div class=\"b-stack b-stack--center b-gap-2\">\n  <div class=\"b-material-thin b-radius-lg b-flex b-flex--center b-callout\" style=\"width: 7rem; height: 4.5rem\">Aa</div>\n  <code>.b-material-thin</code>\n</div>\n<div class=\"b-stack b-stack--center b-gap-2\">\n  <div class=\"b-material-regular b-radius-lg b-flex b-flex--center b-callout\" style=\"width: 7rem; height: 4.5rem\">Aa</div>\n  <code>.b-material-regular</code>\n</div>\n<div class=\"b-stack b-stack--center b-gap-2\">\n  <div class=\"b-material-thick b-radius-lg b-flex b-flex--center b-callout\" style=\"width: 7rem; height: 4.5rem\">Aa</div>\n  <code>.b-material-thick</code>\n</div>\n<div class=\"b-stack b-stack--center b-gap-2\">\n  <div class=\"b-material-chrome b-radius-lg b-flex b-flex--center b-callout\" style=\"width: 7rem; height: 4.5rem\">Aa</div>\n  <code>.b-material-chrome</code>\n</div>",
           "react": {

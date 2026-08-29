@@ -1061,6 +1061,27 @@
           appears to look through itself. Switch a document over with one
           attribute:
         </p>
+        <!-- barua-lint disable unknown-class: the two techniques have to sit side by
+             side to be compared, which the document-level attribute cannot do -->
+        <div class="docs-demo" data-no-code>
+          <div class="docs-glass-scene">
+            <div class="docs-glass-panel docs-glass-panel--live">
+              <div class="docs-glass-panel__label">Live</div>
+              <p class="b-subheadline">backdrop-filter blurs the photograph on every frame that changes.</p>
+            </div>
+            <div class="docs-glass-panel docs-glass-panel--baked">
+              <div class="docs-glass-panel__label">Baked</div>
+              <p class="b-subheadline">The same photograph at 64&times;42, 1,956 bytes, drawn back at cover size.</p>
+            </div>
+          </div>
+        </div>
+        <p class="b-footnote b-text-secondary">
+          Left is the real filter, right is a two-kilobyte thumbnail of the same
+          photograph — the original is 617 KB. Scroll the page: both stay pinned
+          to the viewport, which is exactly why the baked copy keeps sitting over
+          the sharp original in a real app. Photograph by Starkvisuals on
+          Pixabay.
+        </p>
         <div class="b-code">
           <div class="b-code__header"><span>Two ways to the same picture</span></div>
           <pre><code>&lt;html data-b-glass="baked"&gt;      &lt;!-- no backdrop-filter anywhere --&gt;

@@ -373,3 +373,42 @@
   --b-color-danger:        light-dark(#c8005a, #ff4d94);
   --b-color-danger-soft:   light-dark(rgba(200, 0, 90, 0.12), rgba(255, 77, 148, 0.18));
 }
+
+/* ---- Baked glass demo ------------------------------------------------------------ */
+/* Two panels over one photograph: the left blurs it live, the right draws a 2 KB
+   thumbnail of it. Both the scene and the thumbnail are `fixed`, which is what
+   makes them line up — the same reason it works over .b-wall in a real app. */
+.docs-glass-scene {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--b-space-4);
+  padding: var(--b-space-5);
+  border-radius: var(--b-radius-xl);
+  background: url("../examples/assets/media/city.jpg") center / cover fixed;
+}
+@media (max-width: 40rem) {
+  .docs-glass-scene { grid-template-columns: 1fr; }
+}
+.docs-glass-panel {
+  padding: var(--b-space-4);
+  border-radius: var(--b-radius-lg);
+  border: 1px solid light-dark(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+  box-shadow: var(--b-glass-ambient);
+  color: var(--b-text);
+}
+.docs-glass-panel--live {
+  background: var(--b-material-regular-bg);
+  -webkit-backdrop-filter: var(--b-glass);
+  backdrop-filter: var(--b-glass);
+}
+.docs-glass-panel--baked {
+  background:
+    linear-gradient(light-dark(rgba(252, 252, 254, 0.55), rgba(30, 30, 36, 0.55)),
+                    light-dark(rgba(252, 252, 254, 0.55), rgba(30, 30, 36, 0.55))),
+    url("assets/city-baked.jpg") center / cover fixed;
+}
+.docs-glass-panel__label {
+  font-size: var(--b-text-caption);
+  font-weight: var(--b-weight-semibold);
+  color: var(--b-text-secondary);
+}
