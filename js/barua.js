@@ -295,6 +295,9 @@
      keep the blur + specular look untouched. */
   function enableRefraction() {
     if (!("chrome" in window) || !CSS.supports("backdrop-filter", "url(#x)")) return;
+    // A displacement map over a live backdrop is the most expensive thing this
+    // system can draw. If transparency has been turned down, do not draw it.
+    if (matchMedia("(prefers-reduced-transparency: reduce)").matches) return;
     // Displacement map: R encodes X, G encodes Y, neutral center, active rim.
     var map =
       "data:image/svg+xml," +

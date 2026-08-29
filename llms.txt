@@ -23,11 +23,12 @@ Machine-readable index of every component, with canonical markup:
 7. On desktop a surface does not page-scroll. Use .b-stage for screens that must fit, and .b-scroll-area for the panes that may grow.
 8. A scroll pane's children must never be forced to the pane's height (no h-full inside a scroll area) or scrolling silently dies.
 9. Hover, selection and active are different states and must look different: hover is a quiet fill, selection is accent-soft, focus is the focus ring.
-10. Surfaces never stack materials. A panel inside glass is a fill, not a second material.
-11. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
-12. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
-13. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
-14. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
+10. Surfaces never stack materials. A panel inside glass is a fill, not a second material — nesting one blur inside another makes the GPU blur an already-blurred backdrop, which is the main way this system gets slow.
+11. Materials turn opaque under prefers-reduced-transparency and where backdrop-filter is unsupported, so never use translucency alone to carry meaning.
+12. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
+13. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
+14. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
+15. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
 
 ## Documentation
 

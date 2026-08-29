@@ -329,6 +329,46 @@
   [data-theme="light"] { color-scheme: light; }
   [data-theme="dark"]  { color-scheme: dark; }
 
+  /* ---- When glass costs too much, or cannot be drawn ---------------------- */
+  /*
+   * Two situations, one answer: make the materials opaque.
+   *
+   * "Reduce transparency" is the switch people flip when blur is expensive on
+   * their hardware or hard to read against — macOS, iOS and Windows all expose
+   * it, and honouring it is not decoration, it is the only relief we offer a
+   * weak GPU. The @supports case is the browser that cannot draw a backdrop
+   * filter at all, where an ultrathin material is a 22%-alpha wash over a
+   * wallpaper and the text on it stops being legible.
+   *
+   * Overriding the tokens rather than the components means every glass surface
+   * in the system answers at once — the blur variables resolve to none, so the
+   * 137 backdrop-filter declarations turn themselves off.
+   */
+  @media (prefers-reduced-transparency: reduce) {
+    :root {
+      --b-glass: none;
+      --b-glass-light: none;
+      --b-glass-heavy: none;
+      --b-material-ultrathin-bg: var(--b-surface);
+      --b-material-thin-bg:      var(--b-surface);
+      --b-material-regular-bg:   var(--b-surface);
+      --b-material-thick-bg:     var(--b-surface);
+      --b-material-chrome-bg:    var(--b-surface-2);
+      --b-material-neutral-bg:   var(--b-surface-2);
+    }
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    :root {
+      --b-material-ultrathin-bg: var(--b-surface);
+      --b-material-thin-bg:      var(--b-surface);
+      --b-material-regular-bg:   var(--b-surface);
+      --b-material-thick-bg:     var(--b-surface);
+      --b-material-chrome-bg:    var(--b-surface-2);
+      --b-material-neutral-bg:   var(--b-surface-2);
+    }
+  }
+
   /* Accent re-tinting: <html data-accent="purple"> etc. */
   [data-accent="indigo"] { --b-color-accent: var(--b-color-indigo); --b-color-accent-hover: color-mix(in srgb, var(--b-color-indigo) 85%, black); --b-color-accent-soft: var(--b-color-indigo-soft); --b-color-accent-text: var(--b-color-indigo); }
   [data-accent="purple"] { --b-color-accent: var(--b-color-purple); --b-color-accent-hover: color-mix(in srgb, var(--b-color-purple) 85%, black); --b-color-accent-soft: var(--b-color-purple-soft); --b-color-accent-text: var(--b-color-purple); }

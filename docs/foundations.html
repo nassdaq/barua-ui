@@ -1027,7 +1027,24 @@
             <code>.b-material-chrome</code>
           </div>
         </div>
-      </section>
+      
+        <div class="docs-a11y">
+          <div>
+            <strong>When glass is too expensive.</strong> Every material is a
+            translucent fill plus a <code>backdrop-filter</code>, and a blur
+            costs the GPU a pass over everything behind it — the price scales
+            with blur radius and painted area, not with how much markup you
+            wrote. Under
+            <code>prefers-reduced-transparency</code> the material tokens
+            resolve to opaque surfaces and the blurs to <code>none</code>, so
+            every glass surface in the system turns solid at once. The same
+            happens where <code>backdrop-filter</code> is unsupported, because
+            an ultrathin material without its blur is a 22% wash that text
+            cannot survive. Liquid refraction, the most expensive thing here,
+            does not start at all.
+          </div>
+        </div>
+</section>
 
       <section class="docs-section" id="borders-dividers">
         <h2>Borders &amp; Dividers</h2>
