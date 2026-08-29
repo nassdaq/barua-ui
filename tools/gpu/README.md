@@ -33,8 +33,13 @@ paying for right now" without touching anything else in the account:
 
 ```sh
 curl -H "Authorization: Bearer $LINODE_TOKEN" \
-  "https://api.linode.com/v4/linode/instances?tag=barua-wallpaper"
+  -H 'X-Filter: {"tags":"barua-wallpaper"}' \
+  https://api.linode.com/v4/linode/instances
 ```
+
+Use the header. A `?tag=` query string is accepted and silently ignored — it
+returns the entire account, so it either looks alarming or looks fine, and
+means neither.
 
 The bootstrap is copied from the photo fleet in `nasiemails`, reboot and all —
 the NVIDIA module is built for the kernel `apt` just installed, not the one

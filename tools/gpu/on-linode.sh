@@ -9,7 +9,17 @@
 #
 #   LINODE_TOKEN=... tools/gpu/on-linode.sh --set ambient
 #
+# To audit what this has left behind, filter with the X-Filter header. A ?tag=
+# query string is accepted and silently ignored, so it answers with the whole
+# account and looks reassuring while telling you nothing:
+#
+#   curl -H "Authorization: Bearer $LINODE_TOKEN" \
+#        -H 'X-Filter: {"tags":"barua-wallpaper"}' \
+#        https://api.linode.com/v4/linode/instances
+#
 set -euo pipefail
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 PLAN="${PLAN:-g2-gpu-rtx4000a1-s}"      # RTX 4000 Ada, $0.52/hr at the time of writing
 REGION="${REGION:-jp-osa}"              # where the photo fleet already runs
@@ -20,6 +30,13 @@ OUT="${OUT:-tools/gpu/out}"
 ARGS="${*:---set ambient}"
 
 : "${LINODE_TOKEN:?set LINODE_TOKEN (the same token the mail app uses)}"
+
+# Everything that can be checked for free is checked before anything is rented.
+for needed in "$HERE/generate.py" "$HERE/prompts.json"; do
+  [ -f "$needed" ] || { echo "missing: $needed"; exit 1; }
+done
+[ -f ~/.ssh/id_ed25519.pub ] || [ -f ~/.ssh/id_rsa.pub ] || {
+  echo "no ssh public key — the node would be unreachable"; exit 1; }
 
 api() {
   curl -sS --max-time 30 \
@@ -93,7 +110,7 @@ nvidia-smi || echo "no nvidia-smi yet — the generator will say what it found"
 REMOTE
 
 echo "→ generating"
-scp -o StrictHostKeyChecking=no -q tools/gpu/generate.py tools/gpu/prompts.json "root@$IP:/opt/gen/"
+scp -o StrictHostKeyChecking=no -q "$HERE/generate.py" "$HERE/prompts.json" "root@$IP:/opt/gen/"
 ssh -o StrictHostKeyChecking=no "root@$IP" \
   "cd /opt/gen && ./bin/python generate.py $ARGS --out /opt/gen/out"
 
