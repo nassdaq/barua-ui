@@ -238,12 +238,49 @@
      to learn the accent and the light/dark scheme from it. */
   const WALL_KEY = "barua-wallpaper";
   Barua.wallpaper = {
+    /**
+     * Reduce the picture to a thumbnail. Drawn back at cover size, a 64px-wide
+     * image *is* a blur — that is what the scaler does to it — and it weighs
+     * about a kilobyte. Baked once here so no frame has to blur anything.
+     */
+    async bake(src, { edge = 64 } = {}) {
+      try {
+        const image = await new Promise((done, fail) => {
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          img.onload = () => done(img);
+          img.onerror = fail;
+          // A source that neither loads nor errors would leave this pending for
+          // the life of the page. Baking is an optimisation; it may give up.
+          setTimeout(() => fail(new Error("wallpaper bake timed out")), 8000);
+          img.src = src;
+        });
+        const ratio = image.height / image.width || 1;
+        const canvas = document.createElement("canvas");
+        canvas.width = edge;
+        canvas.height = Math.max(1, Math.round(edge * ratio));
+        const context = canvas.getContext("2d");
+        context.imageSmoothingQuality = "high";
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        return canvas.toDataURL("image/webp", 0.7);
+      } catch (_) {
+        return null;  // A wallpaper we cannot read is not worth failing over.
+      }
+    },
+
     /** Hang a picture. `src` is any CSS image source: a URL or a data URI. */
-    async set(src, { adapt = true, remember = true } = {}) {
+    async set(src, { adapt = true, remember = true, bake = true } = {}) {
       document.documentElement.style.setProperty("--b-wall-image", 'url("' + src + '")');
       document.documentElement.classList.add("b-has-wallpaper");
       if (remember) {
         try { localStorage.setItem(WALL_KEY, src); } catch (_) {}
+      }
+      if (bake) {
+        this.bake(src).then((small) => {
+          if (!small) return;
+          document.documentElement.style.setProperty("--b-wall-blur", 'url("' + small + '")');
+          try { localStorage.setItem(WALL_KEY + "-blur", small); } catch (_) {}
+        });
       }
       if (adapt && Barua.adapt) {
         try { return await Barua.adapt(src); } catch (_) { return null; }
@@ -268,8 +305,9 @@
     /** Back to the bare wall, and back to the stock accent. */
     clear() {
       document.documentElement.style.removeProperty("--b-wall-image");
+      document.documentElement.style.removeProperty("--b-wall-blur");
       document.documentElement.classList.remove("b-has-wallpaper");
-      try { localStorage.removeItem(WALL_KEY); } catch (_) {}
+      try { localStorage.removeItem(WALL_KEY); localStorage.removeItem(WALL_KEY + "-blur"); } catch (_) {}
       if (Barua.adapt) Barua.adapt.reset();
     },
     get() {
@@ -278,8 +316,15 @@
     /** Re-hang the remembered picture. Called once on load. */
     restore() {
       const src = this.get();
-      if (src) return this.set(src, { remember: false });
-      return Promise.resolve(null);
+      if (!src) return Promise.resolve(null);
+      // The bake is already done and stored; put it straight back rather than
+      // re-deriving it on every load. Baking once is the entire point.
+      let baked = null;
+      try { baked = localStorage.getItem(WALL_KEY + "-blur"); } catch (_) {}
+      if (baked) {
+        document.documentElement.style.setProperty("--b-wall-blur", 'url("' + baked + '")');
+      }
+      return this.set(src, { remember: false, bake: !baked });
     },
   };
   if (document.readyState === "loading") {
@@ -287,6 +332,32 @@
   } else {
     Barua.wallpaper.restore();
   }
+
+  /* ---- Glass mode ----------------------------------------------------------
+     Live glass asks the GPU to blur the backdrop every frame it changes. Baked
+     glass uses the thumbnail cut when the wallpaper was hung: the same picture,
+     already blurred by being small, pinned to the viewport so it lines up with
+     the wall behind. Only meaningful over a wallpaper, which is why the CSS is
+     scoped to .b-has-wallpaper. */
+  Barua.glass = {
+    /** "live" (GPU blur) or "baked" (pre-computed). Returns the mode set. */
+    mode(next) {
+      const root = document.documentElement;
+      if (next === "baked") root.setAttribute("data-b-glass", "baked");
+      else root.removeAttribute("data-b-glass");
+      try { localStorage.setItem("barua-glass-mode", next === "baked" ? "baked" : "live"); } catch (_) {}
+      return next === "baked" ? "baked" : "live";
+    },
+    get() {
+      return document.documentElement.getAttribute("data-b-glass") === "baked" ? "baked" : "live";
+    },
+    restore() {
+      let saved = null;
+      try { saved = localStorage.getItem("barua-glass-mode"); } catch (_) {}
+      if (saved === "baked") this.mode("baked");
+    },
+  };
+  Barua.glass.restore();
 
   /* ---- Real refraction (Tier 2 glass) --------------------------------------
      Injects an SVG displacement-map filter and enables `backdrop-filter:

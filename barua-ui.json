@@ -1599,6 +1599,7 @@
     "--b-slide-w",
     "--b-slider-fill",
     "--b-thumb-size",
+    "--b-wall-blur",
     "--b-wall-ground",
     "--b-wall-image",
     "--done",
@@ -2451,6 +2452,8 @@
           "summary": "Five glass thicknesses, from a whisper to nearly opaque. Thinner materials show more of what's behind but hold less legible content \u2014 use ultrathin and thin for hover surfaces, regular for floating toolbars and glass cards, thick for sheets, and chrome for app bars. .b-material-accent adds a Barua-blue tint. Each class pairs its --b-material-*-bg token with the --b-glass backdrop filter and a hairline border.",
           "classes": [
             "b-callout",
+            "b-code",
+            "b-code__header",
             "b-flex",
             "b-flex--center",
             "b-gap-2",
@@ -2472,6 +2475,12 @@
             "root": "Callout",
             "jsx": "<div className=\"b-stack b-stack--center b-gap-2\">\n  <Callout\n    className=\"b-material-ultrathin b-radius-lg b-flex b-flex--center\"\n    style={{ width: \"7rem\", height: \"4.5rem\" }}\n  >\n    Aa\n  </Callout>\n  <code>.b-material-ultrathin</code>\n</div>\n<div className=\"b-stack b-stack--center b-gap-2\">\n  <Callout\n    className=\"b-material-thin b-radius-lg b-flex b-flex--center\"\n    style={{ width: \"7rem\", height: \"4.5rem\" }}\n  >\n    Aa\n  </Callout>\n  <code>.b-material-thin</code>\n</div>\n<div className=\"b-stack b-stack--center b-gap-2\">\n  <Callout\n    className=\"b-material-regular b-radius-lg b-flex b-flex--center\"\n    style={{ width: \"7rem\", height: \"4.5rem\" }}\n  >\n    Aa\n  </Callout>\n  <code>.b-material-regular</code>\n</div>\n<div className=\"b-stack b-stack--center b-gap-2\">\n  <Callout\n    className=\"b-material-thick b-radius-lg b-flex b-flex--center\"\n    style={{ width: \"7rem\", height: \"4.5rem\" }}\n  >\n    Aa\n  </Callout>\n  <code>.b-material-thick</code>\n</div>\n<div className=\"b-stack b-stack--center b-gap-2\">\n  <Callout\n    className=\"b-material-chrome b-radius-lg b-flex b-flex--center\"\n    style={{ width: \"7rem\", height: \"4.5rem\" }}\n  >\n    Aa\n  </Callout>\n  <code>.b-material-chrome</code>\n</div>"
           },
+          "variants": [
+            {
+              "id": "baked-glass",
+              "title": "Baked glass"
+            }
+          ],
           "knobs": [
             "--b-gap"
           ]

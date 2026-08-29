@@ -329,6 +329,52 @@
   [data-theme="light"] { color-scheme: light; }
   [data-theme="dark"]  { color-scheme: dark; }
 
+  /* ---- Baked glass -------------------------------------------------------
+   *
+   * The blur behind a panel is recomputed by the GPU every frame it changes.
+   * But when the thing behind it is the wallpaper, that blur has exactly one
+   * possible answer, and it can be worked out once instead.
+   *
+   * `Barua.wallpaper` bakes a heavily downscaled copy of the picture when it is
+   * hung — a 64px-wide image is about a kilobyte, and drawing it back at cover
+   * size is a blur, because that is what interpolation does. Both the wall and
+   * the copy are `fixed`, so the copy lands exactly where the sharp original
+   * sits underneath and the panel looks through itself.
+   *
+   * No backdrop-filter, no compositor layer per panel, no per-frame pass: the
+   * expensive part already happened, and what is left is drawing an image.
+   *
+   * Only for panels over the wall. Anything that must blur live content —
+   * a sheet over a scrolling list — keeps the real filter, so this is opt-in
+   * per document rather than a global swap.
+   */
+  .b-has-wallpaper[data-b-glass="baked"] {
+    --b-glass: none;
+    --b-glass-light: none;
+    --b-glass-heavy: none;
+
+    --b-material-ultrathin-bg:
+      linear-gradient(light-dark(rgba(255, 255, 255, 0.22), rgba(30, 30, 36, 0.25)),
+                      light-dark(rgba(255, 255, 255, 0.22), rgba(30, 30, 36, 0.25))),
+      var(--b-wall-blur, none) center / cover no-repeat fixed;
+    --b-material-thin-bg:
+      linear-gradient(light-dark(rgba(255, 255, 255, 0.38), rgba(30, 30, 36, 0.40)),
+                      light-dark(rgba(255, 255, 255, 0.38), rgba(30, 30, 36, 0.40))),
+      var(--b-wall-blur, none) center / cover no-repeat fixed;
+    --b-material-regular-bg:
+      linear-gradient(light-dark(rgba(252, 252, 254, 0.55), rgba(30, 30, 36, 0.55)),
+                      light-dark(rgba(252, 252, 254, 0.55), rgba(30, 30, 36, 0.55))),
+      var(--b-wall-blur, none) center / cover no-repeat fixed;
+    --b-material-thick-bg:
+      linear-gradient(light-dark(rgba(250, 250, 253, 0.72), rgba(28, 28, 34, 0.74)),
+                      light-dark(rgba(250, 250, 253, 0.72), rgba(28, 28, 34, 0.74))),
+      var(--b-wall-blur, none) center / cover no-repeat fixed;
+    --b-material-chrome-bg:
+      linear-gradient(light-dark(rgba(248, 249, 252, 0.62), rgba(22, 22, 27, 0.66)),
+                      light-dark(rgba(248, 249, 252, 0.62), rgba(22, 22, 27, 0.66))),
+      var(--b-wall-blur, none) center / cover no-repeat fixed;
+  }
+
   /* ---- When glass costs too much, or cannot be drawn ---------------------- */
   /*
    * Two situations, one answer: make the materials opaque.

@@ -401,7 +401,7 @@ The blur scale feeds the glass materials. Rather than using raw blur values, rea
 Five glass thicknesses, from a whisper to nearly opaque. Thinner materials show more of what's behind but hold less legible content — use ultrathin and thin for hover surfaces, regular for floating toolbars and glass cards, thick for sheets, and chrome for app bars. .b-material-accent adds a Barua-blue tint. Each class pairs its --b-material-*-bg token with the --b-glass backdrop filter and a hairline border.
 
 - Documentation: https://ui.barua.tz/docs/foundations.html#materials
-- Classes: `b-callout` `b-flex` `b-flex--center` `b-gap-2` `b-material-chrome` `b-material-regular` `b-material-thick` `b-material-thin` `b-material-ultrathin` `b-radius-lg` `b-stack` `b-stack--center`
+- Classes: `b-callout` `b-code` `b-code__header` `b-flex` `b-flex--center` `b-gap-2` `b-material-chrome` `b-material-regular` `b-material-thick` `b-material-thin` `b-material-ultrathin` `b-radius-lg` `b-stack` `b-stack--center`
 
 ```html
 <div class="b-stack b-stack--center b-gap-2">

@@ -463,7 +463,8 @@ Classes: b-caption2 b-gap-1 b-stack b-stack--center b-text-tertiary
 
 ### Materials  (https://ui.barua.tz/docs/foundations.html#materials)
 Five glass thicknesses, from a whisper to nearly opaque. Thinner materials show more of what's behind but hold less legible content — use ultrathin and thin for hover surfaces, regular for floating toolbars and glass cards, thick for sheets, and chrome for app bars. .b-material-accent adds a Barua-blue tint. Each class pairs its --b-material-*-bg token with the --b-glass backdrop filter and a hairline border.
-Classes: b-callout b-flex b-flex--center b-gap-2 b-material-chrome b-material-regular b-material-thick b-material-thin b-material-ultrathin b-radius-lg b-stack b-stack--center
+Variants: Baked glass
+Classes: b-callout b-code b-code__header b-flex b-flex--center b-gap-2 b-material-chrome b-material-regular b-material-thick b-material-thin b-material-ultrathin b-radius-lg b-stack b-stack--center
 
 ```html
 <div class="b-stack b-stack--center b-gap-2">

@@ -1044,6 +1044,47 @@
             does not start at all.
           </div>
         </div>
+
+        <h3 id="baked-glass">Baked glass</h3>
+        <p>
+          A blur is recomputed by the GPU on every frame that changes beneath
+          it. When the thing beneath is the wallpaper, that blur has exactly one
+          possible answer — so it can be worked out once, at the moment the
+          picture is hung, instead of sixty times a second forever.
+        </p>
+        <p>
+          <code>Barua.wallpaper</code> bakes a 64px-wide copy when you set a
+          wallpaper. Drawn back at cover size that thumbnail <em>is</em> a
+          blur — that is what scaling up does to it — and it weighs about a
+          kilobyte. Both the wall and the copy are <code>fixed</code>, so the
+          copy lands exactly over the sharp original underneath and the panel
+          appears to look through itself. Switch a document over with one
+          attribute:
+        </p>
+        <div class="b-code">
+          <div class="b-code__header"><span>Two ways to the same picture</span></div>
+          <pre><code>&lt;html data-b-glass="baked"&gt;      &lt;!-- no backdrop-filter anywhere --&gt;
+
+Barua.glass.mode("baked");        &lt;!-- or at runtime, remembered --&gt;
+Barua.glass.mode("live");</code></pre>
+        </div>
+        <p>
+          There is no <code>backdrop-filter</code> left in baked mode, so no
+          compositor layer per panel and no per-frame pass — what remains is
+          drawing an image. It is the right trade for wallpaper-backed chrome:
+          docks, sidebars, top bars, anything sitting still over the wall.
+        </p>
+        <div class="docs-a11y">
+          <div>
+            <strong>Where it does not apply.</strong> A baked blur only knows
+            the wallpaper. A sheet over a scrolling list, or glass above live
+            content, must blur what is genuinely behind it — keep those on the
+            real filter. That is why the mode is opt-in per document rather than
+            a global swap, and why the CSS is scoped to
+            <code>.b-has-wallpaper</code>: with no picture there is nothing to
+            bake and the system stays as it was.
+          </div>
+        </div>
 </section>
 
       <section class="docs-section" id="borders-dividers">
