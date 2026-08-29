@@ -9,13 +9,6 @@ Four things, each with exactly one answer per picture, so computing them per vis
 
 - Documentation: https://ui.barua.tz/docs/wallpapers.html#what-is-baked
 
-## Making more of them
-
-The pictures above are stock photographs standing in for a real pack — they prove the pipeline, they are not the product. Generating the pack is the one part that genuinely wants a GPU, and it is the front of the same conveyor: generate, bake, publish.
-
-- Documentation: https://ui.barua.tz/docs/wallpapers.html#making-more
-- Classes: `b-code` `b-code__header`
-
 ## City
 
 - Documentation: https://ui.barua.tz/docs/wallpapers.html#wall-city
@@ -51,6 +44,90 @@ The pictures above are stock photographs standing in for a real pack — they pr
 
 ```html
 <div class="docs-wall" style="background-image: url('../wallpapers/team/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+## Dune Light
+
+- Documentation: https://ui.barua.tz/docs/wallpapers.html#wall-dune-light
+- Classes: `b-caption` `b-code` `b-code__copy` `b-code__header` `b-gap-4` `b-has-wallpaper` `b-hstack` `b-stack--wrap` `b-text-secondary` `b-wall`
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/dune-light/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+## Dusk Ridge
+
+- Documentation: https://ui.barua.tz/docs/wallpapers.html#wall-dusk-ridge
+- Classes: `b-caption` `b-code` `b-code__copy` `b-code__header` `b-gap-4` `b-has-wallpaper` `b-hstack` `b-stack--wrap` `b-text-secondary` `b-wall`
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/dusk-ridge/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+## Forest Fog
+
+- Documentation: https://ui.barua.tz/docs/wallpapers.html#wall-forest-fog
+- Classes: `b-caption` `b-code` `b-code__copy` `b-code__header` `b-gap-4` `b-has-wallpaper` `b-hstack` `b-stack--wrap` `b-text-secondary` `b-text-tertiary` `b-wall`
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/forest-fog/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+## Night Coast
+
+- Documentation: https://ui.barua.tz/docs/wallpapers.html#wall-night-coast
+- Classes: `b-caption` `b-code` `b-code__copy` `b-code__header` `b-gap-4` `b-has-wallpaper` `b-hstack` `b-stack--wrap` `b-text-secondary` `b-wall`
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/night-coast/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+## Salt Flat
+
+- Documentation: https://ui.barua.tz/docs/wallpapers.html#wall-salt-flat
+- Classes: `b-caption` `b-code` `b-code__copy` `b-code__header` `b-gap-4` `b-has-wallpaper` `b-hstack` `b-stack--wrap` `b-text-secondary` `b-wall`
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/salt-flat/full.jpg')">
+  <div class="docs-wall__panel">
+    <div class="docs-wall__panel-label">Baked glass over this picture</div>
+    <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+  </div>
+</div>
+```
+
+## Still Water
+
+- Documentation: https://ui.barua.tz/docs/wallpapers.html#wall-still-water
+- Classes: `b-caption` `b-code` `b-code__copy` `b-code__header` `b-gap-4` `b-has-wallpaper` `b-hstack` `b-stack--wrap` `b-text-secondary` `b-wall`
+
+```html
+<div class="docs-wall" style="background-image: url('../wallpapers/still-water/full.jpg')">
   <div class="docs-wall__panel">
     <div class="docs-wall__panel-label">Baked glass over this picture</div>
     <p class="b-caption b-text-secondary">Blurred once, at build time.</p>

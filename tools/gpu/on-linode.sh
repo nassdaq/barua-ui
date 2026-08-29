@@ -2,138 +2,155 @@
 #
 # Rent a GPU, generate the pack, bring the pictures home, hand the machine back.
 #
-# The same shape the photo fleet in nasiemails already runs on: a node exists
-# only while there is work for it. The difference here is that this is a one-off
-# batch rather than a queue, so the lifetime is this script's lifetime — and the
-# trap is the important line in the file. A forgotten GPU node bills all night.
+#   LINODE_TOKEN=... tools/gpu/on-linode.sh --set ambient --count 6
 #
-#   LINODE_TOKEN=... tools/gpu/on-linode.sh --set ambient
+# Two things here were learned the expensive way.
 #
-# To audit what this has left behind, filter with the X-Filter header. A ?tag=
-# query string is accepted and silently ignored, so it answers with the whole
-# account and looks reassuring while telling you nothing:
+# The driver is installed with dkms, not `ubuntu-drivers install --gpgpu`. That
+# command picks no-dkms packages, compiles nothing for the running kernel, skips
+# the utilities, and exits 0 — so the first sign of trouble is generation
+# quietly running on the CPU at an hour per picture.
+#
+# And long steps run detached, with the node owning the work and this script
+# asking whether it finished. Holding an ssh session open across a multi-gigabyte
+# download is how three runs died at exit 255.
+#
+# To see what this has left behind, filter with the header. A ?tag= query string
+# is accepted and silently ignored, returning the whole account:
 #
 #   curl -H "Authorization: Bearer $LINODE_TOKEN" \
 #        -H 'X-Filter: {"tags":"barua-wallpaper"}' \
 #        https://api.linode.com/v4/linode/instances
 #
-set -euo pipefail
+set -uo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PLAN="${PLAN:-g2-gpu-rtx4000a1-s}"
+REGION="${REGION:-jp-osa}"
+OUT="${OUT:-$HERE/out}"
+ARGS="${*:---set ambient --count 6}"
+SSHOPTS="-o StrictHostKeyChecking=no -o ServerAliveInterval=15 -o ServerAliveCountMax=20 -o ConnectTimeout=10"
 
-PLAN="${PLAN:-g2-gpu-rtx4000a1-s}"      # RTX 4000 Ada, $0.52/hr at the time of writing
-REGION="${REGION:-jp-osa}"              # where the photo fleet already runs
-IMAGE="${IMAGE:-linode/ubuntu24.04}"
-LABEL="barua-wallpaper-$(date +%s)"
-TAG="barua-wallpaper"
-OUT="${OUT:-tools/gpu/out}"
-ARGS="${*:---set ambient}"
-
-: "${LINODE_TOKEN:?set LINODE_TOKEN (the same token the mail app uses)}"
-
-# Everything that can be checked for free is checked before anything is rented.
-for needed in "$HERE/generate.py" "$HERE/prompts.json"; do
-  [ -f "$needed" ] || { echo "missing: $needed"; exit 1; }
+: "${LINODE_TOKEN:?set LINODE_TOKEN}"
+for f in "$HERE/generate.py" "$HERE/prompts.json"; do
+  [ -f "$f" ] || { echo "missing: $f"; exit 1; }
 done
-[ -f ~/.ssh/id_ed25519.pub ] || [ -f ~/.ssh/id_rsa.pub ] || {
-  echo "no ssh public key — the node would be unreachable"; exit 1; }
+[ -f ~/.ssh/id_ed25519.pub ] || { echo "no ssh key — the node would be unreachable"; exit 1; }
 
-api() {
-  curl -sS --max-time 30 \
-    -H "Authorization: Bearer $LINODE_TOKEN" \
-    -H "Content-Type: application/json" "$@"
-}
+api() { curl -sS --max-time 60 -H "Authorization: Bearer $LINODE_TOKEN" -H "Content-Type: application/json" "$@"; }
+jq_() { python3 -c "import json,sys; d=json.load(sys.stdin); print($1)"; }
 
 ID=""
 cleanup() {
   if [ -n "$ID" ]; then
     echo "→ destroying $ID"
-    api -X DELETE "https://api.linode.com/v4/linode/instances/$ID" >/dev/null || \
-      echo "!! COULD NOT DESTROY $ID — go and delete it by hand, it is billing"
+    api -X DELETE "https://api.linode.com/v4/linode/instances/$ID" >/dev/null ||
+      echo "!! COULD NOT DESTROY $ID — delete it by hand, it is billing"
   fi
 }
-# Any exit at all: finished, failed, or the operator pressing ctrl-c.
 trap cleanup EXIT INT TERM
 
-PASS="$(head -c 18 /dev/urandom | base64 | tr -d '/+=' )Aa1!"
-KEY="$(cat ~/.ssh/id_ed25519.pub 2>/dev/null || cat ~/.ssh/id_rsa.pub)"
+wait_ssh() {
+  for _ in $(seq 1 60); do
+    ssh $SSHOPTS "root@$1" true 2>/dev/null && return 0
+    sleep 5
+  done
+  return 1
+}
+
+# Leave the work running on the node and ask about it, so a dropped link costs
+# a retry instead of the step.
+run_detached() {
+  local ip="$1" name="$2" minutes="$3"
+  scp $SSHOPTS -q "/tmp/$name.sh" "root@$ip:/root/$name.sh" || return 1
+  ssh $SSHOPTS "root@$ip" "chmod +x /root/$name.sh; rm -f /root/$name.done; nohup sh -c '/root/$name.sh > /root/$name.log 2>&1; echo \$? > /root/$name.done' >/dev/null 2>&1 &" || return 1
+  for _ in $(seq 1 $((minutes * 6))); do
+    sleep 10
+    local code
+    code=$(ssh $SSHOPTS "root@$ip" "cat /root/$name.done 2>/dev/null" 2>/dev/null || true)
+    if [ -n "$code" ]; then
+      ssh $SSHOPTS "root@$ip" "tail -8 /root/$name.log" 2>/dev/null || true
+      return "$code"
+    fi
+  done
+  echo "!! $name did not finish within $minutes minutes"
+  return 1
+}
+
+PASS="$(head -c 18 /dev/urandom | base64 | tr -d '/+=')Aa1!"
+KEY="$(cat ~/.ssh/id_ed25519.pub)"
 
 echo "→ creating $PLAN in $REGION"
-CREATED="$(api -X POST "https://api.linode.com/v4/linode/instances" -d @- <<JSON
-{
-  "label": "$LABEL",
-  "type": "$PLAN",
-  "region": "$REGION",
-  "image": "$IMAGE",
-  "root_pass": "$PASS",
-  "authorized_keys": ["$KEY"],
-  "tags": ["$TAG"],
-  "booted": true
-}
-JSON
-)"
-ID="$(echo "$CREATED" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("id",""))')"
-[ -n "$ID" ] || { echo "$CREATED"; exit 1; }
+ID=$(api -X POST https://api.linode.com/v4/linode/instances -d "{\"label\":\"barua-wallpaper-$(date +%s)\",\"type\":\"$PLAN\",\"region\":\"$REGION\",\"image\":\"linode/ubuntu24.04\",\"root_pass\":\"$PASS\",\"authorized_keys\":[\"$KEY\"],\"tags\":[\"barua-wallpaper\"],\"booted\":true}" | jq_ 'd.get("id","")')
+[ -n "$ID" ] || { echo "create failed"; exit 1; }
 
 IP=""
 for _ in $(seq 1 60); do
-  STATE="$(api "https://api.linode.com/v4/linode/instances/$ID")"
-  if [ "$(echo "$STATE" | python3 -c 'import json,sys; print(json.load(sys.stdin)["status"])')" = "running" ]; then
-    IP="$(echo "$STATE" | python3 -c 'import json,sys; print(json.load(sys.stdin)["ipv4"][0])')"
-    break
-  fi
+  S=$(api "https://api.linode.com/v4/linode/instances/$ID")
+  [ "$(echo "$S" | jq_ 'd["status"]')" = running ] && { IP=$(echo "$S" | jq_ 'd["ipv4"][0]'); break; }
   sleep 5
 done
 [ -n "$IP" ] || { echo "never came up"; exit 1; }
-echo "→ $ID is up at $IP"
+echo "→ $ID at $IP"
+wait_ssh "$IP" || { echo "never accepted ssh"; exit 1; }
 
-for _ in $(seq 1 60); do
-  ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 "root@$IP" true 2>/dev/null && break
-  sleep 5
-done
-
-# The driver install is lifted from the photo node, including the reboot: the
-# NVIDIA module is built for the kernel apt just installed, not the running one.
-echo "→ installing driver and torch (a few minutes)"
-ssh -o StrictHostKeyChecking=no "root@$IP" 'bash -s' <<'REMOTE'
+cat > /tmp/setup.sh <<'REMOTE'
+#!/bin/bash
 set -e
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
-apt-get install -y -qq ubuntu-drivers-common python3-venv python3-pip libgl1 libglib2.0-0
-ubuntu-drivers install --gpgpu >/dev/null 2>&1 || true
-modprobe nvidia 2>/dev/null || true
+# dkms + headers are the part ubuntu-drivers skips; without them nothing is
+# compiled for this kernel and nvidia-smi is never installed at all.
+apt-get install -y -qq dkms build-essential "linux-headers-$(uname -r)" pkg-config libglvnd-dev
+for v in 580-server 570-server 550-server 535-server; do
+  if apt-get install -y -qq "nvidia-driver-$v" "nvidia-utils-$v" 2>/dev/null; then break; fi
+done
+modprobe nvidia
+nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
+apt-get install -y -qq python3-venv python3-pip libgl1 libglib2.0-0
 python3 -m venv /opt/gen
 /opt/gen/bin/pip install -q --upgrade pip
-/opt/gen/bin/pip install -q torch --index-url https://download.pytorch.org/whl/cu124
+/opt/gen/bin/pip install -q torch torchvision --index-url https://download.pytorch.org/whl/cu124
 /opt/gen/bin/pip install -q diffusers transformers accelerate safetensors
+/opt/gen/bin/python -c "import torch; assert torch.cuda.is_available(); print('cuda visible:', torch.cuda.get_device_name(0))"
 REMOTE
+echo "→ driver and torch (detached, up to 30 min)"
+run_detached "$IP" setup 30 || { echo "!! setup failed — see the tail above"; exit 1; }
 
-# The reboot is not optional, and skipping it is what made the first attempts
-# generate on the CPU: ubuntu-drivers builds the NVIDIA module against the
-# kernel apt just installed, not the one currently running. The driver is
-# present, unloaded, and torch reports no GPU at all.
-echo "→ rebooting for the nvidia module"
-ssh -o StrictHostKeyChecking=no "root@$IP" "nohup sh -c 'sleep 1; reboot' >/dev/null 2>&1 &" || true
-sleep 20
-for _ in $(seq 1 60); do
-  ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 "root@$IP" true 2>/dev/null && break
+echo "→ generating"
+scp $SSHOPTS -q "$HERE/generate.py" "$HERE/prompts.json" "root@$IP:/opt/gen/"
+cat > /tmp/gen.sh <<REMOTE
+#!/bin/bash
+set -e
+cd /opt/gen
+./bin/python generate.py $ARGS --require-gpu --out /opt/gen/out
+ls -la /opt/gen/out
+REMOTE
+run_detached "$IP" gen 40 || { echo "!! generation failed — see the tail above"; exit 1; }
+
+# Collect with tar over a single stream, not scp with a remote glob. OpenSSH 9
+# moved scp onto SFTP, which does not expand wildcards on the far side — the
+# first run generated six pictures and then dropped every one of them here,
+# reporting success, because the failure was quiet and unchecked.
+echo "→ collecting"
+mkdir -p "$OUT"
+collected=0
+for attempt in 1 2 3; do
+  if ssh $SSHOPTS "root@$IP" "cd /opt/gen/out && tar cf - ." 2>/dev/null | tar xf - -C "$OUT" 2>/dev/null; then
+    collected=$(find "$OUT" -name '*.png' -type f | wc -l | tr -d ' ')
+    [ "$collected" -gt 0 ] && break
+  fi
+  echo "   attempt $attempt brought nothing back; retrying"
   sleep 5
 done
 
-echo "→ checking the card is actually there"
-if ! ssh -o StrictHostKeyChecking=no "root@$IP" "nvidia-smi --query-gpu=name,memory.total --format=csv,noheader"; then
-  echo "!! no working GPU after the reboot — stopping before this costs anything more"
+if [ "$collected" -eq 0 ]; then
+  echo "!! COLLECTED NOTHING — the pictures exist on $IP:/opt/gen/out and this"
+  echo "   script is about to destroy that machine. Copy them now if you want them:"
+  echo "   ssh root@$IP 'cd /opt/gen/out && tar cf - .' | tar xf - -C ."
   exit 1
 fi
 
-echo "→ generating"
-scp -o StrictHostKeyChecking=no -q "$HERE/generate.py" "$HERE/prompts.json" "root@$IP:/opt/gen/"
-ssh -o StrictHostKeyChecking=no "root@$IP" \
-  "cd /opt/gen && ./bin/python generate.py $ARGS --require-gpu --out /opt/gen/out"
-
-echo "→ collecting"
-mkdir -p "$OUT"
-scp -o StrictHostKeyChecking=no -q "root@$IP:/opt/gen/out/*.png" "$OUT/" || echo "nothing came back"
-
-echo "→ done. Bake them:"
-echo "   python3 tools/bake-wallpaper.py $OUT/*.png --credit 'Generated'"
+echo "→ collected $collected picture(s)"
+find "$OUT" -name '*.png' -type f -exec ls -la {} \; | awk '{printf "   %-44s %d KB\n", $NF, $5/1024}'
+echo "→ done"

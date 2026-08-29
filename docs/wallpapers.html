@@ -126,34 +126,7 @@
         </p>
       </section>
 
-            <section class="docs-section" id="making-more">
-        <h2>Making more of them</h2>
-        <p>
-          The pictures above are stock photographs standing in for a real pack —
-          they prove the pipeline, they are not the product. Generating the pack
-          is the one part that genuinely wants a GPU, and it is the front of the
-          same conveyor: generate, bake, publish.
-        </p>
-        <div class="b-code">
-          <div class="b-code__header"><span>Either GPU, one script</span></div>
-          <pre><code># on an Apple GPU, for judging a look
-python3 tools/gpu/generate.py --set ambient --count 2
-
-# on a rented card, for producing the pack
-LINODE_TOKEN=... tools/gpu/on-linode.sh --set ambient
-
-# then the part that makes it shippable
-python3 tools/bake-wallpaper.py tools/gpu/out/*.png
-python3 tools/build-wallpaper-gallery.py</code></pre>
-        </div>
-        <p>
-          The rented machine is destroyed from a trap that fires whether the run
-          finishes, fails or is interrupted, and everything it creates is tagged
-          — a GPU nobody remembered bills all night.
-        </p>
-      </section>
-
-<section class="docs-section" id="wall-city">
+      <section class="docs-section" id="wall-city">
         <h2>City</h2>
         <div class="docs-demo" data-no-code>
           <div class="docs-wall" style="background-image: url('../wallpapers/city/full.jpg')">
@@ -268,6 +241,243 @@ python3 tools/build-wallpaper-gallery.py</code></pre>
 &lt;/style&gt;
 
 &lt;!-- baked: the blur is the 2,289-byte copy, not the GPU --&gt;
+&lt;html class="b-has-wallpaper" data-wall-scheme="light" data-b-glass="baked"&gt;
+  &lt;body class="b-wall"&gt; … &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </section>
+      <section class="docs-section" id="wall-dune-light">
+        <h2>Dune Light</h2>
+        <div class="docs-demo" data-no-code>
+          <div class="docs-wall" style="background-image: url('../wallpapers/dune-light/full.jpg')">
+            <div class="docs-wall__panel">
+              <div class="docs-wall__panel-label">Baked glass over this picture</div>
+              <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="b-hstack b-gap-4 b-stack--wrap docs-wall__meta">
+          <span class="docs-wall__fact">2560&times;1706</span>
+          <span class="docs-wall__fact">451 KB picture</span>
+          <span class="docs-wall__fact">1,682 B blur &mdash; 275&times; smaller</span>
+          <span class="docs-wall__fact">wants <strong>light</strong></span>
+          <span class="docs-wall__fact"><span class="docs-wall__swatch" style="background: #b77540"></span><code>#b77540</code></span>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>Paste this</span>
+            <button class="b-code__copy" data-b-copy="#snip-dune-light">Copy</button>
+          </div>
+          <pre><code id="snip-dune-light">&lt;!-- Start the picture downloading before the stylesheet asks for it --&gt;
+&lt;link rel="preload" as="image" href="https://ui.barua.tz/wallpapers/dune-light/full.jpg"&gt;
+
+&lt;style&gt;
+  :root {
+    --b-wall-image: url("https://ui.barua.tz/wallpapers/dune-light/full.jpg");
+    --b-wall-blur:  url("https://ui.barua.tz/wallpapers/dune-light/blur.jpg");
+    --b-color-accent:       #b77540;
+    --b-color-accent-hover: #955f34;
+    --b-color-accent-text:  #b16f3a;
+  }
+&lt;/style&gt;
+
+&lt;!-- baked: the blur is the 1,682-byte copy, not the GPU --&gt;
+&lt;html class="b-has-wallpaper" data-wall-scheme="light" data-b-glass="baked"&gt;
+  &lt;body class="b-wall"&gt; … &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </section>
+      <section class="docs-section" id="wall-dusk-ridge">
+        <h2>Dusk Ridge</h2>
+        <div class="docs-demo" data-no-code>
+          <div class="docs-wall" style="background-image: url('../wallpapers/dusk-ridge/full.jpg')">
+            <div class="docs-wall__panel">
+              <div class="docs-wall__panel-label">Baked glass over this picture</div>
+              <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="b-hstack b-gap-4 b-stack--wrap docs-wall__meta">
+          <span class="docs-wall__fact">2560&times;1706</span>
+          <span class="docs-wall__fact">231 KB picture</span>
+          <span class="docs-wall__fact">1,206 B blur &mdash; 197&times; smaller</span>
+          <span class="docs-wall__fact">wants <strong>dark</strong></span>
+          <span class="docs-wall__fact"><span class="docs-wall__swatch" style="background: #bb6d4b"></span><code>#bb6d4b</code></span>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>Paste this</span>
+            <button class="b-code__copy" data-b-copy="#snip-dusk-ridge">Copy</button>
+          </div>
+          <pre><code id="snip-dusk-ridge">&lt;!-- Start the picture downloading before the stylesheet asks for it --&gt;
+&lt;link rel="preload" as="image" href="https://ui.barua.tz/wallpapers/dusk-ridge/full.jpg"&gt;
+
+&lt;style&gt;
+  :root {
+    --b-wall-image: url("https://ui.barua.tz/wallpapers/dusk-ridge/full.jpg");
+    --b-wall-blur:  url("https://ui.barua.tz/wallpapers/dusk-ridge/blur.jpg");
+    --b-color-accent:       #bb6d4b;
+    --b-color-accent-hover: #9c593b;
+    --b-color-accent-text:  #ad603e;
+  }
+&lt;/style&gt;
+
+&lt;!-- baked: the blur is the 1,206-byte copy, not the GPU --&gt;
+&lt;html class="b-has-wallpaper" data-wall-scheme="dark" data-b-glass="baked"&gt;
+  &lt;body class="b-wall"&gt; … &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </section>
+      <section class="docs-section" id="wall-forest-fog">
+        <h2>Forest Fog</h2>
+        <div class="docs-demo" data-no-code>
+          <div class="docs-wall" style="background-image: url('../wallpapers/forest-fog/full.jpg')">
+            <div class="docs-wall__panel">
+              <div class="docs-wall__panel-label">Baked glass over this picture</div>
+              <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="b-hstack b-gap-4 b-stack--wrap docs-wall__meta">
+          <span class="docs-wall__fact">2560&times;1706</span>
+          <span class="docs-wall__fact">625 KB picture</span>
+          <span class="docs-wall__fact">1,530 B blur &mdash; 418&times; smaller</span>
+          <span class="docs-wall__fact">wants <strong>light</strong></span>
+          <span class="docs-wall__fact"><span class="b-text-tertiary">no strong hue — keeps the stock accent</span></span>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>Paste this</span>
+            <button class="b-code__copy" data-b-copy="#snip-forest-fog">Copy</button>
+          </div>
+          <pre><code id="snip-forest-fog">&lt;!-- Start the picture downloading before the stylesheet asks for it --&gt;
+&lt;link rel="preload" as="image" href="https://ui.barua.tz/wallpapers/forest-fog/full.jpg"&gt;
+
+&lt;style&gt;
+  :root {
+    --b-wall-image: url("https://ui.barua.tz/wallpapers/forest-fog/full.jpg");
+    --b-wall-blur:  url("https://ui.barua.tz/wallpapers/forest-fog/blur.jpg");
+  }
+&lt;/style&gt;
+
+&lt;!-- baked: the blur is the 1,530-byte copy, not the GPU --&gt;
+&lt;html class="b-has-wallpaper" data-wall-scheme="light" data-b-glass="baked"&gt;
+  &lt;body class="b-wall"&gt; … &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </section>
+      <section class="docs-section" id="wall-night-coast">
+        <h2>Night Coast</h2>
+        <div class="docs-demo" data-no-code>
+          <div class="docs-wall" style="background-image: url('../wallpapers/night-coast/full.jpg')">
+            <div class="docs-wall__panel">
+              <div class="docs-wall__panel-label">Baked glass over this picture</div>
+              <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="b-hstack b-gap-4 b-stack--wrap docs-wall__meta">
+          <span class="docs-wall__fact">2560&times;1706</span>
+          <span class="docs-wall__fact">402 KB picture</span>
+          <span class="docs-wall__fact">1,432 B blur &mdash; 288&times; smaller</span>
+          <span class="docs-wall__fact">wants <strong>dark</strong></span>
+          <span class="docs-wall__fact"><span class="docs-wall__swatch" style="background: #3e5da3"></span><code>#3e5da3</code></span>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>Paste this</span>
+            <button class="b-code__copy" data-b-copy="#snip-night-coast">Copy</button>
+          </div>
+          <pre><code id="snip-night-coast">&lt;!-- Start the picture downloading before the stylesheet asks for it --&gt;
+&lt;link rel="preload" as="image" href="https://ui.barua.tz/wallpapers/night-coast/full.jpg"&gt;
+
+&lt;style&gt;
+  :root {
+    --b-wall-image: url("https://ui.barua.tz/wallpapers/night-coast/full.jpg");
+    --b-wall-blur:  url("https://ui.barua.tz/wallpapers/night-coast/blur.jpg");
+    --b-color-accent:       #3e5da3;
+    --b-color-accent-hover: #314a81;
+    --b-color-accent-text:  #3b5ca5;
+  }
+&lt;/style&gt;
+
+&lt;!-- baked: the blur is the 1,432-byte copy, not the GPU --&gt;
+&lt;html class="b-has-wallpaper" data-wall-scheme="dark" data-b-glass="baked"&gt;
+  &lt;body class="b-wall"&gt; … &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </section>
+      <section class="docs-section" id="wall-salt-flat">
+        <h2>Salt Flat</h2>
+        <div class="docs-demo" data-no-code>
+          <div class="docs-wall" style="background-image: url('../wallpapers/salt-flat/full.jpg')">
+            <div class="docs-wall__panel">
+              <div class="docs-wall__panel-label">Baked glass over this picture</div>
+              <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="b-hstack b-gap-4 b-stack--wrap docs-wall__meta">
+          <span class="docs-wall__fact">2560&times;1706</span>
+          <span class="docs-wall__fact">417 KB picture</span>
+          <span class="docs-wall__fact">1,240 B blur &mdash; 345&times; smaller</span>
+          <span class="docs-wall__fact">wants <strong>light</strong></span>
+          <span class="docs-wall__fact"><span class="docs-wall__swatch" style="background: #c46f64"></span><code>#c46f64</code></span>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>Paste this</span>
+            <button class="b-code__copy" data-b-copy="#snip-salt-flat">Copy</button>
+          </div>
+          <pre><code id="snip-salt-flat">&lt;!-- Start the picture downloading before the stylesheet asks for it --&gt;
+&lt;link rel="preload" as="image" href="https://ui.barua.tz/wallpapers/salt-flat/full.jpg"&gt;
+
+&lt;style&gt;
+  :root {
+    --b-wall-image: url("https://ui.barua.tz/wallpapers/salt-flat/full.jpg");
+    --b-wall-blur:  url("https://ui.barua.tz/wallpapers/salt-flat/blur.jpg");
+    --b-color-accent:       #c46f64;
+    --b-color-accent-hover: #b55245;
+    --b-color-accent-text:  #ad4b3e;
+  }
+&lt;/style&gt;
+
+&lt;!-- baked: the blur is the 1,240-byte copy, not the GPU --&gt;
+&lt;html class="b-has-wallpaper" data-wall-scheme="light" data-b-glass="baked"&gt;
+  &lt;body class="b-wall"&gt; … &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </section>
+      <section class="docs-section" id="wall-still-water">
+        <h2>Still Water</h2>
+        <div class="docs-demo" data-no-code>
+          <div class="docs-wall" style="background-image: url('../wallpapers/still-water/full.jpg')">
+            <div class="docs-wall__panel">
+              <div class="docs-wall__panel-label">Baked glass over this picture</div>
+              <p class="b-caption b-text-secondary">Blurred once, at build time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="b-hstack b-gap-4 b-stack--wrap docs-wall__meta">
+          <span class="docs-wall__fact">2560&times;1706</span>
+          <span class="docs-wall__fact">326 KB picture</span>
+          <span class="docs-wall__fact">1,310 B blur &mdash; 255&times; smaller</span>
+          <span class="docs-wall__fact">wants <strong>light</strong></span>
+          <span class="docs-wall__fact"><span class="docs-wall__swatch" style="background: #c48664"></span><code>#c48664</code></span>
+        </div>
+        <div class="b-code">
+          <div class="b-code__header"><span>Paste this</span>
+            <button class="b-code__copy" data-b-copy="#snip-still-water">Copy</button>
+          </div>
+          <pre><code id="snip-still-water">&lt;!-- Start the picture downloading before the stylesheet asks for it --&gt;
+&lt;link rel="preload" as="image" href="https://ui.barua.tz/wallpapers/still-water/full.jpg"&gt;
+
+&lt;style&gt;
+  :root {
+    --b-wall-image: url("https://ui.barua.tz/wallpapers/still-water/full.jpg");
+    --b-wall-blur:  url("https://ui.barua.tz/wallpapers/still-water/blur.jpg");
+    --b-color-accent:       #c48664;
+    --b-color-accent-hover: #b56c45;
+    --b-color-accent-text:  #ad653e;
+  }
+&lt;/style&gt;
+
+&lt;!-- baked: the blur is the 1,310-byte copy, not the GPU --&gt;
 &lt;html class="b-has-wallpaper" data-wall-scheme="light" data-b-glass="baked"&gt;
   &lt;body class="b-wall"&gt; … &lt;/body&gt;
 &lt;/html&gt;</code></pre>

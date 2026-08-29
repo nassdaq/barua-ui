@@ -50,6 +50,106 @@
       "accentText": "#c68024",
       "scheme": "light",
       "luminance": 0.503
+    },
+    {
+      "name": "dune-light",
+      "credit": "Generated on an RTX 4000 Ada for Barua UI",
+      "full": "wallpapers/dune-light/full.jpg",
+      "blur": "wallpapers/dune-light/blur.jpg",
+      "width": 2560,
+      "height": 1706,
+      "bytes": {
+        "full": 461840,
+        "blur": 1682
+      },
+      "accent": "#b77540",
+      "accentHover": "#955f34",
+      "accentText": "#b16f3a",
+      "scheme": "light",
+      "luminance": 0.458
+    },
+    {
+      "name": "dusk-ridge",
+      "credit": "Generated on an RTX 4000 Ada for Barua UI",
+      "full": "wallpapers/dusk-ridge/full.jpg",
+      "blur": "wallpapers/dusk-ridge/blur.jpg",
+      "width": 2560,
+      "height": 1706,
+      "bytes": {
+        "full": 237552,
+        "blur": 1206
+      },
+      "accent": "#bb6d4b",
+      "accentHover": "#9c593b",
+      "accentText": "#ad603e",
+      "scheme": "dark",
+      "luminance": 0.431
+    },
+    {
+      "name": "forest-fog",
+      "credit": "Generated on an RTX 4000 Ada for Barua UI",
+      "full": "wallpapers/forest-fog/full.jpg",
+      "blur": "wallpapers/forest-fog/blur.jpg",
+      "width": 2560,
+      "height": 1706,
+      "bytes": {
+        "full": 640284,
+        "blur": 1530
+      },
+      "accent": null,
+      "scheme": "light",
+      "luminance": 0.461
+    },
+    {
+      "name": "night-coast",
+      "credit": "Generated on an RTX 4000 Ada for Barua UI",
+      "full": "wallpapers/night-coast/full.jpg",
+      "blur": "wallpapers/night-coast/blur.jpg",
+      "width": 2560,
+      "height": 1706,
+      "bytes": {
+        "full": 412576,
+        "blur": 1432
+      },
+      "accent": "#3e5da3",
+      "accentHover": "#314a81",
+      "accentText": "#3b5ca5",
+      "scheme": "dark",
+      "luminance": 0.222
+    },
+    {
+      "name": "salt-flat",
+      "credit": "Generated on an RTX 4000 Ada for Barua UI",
+      "full": "wallpapers/salt-flat/full.jpg",
+      "blur": "wallpapers/salt-flat/blur.jpg",
+      "width": 2560,
+      "height": 1706,
+      "bytes": {
+        "full": 427921,
+        "blur": 1240
+      },
+      "accent": "#c46f64",
+      "accentHover": "#b55245",
+      "accentText": "#ad4b3e",
+      "scheme": "light",
+      "luminance": 0.528
+    },
+    {
+      "name": "still-water",
+      "credit": "Generated on an RTX 4000 Ada for Barua UI",
+      "full": "wallpapers/still-water/full.jpg",
+      "blur": "wallpapers/still-water/blur.jpg",
+      "width": 2560,
+      "height": 1706,
+      "bytes": {
+        "full": 334325,
+        "blur": 1310
+      },
+      "accent": "#c48664",
+      "accentHover": "#b56c45",
+      "accentText": "#ad653e",
+      "scheme": "light",
+      "luminance": 0.537
     }
   ]
 }
