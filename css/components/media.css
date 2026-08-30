@@ -232,6 +232,34 @@
     opacity: 0;
     transition: opacity var(--b-duration-slow) var(--b-ease-out);
   }
+  /* ---- Blur-up ------------------------------------------------------------
+   *
+   * A shimmer says "something is coming". A blurred copy of the actual picture
+   * says "this is what is coming", which is a different and better promise —
+   * the layout is right, the colours are right, and the photograph resolves
+   * rather than appearing.
+   *
+   * The placeholder is a thumbnail small enough to inline: a 32px-wide JPEG is
+   * around a kilobyte, so it costs nothing and arrives with the markup. Give
+   * it as a data URI on --b-img-placeholder and mark the host with
+   * data-placeholder, which is what tells the shimmer to stand down.
+   */
+  .b-async-img[data-placeholder]::before { display: none; }
+
+  .b-async-img[data-placeholder]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--b-img-placeholder) center / cover no-repeat;
+    /* Scaled up because a blur samples past the edges and would otherwise
+       leave a soft border all the way round. */
+    filter: blur(14px);
+    transform: scale(1.1);
+    transition: opacity var(--b-duration-slow) var(--b-ease-out);
+    pointer-events: none;
+  }
+  .b-async-img[data-placeholder].is-loaded::after { opacity: 0; }
+
   .b-async-img.is-loaded::before { display: none; }
   .b-async-img.is-loaded img { opacity: 1; }
 

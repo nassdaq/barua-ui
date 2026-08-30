@@ -526,7 +526,7 @@ import { Progress, UploadPreview, UploadPreviews } from "barua-ui";
 SwiftUI's AsyncImage loading choreography: wrap the image in .b-async-img and add data-b-async — it shimmers while loading, then the picture fades in. Errors stop the shimmer and leave the quiet fill.
 
 - Documentation: https://ui.barua.tz/docs/media.html#async-image
-- Classes: `b-async-img`
+- Classes: `b-async-img` `b-footnote` `b-gap-4` `b-hstack` `b-stack--wrap` `b-text-secondary`
 
 ```html
 <span class="b-async-img" style="width: 14rem; aspect-ratio: 16/10">

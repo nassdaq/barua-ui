@@ -1,11 +1,60 @@
 "use client";
 
-import { forwardRef, type AnchorHTMLAttributes, type HTMLAttributes, type ImgHTMLAttributes, type ReactNode } from "react";
+import { forwardRef, useState, type AnchorHTMLAttributes, type HTMLAttributes, type ImgHTMLAttributes, type ReactNode } from "react";
 import { cn } from "./cn";
 import { block } from "./primitive";
 
 export const MediaPlaceholder = block("div", "b-media-placeholder", "MediaPlaceholder");
-export const AsyncImage = block("span", "b-async-img", "AsyncImage");
+
+export interface AsyncImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "placeholder"> {
+  src: string;
+  alt: string;
+  /**
+   * A tiny copy of the same picture as a data URI — 32px wide is about a
+   * kilobyte. Shown blurred until the real one arrives, so the frame is filled
+   * with something true rather than with a shimmer.
+   */
+  placeholder?: string;
+  /** e.g. "16/10". Reserves the space so nothing below jumps when it loads. */
+  aspect?: string;
+  className?: string;
+}
+
+/**
+ * An image that fills its frame before it has finished arriving.
+ *
+ * With a placeholder it blurs up; without one it shimmers. Either way the box
+ * is the right size from the first paint, which is the part that matters —
+ * layout that settles after the fact is what makes a page feel cheap.
+ */
+export const AsyncImage = forwardRef<HTMLImageElement, AsyncImageProps>(function AsyncImage(
+  { src, alt, placeholder, aspect, className, style, ...rest },
+  ref
+) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <span
+      className={cn("b-async-img", loaded && "is-loaded", className)}
+      data-placeholder={placeholder ? "" : undefined}
+      style={{
+        ...(aspect ? { aspectRatio: aspect } : null),
+        ...(placeholder ? { ["--b-img-placeholder" as string]: `url("${placeholder}")` } : null),
+        ...style,
+      }}
+    >
+      <img
+        ref={ref}
+        src={src}
+        alt={alt}
+        onLoad={() => setLoaded(true)}
+        // A picture that failed still has to stop pretending to load.
+        onError={() => setLoaded(true)}
+        {...rest}
+      />
+    </span>
+  );
+});
+
 export const Web = block("div", "b-web", "Web");
 export const Video = block("video", "b-video", "Video");
 export const Audio = block("div", "b-audio", "Audio");

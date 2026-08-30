@@ -116,7 +116,7 @@ export {
   MenuBar, MenuBarItem, Pagination, PaginationItem, PaginationEllipsis, LiquidToggle,
   CommandCenterTile, CommandCenterLabel, CommandCenterStatus, ImageLens,
 } from "./media";
-export type { ThumbProps, CircularProgressProps, AxisProps, PaginationProps, PaginationItemProps, LiquidToggleProps } from "./media";
+export type { AsyncImageProps, ThumbProps, CircularProgressProps, AxisProps, PaginationProps, PaginationItemProps, LiquidToggleProps } from "./media";
 
 export { Reveal, FitText, CountUp, ContextMenuTarget } from "./motion";
 export type { RevealProps, RevealVariant, FitTextProps, CountUpProps, ContextMenuTargetProps } from "./motion";

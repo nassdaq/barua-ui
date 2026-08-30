@@ -438,6 +438,28 @@
           </span>
           <span class="b-async-img" style="width: 14rem; aspect-ratio: 16/10" aria-label="Still loading"></span>
         </div>
+        </div>
+
+        <h3 id="blur-up">Blur-up</h3>
+        <p>
+          A shimmer says something is coming. A blurred copy of the picture says
+          <em>what</em> is coming — the layout is right, the colours are right,
+          and the photograph resolves rather than appears. Give
+          <code>--b-img-placeholder</code> a thumbnail as a data URI and mark
+          the host <code>data-placeholder</code>; that also tells the shimmer to
+          stand down. The one below is 1073 bytes.
+        </p>
+        <div class="docs-demo">
+          <div class="b-hstack b-gap-4 b-stack--wrap">
+            <span class="b-async-img" data-placeholder style="width: 16rem; aspect-ratio: 16/10; --b-img-placeholder: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAFQAAAAD/wAARCAAVACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwAEBAQEBAQGBAQGCQYGBgkMCQkJCQwPDAwMDAwPEg8PDw8PDxISEhISEhISFRUVFRUVGRkZGRkcHBwcHBwcHBwc/9sAQwEEBQUHBwcMBwcMHRQQFB0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0d/90ABAAC/9oADAMBAAIRAxEAPwD3b+0NQ2hvPPPutee/EbVfE7eGri20wtN9pUxShSA2xuNqbedzcjqMCu81nwpLqthHa6VfzWcjkF5Y03HA7DJwK2tO0RLDTYrOSZbhoFw80v8ArH9zjv8AjUTxKtY5qeGndM/P0RwW8a6ZazSq0ZZWjZlzgddwPHXnNemab8S/GHgLTrSz/tt3tmT91bsFk2r1+U4OOT9K9A8ear8MnmuBNocOo3BUBLnfgs2Dnpzwe9eHxaX4V1d4o18y1nO4Kp+eNRkY255zj868eWGakpQlb0O504t66H//0PrGPdcIwkYlfT/69fP3i3xdfz3E+nWa/ZYbWZ432tu80Hj5uBwPQV9A2n+revlLxB/yF9T/AOvpv5mvhcfXqRg3F9T0MS3CHunK61DYqrXE1qkpI3kHIHHbrWDbCK/uPLeJYjGilHjAR14yMEc8Djmt/X/+PU/9c2rn9I/4/X/3F/8AQawp16nsOfmd/U4FJtXP/9k=')"></span>
+            <span class="b-async-img" data-placeholder class="is-loaded" style="width: 16rem; aspect-ratio: 16/10; --b-img-placeholder: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAFQAAAAD/wAARCAAVACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwAEBAQEBAQGBAQGCQYGBgkMCQkJCQwPDAwMDAwPEg8PDw8PDxISEhISEhISFRUVFRUVGRkZGRkcHBwcHBwcHBwc/9sAQwEEBQUHBwcMBwcMHRQQFB0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0d/90ABAAC/9oADAMBAAIRAxEAPwD3b+0NQ2hvPPPutee/EbVfE7eGri20wtN9pUxShSA2xuNqbedzcjqMCu81nwpLqthHa6VfzWcjkF5Y03HA7DJwK2tO0RLDTYrOSZbhoFw80v8ArH9zjv8AjUTxKtY5qeGndM/P0RwW8a6ZazSq0ZZWjZlzgddwPHXnNemab8S/GHgLTrSz/tt3tmT91bsFk2r1+U4OOT9K9A8ear8MnmuBNocOo3BUBLnfgs2Dnpzwe9eHxaX4V1d4o18y1nO4Kp+eNRkY255zj868eWGakpQlb0O504t66H//0PrGPdcIwkYlfT/69fP3i3xdfz3E+nWa/ZYbWZ432tu80Hj5uBwPQV9A2n+revlLxB/yF9T/AOvpv5mvhcfXqRg3F9T0MS3CHunK61DYqrXE1qkpI3kHIHHbrWDbCK/uPLeJYjGilHjAR14yMEc8Djmt/X/+PU/9c2rn9I/4/X/3F/8AQawp16nsOfmd/U4FJtXP/9k=')">
+              <img data-b-async src="../examples/assets/media/city.jpg" alt="The same photograph, arrived">
+            </span>
+          </div>
+        </div>
+        <p class="b-footnote b-text-secondary">
+          Left: waiting, showing the placeholder. Right: the real picture, faded
+          in over it. In React this is <code>&lt;AsyncImage placeholder=… /&gt;</code>.
       </section>
 
       <nav class="docs-pager">
