@@ -73,32 +73,65 @@
     if (target === here) a.classList.add("is-active");
   });
 
-  /* ---- ⌘K palette entries from sidebar -------------------------------------- */
+  /* ---- ⌘K palette ------------------------------------------------------------
+   *
+   * Every component in the system, not just this page. The old version listed
+   * the sidebar and any h2 carrying an id — and the h2s carry none, the
+   * sections do — so it offered page names and nothing else. Searching for
+   * "switch" or "gauge" found nothing at all.
+   *
+   * The index is fetched the first time the palette opens rather than on every
+   * page load, so a reader who never searches never pays for it. */
   const palette = document.querySelector("#docs-cmdk .b-cmdk__list");
-  if (palette) {
-    document.querySelectorAll(".docs-sidebar a.b-sidebar__item").forEach((a) => {
-      const li = document.createElement("li");
-      const btn = document.createElement("button");
-      btn.className = "b-cmdk__item";
-      btn.setAttribute("data-b-filter-item", "");
-      btn.innerHTML = "<span>" + a.textContent.trim() + "</span>";
-      btn.addEventListener("click", () => (location.href = a.href));
-      li.appendChild(btn);
-      palette.appendChild(li);
-    });
-    document.querySelectorAll(".docs-section > h2[id]").forEach((h) => {
-      const li = document.createElement("li");
-      const btn = document.createElement("button");
-      btn.className = "b-cmdk__item";
-      btn.setAttribute("data-b-filter-item", "");
-      btn.innerHTML = "<span>" + h.textContent.trim() + "</span><kbd>#</kbd>";
-      btn.addEventListener("click", () => {
-        document.getElementById("docs-cmdk").close();
-        location.hash = h.id;
+  const dialog = document.getElementById("docs-cmdk");
+
+  function entry(label, hint, go) {
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    btn.className = "b-cmdk__item";
+    btn.setAttribute("data-b-filter-item", "");
+    btn.innerHTML = "<span>" + label + "</span>" + (hint ? "<kbd>" + hint + "</kbd>" : "");
+    btn.addEventListener("click", go);
+    li.appendChild(btn);
+    palette.appendChild(li);
+  }
+
+  if (palette && dialog) {
+    /* The sections of the page in front of you, which is what jumps rather
+       than navigates. Read from the section, since that is what holds the id. */
+    document.querySelectorAll(".docs-section[id]").forEach((section) => {
+      const heading = section.querySelector("h2, h3");
+      if (!heading) return;
+      entry(heading.textContent.trim(), "#", () => {
+        dialog.close();
+        location.hash = section.id;
       });
-      li.appendChild(btn);
-      palette.appendChild(li);
     });
+
+    let loaded = false;
+    const loadIndex = () => {
+      if (loaded) return;
+      loaded = true;
+      fetch(new URL("search.json", location.href))
+        .then((r) => r.json())
+        .then((all) => {
+          const here = location.pathname.split("/").pop();
+          all.forEach((item) => {
+            /* Skip what is already offered as a jump on this page. */
+            if (item.url.split("/").pop().split("#")[0] === here) return;
+            entry(item.title, item.category, () => (location.href = item.url));
+          });
+        })
+        .catch(() => {
+          /* No index: the page jumps above still work. */
+        });
+    };
+
+    dialog.addEventListener("toggle", loadIndex);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) loadIndex();
+    });
+    document.querySelectorAll("[data-b-cmdk]").forEach((b) => b.addEventListener("click", loadIndex));
   }
 
   /* ---- Replay for the motion demos -----------------------------------------

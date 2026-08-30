@@ -352,6 +352,25 @@ def main() -> None:
         (ROOT / "docs" / f"{page}.md").write_text("\n".join(md) + "\n")
     print(f"docs/*.md:  {len(pages)} pages")
 
+    # A search index for the ⌘K palette.
+    #
+    # The palette used to offer the sidebar and the current page's h2 ids. The
+    # h2s carry no ids — the sections do — so in practice it offered page names
+    # and nothing else: no component in this system could be found by name
+    # unless you were already looking at it. This is every component, with the
+    # page it lives on, small enough to fetch when the palette first opens.
+    search = [
+        {
+            "title": comp["title"],
+            "category": category["title"].split("—")[0].strip(),
+            "url": comp["url"],
+        }
+        for category in index["categories"]
+        for comp in category["components"]
+    ]
+    (ROOT / "docs/search.json").write_text(json.dumps(search, separators=(",", ":")) + "\n")
+    print(f"docs/search.json: {len(search)} entries, {len(json.dumps(search)) // 1024} KB")
+
     # Robots that fail open. A missing file makes a careful fetcher guess, and
     # some of them guess "no".
     (ROOT / "robots.txt").write_text(
