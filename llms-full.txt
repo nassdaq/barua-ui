@@ -11,12 +11,18 @@
 7. On desktop a surface does not page-scroll. Use .b-stage for screens that must fit, and .b-scroll-area for the panes that may grow.
 8. A scroll pane's children must never be forced to the pane's height (no h-full inside a scroll area) or scrolling silently dies.
 9. Hover, selection and active are different states and must look different: hover is a quiet fill, selection is accent-soft, focus is the focus ring.
-10. Surfaces never stack materials. A panel inside glass is a fill, not a second material — nesting one blur inside another makes the GPU blur an already-blurred backdrop, which is the main way this system gets slow.
-11. Materials turn opaque under prefers-reduced-transparency and where backdrop-filter is unsupported, so never use translucency alone to carry meaning.
-12. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
-13. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
-14. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
-15. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
+10. Dashboards: name the one question the screen answers before laying anything out. Pick an archetype — overview, monitoring, analytics, work queue, record, console — because variety comes from choosing a different one, not from decorating the same one.
+11. Dashboard composition: widths are full, half, third or quarter and a row totals twelve. Three or four figures on the top row, never five. One dominant element per screen, or the page reads as a spreadsheet with rounded corners.
+12. Charts: time is a line or an area, comparison across categories is a bar — those three are 84% of charts in a 457-page survey of admin templates. Pie and donut were 3%; use them only for two to four parts of a genuine whole. A number that matters more than its trend is a .b-stat, not a chart.
+13. Every chart carries role="img" and an aria-label stating the takeaway rather than the chart type: "peaking Thursday at 4,120", not "bar chart of sends". Only 2% of surveyed dashboard pages labelled a chart at all. Give charts a ceiling with --b-chart-h or a tall series drags the card with it.
+14. Every dashboard widget has four states: loading, empty, error and loaded. Three pages out of 457 surveyed had a "no data" message. Use .b-skeleton while fetching and .b-empty with an action when there is nothing.
+15. A table on a dashboard shows five to ten rows and links to the full list — it is a sample, not the archive. Columns of figures take .b-tabular-nums, and a delta states direction and period: "up 8.2% this week", never a bare arrow.
+16. Surfaces never stack materials. A panel inside glass is a fill, not a second material — nesting one blur inside another makes the GPU blur an already-blurred backdrop, which is the main way this system gets slow.
+17. Materials turn opaque under prefers-reduced-transparency and where backdrop-filter is unsupported, so never use translucency alone to carry meaning.
+18. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
+19. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
+20. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
+21. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
 
 ## Principles — the eight ideas the system is built on, and what enforces each
 
@@ -4403,6 +4409,48 @@ Classes: b-auth-card__logo b-btn b-btn--lg b-btn--primary b-form-actions b-gap-4
       <div>
         <div class
 ```
+
+
+## Dashboards — archetypes, composition, choosing a chart, and the four states every widget has
+
+### Name the question first  (https://ui.barua.tz/docs/dashboards.html#the-question)
+A dashboard answers one question, for one person, on one visit: is anything wrong , how are we doing , what needs me today . Everything on the screen either serves that question or is decoration. A page that answers three answers none of them well — that is what a second dashboard is for.
+
+### Six archetypes  (https://ui.barua.tz/docs/dashboards.html#archetypes)
+Variety comes from choosing a different archetype, not from decorating the same one. Most dashboards are an Overview because it is the shape that gets built by reflex.
+Classes: b-table b-table-wrap
+
+### Composition  (https://ui.barua.tz/docs/dashboards.html#composition)
+Widths are full, half, third or quarter, and spans in a row total twelve. Those four are the entire vocabulary the surveyed templates use; anything else reads as a mistake.
+Classes: b-card b-card--compact b-card__body b-card__header b-card__title b-columns b-columns__bar b-dashboard b-empty b-empty__desc b-empty__title b-span-3 b-span-4 b-span-8 b-stat b-stat__label b-stat__value
+
+```html
+<div class="b-dashboard">
+  <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Sent</span><span class="b-stat__value">12,480</span></div></div></article>
+  <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Opened</span><span class="b-stat__value">61%</span></div></div></article>
+  <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Replied</span><span class="b-stat__value">18%</span></div></div></article>
+  <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Bounced</span><span class="b-stat__value">0.4%</span></div></div></article>
+  <article class="b-card b-span-8"><div class="b-card__header"><div class="b-card__title">Delivery, last 7 days</div></div><div class="b-card__body"><div class="b-columns" style="--b-chart-h: 8rem" role="img" aria-label="Delivery peaked Thursday at 4,120."><div class="b-columns__bar" data-label="M" style="--v: 62%"></div><div class="b-columns__bar" data-label="T" style="--v: 71%"></div><div class="b-columns__bar" data-label="W" style="--v: 58%"></div><div class="b-columns__bar" data-label="T" style="--v: 100%"></div><div class="b-columns__bar" data-label="F" style="--
+```
+
+### Choosing a chart  (https://ui.barua.tz/docs/dashboards.html#charts)
+Time is a line or an area. Comparison across categories is a bar. Those three were 84% of every chart in the survey — 97 of 115.
+Classes: b-table b-table-wrap
+
+### Four states, not one  (https://ui.barua.tz/docs/dashboards.html#states)
+Every widget has a loading state, an empty state, an error state and a loaded state. Design all four or the page only works on a good day. In 457 pages, three had a message for having no data.
+Classes: b-alert b-alert--danger b-alert__content b-card b-card--compact b-card__body b-empty b-empty__desc b-empty__title b-gap-2 b-gap-3 b-grid b-grid--3 b-skeleton b-skeleton--text b-stack
+
+```html
+<div class="b-grid b-grid--3 b-gap-3">
+  <article class="b-card b-card--compact"><div class="b-card__body b-stack b-gap-2"><span class="b-skeleton b-skeleton--text" style="width: 40%"></span><span class="b-skeleton b-skeleton--text" style="width: 70%"></span></div></article>
+  <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-empty"><div class="b-empty__title">No invoices yet</div><p class="b-empty__desc">They appear here once you send one.</p></div></div></article>
+  <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-alert b-alert--danger" role="alert"><div class="b-alert__content">Could not reach billing. Retrying in 30s.</div></div></div></article>
+</div>
+```
+
+### Density  (https://ui.barua.tz/docs/dashboards.html#density)
+A table on a dashboard shows five to ten rows and links to the full list — it is a sample, not the archive. Columns of figures take .b-tabular-nums or the digits jitter as they update. A delta states direction and period together: "↑ 8.2% this week", never a bare arrow.
 
 
 ## Productivity — dashboards, workspace, dock, control centre

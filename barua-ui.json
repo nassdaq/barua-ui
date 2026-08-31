@@ -27,6 +27,12 @@
     "On desktop a surface does not page-scroll. Use .b-stage for screens that must fit, and .b-scroll-area for the panes that may grow.",
     "A scroll pane's children must never be forced to the pane's height (no h-full inside a scroll area) or scrolling silently dies.",
     "Hover, selection and active are different states and must look different: hover is a quiet fill, selection is accent-soft, focus is the focus ring.",
+    "Dashboards: name the one question the screen answers before laying anything out. Pick an archetype \u2014 overview, monitoring, analytics, work queue, record, console \u2014 because variety comes from choosing a different one, not from decorating the same one.",
+    "Dashboard composition: widths are full, half, third or quarter and a row totals twelve. Three or four figures on the top row, never five. One dominant element per screen, or the page reads as a spreadsheet with rounded corners.",
+    "Charts: time is a line or an area, comparison across categories is a bar \u2014 those three are 84% of charts in a 457-page survey of admin templates. Pie and donut were 3%; use them only for two to four parts of a genuine whole. A number that matters more than its trend is a .b-stat, not a chart.",
+    "Every chart carries role=\"img\" and an aria-label stating the takeaway rather than the chart type: \"peaking Thursday at 4,120\", not \"bar chart of sends\". Only 2% of surveyed dashboard pages labelled a chart at all. Give charts a ceiling with --b-chart-h or a tall series drags the card with it.",
+    "Every dashboard widget has four states: loading, empty, error and loaded. Three pages out of 457 surveyed had a \"no data\" message. Use .b-skeleton while fetching and .b-empty with an action when there is nothing.",
+    "A table on a dashboard shows five to ten rows and links to the full list \u2014 it is a sample, not the archive. Columns of figures take .b-tabular-nums, and a delta states direction and period: \"up 8.2% this week\", never a bare arrow.",
     "Surfaces never stack materials. A panel inside glass is a fill, not a second material \u2014 nesting one blur inside another makes the GPU blur an already-blurred backdrop, which is the main way this system gets slow.",
     "Materials turn opaque under prefers-reduced-transparency and where backdrop-filter is unsupported, so never use translucency alone to carry meaning.",
     "Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.",
@@ -1446,6 +1452,7 @@
     "b-slider",
     "b-sort-control",
     "b-spacer",
+    "b-span-3",
     "b-span-4",
     "b-span-6",
     "b-span-8",
@@ -9440,6 +9447,176 @@
             "is-loading",
             "is-pressed"
           ]
+        }
+      ]
+    },
+    {
+      "id": "dashboards",
+      "title": "Dashboards \u2014 archetypes, composition, choosing a chart, and the four states every widget has",
+      "url": "https://ui.barua.tz/docs/dashboards.html",
+      "components": [
+        {
+          "id": "the-question",
+          "title": "Name the question first",
+          "category": "dashboards",
+          "url": "https://ui.barua.tz/docs/dashboards.html#the-question",
+          "summary": "A dashboard answers one question, for one person, on one visit: is anything wrong , how are we doing , what needs me today . Everything on the screen either serves that question or is decoration. A page that answers three answers none of them well \u2014 that is what a second dashboard is for.",
+          "classes": [],
+          "markup": ""
+        },
+        {
+          "id": "archetypes",
+          "title": "Six archetypes",
+          "category": "dashboards",
+          "url": "https://ui.barua.tz/docs/dashboards.html#archetypes",
+          "summary": "Variety comes from choosing a different archetype, not from decorating the same one. Most dashboards are an Overview because it is the shape that gets built by reflex.",
+          "classes": [
+            "b-table",
+            "b-table-wrap"
+          ],
+          "markup": "",
+          "knobs": [
+            "--b-lg-border",
+            "--b-lg-pane"
+          ],
+          "states": [
+            "is-asc",
+            "is-desc",
+            "is-selected"
+          ]
+        },
+        {
+          "id": "composition",
+          "title": "Composition",
+          "category": "dashboards",
+          "url": "https://ui.barua.tz/docs/dashboards.html#composition",
+          "summary": "Widths are full, half, third or quarter, and spans in a row total twelve. Those four are the entire vocabulary the surveyed templates use; anything else reads as a mistake.",
+          "classes": [
+            "b-card",
+            "b-card--compact",
+            "b-card__body",
+            "b-card__header",
+            "b-card__title",
+            "b-columns",
+            "b-columns__bar",
+            "b-dashboard",
+            "b-empty",
+            "b-empty__desc",
+            "b-empty__title",
+            "b-span-3",
+            "b-span-4",
+            "b-span-8",
+            "b-stat",
+            "b-stat__label",
+            "b-stat__value"
+          ],
+          "markup": "<div class=\"b-dashboard\">\n  <article class=\"b-card b-card--compact b-span-3\"><div class=\"b-card__body\"><div class=\"b-stat\"><span class=\"b-stat__label\">Sent</span><span class=\"b-stat__value\">12,480</span></div></div></article>\n  <article class=\"b-card b-card--compact b-span-3\"><div class=\"b-card__body\"><div class=\"b-stat\"><span class=\"b-stat__label\">Opened</span><span class=\"b-stat__value\">61%</span></div></div></article>\n  <article class=\"b-card b-card--compact b-span-3\"><div class=\"b-card__body\"><div class=\"b-stat\"><span class=\"b-stat__label\">Replied</span><span class=\"b-stat__value\">18%</span></div></div></article>\n  <article class=\"b-card b-card--compact b-span-3\"><div class=\"b-card__body\"><div class=\"b-stat\"><span class=\"b-stat__label\">Bounced</span><span class=\"b-stat__value\">0.4%</span></div></div></article>\n  <article class=\"b-card b-span-8\"><div class=\"b-card__header\"><div class=\"b-card__title\">Delivery, last 7 days</div></div><div class=\"b-card__body\"><div class=\"b-columns\" style=\"--b-chart-h: 8rem\" role=\"img\" aria-label=\"Delivery peaked Thursday at 4,120.\"><div class=\"b-columns__bar\" data-label=\"M\" style=\"--v: 62%\"></div><div class=\"b-columns__bar\" data-label=\"T\" style=\"--v: 71%\"></div><div class=\"b-columns__bar\" data-label=\"W\" style=\"--v: 58%\"></div><div class=\"b-columns__bar\" data-label=\"T\" style=\"--v: 100%\"></div><div class=\"b-columns__bar\" data-label=\"F\" style=\"--",
+          "react": {
+            "import": "import { Card, CardBody, CardHeader, CardTitle, Columns, Dashboard, Stat } from \"barua-ui\";",
+            "components": [
+              "Card",
+              "CardBody",
+              "CardHeader",
+              "CardTitle",
+              "Columns",
+              "Dashboard",
+              "Stat"
+            ],
+            "root": "Dashboard",
+            "jsx": "<Dashboard>\n  <Card compact className=\"b-span-3\">\n    <CardBody>\n      <Stat>\n        <span className=\"b-stat__label\">Sent</span>\n        <span className=\"b-stat__value\">12,480</span>\n      </Stat>\n    </CardBody>\n  </Card>\n  <Card compact className=\"b-span-3\">\n    <CardBody>\n      <Stat>\n        <span className=\"b-stat__label\">Opened</span>\n        <span className=\"b-stat__value\">61%</span>\n      </Stat>\n    </CardBody>\n  </Card>\n  <Card compact className=\"b-span-3\">\n    <CardBody>\n      <Stat>\n        <span className=\"b-stat__label\">Replied</span>\n        <span className=\"b-stat__value\">18%</span>\n      </Stat>\n    </CardBody>\n  </Card>\n  <Card compact className=\"b-span-3\">\n    <CardBody>\n      <Stat>\n        <span className=\"b-stat__label\">Bounced</span>\n        <span className=\"b-stat__value\">0.4%</span>\n      </Stat>\n    </CardBody>\n  </Card>\n  <Card className=\"b-span-8\">\n    <CardHeader>\n      <CardTitle>Delivery, last 7 days</CardTitle>\n    </CardHeader>\n    <CardBody>\n      <Columns\n        style={{ \"--b-chart-h\": \"8rem\" }}\n        role=\"img\"\n        aria-label=\"Delivery peaked Thursday at 4,120.\"\n      >\n        <div className=\"b-columns__bar\" data-label=\"M\" style={{ \"--v\": \"62%\" }}></div>\n        <div className=\"b-columns__bar\" data-label=\"T\" style={{ \"--v\": \"71%\" }}></div>\n        <div className=\"b-columns__bar\" data-label=\"W\" style={{ \"--v\": \"58%\" }}></div>\n        <div className=\"b-columns__bar\" data-label=\"T\" style={{ \"--v\": \"100%\" }}></div>\n      </Columns>\n    </CardBody>\n  </Card>\n</Dashboard>"
+          },
+          "knobs": [
+            "--b-chart-color",
+            "--b-chart-h",
+            "--b-column-w",
+            "--b-lg-border",
+            "--b-lg-pane",
+            "--v"
+          ],
+          "states": [
+            "is-down",
+            "is-up"
+          ]
+        },
+        {
+          "id": "charts",
+          "title": "Choosing a chart",
+          "category": "dashboards",
+          "url": "https://ui.barua.tz/docs/dashboards.html#charts",
+          "summary": "Time is a line or an area. Comparison across categories is a bar. Those three were 84% of every chart in the survey \u2014 97 of 115.",
+          "classes": [
+            "b-table",
+            "b-table-wrap"
+          ],
+          "markup": "",
+          "knobs": [
+            "--b-lg-border",
+            "--b-lg-pane"
+          ],
+          "states": [
+            "is-asc",
+            "is-desc",
+            "is-selected"
+          ]
+        },
+        {
+          "id": "states",
+          "title": "Four states, not one",
+          "category": "dashboards",
+          "url": "https://ui.barua.tz/docs/dashboards.html#states",
+          "summary": "Every widget has a loading state, an empty state, an error state and a loaded state. Design all four or the page only works on a good day. In 457 pages, three had a message for having no data.",
+          "classes": [
+            "b-alert",
+            "b-alert--danger",
+            "b-alert__content",
+            "b-card",
+            "b-card--compact",
+            "b-card__body",
+            "b-empty",
+            "b-empty__desc",
+            "b-empty__title",
+            "b-gap-2",
+            "b-gap-3",
+            "b-grid",
+            "b-grid--3",
+            "b-skeleton",
+            "b-skeleton--text",
+            "b-stack"
+          ],
+          "markup": "<div class=\"b-grid b-grid--3 b-gap-3\">\n  <article class=\"b-card b-card--compact\"><div class=\"b-card__body b-stack b-gap-2\"><span class=\"b-skeleton b-skeleton--text\" style=\"width: 40%\"></span><span class=\"b-skeleton b-skeleton--text\" style=\"width: 70%\"></span></div></article>\n  <article class=\"b-card b-card--compact\"><div class=\"b-card__body\"><div class=\"b-empty\"><div class=\"b-empty__title\">No invoices yet</div><p class=\"b-empty__desc\">They appear here once you send one.</p></div></div></article>\n  <article class=\"b-card b-card--compact\"><div class=\"b-card__body\"><div class=\"b-alert b-alert--danger\" role=\"alert\"><div class=\"b-alert__content\">Could not reach billing. Retrying in 30s.</div></div></div></article>\n</div>",
+          "react": {
+            "import": "import { Alert, Card, CardBody, EmptyState, Grid, Skeleton } from \"barua-ui\";",
+            "components": [
+              "Alert",
+              "Card",
+              "CardBody",
+              "EmptyState",
+              "Grid",
+              "Skeleton"
+            ],
+            "root": "Grid",
+            "jsx": "<Grid cols={3} className=\"b-gap-3\">\n  <Card compact>\n    <CardBody className=\"b-stack b-gap-2\">\n      <Skeleton className=\"b-skeleton--text\" style={{ width: \"40%\" }}></Skeleton>\n      <Skeleton className=\"b-skeleton--text\" style={{ width: \"70%\" }}></Skeleton>\n    </CardBody>\n  </Card>\n  <Card compact>\n    <CardBody>\n      <EmptyState>\n        <div className=\"b-empty__title\">No invoices yet</div>\n        <p className=\"b-empty__desc\">They appear here once you send one.</p>\n      </EmptyState>\n    </CardBody>\n  </Card>\n  <Card compact>\n    <CardBody>\n      <Alert variant=\"danger\" role=\"alert\">\n        <div className=\"b-alert__content\">Could not reach billing. Retrying in 30s.</div>\n      </Alert>\n    </CardBody>\n  </Card>\n</Grid>"
+          },
+          "knobs": [
+            "--b-col-min",
+            "--b-cols",
+            "--b-gap",
+            "--b-lg-border",
+            "--b-lg-pane"
+          ],
+          "states": [
+            "is-destructive",
+            "is-primary"
+          ]
+        },
+        {
+          "id": "density",
+          "title": "Density",
+          "category": "dashboards",
+          "url": "https://ui.barua.tz/docs/dashboards.html#density",
+          "summary": "A table on a dashboard shows five to ten rows and links to the full list \u2014 it is a sample, not the archive. Columns of figures take .b-tabular-nums or the digits jitter as they update. A delta states direction and period together: \"\u2191 8.2% this week\", never a bare arrow.",
+          "classes": [],
+          "markup": ""
         }
       ]
     },

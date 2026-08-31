@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboards — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <link rel="stylesheet" href="docs.css">
+  <script defer src="../js/barua.js"></script>
+  <script defer src="docs.js"></script>
+<script src="react-code.js"></script>
+</head>
+<body class="docs">
+  <a class="b-skip-link" href="#main">Skip to content</a>
+
+  <header class="b-topnav">
+    <a class="b-topnav__brand" href="../index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Barua UI
+    </a>
+    <span class="b-badge b-badge--accent">v0.2</span>
+    <span class="b-spacer"></span>
+    <button class="b-btn b-btn--ghost b-btn--sm" data-b-cmdk="#docs-cmdk">
+      Search&nbsp;<kbd>⌘K</kbd>
+    </button>
+    <a class="b-btn b-icon-btn b-btn--ghost b-tooltip-host" data-tooltip="Source on GitHub" href="https://github.com/nassdaq/barua-ui" target="_blank" rel="noreferrer" aria-label="Barua UI on GitHub">
+      <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-glass-toggle aria-label="Toggle Liquid Glass mode" title="Liquid Glass">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.8C7.7 6 5.5 8.6 5.5 11.4a4.5 4.5 0 0 0 9 0c0-2.8-2.2-5.4-4.5-8.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.6 11.5a2.4 2.4 0 0 0 1.7 2.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar b-sidebar">
+      <nav class="b-sidebar__group" aria-label="Documentation">
+        <div class="b-sidebar__heading">Start</div>
+        <a class="b-sidebar__item" href="../index.html">Getting Started</a>
+        <a class="b-sidebar__item" href="principles.html">Principles</a>
+        <a class="b-sidebar__item" href="foundations.html">Foundations</a>
+        <a class="b-sidebar__item" href="icons.html">Icons</a>
+        <a class="b-sidebar__item" href="theming.html">Theming</a>
+        <a class="b-sidebar__item" href="wallpapers.html">Wallpapers</a>
+        <a class="b-sidebar__item" href="react.html">React</a>
+        <a class="b-sidebar__item" href="layout.html">Layout</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Examples</div>
+        <a class="b-sidebar__item" href="../examples/dashboard.html">Dashboard</a>
+        <a class="b-sidebar__item" href="../examples/ambient.html">Ambient</a>
+        <a class="b-sidebar__item" href="../examples/music.html">Music</a>
+        <a class="b-sidebar__item" href="../examples/settings.html">Settings</a>
+        <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
+        <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
+        <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
+        <a class="b-sidebar__item" href="../examples/landing.html">Landing</a>
+        <a class="b-sidebar__item" href="../examples/product.html">Product page</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Components</div>
+        <a class="b-sidebar__item" href="actions.html">Actions</a>
+        <a class="b-sidebar__item" href="navigation.html">Navigation</a>
+        <a class="b-sidebar__item" href="forms.html">Forms</a>
+        <a class="b-sidebar__item" href="content.html">Content</a>
+        <a class="b-sidebar__item" href="feedback.html">Feedback</a>
+        <a class="b-sidebar__item" href="overlays.html">Overlays</a>
+        <a class="b-sidebar__item" href="data-viz.html">Data Visualization</a>
+        <a class="b-sidebar__item" href="media.html">Media</a>
+        <a class="b-sidebar__item" href="specialized.html">Specialized</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">Patterns</div>
+        <a class="b-sidebar__item" href="authentication.html">Authentication</a>
+        <a class="b-sidebar__item" href="system.html">System Pages</a>
+        <a class="b-sidebar__item" href="dashboards.html">Dashboards</a>
+        <a class="b-sidebar__item" href="productivity.html">Productivity</a>
+        <a class="b-sidebar__item" href="interaction.html">Interaction</a>
+        <a class="b-sidebar__item" href="mobile.html">Mobile</a>
+        <a class="b-sidebar__item" href="marketing.html">Marketing</a>
+      </nav>
+      <nav class="b-sidebar__group">
+        <div class="b-sidebar__heading">System</div>
+        <a class="b-sidebar__item" href="infrastructure.html">Infrastructure</a>
+      </nav>
+    </aside>
+
+            <main class="docs-main" id="main">
+      <header class="docs-hero">
+        <div class="docs-hero__eyebrow">Patterns</div>
+        <h1>Dashboards</h1>
+        <p class="docs-hero__lede">
+          Rules drawn from six admin templates — 457 pages — read for what they
+          do consistently and, just as usefully, for what none of them do. The
+          numbers below are counted from that survey, not asserted.
+        </p>
+      </header>
+
+      <section class="docs-section" id="the-question">
+        <h2>Name the question first</h2>
+        <p>
+          A dashboard answers one question, for one person, on one visit: <em>is
+          anything wrong</em>, <em>how are we doing</em>, <em>what needs me
+          today</em>. Everything on the screen either serves that question or is
+          decoration. A page that answers three answers none of them well — that
+          is what a second dashboard is for.
+        </p>
+      </section>
+
+      <section class="docs-section" id="archetypes">
+        <h2>Six archetypes</h2>
+        <p>
+          Variety comes from choosing a different archetype, not from decorating
+          the same one. Most dashboards are an Overview because it is the shape
+          that gets built by reflex.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead><tr><th>Archetype</th><th>Leads with</th><th>Answers</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Overview</strong></td><td>Three or four figures, one trend, recent activity</td><td>How are we doing?</td></tr>
+              <tr><td><strong>Monitoring</strong></td><td>State. Big, plain, few numbers, no history</td><td>Is it healthy — from across the room</td></tr>
+              <tr><td><strong>Analytics</strong></td><td>One dominant chart, breakdowns beneath</td><td>Why did that happen?</td></tr>
+              <tr><td><strong>Work queue</strong></td><td>The list itself. No KPI row</td><td>What needs me today?</td></tr>
+              <tr><td><strong>Record</strong></td><td>One entity, its facts, its history</td><td>What is the state of this one thing?</td></tr>
+              <tr><td><strong>Console</strong></td><td>Dense tables, bulk actions, filters</td><td>Let me work all day without leaving</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="docs-a11y">
+          <div>
+            <strong>A work queue has no KPI row.</strong> A count belongs in the
+            filter that produces it — "Unassigned (12)" — not in a tile above a
+            list that already shows twelve things.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="composition">
+        <h2>Composition</h2>
+        <p>
+          Widths are full, half, third or quarter, and spans in a row total
+          twelve. Those four are the entire vocabulary the surveyed templates
+          use; anything else reads as a mistake.
+        </p>
+        <div class="docs-demo">
+          <div class="b-dashboard">
+            <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Sent</span><span class="b-stat__value">12,480</span></div></div></article>
+            <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Opened</span><span class="b-stat__value">61%</span></div></div></article>
+            <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Replied</span><span class="b-stat__value">18%</span></div></div></article>
+            <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Bounced</span><span class="b-stat__value">0.4%</span></div></div></article>
+            <article class="b-card b-span-8"><div class="b-card__header"><div class="b-card__title">Delivery, last 7 days</div></div><div class="b-card__body"><div class="b-columns" style="--b-chart-h: 8rem" role="img" aria-label="Delivery peaked Thursday at 4,120."><div class="b-columns__bar" data-label="M" style="--v: 62%"></div><div class="b-columns__bar" data-label="T" style="--v: 71%"></div><div class="b-columns__bar" data-label="W" style="--v: 58%"></div><div class="b-columns__bar" data-label="T" style="--v: 100%"></div><div class="b-columns__bar" data-label="F" style="--v: 74%"></div><div class="b-columns__bar" data-label="S" style="--v: 41%"></div><div class="b-columns__bar" data-label="S" style="--v: 33%"></div></div></div></article>
+            <article class="b-card b-span-4"><div class="b-card__header"><div class="b-card__title">Needs attention</div></div><div class="b-card__body"><div class="b-empty"><div class="b-empty__title">Nothing waiting</div><p class="b-empty__desc">Every bounce has been handled.</p></div></div></article>
+          </div>
+        </div>
+        <p>
+          Four quarters, then an eight and a four. One dominant element — the
+          chart — and the rest in service of it. If every card is the same size
+          the page reads as a spreadsheet with rounded corners, whatever is in
+          it.
+        </p>
+      </section>
+
+      <section class="docs-section" id="charts">
+        <h2>Choosing a chart</h2>
+        <p>
+          Time is a line or an area. Comparison across categories is a bar.
+          Those three were <strong>84%</strong> of every chart in the survey —
+          97 of 115.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead><tr><th>Shape</th><th>Share of 115 charts</th><th>Use it when</th></tr></thead>
+            <tbody>
+              <tr><td>Line</td><td>34%</td><td>A value over time, and the shape of the change matters.</td></tr>
+              <tr><td>Area</td><td>29%</td><td>The same, when volume matters more than precision.</td></tr>
+              <tr><td>Bar</td><td>22%</td><td>Comparison across named things.</td></tr>
+              <tr><td>Radial, radar, scatter</td><td>10%</td><td>Rarely, and never as decoration.</td></tr>
+              <tr><td>Pie or donut</td><td><strong>3%</strong></td><td>Two to four parts of a genuine whole. Nothing else.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          The shape people reach for first is the one professionals use least:
+          four pie or donut charts in 457 pages. And a number that matters more
+          than its trend is a <code>.b-stat</code>, not a chart at all.
+        </p>
+        <div class="docs-a11y">
+          <div>
+            <strong>Label the takeaway, not the chart.</strong> Every chart takes
+            <code>role="img"</code> and an <code>aria-label</code> saying what it
+            shows — "peaking Thursday at 4,120", never "bar chart of sends". Only
+            <strong>2%</strong> of surveyed pages labelled a chart at all, which
+            makes it the most common failure in the genre. Give charts a ceiling
+            with <code>--b-chart-h</code> too, or one tall series drags the whole
+            row with it.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="states">
+        <h2>Four states, not one</h2>
+        <p>
+          Every widget has a loading state, an empty state, an error state and a
+          loaded state. Design all four or the page only works on a good day. In
+          457 pages, <strong>three</strong> had a message for having no data.
+        </p>
+        <div class="docs-demo">
+          <div class="b-grid b-grid--3 b-gap-3">
+            <article class="b-card b-card--compact"><div class="b-card__body b-stack b-gap-2"><span class="b-skeleton b-skeleton--text" style="width: 40%"></span><span class="b-skeleton b-skeleton--text" style="width: 70%"></span></div></article>
+            <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-empty"><div class="b-empty__title">No invoices yet</div><p class="b-empty__desc">They appear here once you send one.</p></div></div></article>
+            <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-alert b-alert--danger" role="alert"><div class="b-alert__content">Could not reach billing. Retrying in 30s.</div></div></div></article>
+          </div>
+        </div>
+        <p>
+          Loading is <code>.b-skeleton</code> in the shape of what is coming.
+          Empty is <code>.b-empty</code> with the action that ends it. An error
+          says what failed and what happens next, rather than leaving a card
+          blank and hoping.
+        </p>
+      </section>
+
+      <section class="docs-section" id="density">
+        <h2>Density</h2>
+        <p>
+          A table on a dashboard shows five to ten rows and links to the full
+          list — it is a sample, not the archive. Columns of figures take
+          <code>.b-tabular-nums</code> or the digits jitter as they update. A
+          delta states direction and period together: "↑ 8.2% this week", never a
+          bare arrow.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

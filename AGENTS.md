@@ -36,6 +36,71 @@ It also carries the contract, so you never have to open the stylesheets:
 
 Locally, regenerate it with `python3 tools/build-ai-index.py`.
 
+## Designing a dashboard
+
+Rules derived from six admin templates — 457 pages — read for what they do
+consistently and, as often, for what none of them do.
+
+**Name the question first.** A dashboard answers one question for one person on
+one visit: *is anything wrong*, *how are we doing*, *what needs me today*. Every
+element either serves that question or is decoration. A page that answers three
+questions answers none of them well; that is what a second dashboard is for.
+
+**Pick an archetype. Variety comes from picking a different one, not from
+decorating the same one.**
+
+- **Overview** — a few figures, one trend, recent activity. The default, and the
+  one built by reflex; only choose it deliberately.
+- **Monitoring** — state first. Big, plain status. Few numbers, no history.
+  Answers "is it healthy" in one glance from across a room.
+- **Analytics** — one dominant chart, breakdowns beneath, filters that change
+  all of it together.
+- **Work queue** — the list *is* the page. Everything else exists to triage it.
+  No KPI row: a count belongs in the filter that produces it.
+- **Record** — one entity, its facts, its history. A detail page, not a grid.
+- **Console** — dense tables, bulk actions, filters. Built for someone who is
+  here all day and wants rows, not cards.
+
+**Composition**
+
+- Widths are full, half, third or quarter. Spans in a row total twelve. Those
+  four are the whole vocabulary the surveyed templates use, and arbitrary widths
+  read as mistakes.
+- Three or four figures on the top row. Never five: past four, nobody scans
+  them, they read them, and reading is not what a figure on a dashboard is for.
+- One dominant element per screen. If everything is a card of the same size the
+  page reads as a spreadsheet with rounded corners, whatever is in it.
+- A number that matters more than its trend is a `.b-stat`, not a chart.
+
+**Charts**
+
+- Time is a line or an area. Comparison across categories is a bar. Those three
+  are **84%** of every chart in the survey (97 of 115).
+- Pie and donut were **3%** — 4 charts in 457 pages. The shape people reach for
+  first is the one professionals use least. Use it only for two to four parts of
+  a genuine whole.
+- Every chart carries `role="img"` and an `aria-label` **stating the takeaway**,
+  not the chart type: "peaking Thursday at 4,120", not "bar chart of sends".
+  Only 2% of surveyed pages labelled a chart at all — this is the single most
+  common failure in the genre.
+- A chart needs a ceiling: `--b-chart-h`. Without one a tall series drags the
+  card and the row with it.
+
+**Every widget has four states, not one**
+
+Loading, empty, error, loaded. Design all four or the page only works on a good
+day. In 457 pages, **three** had a "no data" message. Use `.b-skeleton` while
+fetching, `.b-empty` with an action when there is nothing, and say what failed
+rather than showing a blank card.
+
+**Density**
+
+- A table on a dashboard shows five to ten rows and links to the full list. It
+  is a sample, not the archive.
+- Money and any column of figures take `.b-tabular-nums`, or the digits jitter
+  as they change.
+- Deltas state direction *and* period: "↑ 8.2% this week", never a bare arrow.
+
 ## Reading the documentation
 
 Every page is published twice. `https://ui.barua.tz/docs/forms.html` is also
