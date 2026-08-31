@@ -61,6 +61,34 @@ decorating the same one.**
 - **Console** — dense tables, bulk actions, filters. Built for someone who is
   here all day and wants rows, not cards.
 
+**The five layers**
+
+A dashboard is read top to bottom, and each band answers the same question at a
+different depth — *what*, then *why*, then *what now*.
+
+1. **Context** — title, period, the filters that govern everything below.
+2. **Verdict** — three or four figures with deltas. Quarters or thirds.
+3. **Evidence** — the chart the verdict came from, plus a companion. One
+   dominant element: spans of 8 and 4.
+4. **Detail** — lists and tables. A sample, not the archive.
+5. **Tail** — links out, last-updated.
+
+Four or five layers is a page; six is two pages pretending to be one. A figure
+led 40 of 51 surveyed pages, and figure-then-list was the commonest adjacency of
+all at 36 — that order is not a convention, it is how people read.
+
+**Rhythm.** Consecutive layers must not share a column split: quarters, then
+eight-and-four, then halves. A page where every band is the same shape reads as
+a spreadsheet with rounded corners.
+
+**Spacing does the grouping.** `.b-gap-6` between layers, `.b-gap-3` or
+`.b-gap-4` within one. That difference alone separates the bands, which is why a
+well-spaced dashboard needs almost no rules and no boxes.
+
+**The first screen** owes context and verdict plus the top of the evidence. If
+the figures need scrolling, something above them is taking space it has not
+earned.
+
 **Composition**
 
 - Widths are full, half, third or quarter. Spans in a row total twelve. Those

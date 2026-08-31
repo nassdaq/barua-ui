@@ -111,6 +111,99 @@
         </p>
       </section>
 
+      <section class="docs-section" id="layers">
+        <h2>The five layers</h2>
+        <p>
+          A dashboard is not a grid of cards, it is a page read from the top
+          down, and each band answers the same question at a different depth:
+          <em>what</em>, then <em>why</em>, then <em>what now</em>. In the
+          survey a figure came first on 40 of 51 pages, and the strongest
+          adjacency of all was a figure followed by a list — 36 occurrences.
+          That order is not a convention, it is how people read.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead><tr><th>Layer</th><th>Widths</th><th>Carries</th><th>Answers</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>1 · Context</strong></td><td>full, quiet</td>
+                <td>Title, period, the filters that govern everything below</td>
+                <td>What am I looking at, and over what span?</td>
+              </tr>
+              <tr>
+                <td><strong>2 · Verdict</strong></td><td>quarters or thirds</td>
+                <td>Three or four figures with their deltas</td>
+                <td>What is the state of things — in one glance?</td>
+              </tr>
+              <tr>
+                <td><strong>3 · Evidence</strong></td><td>one dominant, e.g. 8 + 4</td>
+                <td>The chart the verdict came from, and its companion</td>
+                <td>Why is it that way?</td>
+              </tr>
+              <tr>
+                <td><strong>4 · Detail</strong></td><td>halves, or full</td>
+                <td>Lists and tables — a sample, not the archive</td>
+                <td>What specifically, and what needs me?</td>
+              </tr>
+              <tr>
+                <td><strong>5 · Tail</strong></td><td>full, quiet</td>
+                <td>Links out, footnotes, last-updated</td>
+                <td>Where do I go to do something about it?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Four or five layers is a page. Six is two pages pretending to be one.
+        </p>
+
+        <h3 id="rhythm">Rhythm is what makes it feel designed</h3>
+        <p>
+          The layers must not be the same shape. Narrow, then wide, then medium
+          — the width changing down the page is what stops a dashboard reading
+          as a spreadsheet with rounded corners. Four quarters, then an eight
+          and a four, then two halves: no two consecutive bands share a split.
+        </p>
+        <div class="docs-demo" data-no-code>
+          <div class="b-stack b-gap-2 docs-layers">
+            <div class="docs-layer docs-layer--ctx"><span>1 · context</span></div>
+            <div class="b-hstack b-gap-2">
+              <div class="docs-layer" style="flex: 3"><span>2 · verdict</span></div>
+              <div class="docs-layer" style="flex: 3"></div>
+              <div class="docs-layer" style="flex: 3"></div>
+              <div class="docs-layer" style="flex: 3"></div>
+            </div>
+            <div class="b-hstack b-gap-2">
+              <div class="docs-layer docs-layer--tall" style="flex: 8"><span>3 · evidence</span></div>
+              <div class="docs-layer docs-layer--tall" style="flex: 4"></div>
+            </div>
+            <div class="b-hstack b-gap-2">
+              <div class="docs-layer" style="flex: 6"><span>4 · detail</span></div>
+              <div class="docs-layer" style="flex: 6"></div>
+            </div>
+            <div class="docs-layer docs-layer--ctx"><span>5 · tail</span></div>
+          </div>
+        </div>
+
+        <h3 id="grouping">Space groups; borders separate</h3>
+        <p>
+          The gap <em>between</em> layers is larger than the gap
+          <em>within</em> one — <code>.b-gap-6</code> between bands,
+          <code>.b-gap-3</code> or <code>.b-gap-4</code> inside them. That
+          difference alone does the grouping, which is why a well-spaced
+          dashboard needs almost no rules and no boxes around things.
+        </p>
+
+        <h3 id="fold">What the first screen owes you</h3>
+        <p>
+          Context and verdict, plus the top of the evidence. Someone who reads
+          nothing else must still leave knowing whether anything is wrong. If
+          the verdict needs scrolling, the layers above it are too tall — that
+          is usually a hero, a greeting or a banner earning space it has not
+          justified.
+        </p>
+      </section>
+
       <section class="docs-section" id="archetypes">
         <h2>Six archetypes</h2>
         <p>

@@ -9,6 +9,34 @@ A dashboard answers one question, for one person, on one visit: is anything wron
 
 - Documentation: https://ui.barua.tz/docs/dashboards.html#the-question
 
+## The five layers
+
+A dashboard is not a grid of cards, it is a page read from the top down, and each band answers the same question at a different depth: what , then why , then what now . In the survey a figure came first on 40 of 51 pages, and the strongest adjacency of all was a figure followed by a list — 36 occurrences. That order is not a convention, it is how people read.
+
+- Documentation: https://ui.barua.tz/docs/dashboards.html#layers
+- Classes: `b-gap-2` `b-hstack` `b-stack` `b-table` `b-table-wrap`
+
+```html
+<div class="b-stack b-gap-2 docs-layers">
+  <div class="docs-layer docs-layer--ctx"><span>1 · context</span></div>
+  <div class="b-hstack b-gap-2">
+    <div class="docs-layer" style="flex: 3"><span>2 · verdict</span></div>
+    <div class="docs-layer" style="flex: 3"></div>
+    <div class="docs-layer" style="flex: 3"></div>
+    <div class="docs-layer" style="flex: 3"></div>
+  </div>
+  <div class="b-hstack b-gap-2">
+    <div class="docs-layer docs-layer--tall" style="flex: 8"><span>3 · evidence</span></div>
+    <div class="docs-layer docs-layer--tall" style="flex: 4"></div>
+  </div>
+  <div class="b-hstack b-gap-2">
+    <div class="docs-layer" style="flex: 6"><span>4 · detail</span></div>
+    <div class="docs-layer" style="flex: 6"></div>
+  </div>
+  <div class="docs-layer docs-layer--ctx"><span>5 · tail</span></div>
+</div>
+```
+
 ## Six archetypes
 
 Variety comes from choosing a different archetype, not from decorating the same one. Most dashboards are an Overview because it is the shape that gets built by reflex.

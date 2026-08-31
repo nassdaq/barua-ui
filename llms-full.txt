@@ -12,17 +12,21 @@
 8. A scroll pane's children must never be forced to the pane's height (no h-full inside a scroll area) or scrolling silently dies.
 9. Hover, selection and active are different states and must look different: hover is a quiet fill, selection is accent-soft, focus is the focus ring.
 10. Dashboards: name the one question the screen answers before laying anything out. Pick an archetype — overview, monitoring, analytics, work queue, record, console — because variety comes from choosing a different one, not from decorating the same one.
-11. Dashboard composition: widths are full, half, third or quarter and a row totals twelve. Three or four figures on the top row, never five. One dominant element per screen, or the page reads as a spreadsheet with rounded corners.
-12. Charts: time is a line or an area, comparison across categories is a bar — those three are 84% of charts in a 457-page survey of admin templates. Pie and donut were 3%; use them only for two to four parts of a genuine whole. A number that matters more than its trend is a .b-stat, not a chart.
-13. Every chart carries role="img" and an aria-label stating the takeaway rather than the chart type: "peaking Thursday at 4,120", not "bar chart of sends". Only 2% of surveyed dashboard pages labelled a chart at all. Give charts a ceiling with --b-chart-h or a tall series drags the card with it.
-14. Every dashboard widget has four states: loading, empty, error and loaded. Three pages out of 457 surveyed had a "no data" message. Use .b-skeleton while fetching and .b-empty with an action when there is nothing.
-15. A table on a dashboard shows five to ten rows and links to the full list — it is a sample, not the archive. Columns of figures take .b-tabular-nums, and a delta states direction and period: "up 8.2% this week", never a bare arrow.
-16. Surfaces never stack materials. A panel inside glass is a fill, not a second material — nesting one blur inside another makes the GPU blur an already-blurred backdrop, which is the main way this system gets slow.
-17. Materials turn opaque under prefers-reduced-transparency and where backdrop-filter is unsupported, so never use translucency alone to carry meaning.
-18. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
-19. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
-20. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
-21. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
+11. A dashboard has five layers read top to bottom, each answering the same question at a different depth — what, then why, then what now: 1 context (title, period, filters), 2 verdict (three or four figures), 3 evidence (one dominant chart plus a companion, e.g. spans 8 and 4), 4 detail (lists and tables), 5 tail (links out). Four or five layers is a page; six is two pages pretending to be one. A figure led 40 of 51 surveyed pages and figure-then-list was the commonest adjacency.
+12. Dashboard rhythm: consecutive layers must not share a column split. Quarters, then eight-and-four, then halves. A page where every band is the same shape reads as a spreadsheet with rounded corners whatever is in it.
+13. Dashboard spacing groups the layers: .b-gap-6 between bands and .b-gap-3 or .b-gap-4 within one. That difference does the grouping, so a well-spaced dashboard needs almost no rules or boxes.
+14. The first screen of a dashboard owes the reader context and verdict plus the top of the evidence. If the figures need scrolling to reach, something above them — a hero, a greeting, a banner — is taking space it has not earned.
+15. Dashboard composition: widths are full, half, third or quarter and a row totals twelve. Three or four figures on the top row, never five. One dominant element per screen, or the page reads as a spreadsheet with rounded corners.
+16. Charts: time is a line or an area, comparison across categories is a bar — those three are 84% of charts in a 457-page survey of admin templates. Pie and donut were 3%; use them only for two to four parts of a genuine whole. A number that matters more than its trend is a .b-stat, not a chart.
+17. Every chart carries role="img" and an aria-label stating the takeaway rather than the chart type: "peaking Thursday at 4,120", not "bar chart of sends". Only 2% of surveyed dashboard pages labelled a chart at all. Give charts a ceiling with --b-chart-h or a tall series drags the card with it.
+18. Every dashboard widget has four states: loading, empty, error and loaded. Three pages out of 457 surveyed had a "no data" message. Use .b-skeleton while fetching and .b-empty with an action when there is nothing.
+19. A table on a dashboard shows five to ten rows and links to the full list — it is a sample, not the archive. Columns of figures take .b-tabular-nums, and a delta states direction and period: "up 8.2% this week", never a bare arrow.
+20. Surfaces never stack materials. A panel inside glass is a fill, not a second material — nesting one blur inside another makes the GPU blur an already-blurred backdrop, which is the main way this system gets slow.
+21. Materials turn opaque under prefers-reduced-transparency and where backdrop-filter is unsupported, so never use translucency alone to carry meaning.
+22. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
+23. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
+24. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
+25. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
 
 ## Principles — the eight ideas the system is built on, and what enforces each
 
@@ -4415,6 +4419,32 @@ Classes: b-auth-card__logo b-btn b-btn--lg b-btn--primary b-form-actions b-gap-4
 
 ### Name the question first  (https://ui.barua.tz/docs/dashboards.html#the-question)
 A dashboard answers one question, for one person, on one visit: is anything wrong , how are we doing , what needs me today . Everything on the screen either serves that question or is decoration. A page that answers three answers none of them well — that is what a second dashboard is for.
+
+### The five layers  (https://ui.barua.tz/docs/dashboards.html#layers)
+A dashboard is not a grid of cards, it is a page read from the top down, and each band answers the same question at a different depth: what , then why , then what now . In the survey a figure came first on 40 of 51 pages, and the strongest adjacency of all was a figure followed by a list — 36 occurrences. That order is not a convention, it is how people read.
+Variants: Rhythm is what makes it feel designed, Space groups; borders separate, What the first screen owes you
+Classes: b-gap-2 b-hstack b-stack b-table b-table-wrap
+
+```html
+<div class="b-stack b-gap-2 docs-layers">
+  <div class="docs-layer docs-layer--ctx"><span>1 · context</span></div>
+  <div class="b-hstack b-gap-2">
+    <div class="docs-layer" style="flex: 3"><span>2 · verdict</span></div>
+    <div class="docs-layer" style="flex: 3"></div>
+    <div class="docs-layer" style="flex: 3"></div>
+    <div class="docs-layer" style="flex: 3"></div>
+  </div>
+  <div class="b-hstack b-gap-2">
+    <div class="docs-layer docs-layer--tall" style="flex: 8"><span>3 · evidence</span></div>
+    <div class="docs-layer docs-layer--tall" style="flex: 4"></div>
+  </div>
+  <div class="b-hstack b-gap-2">
+    <div class="docs-layer" style="flex: 6"><span>4 · detail</span></div>
+    <div class="docs-layer" style="flex: 6"></div>
+  </div>
+  <div class="docs-layer docs-layer--ctx"><span>5 · tail</span></div>
+</div>
+```
 
 ### Six archetypes  (https://ui.barua.tz/docs/dashboards.html#archetypes)
 Variety comes from choosing a different archetype, not from decorating the same one. Most dashboards are an Overview because it is the shape that gets built by reflex.

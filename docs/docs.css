@@ -472,3 +472,18 @@
   gap: var(--b-space-2);
   margin-block-end: var(--b-space-3);
 }
+
+/* ---- Dashboard layer diagram ----------------------------------------------------- */
+.docs-layers { width: 100%; }
+.docs-layer {
+  min-block-size: 3rem;
+  border-radius: var(--b-radius-md);
+  background: var(--b-fill-tertiary);
+  border: 1px dashed var(--b-separator);
+  display: grid;
+  place-items: center;
+  font-size: var(--b-text-caption2);
+  color: var(--b-text-secondary);
+}
+.docs-layer--tall { min-block-size: 6rem; }
+.docs-layer--ctx { min-block-size: 1.8rem; background: var(--b-fill-quaternary); }
