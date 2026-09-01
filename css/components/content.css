@@ -336,6 +336,17 @@
     border: 1px solid var(--b-separator);
     border-radius: var(--b-radius-lg);
   }
+
+  /* A table inside a card must not bring its own frame.
+     The wrap carries a border and a smaller radius than the card, so its
+     corners cut inside the card's and the surface shows through as a notch —
+     the card already provides the edge, and two frames read as a mistake. */
+  .b-card > .b-table-wrap {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
   .b-table {
     width: 100%;
     border-collapse: collapse;

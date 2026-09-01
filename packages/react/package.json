@@ -1,6 +1,6 @@
 {
   "name": "barua-ui",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Barua UI \u2014 Apple-DNA design system (glass materials, Barua blue) as React components over pure CSS.",
   "license": "MIT",
   "type": "module",
