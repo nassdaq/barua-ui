@@ -19,98 +19,211 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Barua
       </a>
-      <nav class="b-topnav__links" aria-label="Sections">
-        <a class="b-topnav__link is-active" aria-current="page" href="#">Dashboard</a>
-        <a class="b-topnav__link" href="#">Orders</a>
-        <a class="b-topnav__link" href="#">Reports</a>
-      </nav>
+
+      <!-- The reference puts a search field in the bar, not a button. -->
+      <div class="b-input-group" style="max-width: 22rem; flex: 1">
+        <span class="b-input-affix b-input-affix--start">
+          <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <input class="b-input" type="search" placeholder="Search…" aria-label="Search">
+      </div>
+
       <span class="b-spacer"></span>
+
+      <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Notifications, 3 unread">
+        <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5A4.5 4.5 0 0 1 14.5 8c0 3 1 4 1.5 4.5H4c.5-.5 1.5-1.5 1.5-4.5A4.5 4.5 0 0 1 10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15.5a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Messages, 2 unread">
+        <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16.5 11.5a1.5 1.5 0 0 1-1.5 1.5H7l-3 3V5a1.5 1.5 0 0 1 1.5-1.5h9.5A1.5 1.5 0 0 1 16.5 5v6.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </button>
       <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
         <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
-      <span class="b-avatar b-avatar--sm">KM</span>
+
+      <!-- Account: avatar, name and role, as the reference has it. -->
+      <span class="b-hstack b-gap-2" style="align-items: center">
+        <span class="b-avatar b-avatar--sm">AJ</span>
+        <span class="b-stack" style="gap: 0; line-height: 1.15">
+          <span class="b-caption" style="font-weight: var(--b-weight-semibold)">Adam Joe</span>
+          <span class="b-caption2 b-text-tertiary">Admin</span>
+        </span>
+      </span>
     </header>
 
-    <!--
-      A faithful rebuild of the eCommerce dashboard from the reference set:
-      the same seven sections, in the same order — Yearly stats, Sales/Revenue,
-      Sells by state, Top selling products, Sales forecast, Traffic, Sales
-      history — carried entirely by our own components.
+    <nav class="b-sidebar" aria-label="Sections" style="inline-size: 15rem; overflow-y: auto">
+      <div class="b-sidebar__group">
+        <div class="b-sidebar__heading">Dashboard</div>
+        <a class="b-sidebar__item is-active" aria-current="page" href="#">eCommerce</a>
+        <a class="b-sidebar__item" href="#">Analytics<span class="b-badge b-badge--accent">Pro</span></a>
+        <a class="b-sidebar__item" href="#">Crypto<span class="b-badge b-badge--accent">Pro</span></a>
+        <a class="b-sidebar__item" href="#">CRM<span class="b-badge b-badge--accent">Pro</span></a>
+        <a class="b-sidebar__item" href="#">Marketing<span class="b-badge b-badge--accent">Pro</span></a>
+      </div>
+      <div class="b-sidebar__group">
+        <div class="b-sidebar__heading">Workspace</div>
+        <a class="b-sidebar__item" href="#">Pages</a>
+        <a class="b-sidebar__item" href="#">Kanban<span class="b-badge b-badge--accent">Pro</span></a>
+        <a class="b-sidebar__item" href="#">File manager<span class="b-badge b-badge--accent">Pro</span></a>
+        <a class="b-sidebar__item" href="#">Profile<span class="b-badge b-badge--accent">Pro</span></a>
+        <a class="b-sidebar__item" href="#">Invoice</a>
+        <a class="b-sidebar__item" href="#">Task<span class="b-badge b-badge--accent">Pro</span></a>
+        <a class="b-sidebar__item" href="#">Calendar<span class="b-badge b-badge--accent">Pro</span></a>
+      </div>
+      <div class="b-sidebar__group">
+        <div class="b-sidebar__heading">Elements</div>
+        <a class="b-sidebar__item" href="#">Forms</a>
+        <a class="b-sidebar__item" href="#">Tables</a>
+        <a class="b-sidebar__item" href="#">Charts</a>
+        <a class="b-sidebar__item" href="#">Notifications</a>
+      </div>
+    </nav>
 
-      Two deliberate departures, both noted where they occur: its "Sells by
-      state" is a choropleth and we have no map component, and its seven bands
-      exceed the five our own rules call a page.
+    <!--
+      PlainAdmin's eCommerce dashboard, rebuilt on our components — this time
+      including the chrome the first attempt dropped: the rail, the search
+      field, the breadcrumb, an icon tile on every figure, a period picker in
+      each chart header, and axes on the charts rather than bare bars.
     -->
     <main class="b-workspace__main b-stack b-gap-6" id="main">
       <header class="b-hstack b-gap-3 b-stack--wrap">
-        <div>
-          <div class="b-overline b-text-secondary">Reports</div>
-          <h1 class="b-title1" style="margin: 0">eCommerce</h1>
-        </div>
+        <h1 class="b-title1" style="margin: 0">eCommerce Dashboard</h1>
         <span class="b-spacer"></span>
-        <nav class="b-segmented" aria-label="Period">
-          <button class="b-segmented__item">Month</button>
-          <button class="b-segmented__item">Quarter</button>
-          <button class="b-segmented__item is-active" aria-current="true">Year</button>
+        <nav class="b-breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="#">Dashboard</a></li>
+            <li aria-current="page">eCommerce</li>
+          </ol>
         </nav>
       </header>
 
-      <!-- Yearly stats — their band of four figures. -->
-      <section class="b-grid b-grid--4 b-gap-3" aria-label="Yearly stats">
-        <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-stat">
-          <span class="b-stat__label">Revenue</span>
-          <span class="b-stat__value b-tabular-nums">34,567</span>
-          <span class="b-stat__delta is-up">↑ 13% this year</span>
-        </div></div></article>
-        <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-stat">
-          <span class="b-stat__label">Orders</span>
-          <span class="b-stat__value b-tabular-nums">3,456</span>
-          <span class="b-stat__delta is-up">↑ 23% this year</span>
-        </div></div></article>
-        <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-stat">
-          <span class="b-stat__label">Customers</span>
-          <span class="b-stat__value b-tabular-nums">1,204</span>
-          <span class="b-stat__delta is-up">↑ 32% this year</span>
-        </div></div></article>
-        <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-stat">
-          <span class="b-stat__label">Returns</span>
-          <span class="b-stat__value b-tabular-nums">43</span>
-          <span class="b-stat__delta is-down">↓ 13% this year</span>
-        </div></div></article>
-      </section>
-
-      <!-- Sales/Revenue beside Sells by state — their 7 + 5. -->
-      <section class="b-dashboard b-gap-3" aria-label="Sales and geography">
-        <article class="b-card b-span-7">
-          <div class="b-card__header">
-            <div class="b-card__title">Sales and revenue</div>
-            <span class="b-caption b-text-secondary">by month</span>
-          </div>
-          <div class="b-card__body">
-            <div class="b-columns" style="--b-chart-h: 12rem" role="img"
-                 aria-label="Sales by month: a steady climb from January, a dip in June, and the year's high in November.">
-              <div class="b-columns__bar" data-label="J" style="--v: 38%"></div>
-              <div class="b-columns__bar" data-label="F" style="--v: 46%"></div>
-              <div class="b-columns__bar" data-label="M" style="--v: 55%"></div>
-              <div class="b-columns__bar" data-label="A" style="--v: 61%"></div>
-              <div class="b-columns__bar" data-label="M" style="--v: 72%"></div>
-              <div class="b-columns__bar" data-label="J" style="--v: 49%"></div>
-              <div class="b-columns__bar" data-label="J" style="--v: 66%"></div>
-              <div class="b-columns__bar" data-label="A" style="--v: 74%"></div>
-              <div class="b-columns__bar" data-label="S" style="--v: 81%"></div>
-              <div class="b-columns__bar" data-label="O" style="--v: 88%"></div>
-              <div class="b-columns__bar" data-label="N" style="--v: 100%"></div>
-              <div class="b-columns__bar" data-label="D" style="--v: 79%"></div>
+      <section class="b-grid b-grid--4 b-gap-3" aria-label="Headline figures">
+        <article class="b-card b-card--compact">
+          <div class="b-card__body b-hstack b-gap-3">
+            <span class="b-icon-tile" style="background: color-mix(in srgb, var(--b-chart-5) 16%, transparent); color: var(--b-chart-5)"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 4h2l1.6 8.4a1.5 1.5 0 0 0 1.5 1.2h6.6a1.5 1.5 0 0 0 1.5-1.2L17.5 7H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="16.5" r="1.2" fill="currentColor"/><circle cx="15" cy="16.5" r="1.2" fill="currentColor"/></svg></span>
+            <div class="b-stat">
+              <span class="b-stat__label">New orders</span>
+              <span class="b-stat__value b-tabular-nums">34,567</span>
+              <span class="b-stat__delta is-up">↑ 2.00% <span class="b-text-tertiary">(30 days)</span></span>
             </div>
           </div>
         </article>
-        <article class="b-card b-span-5">
+        <article class="b-card b-card--compact">
+          <div class="b-card__body b-hstack b-gap-3">
+            <span class="b-icon-tile" style="background: color-mix(in srgb, var(--b-color-success) 16%, transparent); color: var(--b-color-success)"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5v7M8 8.5h3a1.5 1.5 0 0 1 0 3H8h3a1.5 1.5 0 0 1 0 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <div class="b-stat">
+              <span class="b-stat__label">Total income</span>
+              <span class="b-stat__value b-tabular-nums">$74,567</span>
+              <span class="b-stat__delta is-up">↑ 5.45% <span class="b-text-tertiary">increased</span></span>
+            </div>
+          </div>
+        </article>
+        <article class="b-card b-card--compact">
+          <div class="b-card__body b-hstack b-gap-3">
+            <span class="b-icon-tile" style="background: color-mix(in srgb, var(--b-chart-1) 16%, transparent); color: var(--b-chart-1)"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8.5h14" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <div class="b-stat">
+              <span class="b-stat__label">Total expense</span>
+              <span class="b-stat__value b-tabular-nums">$24,567</span>
+              <span class="b-stat__delta is-down">↓ 2.00% <span class="b-text-tertiary">expense</span></span>
+            </div>
+          </div>
+        </article>
+        <article class="b-card b-card--compact">
+          <div class="b-card__body b-hstack b-gap-3">
+            <span class="b-icon-tile" style="background: color-mix(in srgb, var(--b-chart-4) 16%, transparent); color: var(--b-chart-4)"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 16a5.5 5.5 0 0 1 11 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <div class="b-stat">
+              <span class="b-stat__label">New users</span>
+              <span class="b-stat__value b-tabular-nums">34,567</span>
+              <span class="b-stat__delta is-down">↓ 25.00% <span class="b-text-tertiary">earning</span></span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="b-grid b-grid--2 b-gap-3" style="align-items: start" aria-label="Yearly figures">
+        <article class="b-card">
+          <div class="b-card__header">
+            <div>
+              <div class="b-card__title">Yearly stats</div>
+              <div class="b-large-title b-tabular-nums" style="line-height: 1.1; margin-block-start: var(--b-space-1)">$245,479</div>
+            </div>
+            <span class="b-spacer"></span>
+            <details class="b-dropdown b-dropdown--end">
+              <summary class="b-select" style="min-width: 7rem">Yearly</summary>
+              <ul class="b-menu" role="menu">
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">Monthly</button></li>
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">Quarterly</button></li>
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">Yearly</button></li>
+              </ul>
+            </details>
+          </div>
+          <div class="b-card__body">
+            <figure class="b-chart" style="margin: 0" role="img"
+                    aria-label="Yearly stats: rising from about 600 in January to 1,100 in December, with a dip in August.">
+              <div style="display: grid; grid-template-columns: max-content 1fr; gap: var(--b-space-3)">
+                <div class="b-axis b-axis--y" style="padding-block-end: 1.4rem" aria-hidden="true">
+                  <span>1,100</span><span>900</span><span>700</span><span>600</span>
+                </div>
+                <div class="b-chart__canvas">
+                  <div class="b-gridlines" style="inset-block-end: 1.4rem" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  <svg class="b-line-svg" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="b-series" d="M6 104 L30 62 L54 70 L78 52 L102 40 L126 46 L150 50 L174 78 L198 44 L222 48 L246 30 L294 8"/>
+                  </svg>
+                  <div class="b-axis" aria-hidden="true">
+                    <span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
+                  </div>
+                </div>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="b-card">
+          <div class="b-card__header">
+            <div class="b-card__title">Sales / revenue</div>
+            <span class="b-spacer"></span>
+            <details class="b-dropdown b-dropdown--end">
+              <summary class="b-select" style="min-width: 7rem">Yearly</summary>
+              <ul class="b-menu" role="menu">
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">Monthly</button></li>
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">Yearly</button></li>
+              </ul>
+            </details>
+          </div>
+          <div class="b-card__body">
+            <figure class="b-chart" style="margin: 0" role="img"
+                    aria-label="Sales and revenue by month, peaking in October at about 1,100.">
+              <div style="display: grid; grid-template-columns: max-content 1fr; gap: var(--b-space-3)">
+                <div class="b-axis b-axis--y" style="padding-block-end: 1.4rem" aria-hidden="true">
+                  <span>1,200</span><span>800</span><span>400</span><span>0</span>
+                </div>
+                <div class="b-chart__canvas">
+                  <div class="b-gridlines" style="inset-block-end: 1.4rem" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  <div class="b-columns b-columns--rounded" style="--b-chart-h: 9rem; --b-column-w: 0.5rem">
+                    <div class="b-columns__bar" data-label="Jan" style="--v: 50%"></div>
+                    <div class="b-columns__bar" data-label="Feb" style="--v: 57%"></div>
+                    <div class="b-columns__bar" data-label="Mar" style="--v: 83%"></div>
+                    <div class="b-columns__bar" data-label="Apr" style="--v: 58%"></div>
+                    <div class="b-columns__bar" data-label="May" style="--v: 53%"></div>
+                    <div class="b-columns__bar" data-label="Jun" style="--v: 65%"></div>
+                    <div class="b-columns__bar" data-label="Jul" style="--v: 56%"></div>
+                    <div class="b-columns__bar" data-label="Aug" style="--v: 50%"></div>
+                    <div class="b-columns__bar" data-label="Sep" style="--v: 58%"></div>
+                    <div class="b-columns__bar" data-label="Oct" style="--v: 92%"></div>
+                    <div class="b-columns__bar" data-label="Nov" style="--v: 71%"></div>
+                    <div class="b-columns__bar" data-label="Dec" style="--v: 75%"></div>
+                  </div>
+                </div>
+              </div>
+            </figure>
+          </div>
+        </article>
+      </section>
+
+      <section class="b-dashboard b-gap-3" style="align-items: start" aria-label="Regions and products">
+        <article class="b-card b-span-4">
           <div class="b-card__header"><div class="b-card__title">Sells by region</div></div>
           <div class="b-card__body">
-            <!-- The reference draws a choropleth here. There is no map component
-                 in this system, so the same information is ranked instead —
-                 which is more precise anyway, since nobody reads a value off a
-                 shaded country. -->
+            <!-- A choropleth in the reference. Ranked here, for want of a map. -->
             <div class="b-bars" role="img" aria-label="Sales by region: Dar es Salaam 38%, Arusha 21%, Mwanza 17%, Dodoma 13%, elsewhere 11%.">
               <div class="b-bars__row"><span class="b-bars__label">Dar es Salaam</span><div class="b-bars__track"><i style="--v: 100%"></i></div><span class="b-bars__value b-tabular-nums">38%</span></div>
               <div class="b-bars__row"><span class="b-bars__label">Arusha</span><div class="b-bars__track"><i style="--v: 55%"></i></div><span class="b-bars__value b-tabular-nums">21%</span></div>
@@ -120,86 +233,27 @@
             </div>
           </div>
         </article>
-      </section>
-
-      <!-- Top selling products beside Traffic — their 5 + 7, flipped weight. -->
-      <section class="b-dashboard b-gap-3" style="align-items: start" aria-label="Products and traffic">
-        <article class="b-card b-span-7">
+        <article class="b-card b-span-8">
           <div class="b-card__header">
             <div class="b-card__title">Top selling products</div>
-            <a class="b-link b-caption" href="#">Catalogue</a>
+            <span class="b-spacer"></span>
+            <details class="b-dropdown b-dropdown--end">
+              <summary class="b-select" style="min-width: 7rem">Yearly</summary>
+              <ul class="b-menu" role="menu">
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">Monthly</button></li>
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">Yearly</button></li>
+              </ul>
+            </details>
           </div>
           <div class="b-table-wrap">
             <table class="b-table b-table--hover">
-              <thead><tr><th>Product</th><th>Category</th><th class="b-table__num">Sold</th><th class="b-table__num">Revenue</th></tr></thead>
+              <thead><tr><th>Product</th><th>Category</th><th class="b-table__num">Price</th><th class="b-table__num">Sold</th><th class="b-table__num">Profit</th></tr></thead>
               <tbody>
-                <tr><td>Maize flour, 25kg</td><td>Staples</td><td class="b-table__num b-tabular-nums">1,204</td><td class="b-table__num b-tabular-nums">TSh 9.6M</td></tr>
-                <tr><td>Cooking oil, 5L</td><td>Staples</td><td class="b-table__num b-tabular-nums">890</td><td class="b-table__num b-tabular-nums">TSh 7.1M</td></tr>
-                <tr><td>Sugar, 2kg</td><td>Staples</td><td class="b-table__num b-tabular-nums">742</td><td class="b-table__num b-tabular-nums">TSh 2.2M</td></tr>
-                <tr><td>Rice, 10kg</td><td>Staples</td><td class="b-table__num b-tabular-nums">611</td><td class="b-table__num b-tabular-nums">TSh 4.9M</td></tr>
-                <tr><td>Soap, 12 pack</td><td>Household</td><td class="b-table__num b-tabular-nums">509</td><td class="b-table__num b-tabular-nums">TSh 1.5M</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
-        <article class="b-card b-span-5">
-          <div class="b-card__header"><div class="b-card__title">Traffic</div></div>
-          <div class="b-card__body">
-            <div class="b-donut" style="margin-inline: auto">
-              <div class="b-pie" style="--b-pie: var(--b-chart-1) 0 46%, var(--b-chart-4) 46% 74%, var(--b-chart-6) 74% 90%, var(--b-chart-3) 90% 100%"
-                   role="img" aria-label="Traffic sources: search 46%, direct 28%, social 16%, referral 10%."></div>
-              <div class="b-donut__center">
-                <div class="b-stat__value b-tabular-nums">82k</div>
-                <div class="b-stat__label">visits</div>
-              </div>
-            </div>
-            <ul class="b-legend" style="margin-block-start: var(--b-space-3)">
-              <li><span class="b-legend__swatch" style="background: var(--b-chart-1)"></span>Search 46%</li>
-              <li><span class="b-legend__swatch" style="background: var(--b-chart-4)"></span>Direct 28%</li>
-              <li><span class="b-legend__swatch" style="background: var(--b-chart-6)"></span>Social 16%</li>
-              <li><span class="b-legend__swatch" style="background: var(--b-chart-3)"></span>Referral 10%</li>
-            </ul>
-          </div>
-        </article>
-      </section>
-
-      <!-- Sales forecast — their full-width band. -->
-      <section aria-label="Forecast">
-        <article class="b-card">
-          <div class="b-card__header">
-            <div class="b-card__title">Sales forecast</div>
-            <span class="b-badge b-badge--accent">next quarter</span>
-          </div>
-          <div class="b-card__body b-stack b-gap-3">
-            <div class="b-hstack b-gap-6 b-stack--wrap">
-              <div class="b-stat"><span class="b-stat__label">Projected</span><span class="b-stat__value b-tabular-nums">TSh 11.8M</span></div>
-              <div class="b-stat"><span class="b-stat__label">Committed</span><span class="b-stat__value b-tabular-nums">TSh 8.4M</span></div>
-              <div class="b-stat"><span class="b-stat__label">Confidence</span><span class="b-stat__value b-tabular-nums">71%</span></div>
-            </div>
-            <div class="b-progress" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100"
-                 aria-label="Forecast confidence, 71%" style="--b-progress: 71%">
-              <div class="b-progress__fill"></div>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <!-- Sales history — their closing table. -->
-      <section aria-label="Sales history">
-        <article class="b-card">
-          <div class="b-card__header">
-            <div class="b-card__title">Sales history</div>
-            <a class="b-link b-caption" href="#">Export</a>
-          </div>
-          <div class="b-table-wrap">
-            <table class="b-table b-table--hover b-table--striped">
-              <thead><tr><th>Order</th><th>Customer</th><th>Placed</th><th>Status</th><th class="b-table__num">Total</th></tr></thead>
-              <tbody>
-                <tr><td>#4821</td><td>Amina Salim</td><td>12 Aug</td><td><span class="b-badge b-badge--success">Delivered</span></td><td class="b-table__num b-tabular-nums">TSh 42,000</td></tr>
-                <tr><td>#4820</td><td>Joseph Mrema</td><td>12 Aug</td><td><span class="b-badge b-badge--accent">Shipped</span></td><td class="b-table__num b-tabular-nums">TSh 12,500</td></tr>
-                <tr><td>#4819</td><td>Neema Kileo</td><td>11 Aug</td><td><span class="b-badge b-badge--warning">Packing</span></td><td class="b-table__num b-tabular-nums">TSh 88,000</td></tr>
-                <tr><td>#4818</td><td>Baraka Msuya</td><td>11 Aug</td><td><span class="b-badge b-badge--success">Delivered</span></td><td class="b-table__num b-tabular-nums">TSh 7,200</td></tr>
-                <tr><td>#4817</td><td>Grace Mollel</td><td>10 Aug</td><td><span class="b-badge b-badge--danger">Refunded</span></td><td class="b-table__num b-tabular-nums">TSh 15,900</td></tr>
+                <tr><td>Maize flour, 25kg</td><td>Staples</td><td class="b-table__num b-tabular-nums">$32</td><td class="b-table__num b-tabular-nums">1,204</td><td class="b-table__num b-tabular-nums">$9,600</td></tr>
+                <tr><td>Cooking oil, 5L</td><td>Staples</td><td class="b-table__num b-tabular-nums">$18</td><td class="b-table__num b-tabular-nums">890</td><td class="b-table__num b-tabular-nums">$7,100</td></tr>
+                <tr><td>Solar lamp, 20W</td><td>Energy</td><td class="b-table__num b-tabular-nums">$21</td><td class="b-table__num b-tabular-nums">742</td><td class="b-table__num b-tabular-nums">$2,200</td></tr>
+                <tr><td>Water filter</td><td>Home</td><td class="b-table__num b-tabular-nums">$40</td><td class="b-table__num b-tabular-nums">611</td><td class="b-table__num b-tabular-nums">$4,900</td></tr>
+                <tr><td>Soap, 12 pack</td><td>Household</td><td class="b-table__num b-tabular-nums">$6</td><td class="b-table__num b-tabular-nums">509</td><td class="b-table__num b-tabular-nums">$1,500</td></tr>
               </tbody>
             </table>
           </div>
@@ -212,6 +266,11 @@
         <a class="b-link b-footnote" href="#">Download report</a>
       </footer>
     </main>
+
+    <!-- The reference floats a settings button bottom-right. -->
+    <button class="b-btn b-fab b-icon-btn" aria-label="Settings" style="position: fixed; inset-block-end: var(--b-space-5); inset-inline-end: var(--b-space-5)">
+      <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="2.6" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.5v2m0 11v2M17.5 10h-2m-11 0h-2m12.3-5.3-1.4 1.4M6.6 13.4l-1.4 1.4m0-10.1 1.4 1.4m6.8 6.8 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
   </div>
 </body>
 </html>
