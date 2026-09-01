@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en" data-vt>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hope UI — Dashboard example — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t;if(localStorage.getItem("barua-glass"))document.documentElement.dataset.glass="liquid"}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* No page styles — the example is components only. */
+  </style>
+</head>
+<body>
+  <a class="b-skip-link" href="#main">Skip to content</a>
+  <div class="b-workspace">
+    <header class="b-topnav">
+      <a class="b-topnav__brand" href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="var(--b-color-accent)"/><path d="m4 7 8 6 8-6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Barua
+      </a>
+      <div class="b-input-group" style="max-width: 20rem; flex: 1">
+        <span class="b-input-affix b-input-affix--start">
+          <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <input class="b-input" type="search" placeholder="Search…" aria-label="Search">
+      </div>
+      <span class="b-spacer"></span>
+      <button class="b-btn b-btn--primary b-btn--sm b-btn--pill">Go Pro</button>
+      <button class="b-btn b-icon-btn b-btn--ghost" aria-label="Notifications">
+        <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5A4.5 4.5 0 0 1 14.5 8c0 3 1 4 1.5 4.5H4c.5-.5 1.5-1.5 1.5-4.5A4.5 4.5 0 0 1 10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.5 15.5a1.6 1.6 0 0 0 3 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <button class="b-btn b-icon-btn b-btn--ghost" data-b-theme-toggle aria-label="Toggle theme">
+        <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 1.5v2m0 13v2M18.5 10h-2m-13 0h-2m14.5-6-1.4 1.4M4.9 15.1 3.5 16.5m0-13 1.4 1.4m10.2 10.2 1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <span class="b-hstack b-gap-2" style="align-items: center">
+        <span class="b-avatar b-avatar--sm">AR</span>
+        <span class="b-stack" style="gap: 0; line-height: 1.15">
+          <span class="b-caption" style="font-weight: var(--b-weight-semibold)">Austin Robertson</span>
+          <span class="b-caption2 b-text-tertiary">Marketing administrator</span>
+        </span>
+      </span>
+    </header>
+
+    <nav class="b-sidebar" aria-label="Sections" style="inline-size: 14rem; overflow-y: auto">
+      <div class="b-sidebar__group">
+        <div class="b-sidebar__heading">Home</div>
+        <a class="b-sidebar__item is-active" aria-current="page" href="#">Dashboard</a>
+        <a class="b-sidebar__item" href="#">Menu style</a>
+        <a class="b-sidebar__item" href="#">Design system<span class="b-badge b-badge--accent">UI</span></a>
+      </div>
+      <div class="b-sidebar__group">
+        <div class="b-sidebar__heading">Pages</div>
+        <a class="b-sidebar__item" href="#">Special pages</a>
+        <a class="b-sidebar__item" href="#">Authentication</a>
+        <a class="b-sidebar__item" href="#">Users</a>
+        <a class="b-sidebar__item" href="#">Utilities</a>
+        <a class="b-sidebar__item" href="#">Admin</a>
+      </div>
+      <div class="b-sidebar__group">
+        <div class="b-sidebar__heading">Elements</div>
+        <a class="b-sidebar__item" href="#">Components</a>
+        <a class="b-sidebar__item" href="#">Widgets</a>
+        <a class="b-sidebar__item" href="#">Forms</a>
+        <a class="b-sidebar__item" href="#">Tables</a>
+        <a class="b-sidebar__item" href="#">Icons</a>
+      </div>
+    </nav>
+
+    <!--
+      Hope UI's dashboard. Its opening move is unlike any of the other five: a
+      coloured banner with a greeting, and a rail of ringed figures that scrolls
+      sideways and sits half over it. Six figures rather than four, which the
+      rail is what makes bearable — they are browsed, not scanned.
+
+      One genuine gap, marked below: its Conversions chart stacks two series in
+      each column. .b-columns__bar carries an <i> for exactly that, so this is
+      the first example in the set to use it.
+    -->
+    <main class="b-workspace__main b-stack b-gap-6" id="main">
+      <!-- Banner + the rail that overlaps it. -->
+      <section aria-label="Welcome" style="position: relative">
+        <div class="b-card" style="background: linear-gradient(135deg, var(--b-color-accent), color-mix(in srgb, var(--b-color-accent) 55%, var(--b-bg))); border: 0; padding-block-end: calc(var(--b-space-8) + 1.5rem)">
+          <div class="b-card__body b-hstack b-gap-3 b-stack--wrap" style="align-items: center">
+            <div class="b-stack b-gap-1" style="color: var(--b-color-on-accent)">
+              <span class="b-large-title" style="margin: 0">Hello Devs!</span>
+              <span class="b-subheadline" style="opacity: .85">We are on a mission to help developers like you build successful projects for free.</span>
+            </div>
+            <span class="b-spacer"></span>
+            <button class="b-btn b-btn--glass">Announcements</button>
+          </div>
+        </div>
+
+        <!-- Six figures, browsed sideways rather than crammed into one row. -->
+        <div class="b-scroll-area b-scroll-area--x b-hstack b-gap-3"
+             style="margin-block-start: -3.5rem; padding: 0 var(--b-space-1) var(--b-space-2)">
+          <article class="b-card b-card--compact" style="min-inline-size: 13rem">
+            <div class="b-card__body b-hstack b-gap-3" style="align-items: center">
+              <div class="b-circular" style="--b-progress: 72; --b-circular-size: 3rem; --b-circular-color: var(--b-color-accent)" role="img" aria-label="Total sales, $560K">
+                <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="b-stat">
+                <span class="b-stat__label">Total sales</span>
+                <span class="b-stat__value b-tabular-nums" style="font-size: var(--b-text-title3)">$560K</span>
+              </div>
+            </div>
+          </article>
+          <article class="b-card b-card--compact" style="min-inline-size: 13rem">
+            <div class="b-card__body b-hstack b-gap-3" style="align-items: center">
+              <div class="b-circular" style="--b-progress: 48; --b-circular-size: 3rem; --b-circular-color: var(--b-chart-4)" role="img" aria-label="Total profit, $185K">
+                <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="b-stat">
+                <span class="b-stat__label">Total profit</span>
+                <span class="b-stat__value b-tabular-nums" style="font-size: var(--b-text-title3)">$185K</span>
+              </div>
+            </div>
+          </article>
+          <article class="b-card b-card--compact" style="min-inline-size: 13rem">
+            <div class="b-card__body b-hstack b-gap-3" style="align-items: center">
+              <div class="b-circular" style="--b-progress: 61; --b-circular-size: 3rem; --b-circular-color: var(--b-chart-4)" role="img" aria-label="Total cost, $375K">
+                <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="b-stat">
+                <span class="b-stat__label">Total cost</span>
+                <span class="b-stat__value b-tabular-nums" style="font-size: var(--b-text-title3)">$375K</span>
+              </div>
+            </div>
+          </article>
+          <article class="b-card b-card--compact" style="min-inline-size: 13rem">
+            <div class="b-card__body b-hstack b-gap-3" style="align-items: center">
+              <div class="b-circular" style="--b-progress: 88; --b-circular-size: 3rem; --b-circular-color: var(--b-color-accent)" role="img" aria-label="Revenue, $742K">
+                <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="b-stat">
+                <span class="b-stat__label">Revenue</span>
+                <span class="b-stat__value b-tabular-nums" style="font-size: var(--b-text-title3)">$742K</span>
+              </div>
+            </div>
+          </article>
+          <article class="b-card b-card--compact" style="min-inline-size: 13rem">
+            <div class="b-card__body b-hstack b-gap-3" style="align-items: center">
+              <div class="b-circular" style="--b-progress: 35; --b-circular-size: 3rem; --b-circular-color: var(--b-color-accent)" role="img" aria-label="Net income, $150K">
+                <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="b-stat">
+                <span class="b-stat__label">Net income</span>
+                <span class="b-stat__value b-tabular-nums" style="font-size: var(--b-text-title3)">$150K</span>
+              </div>
+            </div>
+          </article>
+          <article class="b-card b-card--compact" style="min-inline-size: 13rem">
+            <div class="b-card__body b-hstack b-gap-3" style="align-items: center">
+              <div class="b-circular" style="--b-progress: 22; --b-circular-size: 3rem; --b-circular-color: var(--b-chart-4)" role="img" aria-label="Today, $4,600">
+                <svg class="b-icon b-icon--sm" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7.5 6H14v6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="b-stat">
+                <span class="b-stat__label">Today</span>
+                <span class="b-stat__value b-tabular-nums" style="font-size: var(--b-text-title3)">$4,600</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="b-dashboard b-gap-3" style="align-items: start" aria-label="Sales and account">
+        <article class="b-card b-span-8">
+          <div class="b-card__header">
+            <div>
+              <div class="b-large-title b-tabular-nums" style="line-height: 1.1">$855.8K</div>
+              <div class="b-card__subtitle">Gross sales</div>
+            </div>
+            <span class="b-spacer"></span>
+            <ul class="b-legend" style="margin: 0">
+              <li><span class="b-legend__swatch" style="background: var(--b-chart-1)"></span>Sales</li>
+              <li><span class="b-legend__swatch" style="background: var(--b-chart-4)"></span>Cost</li>
+            </ul>
+            <details class="b-dropdown b-dropdown--end">
+              <summary class="b-select" style="min-width: 7rem">This week</summary>
+              <ul class="b-menu" role="menu">
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">This week</button></li>
+                <li role="none"><button class="b-menu__item" role="menuitem" type="button">This month</button></li>
+              </ul>
+            </details>
+          </div>
+          <div class="b-card__body">
+            <figure class="b-chart" style="margin: 0" role="img"
+                    aria-label="Sales and cost across eight months: sales hold near 90 with a dip in April, cost tracks below and peaks in March.">
+              <div style="display: grid; grid-template-columns: max-content 1fr; gap: var(--b-space-3)">
+                <div class="b-axis b-axis--y" style="padding-block-end: 1.4rem" aria-hidden="true">
+                  <span>99</span><span>90</span><span>81</span><span>72</span><span>63</span><span>54</span>
+                </div>
+                <div class="b-chart__canvas">
+                  <div class="b-gridlines" style="inset-block-end: 1.4rem" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+                  <svg class="b-area-svg" viewBox="0 0 320 120" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="b-series" d="M0 46 C 40 20, 80 20, 120 40 C 160 60, 180 66, 220 44 C 260 22, 290 30, 320 44"/>
+                    <path class="b-series" style="--b-chart-color: var(--b-chart-4)" d="M0 86 C 40 74, 80 52, 120 64 C 160 76, 180 96, 220 82 C 260 68, 290 74, 320 84"/>
+                  </svg>
+                  <div class="b-axis" aria-hidden="true">
+                    <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Jun</span><span>Jul</span><span>Aug</span>
+                  </div>
+                </div>
+              </div>
+            </figure>
+          </div>
+        </article>
+
+        <article class="b-card b-span-4">
+          <div class="b-card__body b-stack b-gap-4">
+            <!-- The reference shows a payment card. Built from a material and a
+                 gradient rather than a picture, so it themes with everything else. -->
+            <div class="b-material-thick" style="border-radius: var(--b-radius-lg); padding: var(--b-space-4); background: linear-gradient(135deg, color-mix(in srgb, var(--b-color-accent) 82%, transparent), color-mix(in srgb, var(--b-color-indigo, var(--b-color-accent)) 70%, var(--b-bg))); color: var(--b-color-on-accent)">
+              <div class="b-hstack b-stack--between">
+                <span class="b-stack" style="gap: 0">
+                  <span class="b-headline">VISA</span>
+                  <span class="b-caption2" style="opacity: .8">Premium account</span>
+                </span>
+                <span class="b-avatar b-avatar--sm" aria-hidden="true"></span>
+              </div>
+              <div class="b-title3 b-tabular-nums" style="margin-block: var(--b-space-4) var(--b-space-3); letter-spacing: .08em">5789 •••• •••• 2847</div>
+              <div class="b-hstack b-stack--between">
+                <span class="b-stack" style="gap: 0"><span class="b-caption2" style="opacity: .75">Card holder</span><span class="b-caption">Mike Smith</span></span>
+                <span class="b-stack" style="gap: 0"><span class="b-caption2" style="opacity: .75">Expires</span><span class="b-caption b-tabular-nums">06/11</span></span>
+              </div>
+            </div>
+
+            <div class="b-hstack b-gap-3">
+              <span class="b-icon-tile"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="6" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 6V5a3 3 0 0 1 6 0v1" stroke="currentColor" stroke-width="1.5"/></svg></span>
+              <div class="b-stat"><span class="b-stat__value b-tabular-nums" style="font-size: var(--b-text-title3)">1,153</span><span class="b-stat__label">Products</span></div>
+              <span class="b-spacer"></span>
+              <div class="b-stat"><span class="b-stat__value b-tabular-nums" style="font-size: var(--b-text-title3)">81K</span><span class="b-stat__label">Orders served</span></div>
+            </div>
+
+            <div class="b-divider"></div>
+
+            <div class="b-hstack b-gap-2" style="align-items: baseline">
+              <span class="b-title2 b-tabular-nums">$405,012,300</span>
+              <span class="b-badge b-badge--success">YoY 24%</span>
+            </div>
+            <span class="b-caption b-text-secondary" style="margin-block-start: calc(var(--b-space-2) * -1)">Lifetime sales</span>
+
+            <div class="b-hstack b-gap-2">
+              <button class="b-btn b-btn--primary b-btn--block">Summary</button>
+              <button class="b-btn b-btn--outline b-btn--block">Analytics</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="b-dashboard b-gap-3" style="align-items: start" aria-label="Earnings and conversions">
+        <article class="b-card b-span-4">
+          <div class="b-card__header">
+            <div class="b-card__title">Earnings</div>
+            <span class="b-spacer"></span>
+            <details class="b-dropdown b-dropdown--end">
+              <summary class="b-select" style="min-width: 6.5rem">This week</summary>
+              <ul class="b-menu" role="menu"><li role="none"><button class="b-menu__item" role="menuitem" type="button">This month</button></li></ul>
+            </details>
+          </div>
+          <div class="b-card__body b-hstack b-gap-4" style="align-items: center">
+            <div class="b-donut">
+              <div class="b-pie" style="--b-pie: var(--b-chart-1) 0 59%, var(--b-chart-4) 59% 100%"
+                   role="img" aria-label="Earnings: fashion 251,000 and accessories 176,000."></div>
+              <div class="b-donut__center"><div class="b-stat__value b-tabular-nums">427K</div><div class="b-stat__label">total</div></div>
+            </div>
+            <ul class="b-legend b-stack b-gap-3" style="margin: 0">
+              <li class="b-stack" style="gap: 0"><span><span class="b-legend__swatch" style="background: var(--b-chart-1)"></span>Fashion</span><span class="b-title3 b-tabular-nums">251K</span></li>
+              <li class="b-stack" style="gap: 0"><span><span class="b-legend__swatch" style="background: var(--b-chart-4)"></span>Accessories</span><span class="b-title3 b-tabular-nums">176K</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="b-card b-span-8">
+          <div class="b-card__header">
+            <div class="b-card__title">Conversions</div>
+            <span class="b-spacer"></span>
+            <details class="b-dropdown b-dropdown--end">
+              <summary class="b-select" style="min-width: 6.5rem">This week</summary>
+              <ul class="b-menu" role="menu"><li role="none"><button class="b-menu__item" role="menuitem" type="button">This month</button></li></ul>
+            </details>
+          </div>
+          <div class="b-card__body">
+            <figure class="b-chart" style="margin: 0" role="img"
+                    aria-label="Conversions by day, each column split between web and app. Thursday is highest at 140.">
+              <div style="display: grid; grid-template-columns: max-content 1fr; gap: var(--b-space-3)">
+                <div class="b-axis b-axis--y" style="padding-block-end: 1.4rem" aria-hidden="true">
+                  <span>160</span><span>120</span><span>80</span><span>40</span><span>0</span>
+                </div>
+                <div class="b-chart__canvas">
+                  <div class="b-gridlines" style="inset-block-end: 1.4rem" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  <!-- Stacked: the bar is the total, the <i> is the lower series. -->
+                  <div class="b-columns" style="--b-chart-h: 9rem; --b-column-w: 1.4rem">
+                    <div class="b-columns__bar" data-label="Mon" style="--v: 44%"><i style="--v: 55%"></i></div>
+                    <div class="b-columns__bar" data-label="Tue" style="--v: 60%"><i style="--v: 48%"></i></div>
+                    <div class="b-columns__bar" data-label="Wed" style="--v: 52%"><i style="--v: 60%"></i></div>
+                    <div class="b-columns__bar" data-label="Thu" style="--v: 68%"><i style="--v: 52%"></i></div>
+                    <div class="b-columns__bar" data-label="Fri" style="--v: 88%"><i style="--v: 46%"></i></div>
+                    <div class="b-columns__bar" data-label="Sat" style="--v: 46%"><i style="--v: 58%"></i></div>
+                    <div class="b-columns__bar" data-label="Sun" style="--v: 62%"><i style="--v: 50%"></i></div>
+                  </div>
+                </div>
+              </div>
+              <ul class="b-legend">
+                <li><span class="b-legend__swatch" style="background: var(--b-chart-1)"></span>Web</li>
+                <li><span class="b-legend__swatch" style="background: var(--b-chart-2)"></span>App</li>
+              </ul>
+            </figure>
+          </div>
+        </article>
+      </section>
+
+      <section class="b-grid b-grid--2 b-gap-3" aria-label="Audience">
+        <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-stat">
+          <span class="b-stat__value b-tabular-nums">750K</span><span class="b-stat__label">Website visitors</span>
+        </div></div></article>
+        <article class="b-card b-card--compact"><div class="b-card__body"><div class="b-stat">
+          <span class="b-stat__value b-tabular-nums">7,500</span><span class="b-stat__label">New customers</span>
+        </div></div></article>
+      </section>
+
+      <footer class="b-hstack b-gap-3 b-stack--wrap">
+        <span class="b-footnote b-text-tertiary">Week to Sunday</span>
+        <span class="b-spacer"></span><a class="b-link b-footnote" href="#">Full analytics</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

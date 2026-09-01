@@ -1605,6 +1605,7 @@
     "--b-chapter-gap",
     "--b-chart-color",
     "--b-chart-h",
+    "--b-circular-color",
     "--b-circular-size",
     "--b-circular-track",
     "--b-col-min",
@@ -6403,6 +6404,7 @@
             "jsx": "<div className=\"b-circular-wrap\">\n  <CircularProgress\n    role=\"progressbar\"\n    aria-label=\"Sync\"\n    aria-valuenow=\"72\"\n    aria-valuemin=\"0\"\n    aria-valuemax=\"100\"\n    style={{ \"--b-progress\": \"72\" }}\n  ></CircularProgress>\n  <span className=\"b-circular__label\">72%</span>\n</div>\n<div className=\"b-circular-wrap\">\n  <CircularProgress\n    role=\"progressbar\"\n    aria-label=\"Storage\"\n    aria-valuenow=\"45\"\n    aria-valuemin=\"0\"\n    aria-valuemax=\"100\"\n    style={{ \"--b-progress\": \"45\", \"--b-circular-size\": \"4.5rem\" }}\n  ></CircularProgress>\n  <span className=\"b-circular__label\">45%</span>\n</div>\n<div className=\"b-circular-wrap\">\n  <CircularProgress\n    role=\"progressbar\"\n    aria-label=\"Goal\"\n    aria-valuenow=\"90\"\n    aria-valuemin=\"0\"\n    aria-valuemax=\"100\"\n    style={{ \"--b-progress\": \"90\", \"--b-circular-size\": \"6rem\", \"--b-circular-track\": \"6px\" }}\n  ></CircularProgress>\n  <span className=\"b-circular__label\">90%</span>\n</div>"
           },
           "knobs": [
+            "--b-circular-color",
             "--b-circular-size",
             "--b-circular-track",
             "--b-progress"

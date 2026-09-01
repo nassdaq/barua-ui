@@ -258,6 +258,10 @@
   /* ---- Circular Progress / Gauge ring ----------------------------------------------- */
   .b-circular {
     --b-progress: 0;
+    /* Its own colour, defaulting to the accent. Without this a caller tinting
+       one ring had to override --b-color-accent inline, which re-tints
+       everything inside it and breaks the one rule about colour in markup. */
+    --b-circular-color: var(--b-color-accent);
     --b-circular-size: 3rem;
     --b-circular-track: 4px;
     position: relative;
@@ -267,7 +271,7 @@
     height: var(--b-circular-size);
     border-radius: 50%;
     background:
-      conic-gradient(var(--b-color-accent) calc(var(--b-progress) * 1%), transparent 0);
+      conic-gradient(var(--b-circular-color) calc(var(--b-progress) * 1%), transparent 0);
     -webkit-mask: radial-gradient(farthest-side,
       transparent calc(100% - var(--b-circular-track)),
       #000 calc(100% - var(--b-circular-track) + 0.5px));
