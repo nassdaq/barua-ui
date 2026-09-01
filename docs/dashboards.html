@@ -57,6 +57,7 @@
         <a class="b-sidebar__item" href="../examples/checkout.html">Checkout</a>
         <a class="b-sidebar__item" href="../examples/auth.html">Sign in</a>
         <a class="b-sidebar__item" href="../examples/analytics.html">Analytics</a>
+        <a class="b-sidebar__item" href="../examples/monitoring.html">Monitoring</a>
         <a class="b-sidebar__item" href="../examples/inbox.html">Inbox</a>
         <a class="b-sidebar__item" href="../examples/landing.html">Landing</a>
         <a class="b-sidebar__item" href="../examples/product.html">Product page</a>
@@ -255,6 +256,123 @@
           chart — and the rest in service of it. If every card is the same size
           the page reads as a spreadsheet with rounded corners, whatever is in
           it.
+        </p>
+      </section>
+
+      <section class="docs-section" id="whitespace">
+        <h2>White space</h2>
+        <p>
+          Space is the only thing on a dashboard doing structural work that
+          nobody notices. Four rules cover almost every case.
+        </p>
+        <p>
+          <strong>One padding for the whole page.</strong> Every card takes the
+          same inner padding — <code>.b-card__body</code> already does this.
+          Cards padded differently read as pieces of different systems bolted
+          together, which is the commonest reason a competent dashboard still
+          looks cheap.
+        </p>
+        <p>
+          <strong>Space between layers exceeds space within them.</strong>
+          <code>.b-gap-6</code> between bands, <code>.b-gap-3</code> inside one.
+          Equal gaps everywhere leave the eye no grouping to find, and the page
+          becomes a wall.
+        </p>
+        <p>
+          <strong>Air scales with the element.</strong> A figure tile is tight —
+          the number is the content and space around it is wasted. A chart needs
+          room to breathe or its axis labels collide with whatever is beside it.
+          Do not give them the same treatment because they are both cards.
+        </p>
+        <p>
+          <strong>Empty space is a question, not a feature.</strong> A region
+          with nothing in it means either the layer should not exist or
+          something failed to load. Say which — with <code>.b-empty</code> —
+          rather than leaving a gap the reader has to interpret.
+        </p>
+        <p>
+          <strong>A row of cards should not stretch to match its tallest.</strong>
+          Grid stretches by default, so a short card grows a band of dead space
+          at its foot — exactly the empty region the rule above says must mean
+          something. Set <code>align-items: start</code> and let the cards differ,
+          or give the short one more to say. This one was found by building a
+          page from these rules and looking at it, which is the only way rules
+          get tested.
+        </p>
+        <div class="docs-a11y">
+          <div>
+            <strong>Never centre to fill.</strong> Vertically centring a lonely
+            widget inside an oversized card hides the fact that the card is too
+            big. Align to the top, let the card shrink, and the page tightens
+            itself.
+          </div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="dashboard-type">
+        <h2>Text on a dashboard</h2>
+        <p>
+          Nothing here is prose. A dashboard is read in glances, so every string
+          is a label, a figure or a caption — and if something genuinely needs a
+          sentence to explain it, it belongs on a detail page.
+        </p>
+        <p>
+          <strong>Three roles to a card, at most.</strong> A label
+          (<code>.b-caption</code> or <code>.b-stat__label</code>), the thing
+          itself (<code>.b-stat__value</code> or <code>.b-title3</code>), and
+          one line of context (<code>.b-footnote</code>). A fourth size in the
+          same card is decoration.
+        </p>
+        <p>
+          <strong>Weight goes to one of them.</strong> A bold label above a bold
+          value makes the reader choose where to look, which is the one job the
+          designer was supposed to do. The figure carries the weight; the label
+          stays quiet.
+        </p>
+        <p>
+          <strong>Labels are two or three words, sentence case, no colon.</strong>
+          "Messages sent", not "Total Messages Sent:". The colon is a form
+          habit — a dashboard is not a form.
+        </p>
+        <p>
+          <strong>Figures take <code>.b-tabular-nums</code></strong>, always, and
+          the unit is quieter than the number: <code>TZS</code> and
+          <code>%</code> belong in secondary text so the digit is what the eye
+          lands on. A delta states direction and period together — "↑ 8.2% this
+          week" — because an arrow with no timeframe is a shape, not a fact.
+        </p>
+      </section>
+
+      <section class="docs-section" id="page-set">
+        <h2>How many pages a dashboard product has</h2>
+        <p>
+          Counted across the same six products — 163 genuine product pages, once
+          component demos are set aside. It is a useful check on whether a
+          product is finished.
+        </p>
+        <div class="b-table-wrap docs-table">
+          <table class="b-table">
+            <thead><tr><th>Kind</th><th>Share</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><td>Dashboard homes</td><td>23%</td><td>Usually several, one per audience. This is where archetypes earn their keep.</td></tr>
+              <tr><td>Lists and tables</td><td>17%</td><td>The working surface. More traffic than the dashboard itself.</td></tr>
+              <tr><td>Calendars and task boards</td><td>12%</td><td>Only if the product is about time or work.</td></tr>
+              <tr><td>System pages</td><td>11%</td><td>404, 500, offline, maintenance. Cheap to build, always missing.</td></tr>
+              <tr><td>Messaging</td><td>10%</td><td>Chat, inbox, notifications.</td></tr>
+              <tr><td>Authentication</td><td>9%</td><td>Sign in, register, reset, verify.</td></tr>
+              <tr><td>Record pages</td><td>8%</td><td>One entity in full. Underbuilt more often than any other kind.</td></tr>
+              <tr><td>Forms</td><td>6%</td><td>Create and edit.</td></tr>
+              <tr><td>Settings</td><td>3%</td><td>Always last, always underbuilt, always used daily.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Two things stand out. <strong>Lists outnumber dashboards in use even
+          though dashboards get the design attention</strong> — a product whose
+          table is an afterthought is neglecting the screen people actually live
+          on. And <strong>settings is 3%</strong> of the pages and a daily
+          destination, which is the widest gap between effort and use in the
+          genre.
         </p>
       </section>
 

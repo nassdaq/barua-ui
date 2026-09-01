@@ -116,6 +116,25 @@ import { Card, CardBody, CardHeader, CardTitle, Columns, Dashboard, Stat } from 
 </Dashboard>
 ```
 
+## White space
+
+Space is the only thing on a dashboard doing structural work that nobody notices. Four rules cover almost every case.
+
+- Documentation: https://ui.barua.tz/docs/dashboards.html#whitespace
+
+## Text on a dashboard
+
+Nothing here is prose. A dashboard is read in glances, so every string is a label, a figure or a caption — and if something genuinely needs a sentence to explain it, it belongs on a detail page.
+
+- Documentation: https://ui.barua.tz/docs/dashboards.html#dashboard-type
+
+## How many pages a dashboard product has
+
+Counted across the same six products — 163 genuine product pages, once component demos are set aside. It is a useful check on whether a product is finished.
+
+- Documentation: https://ui.barua.tz/docs/dashboards.html#page-set
+- Classes: `b-table` `b-table-wrap`
+
 ## Choosing a chart
 
 Time is a line or an area. Comparison across categories is a bar. Those three were 84% of every chart in the survey — 97 of 115.

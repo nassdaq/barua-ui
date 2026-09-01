@@ -14,19 +14,20 @@
 10. Dashboards: name the one question the screen answers before laying anything out. Pick an archetype — overview, monitoring, analytics, work queue, record, console — because variety comes from choosing a different one, not from decorating the same one.
 11. A dashboard has five layers read top to bottom, each answering the same question at a different depth — what, then why, then what now: 1 context (title, period, filters), 2 verdict (three or four figures), 3 evidence (one dominant chart plus a companion, e.g. spans 8 and 4), 4 detail (lists and tables), 5 tail (links out). Four or five layers is a page; six is two pages pretending to be one. A figure led 40 of 51 surveyed pages and figure-then-list was the commonest adjacency.
 12. Dashboard rhythm: consecutive layers must not share a column split. Quarters, then eight-and-four, then halves. A page where every band is the same shape reads as a spreadsheet with rounded corners whatever is in it.
-13. Dashboard spacing groups the layers: .b-gap-6 between bands and .b-gap-3 or .b-gap-4 within one. That difference does the grouping, so a well-spaced dashboard needs almost no rules or boxes.
-14. The first screen of a dashboard owes the reader context and verdict plus the top of the evidence. If the figures need scrolling to reach, something above them — a hero, a greeting, a banner — is taking space it has not earned.
-15. Dashboard composition: widths are full, half, third or quarter and a row totals twelve. Three or four figures on the top row, never five. One dominant element per screen, or the page reads as a spreadsheet with rounded corners.
-16. Charts: time is a line or an area, comparison across categories is a bar — those three are 84% of charts in a 457-page survey of admin templates. Pie and donut were 3%; use them only for two to four parts of a genuine whole. A number that matters more than its trend is a .b-stat, not a chart.
-17. Every chart carries role="img" and an aria-label stating the takeaway rather than the chart type: "peaking Thursday at 4,120", not "bar chart of sends". Only 2% of surveyed dashboard pages labelled a chart at all. Give charts a ceiling with --b-chart-h or a tall series drags the card with it.
-18. Every dashboard widget has four states: loading, empty, error and loaded. Three pages out of 457 surveyed had a "no data" message. Use .b-skeleton while fetching and .b-empty with an action when there is nothing.
-19. A table on a dashboard shows five to ten rows and links to the full list — it is a sample, not the archive. Columns of figures take .b-tabular-nums, and a delta states direction and period: "up 8.2% this week", never a bare arrow.
-20. Surfaces never stack materials. A panel inside glass is a fill, not a second material — nesting one blur inside another makes the GPU blur an already-blurred backdrop, which is the main way this system gets slow.
-21. Materials turn opaque under prefers-reduced-transparency and where backdrop-filter is unsupported, so never use translucency alone to carry meaning.
-22. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
-23. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
-24. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
-25. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
+13. A row of dashboard cards should not stretch to match its tallest: grid stretches by default and a short card grows dead space at its foot. Use align-items: start and let heights differ, or give the short card more to say.
+14. Dashboard spacing groups the layers: .b-gap-6 between bands and .b-gap-3 or .b-gap-4 within one. That difference does the grouping, so a well-spaced dashboard needs almost no rules or boxes.
+15. The first screen of a dashboard owes the reader context and verdict plus the top of the evidence. If the figures need scrolling to reach, something above them — a hero, a greeting, a banner — is taking space it has not earned.
+16. Dashboard composition: widths are full, half, third or quarter and a row totals twelve. Three or four figures on the top row, never five. One dominant element per screen, or the page reads as a spreadsheet with rounded corners.
+17. Charts: time is a line or an area, comparison across categories is a bar — those three are 84% of charts in a 457-page survey of admin templates. Pie and donut were 3%; use them only for two to four parts of a genuine whole. A number that matters more than its trend is a .b-stat, not a chart.
+18. Every chart carries role="img" and an aria-label stating the takeaway rather than the chart type: "peaking Thursday at 4,120", not "bar chart of sends". Only 2% of surveyed dashboard pages labelled a chart at all. Give charts a ceiling with --b-chart-h or a tall series drags the card with it.
+19. Every dashboard widget has four states: loading, empty, error and loaded. Three pages out of 457 surveyed had a "no data" message. Use .b-skeleton while fetching and .b-empty with an action when there is nothing.
+20. A table on a dashboard shows five to ten rows and links to the full list — it is a sample, not the archive. Columns of figures take .b-tabular-nums, and a delta states direction and period: "up 8.2% this week", never a bare arrow.
+21. Surfaces never stack materials. A panel inside glass is a fill, not a second material — nesting one blur inside another makes the GPU blur an already-blurred backdrop, which is the main way this system gets slow.
+22. Materials turn opaque under prefers-reduced-transparency and where backdrop-filter is unsupported, so never use translucency alone to carry meaning.
+23. Over an unknown background use .b-card--neutral, whose material is derived from the backdrop rather than from the theme.
+24. Light and dark come from light-dark() and data-theme. Never write a second dark stylesheet; never branch on theme in product code.
+25. Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.
+26. Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system.
 
 ## Principles — the eight ideas the system is built on, and what enforces each
 
@@ -4462,6 +4463,16 @@ Classes: b-card b-card--compact b-card__body b-card__header b-card__title b-colu
   <article class="b-card b-card--compact b-span-3"><div class="b-card__body"><div class="b-stat"><span class="b-stat__label">Bounced</span><span class="b-stat__value">0.4%</span></div></div></article>
   <article class="b-card b-span-8"><div class="b-card__header"><div class="b-card__title">Delivery, last 7 days</div></div><div class="b-card__body"><div class="b-columns" style="--b-chart-h: 8rem" role="img" aria-label="Delivery peaked Thursday at 4,120."><div class="b-columns__bar" data-label="M" style="--v: 62%"></div><div class="b-columns__bar" data-label="T" style="--v: 71%"></div><div class="b-columns__bar" data-label="W" style="--v: 58%"></div><div class="b-columns__bar" data-label="T" style="--v: 100%"></div><div class="b-columns__bar" data-label="F" style="--
 ```
+
+### White space  (https://ui.barua.tz/docs/dashboards.html#whitespace)
+Space is the only thing on a dashboard doing structural work that nobody notices. Four rules cover almost every case.
+
+### Text on a dashboard  (https://ui.barua.tz/docs/dashboards.html#dashboard-type)
+Nothing here is prose. A dashboard is read in glances, so every string is a label, a figure or a caption — and if something genuinely needs a sentence to explain it, it belongs on a detail page.
+
+### How many pages a dashboard product has  (https://ui.barua.tz/docs/dashboards.html#page-set)
+Counted across the same six products — 163 genuine product pages, once component demos are set aside. It is a useful check on whether a product is finished.
+Classes: b-table b-table-wrap
 
 ### Choosing a chart  (https://ui.barua.tz/docs/dashboards.html#charts)
 Time is a line or an area. Comparison across categories is a bar. Those three were 84% of every chart in the survey — 97 of 115.
