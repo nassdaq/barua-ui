@@ -355,8 +355,11 @@
           The native picker opens the OS popup, which breaks the material
           world. For product surfaces, a <code>button.b-select</code> opens
           the system <code>.b-menu</code> as a listbox instead — checkmarked
-          options, same field anatomy. Shown open; the React kit&rsquo;s
-          <code>BSelect</code> wires state and keyboard.
+          options, same field anatomy. A long list scrolls inside the menu
+          rather than running off the card. Shown open; the state, the hidden
+          input that carries the value and the arrow keys are yours to wire
+          (the kit&rsquo;s <code>Dropdown variant="select"</code> gives the
+          trigger and the menu).
         </p>
         <div class="docs-demo docs-demo--canvas" style="min-height: 15rem">
           <div class="b-dropdown" style="display: block; max-width: 20rem">

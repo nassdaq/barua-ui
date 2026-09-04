@@ -522,6 +522,11 @@
   }
 
   /* Dropdown wrapper (CSS-only open via <details>) */
+  /* A menu used as a listbox can hold a long list — twenty blocks of a serial,
+     every region — so it scrolls inside itself rather than running off the
+     card or the screen. */
+  .b-menu[role="listbox"] { max-block-size: min(18rem, 50dvh); overflow-y: auto; overscroll-behavior: contain; }
+
   .b-dropdown { position: relative; display: inline-block; }
   .b-dropdown > summary { list-style: none; cursor: pointer; }
   .b-dropdown > summary::-webkit-details-marker { display: none; }
