@@ -16,7 +16,8 @@
   <!--
     A streaming storefront, mobile first, in liquid glass.
 
-    One group of links, drawn twice: in the top bar on a desktop, as the tab
+    One group of links, drawn twice, plus the buyer's own button ("Mine":
+    purchases found by the number they paid with) on every size: in the top bar on a desktop, as the tab
     bar at the bottom on a phone (b-hide-mobile / b-hide-desktop decide which
     is showing). The search is in the page, not the bar — centred under the
     billboard where a thumb lands. Shelves hold a dozen; the wall holds all of
@@ -34,6 +35,7 @@
       </nav>
       <span class="b-spacer"></span>
       <a class="b-btn b-btn--glass b-btn--sm b-btn--pill b-hide-mobile" href="#"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 4h9a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H8.5l-3 3v-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Ask on WhatsApp</a>
+      <a class="b-btn b-btn--glass b-btn--sm b-btn--pill b-touch-target" href="#" aria-label="My films"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="6.5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 16.5a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="b-hide-mobile">Mine</span></a>
     </header>
 
     <section class="b-billboard" aria-label="Night Coast">
