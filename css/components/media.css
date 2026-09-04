@@ -1,7 +1,8 @@
 /* ==========================================================================
    Barua UI — Media
-   Image Viewer, Image Gallery, Carousel, Video Player frame, Audio Player,
-   Media Controls, Thumbnail, Media Placeholder, Upload Preview grid.
+   Image Viewer, Image Gallery, Carousel, Billboard, Poster, Video Player
+   frame, Audio Player, Media Controls, Thumbnail, Media Placeholder, Upload
+   Preview grid.
    ========================================================================== */
 
 @layer components {
@@ -69,7 +70,7 @@
     border-radius: var(--b-radius-lg);
     overflow: hidden;
   }
-  .b-carousel__slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .b-carousel__slide > img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
   .b-carousel__nav {
     position: absolute;
     inset-block-start: 50%;
@@ -97,6 +98,152 @@
     width: 1.1rem;
     border-radius: var(--b-radius-full);
     background: var(--b-color-accent);
+  }
+
+  /* Posters on a carousel make a shelf: each slide narrows to a poster and
+     stops clipping, because the poster owns its frame and needs room to lift. */
+  .b-carousel--posters { --b-slide-w: clamp(7.5rem, 30vw, 10.5rem); }
+  .b-carousel--posters .b-carousel__track { padding-block: var(--b-space-2); scroll-padding-inline: 0; }
+  .b-carousel--posters .b-carousel__slide { border-radius: 0; overflow: visible; }
+  @media (hover: none) { .b-carousel--posters .b-carousel__nav { display: none; } }
+
+  /* ---- Billboard: the featured title, art behind, words in front ------------
+     A media storefront's front window. The block is tall on a phone so the
+     picture reads, and capped on a desktop so the shelves stay above the
+     fold. The scrim fades the art into the page colour from below and from
+     the start edge, so the words never fight the picture and the shelf
+     underneath feels attached rather than pasted on. Put .b-container on the
+     body for the gutters; --b-billboard-h and --b-billboard-focus are the
+     knobs, one for the height and one for where the picture's subject is. */
+  .b-billboard {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-block-size: var(--b-billboard-h, min(62svh, 34rem));
+    overflow: hidden;
+    color: var(--b-text);
+    background: var(--b-fill-tertiary);
+  }
+  .b-billboard__art {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: var(--b-billboard-focus, 50% 20%);
+  }
+  .b-billboard__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top,
+        var(--b-bg) 0%,
+        color-mix(in srgb, var(--b-bg) 55%, transparent) 42%,
+        transparent 78%),
+      linear-gradient(to right,
+        color-mix(in srgb, var(--b-bg) 70%, transparent),
+        transparent 60%);
+  }
+  .b-billboard__body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--b-space-3);
+    padding-block: var(--b-space-6);
+  }
+  .b-billboard__body > * { margin: 0; max-inline-size: var(--b-billboard-measure, 38rem); }
+  .b-billboard__title {
+    margin: 0;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: var(--b-weight-bold);
+    line-height: 1.02;
+    letter-spacing: var(--b-tracking-tight);
+    text-wrap: balance;
+  }
+  .b-billboard__lede { margin: 0; color: var(--b-text-secondary); line-height: var(--b-leading-body); }
+  .b-billboard__actions { display: flex; flex-wrap: wrap; gap: var(--b-space-2); }
+
+  /* ---- Poster: a title as a picture with its name under it ------------------
+     The unit of a catalogue. The whole block is one link — one thing to tap.
+     The frame holds its 2:3 shape before the picture arrives, so a slow
+     connection never makes the shelf jump, and a title with no picture shows
+     its initial on a plate tinted from the accent rather than a broken image.
+     .b-poster--wide is the 16:9 form for an episode; .is-selected marks the
+     one that is playing. */
+  .b-poster {
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-2);
+    min-inline-size: 0;
+    color: inherit;
+    text-decoration: none;
+  }
+  .b-poster:hover { color: inherit; text-decoration: none; }
+  .b-poster__frame {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: var(--b-poster-ratio, 2 / 3);
+    overflow: hidden;
+    border-radius: var(--b-radius-lg);
+    background: color-mix(in srgb, var(--b-color-accent) 18%, var(--b-fill-tertiary));
+    container-type: inline-size;
+    transition: translate var(--b-duration-normal) var(--b-ease-out), box-shadow var(--b-duration-normal);
+  }
+  .b-poster__frame > :is(img, video) {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+  .b-poster__initial {
+    font-size: 30cqi;
+    font-weight: var(--b-weight-bold);
+    line-height: 1;
+    color: color-mix(in srgb, var(--b-color-accent) 55%, var(--b-text-quaternary));
+    user-select: none;
+  }
+  .b-poster__badge {
+    position: absolute;
+    inset-block-start: var(--b-space-2);
+    inset-inline-start: var(--b-space-2);
+  }
+  .b-poster__meta { display: flex; flex-direction: column; gap: 0.125rem; min-inline-size: 0; }
+  .b-poster__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin: 0;
+    font-size: var(--b-text-subheadline);
+    font-weight: var(--b-weight-medium);
+    line-height: var(--b-leading-tight);
+  }
+  .b-poster__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--b-space-2);
+    margin: 0;
+    font-size: var(--b-text-caption);
+    color: var(--b-text-secondary);
+  }
+  .b-poster--wide { --b-poster-ratio: 16 / 9; }
+  @media (hover: hover) {
+    .b-poster:hover .b-poster__frame { translate: 0 -2px; box-shadow: var(--b-elevation-3); }
+  }
+  .b-poster:focus-visible { outline: none; }
+  .b-poster:focus-visible .b-poster__frame,
+  .b-poster.is-selected .b-poster__frame { outline: 2px solid var(--b-color-accent); outline-offset: 2px; }
+
+  /* A wall of posters: as many across as fit — three on a phone, eight on a
+     wide screen — with the poster's minimum width as the one knob. */
+  .b-poster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--b-poster-min, 6.5rem), 1fr));
+    gap: var(--b-space-4) var(--b-space-3);
   }
 
   /* ---- Video Player frame ------------------------------------------------------ */

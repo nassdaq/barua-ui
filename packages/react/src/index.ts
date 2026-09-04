@@ -115,6 +115,8 @@ export {
   CircularProgress, Axis, RadarChart, LineChart, AreaChart, ScatterChart, GridLines,
   MenuBar, MenuBarItem, Pagination, PaginationItem, PaginationEllipsis, LiquidToggle,
   CommandCenterTile, CommandCenterLabel, CommandCenterStatus, ImageLens,
+  Billboard, BillboardArt, BillboardScrim, BillboardBody, BillboardTitle, BillboardLede, BillboardActions,
+  Poster, PosterFrame, PosterInitial, PosterMeta, PosterTitle, PosterFacts, PosterGrid,
 } from "./media";
 export type { AsyncImageProps, ThumbProps, CircularProgressProps, AxisProps, PaginationProps, PaginationItemProps, LiquidToggleProps } from "./media";
 

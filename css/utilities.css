@@ -171,6 +171,9 @@
      otherwise compress its children to fit and nothing would ever scroll. */
   .b-scroll-area > * { flex-shrink: 0; }
   .b-scroll-area--x { overflow: auto hidden; }
+  /* A row inside a sideways scroll area is meant to overflow: it keeps its
+     content's width instead of squeezing every item to fit. */
+  .b-scroll-area--x > .b-hstack { width: max-content; min-width: 100%; }
   .b-scroll-area--y { overflow: hidden auto; }
   .b-scroll-area--fade {
     mask-image: linear-gradient(to bottom, transparent, black var(--b-space-4),

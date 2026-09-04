@@ -7,3 +7,4 @@ dist/
 packages/react/css/
 .npmrc
 .gstack/
+tools/gpu/out/

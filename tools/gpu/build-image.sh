@@ -25,6 +25,39 @@ PLAN="${PLAN:-g2-gpu-rtx4000a1-s}"
 api() { curl -sS --max-time 60 -H "Authorization: Bearer $LINODE_TOKEN" -H "Content-Type: application/json" "$@"; }
 jq_() { python3 -c "import json,sys; d=json.load(sys.stdin); print($1)"; }
 
+
+# Keepalives, because a pip download is minutes of near-silence and something
+# between here and Japan will happily drop an idle connection.
+SSHOPTS="-o StrictHostKeyChecking=no -o ServerAliveInterval=15 -o ServerAliveCountMax=20 -o ConnectTimeout=10"
+
+wait_ssh() {
+  for _ in $(seq 1 60); do
+    ssh $SSHOPTS "root@$1" true 2>/dev/null && return 0
+    sleep 5
+  done
+  return 1
+}
+
+# Long work does not hold a session open. The script is left running on the node
+# and we ask, periodically, whether it finished — so a dropped connection costs
+# a retry rather than the whole step. This is the difference between a step that
+# fails at ten minutes and one that simply carries on.
+run_detached() {
+  local ip="$1" name="$2" minutes="$3"
+  scp $SSHOPTS -q /tmp/$name.sh "root@$ip:/root/$name.sh" || return 1
+  ssh $SSHOPTS "root@$ip" "chmod +x /root/$name.sh; rm -f /root/$name.done; nohup sh -c '/root/$name.sh > /root/$name.log 2>&1; echo \$? > /root/$name.done' >/dev/null 2>&1 &" || return 1
+  for _ in $(seq 1 $((minutes * 6))); do
+    sleep 10
+    code=$(ssh $SSHOPTS "root@$ip" "cat /root/$name.done 2>/dev/null" 2>/dev/null || true)
+    if [ -n "$code" ]; then
+      ssh $SSHOPTS "root@$ip" "tail -6 /root/$name.log" 2>/dev/null || true
+      return "$code"
+    fi
+  done
+  echo "!! $name did not finish within $minutes minutes"
+  return 1
+}
+
 ID=""
 KEEP=0
 cleanup() {
@@ -51,10 +84,10 @@ for _ in $(seq 1 60); do
 done
 [ -n "$IP" ] || { echo "never came up"; exit 1; }
 echo "→ $ID at $IP"
-for _ in $(seq 1 60); do ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 "root@$IP" true 2>/dev/null && break; sleep 5; done
+wait_ssh "$IP" || { echo "never accepted ssh"; exit 1; }
 
 echo "→ building the driver against this kernel (not a prebuilt one)"
-ssh -o StrictHostKeyChecking=no "root@$IP" 'bash -s' <<'REMOTE'
+ssh $SSHOPTS "root@$IP" 'bash -s' <<'REMOTE'
 set -e
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
@@ -72,10 +105,18 @@ echo "installed nvidia-driver-$installed"
 modprobe nvidia
 nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
 REMOTE
-[ $? -eq 0 ] || { echo "!! driver still not working — not worth imaging"; exit 1; }
+driver_status=$?
+if [ $driver_status -ne 0 ]; then
+  echo "!! driver step failed (exit $driver_status) — see the output above; not imaging"
+  exit 1
+fi
 
-echo "→ torch and diffusers"
-ssh -o StrictHostKeyChecking=no "root@$IP" 'bash -s' <<'REMOTE'
+echo "→ waiting for the host after the driver install"
+wait_ssh "$IP" || { echo "!! host never came back after the driver install"; exit 1; }
+
+echo "→ torch and diffusers (detached; a dropped connection no longer kills it)"
+cat > /tmp/torchsetup.sh <<'REMOTE'
+#!/bin/bash
 set -e
 export DEBIAN_FRONTEND=noninteractive
 apt-get install -y -qq python3-venv python3-pip libgl1 libglib2.0-0
@@ -83,9 +124,12 @@ python3 -m venv /opt/gen
 /opt/gen/bin/pip install -q --upgrade pip
 /opt/gen/bin/pip install -q torch torchvision --index-url https://download.pytorch.org/whl/cu124
 /opt/gen/bin/pip install -q diffusers transformers accelerate safetensors
-/opt/gen/bin/python -c "import torch; print('torch', torch.__version__, '| cuda visible:', torch.cuda.is_available(), '|', torch.cuda.get_device_name(0) if torch.cuda.is_available() else '')"
+/opt/gen/bin/python -c "import torch; assert torch.cuda.is_available(), 'torch cannot see the card'; print('torch', torch.__version__, '| cuda visible: True |', torch.cuda.get_device_name(0))"
 REMOTE
-[ $? -eq 0 ] || { echo "!! torch cannot see the card — not worth imaging"; exit 1; }
+if ! run_detached "$IP" torchsetup 25; then
+  echo "!! torch setup failed — see /root/torchsetup.log on the node (now destroyed)"
+  exit 1
+fi
 
 echo "→ shutting down to take the image"
 api -X POST "https://api.linode.com/v4/linode/instances/$ID/shutdown" >/dev/null

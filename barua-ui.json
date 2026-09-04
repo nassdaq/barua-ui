@@ -45,7 +45,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 818,
+  "classCount": 835,
   "classes": [
     "b-accordion",
     "b-account",
@@ -127,6 +127,13 @@
     "b-bento__tile",
     "b-bento__tile--wide",
     "b-bento__title",
+    "b-billboard",
+    "b-billboard__actions",
+    "b-billboard__art",
+    "b-billboard__body",
+    "b-billboard__lede",
+    "b-billboard__scrim",
+    "b-billboard__title",
     "b-body",
     "b-bottom-sheet",
     "b-bottom-sheet--large",
@@ -198,6 +205,7 @@
     "b-card__subtitle",
     "b-card__title",
     "b-carousel",
+    "b-carousel--posters",
     "b-carousel__dots",
     "b-carousel__nav",
     "b-carousel__nav--next",
@@ -603,6 +611,15 @@
     "b-popover__footer",
     "b-popover__header",
     "b-popover__title",
+    "b-poster",
+    "b-poster--wide",
+    "b-poster-grid",
+    "b-poster__badge",
+    "b-poster__facts",
+    "b-poster__frame",
+    "b-poster__initial",
+    "b-poster__meta",
+    "b-poster__title",
     "b-profile-trigger",
     "b-progress",
     "b-progress--danger",
@@ -945,6 +962,13 @@
     "b-bento__tile",
     "b-bento__tile--wide",
     "b-bento__title",
+    "b-billboard",
+    "b-billboard__actions",
+    "b-billboard__art",
+    "b-billboard__body",
+    "b-billboard__lede",
+    "b-billboard__scrim",
+    "b-billboard__title",
     "b-body",
     "b-bottom-sheet",
     "b-bottom-sheet--medium",
@@ -1010,6 +1034,7 @@
     "b-card__subtitle",
     "b-card__title",
     "b-carousel",
+    "b-carousel--posters",
     "b-carousel__dots",
     "b-carousel__nav",
     "b-carousel__nav--next",
@@ -1253,6 +1278,7 @@
     "b-lightbox__caption",
     "b-lightbox__empty",
     "b-lightbox__frame",
+    "b-line-clamp-3",
     "b-line-svg",
     "b-link",
     "b-link--danger",
@@ -1362,6 +1388,14 @@
     "b-popover__footer",
     "b-popover__header",
     "b-popover__title",
+    "b-poster",
+    "b-poster-grid",
+    "b-poster__badge",
+    "b-poster__facts",
+    "b-poster__frame",
+    "b-poster__initial",
+    "b-poster__meta",
+    "b-poster__title",
     "b-profile-trigger",
     "b-progress",
     "b-progress--danger",
@@ -1598,6 +1632,9 @@
   "knobs": [
     "--b-avatar-size",
     "--b-bars-label-w",
+    "--b-billboard-focus",
+    "--b-billboard-h",
+    "--b-billboard-measure",
     "--b-capsule-h",
     "--b-capsule-w",
     "--b-cc-fill",
@@ -1635,6 +1672,8 @@
     "--b-masonry-cols",
     "--b-pie",
     "--b-pie-size",
+    "--b-poster-min",
+    "--b-poster-ratio",
     "--b-progress",
     "--b-scroll-edge-h",
     "--b-slide-w",
@@ -3158,7 +3197,10 @@
             ],
             "root": "Container",
             "jsx": "<Container size=\"sm\">\n  <CardBody\n    style={{ background: \"var(--b-color-accent-soft)\", borderRadius: \"var(--b-radius-md)\", padding: \"var(--b-space-3)\", textAlign: \"center\" }}\n  >\n    --sm \u00b7 40rem\n  </CardBody>\n</Container>\n<Container size=\"md\">\n  <CardBody\n    style={{ background: \"var(--b-color-accent-soft)\", borderRadius: \"var(--b-radius-md)\", padding: \"var(--b-space-3)\", textAlign: \"center\" }}\n  >\n    --md \u00b7 48rem\n  </CardBody>\n</Container>\n<Container>\n  <CardBody\n    style={{ background: \"var(--b-color-accent-soft)\", borderRadius: \"var(--b-radius-md)\", padding: \"var(--b-space-3)\", textAlign: \"center\" }}\n  >\n    default \u00b7 64rem\n  </CardBody>\n</Container>\n<Container size=\"xl\">\n  <CardBody\n    style={{ background: \"var(--b-color-accent-soft)\", borderRadius: \"var(--b-radius-md)\", padding: \"var(--b-space-3)\", textAlign: \"center\" }}\n  >\n    --xl \u00b7 80rem\n  </CardBody>\n</Container>\n<Container size=\"fluid\">\n  <CardBody\n    style={{ background: \"var(--b-color-accent-soft)\", borderRadius: \"var(--b-radius-md)\", padding: \"var(--b-space-3)\", textAlign: \"center\" }}\n  >\n    --fluid \u00b7 no cap\n  </CardBody>\n</Container>"
-          }
+          },
+          "knobs": [
+            "--b-billboard-h"
+          ]
         },
         {
           "id": "stack",
@@ -3694,6 +3736,7 @@
             "jsx": "<Stage style={{ height: \"16rem\" }}>\n  <Container className=\"b-stack b-gap-3\">\n    <Dashboard>\n      <Card compact className=\"b-span-6\">\n        <CardHeader>\n          <CardTitle>Fits</CardTitle>\n        </CardHeader>\n        <CardBody>Rows share the stage height.</CardBody>\n      </Card>\n      <Card compact className=\"b-span-6\">\n        <CardHeader>\n          <CardTitle>Clips</CardTitle>\n        </CardHeader>\n        <CardBody>Overflowing content clips inside the card \u2014 the page never scrolls.</CardBody>\n      </Card>\n    </Dashboard>\n  </Container>\n</Stage>"
           },
           "knobs": [
+            "--b-billboard-h",
             "--b-gap",
             "--b-lg-border",
             "--b-lg-pane"
@@ -7766,6 +7809,107 @@
             "is-active",
             "is-loading",
             "is-pressed"
+          ]
+        },
+        {
+          "id": "billboard",
+          "title": "Billboard",
+          "category": "media",
+          "url": "https://ui.barua.tz/docs/media.html#billboard",
+          "summary": "The featured title on a media storefront: art behind, words in front. The scrim fades the picture into the page colour from below and from the start edge, so the text never fights it and the shelf underneath feels attached. Put .b-container on the body for the gutters. The block is tall on a phone \u2014 min(62svh, 34rem) \u2014 and capped on a desktop so the shelves stay above the fold; --b-billboard-h sets the height and --b-billboard-focus moves the picture's subject into view.",
+          "classes": [
+            "b-billboard",
+            "b-billboard__actions",
+            "b-billboard__art",
+            "b-billboard__body",
+            "b-billboard__lede",
+            "b-billboard__scrim",
+            "b-billboard__title",
+            "b-body",
+            "b-btn",
+            "b-btn--glass",
+            "b-btn--lg",
+            "b-btn--pill",
+            "b-btn--primary",
+            "b-container",
+            "b-line-clamp-3",
+            "b-overline"
+          ],
+          "markup": "",
+          "knobs": [
+            "--b-billboard-focus",
+            "--b-billboard-h",
+            "--b-billboard-measure",
+            "--b-lg-border",
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong"
+          ],
+          "states": [
+            "is-active",
+            "is-loading",
+            "is-pressed"
+          ]
+        },
+        {
+          "id": "poster",
+          "title": "Poster",
+          "category": "media",
+          "url": "https://ui.barua.tz/docs/media.html#poster",
+          "summary": "A title as a 2:3 picture with its name under it \u2014 the unit of a catalogue. The whole block is one link. The frame holds its shape before the picture arrives, so a slow connection never makes the shelf jump, and a title with no picture shows its initial on a plate tinted from the accent. A .b-badge in .b-poster__badge sits on the picture for a price or a state. .b-poster--wide is the 16:9 form for an episode; .is-selected marks the one playing.",
+          "classes": [
+            "b-badge",
+            "b-badge--accent",
+            "b-badge--success",
+            "b-btn",
+            "b-btn--glass",
+            "b-carousel",
+            "b-carousel--posters",
+            "b-carousel__nav",
+            "b-carousel__nav--next",
+            "b-carousel__nav--prev",
+            "b-carousel__slide",
+            "b-carousel__track",
+            "b-icon-btn",
+            "b-poster",
+            "b-poster-grid",
+            "b-poster__badge",
+            "b-poster__facts",
+            "b-poster__frame",
+            "b-poster__initial",
+            "b-poster__meta",
+            "b-poster__title"
+          ],
+          "markup": "<div class=\"b-poster-grid\">\n  <a class=\"b-poster\" href=\"#\">\n    <div class=\"b-poster__frame\">\n      <img src=\"img/posters/night-coast.jpg\" alt=\"\" loading=\"lazy\">\n      <span class=\"b-badge b-badge--accent b-poster__badge\">TSh 2,000</span>\n    </div>\n    <div class=\"b-poster__meta\">\n      <p class=\"b-poster__title\">Night Coast</p>\n      <p class=\"b-poster__facts\"><span>2026</span><span>Drama</span></p>\n    </div>\n  </a>\n  <a class=\"b-poster\" href=\"#\">\n    <div class=\"b-poster__frame\">\n      <img src=\"img/posters/dune-light.jpg\" alt=\"\" loading=\"lazy\">\n      <span class=\"b-badge b-badge--success b-poster__badge\">Free</span>\n    </div>\n    <div class=\"b-poster__meta\">\n      <p class=\"b-poster__title\">Dune Light</p>\n      <p class=\"b-poster__facts\"><span>2025</span><span>Adventure</span></p>\n    </div>\n  </a>\n  <a class=\"b-poster\" href=\"#\">\n    <div class=\"b-poster__frame\">\n      <img src=\"img/posters/forest-fog.jpg\" alt=\"\" loading=\"lazy\">\n    </div>\n    <div class=\"b-poster__meta\">\n      <p class=\"b-poster__title\">Forest Fog</p>\n      <p class=\"b-poster__facts\"><span>2024</span><span>Thriller</span></p>\n    </div>\n  </a>\n  <a class=\"b-poster\" href=\"#\">\n    <div class=\"b-poster__frame\">\n      <span class=\"b-poster__initial\" aria-hidden=\"true\">K</span>\n      <span class=\"b-badge b-poster__badge\">Coming soon</span>\n    </div>\n    <div class=\"b-poster__meta\">\n      <p class=\"b-poster__",
+          "react": {
+            "import": "import { Badge, Poster, PosterFacts, PosterFrame, PosterGrid, PosterInitial, PosterMeta, PosterTitle } from \"barua-ui\";",
+            "components": [
+              "Badge",
+              "Poster",
+              "PosterFacts",
+              "PosterFrame",
+              "PosterGrid",
+              "PosterInitial",
+              "PosterMeta",
+              "PosterTitle"
+            ],
+            "root": "PosterGrid",
+            "jsx": "<PosterGrid>\n  <Poster href=\"#\">\n    <PosterFrame>\n      <img src=\"img/posters/night-coast.jpg\" alt=\"\" loading=\"lazy\" />\n      <Badge variant=\"accent\" className=\"b-poster__badge\">TSh 2,000</Badge>\n    </PosterFrame>\n    <PosterMeta>\n      <PosterTitle>Night Coast</PosterTitle>\n      <PosterFacts>\n        <span>2026</span>\n        <span>Drama</span>\n      </PosterFacts>\n    </PosterMeta>\n  </Poster>\n  <Poster href=\"#\">\n    <PosterFrame>\n      <img src=\"img/posters/dune-light.jpg\" alt=\"\" loading=\"lazy\" />\n      <Badge variant=\"success\" className=\"b-poster__badge\">Free</Badge>\n    </PosterFrame>\n    <PosterMeta>\n      <PosterTitle>Dune Light</PosterTitle>\n      <PosterFacts>\n        <span>2025</span>\n        <span>Adventure</span>\n      </PosterFacts>\n    </PosterMeta>\n  </Poster>\n  <Poster href=\"#\">\n    <PosterFrame>\n      <img src=\"img/posters/forest-fog.jpg\" alt=\"\" loading=\"lazy\" />\n    </PosterFrame>\n    <PosterMeta>\n      <PosterTitle>Forest Fog</PosterTitle>\n      <PosterFacts>\n        <span>2024</span>\n        <span>Thriller</span>\n      </PosterFacts>\n    </PosterMeta>\n  </Poster>\n  <Poster href=\"#\">\n    <PosterFrame>\n      <PosterInitial aria-hidden=\"true\">K</PosterInitial>\n      <Badge className=\"b-poster__badge\">Coming soon</Badge>\n    </PosterFrame>\n    <PosterMeta></PosterMeta>\n  </Poster>\n</PosterGrid>"
+          },
+          "knobs": [
+            "--b-lg-border",
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong",
+            "--b-poster-min",
+            "--b-poster-ratio",
+            "--b-slide-w"
+          ],
+          "states": [
+            "is-active",
+            "is-loading",
+            "is-pressed",
+            "is-selected"
           ]
         },
         {

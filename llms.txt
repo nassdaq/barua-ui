@@ -57,7 +57,7 @@ Machine-readable index of every component, with canonical markup:
 - [Feedback — alerts, toasts, progress, skeletons, empty states](https://ui.barua.tz/docs/feedback.html): 13 components
 - [Overlays — modals, sheets, popovers, tooltips, lightbox](https://ui.barua.tz/docs/overlays.html): 14 components
 - [Data visualization — CSS charts](https://ui.barua.tz/docs/data-viz.html): 18 components
-- [Media — galleries, players, thumbnails](https://ui.barua.tz/docs/media.html): 10 components
+- [Media — galleries, players, thumbnails](https://ui.barua.tz/docs/media.html): 12 components
 - [Specialized — calendars, pickers, file browser](https://ui.barua.tz/docs/specialized.html): 18 components
 - [Authentication — sign in, OTP, account switching](https://ui.barua.tz/docs/authentication.html): 10 components
 - [System pages — errors, empty, onboarding](https://ui.barua.tz/docs/system.html): 11 components

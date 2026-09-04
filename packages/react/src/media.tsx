@@ -207,3 +207,20 @@ export const CommandCenterTile = block("div", "b-cc__tile", "CommandCenterTile")
 export const CommandCenterLabel = block("div", "b-cc__label", "CommandCenterLabel");
 export const CommandCenterStatus = block("div", "b-cc__status", "CommandCenterStatus");
 export const ImageLens = block("div", "b-lens", "ImageLens");
+
+/* ---- Billboard and Poster: the parts of a media storefront ---------------- */
+export const Billboard = block("section", "b-billboard", "Billboard");
+export const BillboardArt = block("img", "b-billboard__art", "BillboardArt");
+export const BillboardScrim = block("div", "b-billboard__scrim", "BillboardScrim");
+export const BillboardBody = block("div", "b-billboard__body", "BillboardBody");
+export const BillboardTitle = block("h1", "b-billboard__title", "BillboardTitle");
+export const BillboardLede = block("p", "b-billboard__lede", "BillboardLede");
+export const BillboardActions = block("div", "b-billboard__actions", "BillboardActions");
+
+export const Poster = block("a", "b-poster", "Poster");
+export const PosterFrame = block("div", "b-poster__frame", "PosterFrame");
+export const PosterInitial = block("span", "b-poster__initial", "PosterInitial");
+export const PosterMeta = block("div", "b-poster__meta", "PosterMeta");
+export const PosterTitle = block("p", "b-poster__title", "PosterTitle");
+export const PosterFacts = block("p", "b-poster__facts", "PosterFacts");
+export const PosterGrid = block("div", "b-poster-grid", "PosterGrid");

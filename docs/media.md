@@ -211,6 +211,112 @@ import { Button, Carousel, CarouselSlide, CarouselTrack } from "barua-ui";
 </Carousel>
 ```
 
+## Billboard
+
+The featured title on a media storefront: art behind, words in front. The scrim fades the picture into the page colour from below and from the start edge, so the text never fights it and the shelf underneath feels attached. Put .b-container on the body for the gutters. The block is tall on a phone — min(62svh, 34rem) — and capped on a desktop so the shelves stay above the fold; --b-billboard-h sets the height and --b-billboard-focus moves the picture's subject into view.
+
+- Documentation: https://ui.barua.tz/docs/media.html#billboard
+- Classes: `b-billboard` `b-billboard__actions` `b-billboard__art` `b-billboard__body` `b-billboard__lede` `b-billboard__scrim` `b-billboard__title` `b-body` `b-btn` `b-btn--glass` `b-btn--lg` `b-btn--pill` `b-btn--primary` `b-container` `b-line-clamp-3` `b-overline`
+
+## Poster
+
+A title as a 2:3 picture with its name under it — the unit of a catalogue. The whole block is one link. The frame holds its shape before the picture arrives, so a slow connection never makes the shelf jump, and a title with no picture shows its initial on a plate tinted from the accent. A .b-badge in .b-poster__badge sits on the picture for a price or a state. .b-poster--wide is the 16:9 form for an episode; .is-selected marks the one playing.
+
+- Documentation: https://ui.barua.tz/docs/media.html#poster
+- Classes: `b-badge` `b-badge--accent` `b-badge--success` `b-btn` `b-btn--glass` `b-carousel` `b-carousel--posters` `b-carousel__nav` `b-carousel__nav--next` `b-carousel__nav--prev` `b-carousel__slide` `b-carousel__track` `b-icon-btn` `b-poster` `b-poster-grid` `b-poster__badge` `b-poster__facts` `b-poster__frame` `b-poster__initial` `b-poster__meta` `b-poster__title`
+
+```html
+<div class="b-poster-grid">
+  <a class="b-poster" href="#">
+    <div class="b-poster__frame">
+      <img src="img/posters/night-coast.jpg" alt="" loading="lazy">
+      <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+    </div>
+    <div class="b-poster__meta">
+      <p class="b-poster__title">Night Coast</p>
+      <p class="b-poster__facts"><span>2026</span><span>Drama</span></p>
+    </div>
+  </a>
+  <a class="b-poster" href="#">
+    <div class="b-poster__frame">
+      <img src="img/posters/dune-light.jpg" alt="" loading="lazy">
+      <span class="b-badge b-badge--success b-poster__badge">Free</span>
+    </div>
+    <div class="b-poster__meta">
+      <p class="b-poster__title">Dune Light</p>
+      <p class="b-poster__facts"><span>2025</span><span>Adventure</span></p>
+    </div>
+  </a>
+  <a class="b-poster" href="#">
+    <div class="b-poster__frame">
+      <img src="img/posters/forest-fog.jpg" alt="" loading="lazy">
+    </div>
+    <div class="b-poster__meta">
+      <p class="b-poster__title">Forest Fog</p>
+      <p class="b-poster__facts"><span>2024</span><span>Thriller</span></p>
+    </div>
+  </a>
+  <a class="b-poster" href="#">
+    <div class="b-poster__frame">
+      <span class="b-poster__initial" aria-hidden="true">K</span>
+      <span class="b-badge b-poster__badge">Coming soon</span>
+    </div>
+    <div class="b-poster__meta">
+      <p class="b-poster__
+```
+
+```tsx
+import { Badge, Poster, PosterFacts, PosterFrame, PosterGrid, PosterInitial, PosterMeta, PosterTitle } from "barua-ui";
+
+<PosterGrid>
+  <Poster href="#">
+    <PosterFrame>
+      <img src="img/posters/night-coast.jpg" alt="" loading="lazy" />
+      <Badge variant="accent" className="b-poster__badge">TSh 2,000</Badge>
+    </PosterFrame>
+    <PosterMeta>
+      <PosterTitle>Night Coast</PosterTitle>
+      <PosterFacts>
+        <span>2026</span>
+        <span>Drama</span>
+      </PosterFacts>
+    </PosterMeta>
+  </Poster>
+  <Poster href="#">
+    <PosterFrame>
+      <img src="img/posters/dune-light.jpg" alt="" loading="lazy" />
+      <Badge variant="success" className="b-poster__badge">Free</Badge>
+    </PosterFrame>
+    <PosterMeta>
+      <PosterTitle>Dune Light</PosterTitle>
+      <PosterFacts>
+        <span>2025</span>
+        <span>Adventure</span>
+      </PosterFacts>
+    </PosterMeta>
+  </Poster>
+  <Poster href="#">
+    <PosterFrame>
+      <img src="img/posters/forest-fog.jpg" alt="" loading="lazy" />
+    </PosterFrame>
+    <PosterMeta>
+      <PosterTitle>Forest Fog</PosterTitle>
+      <PosterFacts>
+        <span>2024</span>
+        <span>Thriller</span>
+      </PosterFacts>
+    </PosterMeta>
+  </Poster>
+  <Poster href="#">
+    <PosterFrame>
+      <PosterInitial aria-hidden="true">K</PosterInitial>
+      <Badge className="b-poster__badge">Coming soon</Badge>
+    </PosterFrame>
+    <PosterMeta></PosterMeta>
+  </Poster>
+</PosterGrid>
+```
+
 ## Video Player
 
 A 16:9 frame around a <video> element. The .b-video__overlay with its glass .b-video__play button fades in on hover, or stays visible while the frame carries .is-paused . The bottom bar is the shared Media Controls strip.

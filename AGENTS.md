@@ -230,3 +230,12 @@ Then vary deliberately *within* the system: span rhythm (`b-span-3/4/6/8`),
 density (`b-card--compact`), material (glass, neutral, flush), and whether a
 section leads with a stat, a chart, a list or a piece of art. Variation comes
 from composition and hierarchy, not from new CSS.
+
+## Checking a page on a phone
+
+Headless Chrome's `--window-size` will not go below about 500px, so a
+"390px" screenshot from it is a 500px layout cropped — a fake overflow.
+`node tools/shot.mjs <url> out.png 390 844` drives Chrome over the DevTools
+protocol with real device metrics and prints the viewport, the scroll width
+and every element wider than the viewport. Believe that; do not believe a
+cropped capture.

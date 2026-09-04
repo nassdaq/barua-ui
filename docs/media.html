@@ -225,6 +225,226 @@
         </div>
       </section>
 
+      <section class="docs-section" id="billboard">
+        <h2>Billboard</h2>
+        <p>
+          The featured title on a media storefront: art behind, words in
+          front. The scrim fades the picture into the page colour from below
+          and from the start edge, so the text never fights it and the shelf
+          underneath feels attached. Put <code>.b-container</code> on the
+          body for the gutters. The block is tall on a phone —
+          <code>min(62svh, 34rem)</code> — and capped on a desktop so the
+          shelves stay above the fold; <code>--b-billboard-h</code> sets the
+          height and <code>--b-billboard-focus</code> moves the picture's
+          subject into view.
+        </p>
+        <div class="docs-demo docs-demo--dark docs-demo--stack">
+          <section class="b-billboard" style="--b-billboard-h: 22rem" aria-label="Night Coast">
+            <img class="b-billboard__art" src="img/posters/night-coast-wide.jpg" alt="">
+            <div class="b-billboard__scrim" aria-hidden="true"></div>
+            <div class="b-container b-billboard__body">
+              <p class="b-overline">2026 · Drama</p>
+              <h1 class="b-billboard__title">Night Coast</h1>
+              <p class="b-body b-billboard__lede b-line-clamp-3">A fisherman's daughter comes home to a village that has decided she never left.</p>
+              <div class="b-billboard__actions">
+                <a class="b-btn b-btn--primary b-btn--lg b-btn--pill" href="#">Watch</a>
+                <a class="b-btn b-btn--glass b-btn--lg b-btn--pill" href="#">Trailer</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="docs-section" id="poster">
+        <h2>Poster</h2>
+        <p>
+          A title as a 2:3 picture with its name under it — the unit of a
+          catalogue. The whole block is one link. The frame holds its shape
+          before the picture arrives, so a slow connection never makes the
+          shelf jump, and a title with no picture shows its initial on a
+          plate tinted from the accent. A <code>.b-badge</code> in
+          <code>.b-poster__badge</code> sits on the picture for a price or a
+          state. <code>.b-poster--wide</code> is the 16:9 form for an
+          episode; <code>.is-selected</code> marks the one playing.
+        </p>
+        <p>
+          Put posters in <code>.b-poster-grid</code> for a wall — as many
+          across as fit, three on a phone — with <code>--b-poster-min</code>
+          as the one knob.
+        </p>
+        <div class="docs-demo docs-demo--dark docs-demo--stack">
+          <div class="b-poster-grid">
+            <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/night-coast.jpg" alt="" loading="lazy">
+                <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Night Coast</p>
+                <p class="b-poster__facts"><span>2026</span><span>Drama</span></p>
+              </div>
+            </a>
+            <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/dune-light.jpg" alt="" loading="lazy">
+                <span class="b-badge b-badge--success b-poster__badge">Free</span>
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Dune Light</p>
+                <p class="b-poster__facts"><span>2025</span><span>Adventure</span></p>
+              </div>
+            </a>
+            <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/forest-fog.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Forest Fog</p>
+                <p class="b-poster__facts"><span>2024</span><span>Thriller</span></p>
+              </div>
+            </a>
+            <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <span class="b-poster__initial" aria-hidden="true">K</span>
+                <span class="b-badge b-poster__badge">Coming soon</span>
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Kiloso</p>
+                <p class="b-poster__facts"><span>2026</span><span>Action</span></p>
+              </div>
+            </a>
+            <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/salt-flat.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Salt Flat</p>
+                <p class="b-poster__facts"><span>2023</span><span>Documentary</span></p>
+              </div>
+            </a>
+            <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/still-water.jpg" alt="" loading="lazy">
+                <span class="b-badge b-badge--accent b-poster__badge">TSh 1,500</span>
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Still Water</p>
+                <p class="b-poster__facts"><span>2025</span><span>Romance</span></p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <h3>Shelf</h3>
+        <p>
+          Posters on a <a href="#carousel">carousel</a> make a shelf.
+          <code>.b-carousel--posters</code> narrows each slide to a poster and
+          lets it lift on hover; the prev and next buttons scroll a screenful
+          at a time, and step aside on a touch screen, where a shelf scrolls
+          by thumb. A shelf holds a dozen titles — for a whole catalogue, use
+          the grid.
+        </p>
+        <div class="docs-demo docs-demo--dark docs-demo--stack">
+          <div class="b-carousel b-carousel--posters" data-b-carousel>
+            <div class="b-carousel__track">
+            <div class="b-carousel__slide">
+              <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/night-coast.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Night Coast</p>
+                <p class="b-poster__facts"><span>2026</span></p>
+              </div>
+            </a>
+            </div>
+            <div class="b-carousel__slide">
+              <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/dusk-ridge.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Dusk Ridge</p>
+                <p class="b-poster__facts"><span>2025</span></p>
+              </div>
+            </a>
+            </div>
+            <div class="b-carousel__slide">
+              <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/dune-light.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Dune Light</p>
+                <p class="b-poster__facts"><span>2025</span></p>
+              </div>
+            </a>
+            </div>
+            <div class="b-carousel__slide">
+              <a class="b-poster is-selected" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/forest-fog.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Forest Fog</p>
+                <p class="b-poster__facts"><span>2024</span></p>
+              </div>
+            </a>
+            </div>
+            <div class="b-carousel__slide">
+              <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/salt-flat.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Salt Flat</p>
+                <p class="b-poster__facts"><span>2023</span></p>
+              </div>
+            </a>
+            </div>
+            <div class="b-carousel__slide">
+              <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/still-water.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Still Water</p>
+                <p class="b-poster__facts"><span>2025</span></p>
+              </div>
+            </a>
+            </div>
+            <div class="b-carousel__slide">
+              <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <span class="b-poster__initial" aria-hidden="true">O</span>
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">Obsession</p>
+                <p class="b-poster__facts"><span>2022</span></p>
+              </div>
+            </a>
+            </div>
+            <div class="b-carousel__slide">
+              <a class="b-poster" href="#">
+              <div class="b-poster__frame">
+                <img src="img/posters/city.jpg" alt="" loading="lazy">
+              </div>
+              <div class="b-poster__meta">
+                <p class="b-poster__title">City</p>
+                <p class="b-poster__facts"><span>2021</span></p>
+              </div>
+            </a>
+            </div>
+            </div>
+            <button class="b-btn b-icon-btn b-btn--glass b-carousel__nav b-carousel__nav--prev" aria-label="Previous">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m12 5-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="b-btn b-icon-btn b-btn--glass b-carousel__nav b-carousel__nav--next" aria-label="Next">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m8 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section class="docs-section" id="video-player">
         <h2>Video Player</h2>
         <p>
