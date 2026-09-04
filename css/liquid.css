@@ -41,7 +41,7 @@
 
   /* ---- Chrome: bars, sidebars, rails, status ------------------------------- */
   [data-glass="liquid"] :is(.b-topnav, .b-bottomnav, .b-mobile-header,
-    .b-mobile-toolbar, .b-statusbar) {
+    .b-mobile-toolbar, .b-statusbar, .b-marketing-nav) {
     background: light-dark(rgba(250, 251, 254, 0.45), rgba(20, 20, 26, 0.45));
     -webkit-backdrop-filter: var(--b-glass-heavy);
     backdrop-filter: var(--b-glass-heavy);
@@ -198,6 +198,17 @@
   }
 
   /* ---- Feedback ------------------------------------------------------------------ */
+  [data-glass="liquid"] .b-spinner {
+    border-color: var(--b-lg-border);
+    border-top-color: var(--b-color-accent);
+    box-shadow: var(--b-glass-edge);
+  }
+  [data-glass="liquid"] .b-btn.is-loading::after { border-color: var(--b-lg-border); border-top-color: currentColor; }
+  [data-glass="liquid"] .b-btn--primary.is-loading::after { border-color: rgba(255, 255, 255, 0.35); border-top-color: #fff; }
+
+  /* ---- Media ------------------------------------------------------------------------- */
+  [data-glass="liquid"] .b-poster__frame { box-shadow: var(--b-glass-edge); }
+  [data-glass="liquid"] .b-billboard__actions .b-badge { background: var(--b-lg-pane); box-shadow: var(--b-glass-edge); }
   [data-glass="liquid"] .b-alert {
     -webkit-backdrop-filter: var(--b-glass-light);
     backdrop-filter: var(--b-glass-light);

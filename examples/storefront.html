@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en" data-vt>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Storefront — Media example — Barua UI</title>
+  <script>try{const t=localStorage.getItem("barua-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="stylesheet" href="../css/barua.css">
+  <script defer src="../js/barua.js"></script>
+  <style>
+    /* No page styles — the example is components only. */
+  </style>
+</head>
+<body>
+  <a class="b-skip-link" href="#main">Skip to content</a>
+  <!--
+    A streaming storefront, mobile first, in liquid glass.
+
+    One group of links, drawn twice: in the top bar on a desktop, as the tab
+    bar at the bottom on a phone (b-hide-mobile / b-hide-desktop decide which
+    is showing). The search is in the page, not the bar — centred under the
+    billboard where a thumb lands. Shelves hold a dozen; the wall holds all of
+    it. The site's colour is one attribute: data-accent, or the five accent
+    tokens for a colour outside the palette (see Theming).
+  -->
+  <main id="main" data-theme="dark" data-glass="liquid" data-accent="pink" style="min-block-size: 100dvh; background: var(--b-bg); color: var(--b-text)">
+    <header class="b-marketing-nav">
+      <a class="b-marketing-nav__brand b-text-accent b-touch-target" href="#">Nashon</a>
+      <nav class="b-marketing-nav__links b-hide-mobile" aria-label="Primary">
+        <a href="#" class="b-text-accent" aria-current="page">Home</a>
+        <a href="#filamu">Films</a>
+        <a href="#misururu">Series</a>
+        <a href="#tafuta">Search</a>
+      </nav>
+      <span class="b-spacer"></span>
+      <a class="b-btn b-btn--glass b-btn--sm b-btn--pill b-hide-mobile" href="#"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 4h9a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H8.5l-3 3v-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Ask on WhatsApp</a>
+    </header>
+
+    <section class="b-billboard" aria-label="Night Coast">
+      <img class="b-billboard__art" src="../docs/img/posters/night-coast-wide.jpg" alt="">
+      <div class="b-billboard__scrim" aria-hidden="true"></div>
+      <div class="b-container b-billboard__body">
+        <p class="b-overline b-text-accent">2026 · Drama</p>
+        <h1 class="b-billboard__title">Night Coast</h1>
+        <p class="b-body b-billboard__lede b-line-clamp-3">A fisherman's daughter comes home to a village that has decided she never left.</p>
+        <div class="b-billboard__actions">
+          <a class="b-btn b-btn--primary b-btn--lg b-btn--pill b-touch-target" href="#">Watch</a>
+          <span class="b-badge b-badge--glass b-tabular-nums">TSh 2,000</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="b-stack b-gap-6" style="padding-block: var(--b-space-4) calc(var(--b-space-10) + 4.5rem)">
+      <section class="b-container b-container--sm" id="tafuta" aria-label="Search">
+        <form class="b-search" role="search">
+          <div class="b-input-group">
+            <span class="b-input-affix b-input-affix--start"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            <input class="b-input b-input--lg" type="search" placeholder="Search films…" aria-label="Search films" data-b-filter="#wall">
+          </div>
+        </form>
+      </section>
+
+      <div class="b-container b-scroll-area b-scroll-area--x" role="group" aria-label="Genres">
+        <div class="b-hstack b-gap-2">
+          <button class="b-chip" aria-pressed="true">All</button>
+          <button class="b-chip" aria-pressed="false">Drama</button>
+          <button class="b-chip" aria-pressed="false">Action</button>
+          <button class="b-chip" aria-pressed="false">Thriller</button>
+          <button class="b-chip" aria-pressed="false">Romance</button>
+          <button class="b-chip" aria-pressed="false">Documentary</button>
+        </div>
+      </div>
+
+      <section class="b-container b-stack b-gap-3" aria-label="Trending now">
+      <h2 class="b-title3">Trending now</h2>
+      <div class="b-carousel b-carousel--posters" data-b-carousel>
+        <div class="b-carousel__track">
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/night-coast.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Night Coast</p>
+            <p class="b-poster__facts"><span>2026</span><span>Drama</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/dusk-ridge.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Dusk Ridge</p>
+            <p class="b-poster__facts"><span>2025</span><span>Thriller</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/dune-light.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--success b-poster__badge">Free</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Dune Light</p>
+            <p class="b-poster__facts"><span>2025</span><span>Adventure</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/forest-fog.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Forest Fog</p>
+            <p class="b-poster__facts"><span>2024</span><span>Mystery</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/salt-flat.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Salt Flat</p>
+            <p class="b-poster__facts"><span>2023</span><span>Documentary</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/still-water.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Still Water</p>
+            <p class="b-poster__facts"><span>2025</span><span>Romance</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <span class="b-poster__initial" aria-hidden="true">O</span>
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Obsession</p>
+            <p class="b-poster__facts"><span>2022</span><span>Drama</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/city.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--success b-poster__badge">Free</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">City</p>
+            <p class="b-poster__facts"><span>2021</span><span>Action</span></p>
+          </div>
+        </a>
+        </div>
+        </div>
+        <button class="b-btn b-icon-btn b-btn--glass b-carousel__nav b-carousel__nav--prev" aria-label="Previous"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m12 5-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="b-btn b-icon-btn b-btn--glass b-carousel__nav b-carousel__nav--next" aria-label="Next"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m8 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </section>
+
+      <section class="b-container b-stack b-gap-3" aria-label="Series">
+      <h2 class="b-title3">Series</h2>
+      <div class="b-carousel b-carousel--posters" data-b-carousel>
+        <div class="b-carousel__track">
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/forest-fog.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Seven People</p>
+            <p class="b-poster__facts"><span>59 episodes</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/still-water.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Made in Korea</p>
+            <p class="b-poster__facts"><span>27 episodes</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/night-coast.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Giant</p>
+            <p class="b-poster__facts"><span>12 episodes</span></p>
+          </div>
+        </a>
+        </div>
+        <div class="b-carousel__slide">
+          <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/salt-flat.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">I Wish</p>
+            <p class="b-poster__facts"><span>72 episodes</span></p>
+          </div>
+        </a>
+        </div>
+        </div>
+        <button class="b-btn b-icon-btn b-btn--glass b-carousel__nav b-carousel__nav--prev" aria-label="Previous"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m12 5-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="b-btn b-icon-btn b-btn--glass b-carousel__nav b-carousel__nav--next" aria-label="Next"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m8 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </section>
+
+      <section class="b-container b-stack b-gap-3" id="filamu" aria-label="Everything">
+        <h2 class="b-title3">Everything <span class="b-text-tertiary b-tabular-nums">12</span></h2>
+        <div class="b-poster-grid" id="wall">
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/night-coast.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Night Coast</p>
+            <p class="b-poster__facts"><span>2026</span><span>Drama</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/dusk-ridge.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Dusk Ridge</p>
+            <p class="b-poster__facts"><span>2025</span><span>Thriller</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/dune-light.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--success b-poster__badge">Free</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Dune Light</p>
+            <p class="b-poster__facts"><span>2025</span><span>Adventure</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/forest-fog.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Forest Fog</p>
+            <p class="b-poster__facts"><span>2024</span><span>Mystery</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/salt-flat.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Salt Flat</p>
+            <p class="b-poster__facts"><span>2023</span><span>Documentary</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/still-water.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Still Water</p>
+            <p class="b-poster__facts"><span>2025</span><span>Romance</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <span class="b-poster__initial" aria-hidden="true">O</span>
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Obsession</p>
+            <p class="b-poster__facts"><span>2022</span><span>Drama</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/city.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--success b-poster__badge">Free</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">City</p>
+            <p class="b-poster__facts"><span>2021</span><span>Action</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/forest-fog.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Seven People</p>
+            <p class="b-poster__facts"><span>59 episodes</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/still-water.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Made in Korea</p>
+            <p class="b-poster__facts"><span>27 episodes</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/night-coast.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">Giant</p>
+            <p class="b-poster__facts"><span>12 episodes</span></p>
+          </div>
+        </a>
+        <a class="b-poster" href="#">
+          <div class="b-poster__frame">
+            <img src="../docs/img/posters/salt-flat.jpg" alt="" loading="lazy">
+            <span class="b-badge b-badge--accent b-poster__badge">TSh 2,000</span>
+          </div>
+          <div class="b-poster__meta">
+            <p class="b-poster__title">I Wish</p>
+            <p class="b-poster__facts"><span>72 episodes</span></p>
+          </div>
+        </a>
+        </div>
+        <button class="b-btn b-btn--tinted b-btn--block b-touch-target">Show more</button>
+      </section>
+
+      <footer class="b-site-footer">
+        <div class="b-container">
+          <p class="b-footnote b-text-tertiary">Nashon · powered by Barua Movies</p>
+        </div>
+      </footer>
+    </div>
+
+    <nav class="b-bottomnav b-hide-desktop" aria-label="Primary">
+      <a class="b-bottomnav__item is-active" href="#" aria-current="page"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 9.5 10 4l7 5.5M5 8.5V16h10V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Home</a>
+      <a class="b-bottomnav__item" href="#filamu"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 8.5h13V15a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 15V8.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m3.5 8.5 1-3.4 11.6 1.7-.6 1.7M7.6 5.6 6.6 8.2M11.2 6.1l-1 2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Films</a>
+      <a class="b-bottomnav__item" href="#misururu"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="6" width="14" height="9.5" rx="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M7 17.5h6M7.5 2.5 10 5l2.5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Series</a>
+      <a class="b-bottomnav__item" href="#tafuta"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13.5 13.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Search</a>
+      <a class="b-bottomnav__item" href="#"><svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 4h9a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H8.5l-3 3v-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>WhatsApp</a>
+    </nav>
+  </main>
+</body>
+</html>

@@ -4268,7 +4268,8 @@
             "jsx": "<Sidebar style={{ height: \"100%\" }} aria-label=\"Mail\">\n  <SidebarGroup>\n    <SidebarHeading>Mailboxes</SidebarHeading>\n    <a\n      className=\"b-sidebar__item is-active\"\n      aria-current=\"page\"\n      href=\"#sidebar\"\n    >\n      <svg viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\">\n        <path d=\"M3.5 11.5 5 5h10l1.5 6.5v2.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-2.5Z\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n        <path d=\"M3.5 11.5h4l1 1.5h3l1-1.5h4\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n      </svg>\n      Inbox\n      <Badge variant=\"accent\">24</Badge>\n    </a>\n    <a className=\"b-sidebar__item\" href=\"#sidebar\">\n      <svg viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\">\n        <path d=\"M17 3.5 3 8.5l5.5 2.5L10.5 16.5 17 3.5Z\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n      </svg>\n      Sent\n    </a>\n    <a className=\"b-sidebar__item\" href=\"#sidebar\">\n      <svg viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\">\n        <path d=\"M13.5 3.5 16.5 6.5 7 16H4v-3l9.5-9.5Z\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n      </svg>\n      Drafts\n      <Badge>3</Badge>\n    </a>\n    <a className=\"b-sidebar__item\" href=\"#sidebar\">\n      <svg viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\">\n        <rect x=\"3\" y=\"4\" width=\"14\" height=\"4\" rx=\"1\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n      </svg>\n    </a>\n  </SidebarGroup>\n</Sidebar>"
           },
           "knobs": [
-            "--b-lg-inset"
+            "--b-lg-inset",
+            "--b-lg-pane"
           ],
           "states": [
             "is-active"
@@ -5921,7 +5922,10 @@
             ],
             "root": "Badge",
             "jsx": "<Badge>Default</Badge>\n<Badge variant=\"accent\">Accent</Badge>\n<Badge variant=\"success\">Delivered</Badge>\n<Badge variant=\"warning\">Held at customs</Badge>\n<Badge variant=\"danger\">Failed</Badge>\n<Badge className=\"b-badge--solid\">Solid</Badge>\n<Badge variant=\"success\" dot>Online</Badge>\n<Badge variant=\"danger\" dot>Offline</Badge>\n<Badge className=\"b-badge--count\">12</Badge>"
-          }
+          },
+          "knobs": [
+            "--b-lg-pane"
+          ]
         },
         {
           "id": "tag-chip",
@@ -6981,7 +6985,8 @@
           },
           "knobs": [
             "--b-avatar-size",
-            "--b-lg-border"
+            "--b-lg-border",
+            "--b-lg-pane"
           ]
         },
         {
@@ -10051,7 +10056,8 @@
           ],
           "markup": "",
           "knobs": [
-            "--b-avatar-size"
+            "--b-avatar-size",
+            "--b-lg-pane"
           ],
           "states": [
             "is-done",
@@ -10100,7 +10106,8 @@
           "knobs": [
             "--b-avatar-size",
             "--b-lg-border",
-            "--b-lg-inset"
+            "--b-lg-inset",
+            "--b-lg-pane"
           ],
           "states": [
             "is-done",
@@ -11341,6 +11348,9 @@
             "root": "Badge",
             "jsx": "<div style={{ height: \"4.5rem\" }}></div>\n<BottomNav style={{ position: \"static\" }} aria-label=\"Primary\">\n  <a className=\"b-bottomnav__item\" href=\"#bottom-tab-bar\">\n    <svg viewBox=\"0 0 20 20\" fill=\"none\">\n      <path d=\"M4 9.5 10 4l6 5.5V16a1 1 0 0 1-1 1h-3v-4H8v4H5a1 1 0 0 1-1-1V9.5Z\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n    </svg>\n    Home\n  </a>\n  <a\n    className=\"b-bottomnav__item is-active\"\n    href=\"#bottom-tab-bar\"\n    aria-current=\"page\"\n  >\n    <span style={{ position: \"relative\", display: \"inline-flex\" }}>\n      <svg viewBox=\"0 0 20 20\" fill=\"none\">\n        <rect x=\"3\" y=\"5\" width=\"14\" height=\"11\" rx=\"2\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <path d=\"m4.5 7.5 5.5 4 5.5-4\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n      </svg>\n      <Badge\n        className=\"b-badge--count\"\n        style={{ position: \"absolute\", top: \"-0.4rem\", insetInlineEnd: \"-0.7rem\" }}\n      >\n        3\n      </Badge>\n    </span>\n    Inbox\n  </a>\n  <a className=\"b-bottomnav__item\" href=\"#bottom-tab-bar\">\n    <svg viewBox=\"0 0 20 20\" fill=\"none\">\n      <circle cx=\"9\" cy=\"9\" r=\"5\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n      <path d=\"m13 13 3.5 3.5\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinecap=\"round\" />\n    </svg>\n    Search\n  </a>\n  <a className=\"b-bottomnav__item\" href=\"#bottom-tab-bar\">\n    <svg viewBox=\"0 0 20 20\" fill=\"none\">\n      <circle cx=\"10\" cy=\"7\" r=\"3\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n    </svg>\n  </a>\n</BottomNav>"
           },
+          "knobs": [
+            "--b-lg-pane"
+          ],
           "states": [
             "is-active"
           ]
