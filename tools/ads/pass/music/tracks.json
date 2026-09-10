@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://cdn.pixabay.com/audio/2026/04/10/audio_8470cb423f.mp3",
+    "title": "Trailer Cinematic",
+    "file": "music/pixabay-1.mp3"
+  },
+  {
+    "url": "https://cdn.pixabay.com/audio/2022/12/29/audio_265ab80d58.mp3",
+    "title": "Trailer Cinematic",
+    "file": "music/pixabay-2.mp3"
+  },
+  {
+    "url": "https://cdn.pixabay.com/audio/2026/02/09/audio_72428525f1.mp3",
+    "title": "Dark Mystery Trailer (Taking Our time)",
+    "file": "music/pixabay-3.mp3"
+  },
+  {
+    "url": "https://cdn.pixabay.com/audio/2025/06/24/audio_dc5879b136.mp3",
+    "title": "Cinematic Trailer (Cinematic Trailer)",
+    "file": "music/pixabay-4.mp3"
+  },
+  {
+    "url": "https://cdn.pixabay.com/audio/2026/08/11/audio_14a56f69e2.mp3",
+    "title": "Cinematic Trailer",
+    "file": "music/pixabay-5.mp3"
+  }
+]

@@ -15,6 +15,11 @@
      [data-b-theme-toggle]       cycle light/dark
      [data-b-otp]                OTP input group auto-advance
      [data-b-carousel]           carousel prev/next/dots wiring
+     [data-b-scroll-geometry]    --b-scroll-* on a scroll container, .is-scrolled
+     [data-b-visible]            .is-visible as an element crosses the threshold
+     [data-b-snap]               data-b-snap-current + dots for snap points
+     [data-b-haptic]             a vibration on click, where the device has one
+     [data-b-persist]            state kept across reloads
      [data-b-slider-fill]        keep .b-slider fill in sync
      [data-b-cmdk="#id"]         open command palette dialog on click / ⌘K
      [data-b-filter="#listId"]   filter list items by input value
@@ -477,6 +482,234 @@
     armCounters();
   }
 
+  /* ---- Scroll geometry, visibility, position; haptics; persistence ---------
+     SwiftUI's onScrollGeometryChange, onScrollVisibilityChange,
+     scrollPosition(id:), sensoryFeedback and customizationID, as the web does
+     them: a scroll container that publishes its own geometry as custom
+     properties, an observer that says when a view is on screen, snap points
+     that name the one in view, a vibration where the device has one, and
+     state that survives a reload. Each is a data attribute for markup and a
+     function for code. */
+
+  /* Geometry. A container carrying data-b-scroll-geometry writes --b-scroll-x,
+     --b-scroll-y and --b-scroll-progress onto itself, carries .is-scrolled once
+     it has moved, and dispatches "b:scroll" with the numbers. On <html> it is
+     the page. */
+  Barua.scroll = {
+    geometry(el, cb) {
+      const page = el === document.documentElement || el === document.body;
+      const target = page ? window : el;
+      const read = () => {
+        const box = page ? document.documentElement : el;
+        const x = page ? window.scrollX : el.scrollLeft;
+        const y = page ? window.scrollY : el.scrollTop;
+        const width = box.clientWidth, height = box.clientHeight;
+        const contentWidth = box.scrollWidth, contentHeight = box.scrollHeight;
+        return {
+          x, y, width, height, contentWidth, contentHeight,
+          progressX: contentWidth > width ? Math.min(1, x / (contentWidth - width)) : 0,
+          progressY: contentHeight > height ? Math.min(1, y / (contentHeight - height)) : 0,
+        };
+      };
+      let queued = false;
+      const flush = () => { queued = false; cb(read()); };
+      const on = () => { if (!queued) { queued = true; requestAnimationFrame(flush); } };
+      target.addEventListener("scroll", on, { passive: true });
+      const ro = !page && "ResizeObserver" in window ? new ResizeObserver(on) : null;
+      if (ro) ro.observe(el); else window.addEventListener("resize", on);
+      cb(read());
+      return () => {
+        target.removeEventListener("scroll", on);
+        if (ro) ro.disconnect(); else window.removeEventListener("resize", on);
+      };
+    },
+  };
+  function armScrollGeometry(root) {
+    const list = Array.from(root.querySelectorAll("[data-b-scroll-geometry]:not([data-b-geometry-armed])"));
+    if (root === document && document.documentElement.hasAttribute("data-b-scroll-geometry") &&
+        !document.documentElement.hasAttribute("data-b-geometry-armed")) list.push(document.documentElement);
+    list.forEach((el) => {
+      el.setAttribute("data-b-geometry-armed", "");
+      Barua.scroll.geometry(el, (g) => {
+        el.style.setProperty("--b-scroll-x", g.x + "px");
+        el.style.setProperty("--b-scroll-y", g.y + "px");
+        el.style.setProperty("--b-scroll-progress", g.progressY.toFixed(4));
+        el.classList.toggle("is-scrolled", g.y > 0);
+        el.dispatchEvent(new CustomEvent("b:scroll", { detail: g }));
+      });
+    });
+  }
+
+  /* Visibility. data-b-visible (optionally a threshold, 0–1) toggles .is-visible
+     and dispatches "b:visible" as the element crosses that much of itself into
+     the viewport. Barua.visible(el, cb, { threshold }) is the same for code. */
+  const visibleObservers = new Map();
+  Barua.visible = function (el, cb, { threshold = 0.5 } = {}) {
+    if (!("IntersectionObserver" in window)) { cb(true, 1); return () => {}; }
+    let io = visibleObservers.get(threshold);
+    if (!io) {
+      io = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          const fn = entry.target.__bVisible;
+          if (!fn) continue;
+          // isIntersecting stays true while any sliver shows; the threshold
+          // is the promise, so the ratio decides.
+          const on = threshold === 0 ? entry.isIntersecting : entry.intersectionRatio >= threshold;
+          fn(on, entry.intersectionRatio);
+        }
+      }, { threshold: threshold === 0 ? [0] : [0, threshold] });
+      visibleObservers.set(threshold, io);
+    }
+    el.__bVisible = cb;
+    io.observe(el);
+    return () => { io.unobserve(el); delete el.__bVisible; };
+  };
+  function armVisible(root) {
+    root.querySelectorAll("[data-b-visible]:not([data-b-visible-armed])").forEach((el) => {
+      el.setAttribute("data-b-visible-armed", "");
+      const threshold = Math.min(1, Math.max(0, parseFloat(el.getAttribute("data-b-visible")) || 0.5));
+      Barua.visible(el, (visible, ratio) => {
+        el.classList.toggle("is-visible", visible);
+        el.dispatchEvent(new CustomEvent("b:visible", { detail: { visible, ratio } }));
+      }, { threshold });
+    });
+  }
+
+  /* Position. A snapping container with data-b-snap names the child in view:
+     data-b-snap-current="<id or index>" on itself, .is-current on the child,
+     .is-active on the matching dot in any [data-b-snap-dots="#container"],
+     and "b:snapchange" with { id, index, element }. Barua.snap.to(box, idOrIndex)
+     scrolls there. Uses the browser's own scrollsnapchange when it has one. */
+  Barua.snap = {
+    items: (box) => Array.from(box.children).filter((c) => !c.hidden),
+    nearest(box) {
+      const list = Barua.snap.items(box);
+      const horizontal = box.scrollWidth > box.clientWidth;
+      const origin = box.getBoundingClientRect();
+      let best = null, distance = Infinity;
+      for (const c of list) {
+        const r = c.getBoundingClientRect();
+        const d = Math.abs(horizontal ? r.left - origin.left : r.top - origin.top);
+        if (d < distance) { distance = d; best = c; }
+      }
+      return best;
+    },
+    to(box, target) {
+      const list = Barua.snap.items(box);
+      const el = typeof target === "number" ? list[target] : list.find((c) => c.id === target);
+      el?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    },
+  };
+  function armSnap(root) {
+    root.querySelectorAll("[data-b-snap]:not([data-b-snap-armed])").forEach((box) => {
+      box.setAttribute("data-b-snap-armed", "");
+      const dots = () => box.id
+        ? Array.from(document.querySelectorAll(`[data-b-snap-dots="#${CSS.escape(box.id)}"] button`))
+        : [];
+      const announce = (el) => {
+        const list = Barua.snap.items(box);
+        const index = list.indexOf(el);
+        if (index < 0) return;
+        list.forEach((c, i) => c.classList.toggle("is-current", i === index));
+        box.setAttribute("data-b-snap-current", el.id || String(index));
+        dots().forEach((d, i) => d.classList.toggle("is-active", i === index));
+        box.dispatchEvent(new CustomEvent("b:snapchange", { detail: { id: el.id || null, index, element: el } }));
+      };
+      if ("onscrollsnapchange" in box) {
+        box.addEventListener("scrollsnapchange", (e) => announce(e.snapTargetInline || e.snapTargetBlock));
+      } else {
+        let timer;
+        const settle = () => { clearTimeout(timer); timer = setTimeout(() => { const c = Barua.snap.nearest(box); if (c) announce(c); }, 90); };
+        box.addEventListener("onscrollend" in box ? "scrollend" : "scroll", settle, { passive: true });
+      }
+      dots().forEach((d, i) => d.addEventListener("click", () => Barua.snap.to(box, i)));
+      const first = Barua.snap.nearest(box);
+      if (first) announce(first);
+    });
+  }
+
+  /* Haptics. Barua.haptic(kind) and data-b-haptic on anything clickable:
+     "selection", "impact", "success", "warning", "error". Android vibrates;
+     iPhone has no vibration API, but Safari plays the system haptic when a
+     switch toggles, so one is toggled off screen. Elsewhere it is nothing,
+     quietly. */
+  const HAPTICS = { selection: [8], impact: [16], success: [10, 30, 20], warning: [25, 40, 25], error: [40, 30, 40, 30, 60] };
+  Barua.haptic = function (kind = "selection") {
+    const pattern = HAPTICS[kind] || HAPTICS.selection;
+    if (typeof navigator.vibrate === "function") { navigator.vibrate(pattern); return true; }
+    if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+      let sw = document.getElementById("b-haptic-switch");
+      if (!sw) {
+        sw = document.createElement("input");
+        sw.type = "checkbox"; sw.id = "b-haptic-switch"; sw.tabIndex = -1;
+        sw.setAttribute("switch", ""); sw.setAttribute("aria-hidden", "true");
+        sw.style.cssText = "position:fixed;inset:auto auto 0 0;width:1px;height:1px;opacity:0;pointer-events:none";
+        document.body.appendChild(sw);
+      }
+      sw.click();
+      return true;
+    }
+    return false;
+  };
+  document.addEventListener("click", (e) => {
+    const el = e.target && e.target.closest ? e.target.closest("[data-b-haptic]") : null;
+    if (el) Barua.haptic(el.getAttribute("data-b-haptic") || "selection");
+  }, { passive: true });
+
+  /* Persistence. data-b-persist="key" keeps a piece of interface state across
+     reloads with no code: a <details> stays open or shut, a segmented control
+     or tab strip keeps its choice, a scroll area keeps its place, a field
+     keeps its value. Barua.persist.get/set/clear hold any JSON for code. */
+  const PERSIST = "barua-persist:";
+  Barua.persist = {
+    get(key, fallback = null) {
+      try { const v = localStorage.getItem(PERSIST + key); return v === null ? fallback : JSON.parse(v); } catch { return fallback; }
+    },
+    set(key, value) { try { localStorage.setItem(PERSIST + key, JSON.stringify(value)); } catch {} },
+    clear(key) { try { localStorage.removeItem(PERSIST + key); } catch {} },
+  };
+  function armPersist(root) {
+    root.querySelectorAll("[data-b-persist]:not([data-b-persist-armed])").forEach((el) => {
+      el.setAttribute("data-b-persist-armed", "");
+      const key = el.getAttribute("data-b-persist");
+      if (!key) return;
+      const saved = Barua.persist.get(key);
+      if (el.tagName === "DETAILS") {
+        if (typeof saved === "boolean") el.open = saved;
+        el.addEventListener("toggle", () => Barua.persist.set(key, el.open));
+        return;
+      }
+      if (el.matches("input, select, textarea")) {
+        const check = el.type === "checkbox" || el.type === "radio";
+        if (saved !== null) { if (check) el.checked = Boolean(saved); else el.value = String(saved); }
+        el.addEventListener("change", () => Barua.persist.set(key, check ? el.checked : el.value));
+        return;
+      }
+      const items = Array.from(el.querySelectorAll(".b-segmented__item, [role=tab]"));
+      if (items.length) {
+        const mark = (i) => items.forEach((it, j) => {
+          it.classList.toggle("is-active", j === i);
+          if (it.hasAttribute("aria-selected")) it.setAttribute("aria-selected", String(j === i));
+        });
+        items.forEach((it, i) => it.addEventListener("click", () => { Barua.persist.set(key, i); mark(i); }));
+        if (Number.isInteger(saved) && items[saved]) {
+          // Tabs own their panels; a click after wiring is what switches them.
+          if (items[saved].getAttribute("role") === "tab") queueMicrotask(() => items[saved].click());
+          else mark(saved);
+        }
+        return;
+      }
+      if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) {
+        if (saved && typeof saved === "object") { el.scrollTop = saved.top || 0; el.scrollLeft = saved.left || 0; }
+        let timer;
+        el.addEventListener("scroll", () => {
+          clearTimeout(timer);
+          timer = setTimeout(() => Barua.persist.set(key, { top: el.scrollTop, left: el.scrollLeft }), 120);
+        }, { passive: true });
+      }
+    });
+  }
+
   /* ---- Real refraction (Tier 2 glass) --------------------------------------
      Injects an SVG displacement-map filter and enables `backdrop-filter:
      url(#b-refract)` on liquid objects via the `b-refract` root class.
@@ -785,6 +1018,12 @@
         });
       });
     });
+
+    /* Scroll geometry, visibility, snap position, persistence */
+    armScrollGeometry(root);
+    armVisible(root);
+    armSnap(root);
+    armPersist(root);
 
     /* Carousel */
     root.querySelectorAll("[data-b-carousel]").forEach((car) => {

@@ -1,0 +1,100 @@
+/* The ad, on the design system's tokens. Derosc's accent is the one colour
+   that is theirs; everything else is the system's dark canvas. */
+:root {
+  --b-color-accent: #e11d48;
+  --b-color-accent-hover: #e11d48;
+  --b-color-accent-text: #ff5c7c;
+  --b-color-accent-soft: rgba(225, 29, 72, 0.22);
+  --b-material-accent-bg: rgba(225, 29, 72, 0.14);
+}
+html, body { margin: 0; background: #000; }
+body { font-family: var(--b-font-sans); color: var(--b-text); -webkit-font-smoothing: antialiased; }
+
+.stage {
+  position: relative;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  background: var(--b-bg);
+}
+
+/* ---- the wall of covers --------------------------------------------- */
+.wall {
+  position: absolute; inset: -18% -12%;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6vw;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.wall__col { display: flex; flex-direction: column; gap: 1.6vw; will-change: transform; }
+.wall__col img {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;
+  border-radius: 1.2vw;
+  filter: saturate(1.05) contrast(1.05);
+}
+.scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(16,16,20,0.55) 0%, rgba(16,16,20,0.35) 40%, rgba(16,16,20,0.75) 100%),
+    rgba(16,16,20,0.35);
+}
+.vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.65) 100%);
+}
+.grain {
+  position: absolute; inset: 0; opacity: 0.06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+}
+
+/* ---- brand ------------------------------------------------------------- */
+.brand { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 2vw; }
+.brand--big { top: 50%; transform: translateY(-50%); }
+.brand--big .brand__mark { width: 22vw; height: 22vw; border-radius: 26%; box-shadow: 0 2vw 6vw rgba(0,0,0,0.5); }
+.brand--big .brand__name { font-size: 9vw; font-weight: 800; letter-spacing: -0.03em; }
+.brand--top { top: 5.5vh; flex-direction: row; justify-content: center; gap: 1.4vw; }
+.brand--top .brand__mark { width: 5.2vw; height: 5.2vw; border-radius: 26%; }
+.brand--top .brand__name { font-size: 3.4vw; font-weight: 700; letter-spacing: -0.02em; }
+
+/* ---- the three lines --------------------------------------------------- */
+.lines {
+  position: absolute; left: 7vw; right: 7vw; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 0.6vw;
+}
+.line {
+  font-size: 11.5vw; font-weight: 800; line-height: 1.02; letter-spacing: -0.035em;
+  text-shadow: 0 1vw 4vw rgba(0,0,0,0.45);
+}
+.line--accent { color: var(--b-color-accent-text); }
+
+/* ---- pass cards -------------------------------------------------------- */
+.pass-card {
+  position: absolute; left: 8vw; right: 8vw; top: 50%;
+  transform: translateY(-50%);
+  padding: 6vw 6vw 5.4vw;
+  border-radius: 4vw;
+  background: var(--b-material-thick-bg);
+  border: 1px solid var(--b-border-strong);
+  box-shadow: 0 3vw 10vw rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.04);
+  -webkit-backdrop-filter: blur(3vw); backdrop-filter: blur(3vw);
+  display: flex; flex-direction: column; gap: 1.4vw;
+}
+.pass-card--best { border-color: rgba(225, 29, 72, 0.55); box-shadow: 0 0 0 0.5vw rgba(225,29,72,0.18), 0 3vw 12vw rgba(225,29,72,0.25), 0 3vw 10vw rgba(0,0,0,0.55); }
+.pass-card__overline { font-size: 3.2vw; letter-spacing: 0.14em; color: var(--b-text-secondary); text-transform: uppercase; font-weight: 700; }
+.pass-card__price { font-size: 15vw; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.pass-card__sub { font-size: 4.2vw; color: var(--b-text-secondary); font-weight: 500; }
+.pass-card__badge { align-self: flex-start; font-size: 3.2vw; padding: 1vw 2.2vw; border-radius: 9999px; margin-top: 1vw; }
+
+/* ---- the close --------------------------------------------------------- */
+.cta {
+  position: absolute; left: 7vw; right: 7vw; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3vw;
+}
+.cta__lead { font-size: 7.4vw; font-weight: 800; letter-spacing: -0.03em; }
+.cta__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.6vw; }
+.cta__chips .b-badge { font-size: 3.1vw; padding: 1.2vw 2.4vw; border-radius: 9999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28); color: var(--b-text); font-weight: 600; }
+.cta__button.b-btn { font-size: 5.2vw; padding: 3vw 8vw; border-radius: 9999px; min-height: 0; box-shadow: 0 2vw 8vw rgba(225,29,72,0.45); }
+.cta__url { font-size: 6.2vw; font-weight: 700; letter-spacing: -0.02em; color: var(--b-text); }
+.cta__note { font-size: 3.2vw; color: var(--b-text-tertiary); font-weight: 500; }
+
+/* Everything starts hidden; the clock shows it. */
+.brand, .line, .pass-card, .cta > * { opacity: 0; will-change: transform, opacity, filter; }

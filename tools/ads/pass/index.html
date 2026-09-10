@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="sw" style="color-scheme: dark">
+<head>
+<meta charset="utf-8">
+<title>Derosc — Pasi ya wiki na mwezi</title>
+<link rel="stylesheet" href="../../../packages/react/css/barua.css">
+<link rel="stylesheet" href="ad.css">
+</head>
+<body>
+<div id="stage" class="stage">
+  <!-- The catalogue itself is the set: real covers, three drifting columns. -->
+  <div id="wall" class="wall" aria-hidden="true">
+    <div class="wall__col" data-col="0"></div>
+    <div class="wall__col" data-col="1"></div>
+    <div class="wall__col" data-col="2"></div>
+  </div>
+  <div id="scrim" class="scrim"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
+  <div id="brand-big" class="brand brand--big">
+    <img class="brand__mark" src="logo.png" alt="">
+    <div class="brand__name">Derosc</div>
+  </div>
+  <div id="brand-top" class="brand brand--top">
+    <img class="brand__mark" src="logo.png" alt="">
+    <div class="brand__name">Derosc</div>
+  </div>
+
+  <section id="lines" class="lines">
+    <div class="line" data-line="0">Filamu zote.</div>
+    <div class="line" data-line="1">Series zote.</div>
+    <div class="line line--accent" data-line="2">Kwa bei moja.</div>
+  </section>
+
+  <article id="card-week" class="pass-card">
+    <span class="b-overline pass-card__overline">Pasi ya wiki</span>
+    <div class="pass-card__price b-tabular-nums">TSh 2,000</div>
+    <div class="pass-card__sub">Siku 7 · tazama kila kitu</div>
+    <span class="b-badge b-badge--accent pass-card__badge">Bei ya filamu moja</span>
+  </article>
+
+  <article id="card-month" class="pass-card pass-card--best">
+    <span class="b-overline pass-card__overline">Pasi ya mwezi</span>
+    <div class="pass-card__price b-tabular-nums">TSh 5,000</div>
+    <div class="pass-card__sub">Siku 30 · tazama kila kitu</div>
+    <span class="b-badge b-badge--accent pass-card__badge">Bei bora</span>
+  </article>
+
+  <section id="cta" class="cta">
+    <div class="cta__lead" data-cta="0">Lipa kwa simu yako</div>
+    <div class="cta__chips" data-cta="1">
+      <span class="b-badge b-badge--glass">M-Pesa</span>
+      <span class="b-badge b-badge--glass">Airtel Money</span>
+      <span class="b-badge b-badge--glass">Mixx by Yas</span>
+      <span class="b-badge b-badge--glass">Halotel</span>
+    </div>
+    <div class="cta__button b-btn b-btn--primary b-btn--lg b-btn--pill" data-cta="2">Chukua pasi</div>
+    <div class="cta__url" data-cta="3">derosc.com/pasi</div>
+    <div class="cta__note" data-cta="4">Hakuna makato ya kiotomatiki</div>
+  </section>
+</div>
+<script src="ad.js"></script>
+</body>
+</html>

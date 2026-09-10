@@ -63,7 +63,7 @@ Machine-readable index of every component, with canonical markup:
 - [System pages — errors, empty, onboarding](https://ui.barua.tz/docs/system.html): 11 components
 - [Dashboards — archetypes, composition, choosing a chart, and the four states every widget has](https://ui.barua.tz/docs/dashboards.html): 10 components
 - [Productivity — dashboards, workspace, dock, control centre](https://ui.barua.tz/docs/productivity.html): 18 components
-- [Interaction — states, drag and drop, shortcuts](https://ui.barua.tz/docs/interaction.html): 15 components
+- [Interaction — states, drag and drop, shortcuts](https://ui.barua.tz/docs/interaction.html): 20 components
 - [Mobile — headers, tab bars, sheets, safe areas](https://ui.barua.tz/docs/mobile.html): 11 components
 - [Marketing — landing pages: hero, chapters, figures, bento, site footer](https://ui.barua.tz/docs/marketing.html): 13 components
 - [Infrastructure — naming, theming, accessibility, contribution](https://ui.barua.tz/docs/infrastructure.html): 17 components

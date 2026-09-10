@@ -173,3 +173,21 @@
   });
 
 })();
+
+
+/* Readouts for the scroll demos: the percentage and the id in view. */
+document.querySelectorAll("[data-docs-geometry]").forEach((out) => {
+  const box = document.querySelector(out.getAttribute("data-docs-geometry"));
+  box?.addEventListener("b:scroll", (e) => { out.textContent = Math.round(e.detail.progressY * 100) + "%"; });
+});
+document.querySelectorAll("[data-docs-snap]").forEach((out) => {
+  const box = document.querySelector(out.getAttribute("data-docs-snap"));
+  box?.addEventListener("b:snapchange", (e) => { out.textContent = e.detail.id || String(e.detail.index); });
+});
+document.querySelectorAll("[data-b-visible] .docs-visible-badge").forEach((badge) => {
+  const host = badge.closest("[data-b-visible]");
+  host?.addEventListener("b:visible", (e) => {
+    badge.textContent = e.detail.visible ? "in view" : "off screen";
+    badge.classList.toggle("b-badge--success", e.detail.visible);
+  });
+});

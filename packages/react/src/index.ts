@@ -122,5 +122,7 @@ export type { AsyncImageProps, ThumbProps, CircularProgressProps, AxisProps, Pag
 
 export { Reveal, FitText, CountUp, ContextMenuTarget } from "./motion";
 export type { RevealProps, RevealVariant, FitTextProps, CountUpProps, ContextMenuTargetProps } from "./motion";
+export { useScrollGeometry, useVisible, useSnapPosition, haptic, usePersistedState } from "./scroll";
+export type { ScrollGeometry, SnapPosition, HapticKind } from "./scroll";
 
 export { cn } from "./cn";

@@ -599,4 +599,61 @@
   @media (min-width: 768px) {
     .b-hide-desktop { display: none !important; }
   }
+
+  /* ---- Scroll: what a container's own position can drive ------------------
+     A container carrying data-b-scroll-geometry publishes --b-scroll-progress
+     (0–1) and --b-scroll-y, so a progress line or a parallax can be pure CSS.
+     .b-scroll-progress is that line: a hairline at the top of a scroll area
+     whose width is the distance scrolled. */
+  .b-scroll-progress {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--b-z-raised);
+    height: 2px;
+    width: calc(var(--b-scroll-progress, 0) * 100%);
+    background: var(--b-color-accent);
+    transition: width 80ms linear;
+  }
+
+  /* A large title that condenses as its scroll area moves — SwiftUI's
+     navigation title, on the scroll timeline so the browser drives it. Put it
+     on .b-large-title or .b-mobile-header__large-title inside the scroller. */
+  @supports (animation-timeline: scroll()) {
+    .b-scroll-condense {
+      animation: b-condense linear both;
+      animation-timeline: scroll(nearest);
+      animation-range: 0 5rem;
+      transform-origin: 0 100%;
+    }
+    @keyframes b-condense {
+      to { scale: 0.62; opacity: 0.9; }
+    }
+  }
+
+  /* A bar over content that has moved gains its edge. */
+  .is-scrolled > .b-mobile-header,
+  .is-scrolled > .b-topnav,
+  .is-scrolled > .b-marketing-nav,
+  .b-mobile-header.is-scrolled,
+  .b-topnav.is-scrolled,
+  .b-marketing-nav.is-scrolled {
+    box-shadow: var(--b-shadow-sm);
+  }
+
+  /* data-b-visible: the entrance for browsers without a view timeline, and a
+     hook any element can use — .is-visible arrives when the threshold does. */
+  @supports not (animation-timeline: view()) {
+    .b-reveal[data-b-visible]:not(.is-visible) { opacity: 0; translate: 0 12px; }
+    .b-reveal[data-b-visible] { transition: opacity var(--b-duration-slow) var(--b-ease-out), translate var(--b-duration-slow) var(--b-ease-out); }
+  }
+
+  /* A backplate: glass put on any one element — SwiftUI's glassBackgroundEffect.
+     Blur behind, a lit top edge, a soft shadow, the system radius. */
+  .b-backplate {
+    background: var(--b-material-regular-bg);
+    -webkit-backdrop-filter: var(--b-glass);
+    backdrop-filter: var(--b-glass);
+    border-radius: var(--b-radius-xl);
+    box-shadow: var(--b-glass-edge), var(--b-shadow-md);
+  }
 }

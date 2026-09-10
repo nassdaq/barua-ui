@@ -805,6 +805,158 @@
         </p>
       </section>
 
+      <section class="docs-section" id="scroll-geometry">
+        <h2>Scroll geometry</h2>
+        <p>
+          SwiftUI's <code>onScrollGeometryChange</code>. A scroll container
+          carrying <code>data-b-scroll-geometry</code> writes its own position
+          onto itself — <code>--b-scroll-y</code>, <code>--b-scroll-x</code>
+          and <code>--b-scroll-progress</code> (0 to 1) — carries
+          <code>.is-scrolled</code> once it has moved, and dispatches
+          <code>b:scroll</code> with the numbers. Put it on
+          <code>&lt;html&gt;</code> for the page. Anything that reads the
+          properties is then pure CSS: the progress line below is a
+          <code>.b-scroll-progress</code> whose width is the distance
+          scrolled, and the title condenses on the browser's own scroll
+          timeline with <code>.b-scroll-condense</code>.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="docs-scrollbox" data-b-scroll-geometry id="geometry-box">
+            <div class="b-scroll-progress" aria-hidden="true"></div>
+            <div class="b-stack b-gap-3">
+              <h3 class="b-large-title b-scroll-condense">Inbox</h3>
+              <p class="b-caption b-text-secondary">scrolled <output data-docs-geometry="#geometry-box" class="b-tabular-nums">0%</output></p>
+              <article class="b-card"><div class="b-card__body">The line at the top is the distance scrolled.</div></article>
+              <article class="b-card"><div class="b-card__body">The title above shrinks as the box moves.</div></article>
+              <article class="b-card"><div class="b-card__body">Nothing here listens in JavaScript except the percentage.</div></article>
+              <article class="b-card"><div class="b-card__body">The container carries <code>.is-scrolled</code> now.</div></article>
+              <article class="b-card"><div class="b-card__body">And <code>--b-scroll-progress</code> is 1 at the end.</div></article>
+              <article class="b-card"><div class="b-card__body">Keep going.</div></article>
+              <article class="b-card"><div class="b-card__body">Nearly there.</div></article>
+            </div>
+          </div>
+        </div>
+        <p class="b-footnote b-text-secondary">
+          For code, <code>Barua.scroll.geometry(el, cb)</code> calls back with
+          <code>{ x, y, width, height, contentWidth, contentHeight, progressX, progressY }</code>,
+          coalesced to one read per frame, and returns a function that stops.
+        </p>
+      </section>
+
+      <section class="docs-section" id="scroll-visibility">
+        <h2>Scroll visibility</h2>
+        <p>
+          SwiftUI's <code>onScrollVisibilityChange(threshold:)</code>. An
+          element carrying <code>data-b-visible</code> — optionally the
+          fraction of itself that counts, <code>data-b-visible="0.8"</code> —
+          gains <code>.is-visible</code> as it crosses that much into the
+          viewport, loses it on the way out, and dispatches
+          <code>b:visible</code> with <code>{ visible, ratio }</code>. It is
+          also the entrance for browsers without a view timeline:
+          <code>.b-reveal</code> with <code>data-b-visible</code> reveals on
+          the class where it cannot on the timeline.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="docs-scrollbox" id="visible-box">
+            <div class="docs-scrollbox__spacer">scroll down ↓</div>
+            <div class="b-stack b-gap-3">
+              <article class="b-card b-reveal" data-b-visible="0.5"><div class="b-card__body b-hstack b-gap-2">Half in view <span class="b-badge docs-visible-badge">off screen</span></div></article>
+              <article class="b-card b-reveal" data-b-visible="0.9"><div class="b-card__body b-hstack b-gap-2">Almost all in view <span class="b-badge docs-visible-badge">off screen</span></div></article>
+              <article class="b-card b-reveal" data-b-visible="0.5"><div class="b-card__body b-hstack b-gap-2">Half in view <span class="b-badge docs-visible-badge">off screen</span></div></article>
+            </div>
+            <div class="docs-scrollbox__spacer">scroll back up ↑</div>
+          </div>
+        </div>
+        <p class="b-footnote b-text-secondary">
+          For code, <code>Barua.visible(el, cb, { threshold })</code>; one
+          observer is shared per threshold, so a page of a thousand rows costs
+          one.
+        </p>
+      </section>
+
+      <section class="docs-section" id="scroll-position">
+        <h2>Scroll position</h2>
+        <p>
+          SwiftUI's <code>scrollPosition(id:)</code>. A snapping container with
+          <code>data-b-snap</code> names the child in view:
+          <code>data-b-snap-current</code> on itself, <code>.is-current</code>
+          on the child, <code>.is-active</code> on the matching dot in a
+          <code>data-b-snap-dots="#id"</code> strip, and
+          <code>b:snapchange</code> with <code>{ id, index, element }</code>.
+          The browser's own <code>scrollsnapchange</code> event drives it where
+          that exists; elsewhere the nearest child after the scroll settles.
+          <code>Barua.snap.to(box, idOrIndex)</code> goes there.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-card-rail" data-b-snap id="snap-rail" style="grid-auto-columns: 70%">
+            <article class="b-card" id="snap-dar"><div class="b-card__body b-stack b-gap-1"><span class="b-headline">Dar es Salaam</span><span class="b-caption b-text-secondary">id="snap-dar"</span></div></article>
+            <article class="b-card" id="snap-arusha"><div class="b-card__body b-stack b-gap-1"><span class="b-headline">Arusha</span><span class="b-caption b-text-secondary">id="snap-arusha"</span></div></article>
+            <article class="b-card" id="snap-zanzibar"><div class="b-card__body b-stack b-gap-1"><span class="b-headline">Zanzibar</span><span class="b-caption b-text-secondary">id="snap-zanzibar"</span></div></article>
+            <article class="b-card" id="snap-mwanza"><div class="b-card__body b-stack b-gap-1"><span class="b-headline">Mwanza</span><span class="b-caption b-text-secondary">id="snap-mwanza"</span></div></article>
+          </div>
+          <div class="b-carousel__dots" data-b-snap-dots="#snap-rail">
+            <button class="is-active" aria-label="Dar es Salaam"></button>
+            <button aria-label="Arusha"></button>
+            <button aria-label="Zanzibar"></button>
+            <button aria-label="Mwanza"></button>
+          </div>
+          <p class="b-caption b-text-secondary">in view: <output data-docs-snap="#snap-rail" class="b-tabular-nums">snap-dar</output></p>
+        </div>
+      </section>
+
+      <section class="docs-section" id="haptics">
+        <h2>Haptics</h2>
+        <p>
+          SwiftUI's <code>sensoryFeedback</code>. <code>data-b-haptic</code> on
+          anything clickable — <code>selection</code>, <code>impact</code>,
+          <code>success</code>, <code>warning</code>, <code>error</code> — plays
+          a vibration on click; <code>Barua.haptic(kind)</code> does the same
+          from code and returns whether anything could be felt. The web is
+          honest about its limits here: Android phones vibrate; an iPhone has
+          no vibration API, but Safari plays the system haptic when a switch
+          toggles, so one is toggled off screen; a desktop feels nothing and
+          says nothing.
+        </p>
+        <div class="docs-demo docs-demo--row">
+          <button class="b-btn" data-b-haptic="selection">Selection</button>
+          <button class="b-btn" data-b-haptic="impact">Impact</button>
+          <button class="b-btn b-btn--tinted" data-b-haptic="success">Success</button>
+          <button class="b-btn b-btn--outline" data-b-haptic="warning">Warning</button>
+          <button class="b-btn b-btn--danger-tinted" data-b-haptic="error">Error</button>
+        </div>
+        <div class="docs-a11y">
+          <div><strong>Restraint.</strong> A haptic is punctuation, not
+          prose: the moment a payment lands, a switch that flips, the end of
+          a drag. A page that buzzes on every tap is a page people mute.</div>
+        </div>
+      </section>
+
+      <section class="docs-section" id="persistence">
+        <h2>Persistence</h2>
+        <p>
+          SwiftUI's <code>customizationID</code>. <code>data-b-persist="key"</code>
+          keeps a piece of interface state across reloads with no code: a
+          <code>&lt;details&gt;</code> stays open or shut, a segmented control
+          or tab strip keeps its choice, a scroll area keeps its place, a field
+          keeps its value. Change the two below, reload the page, and they are
+          as you left them. For anything else, <code>Barua.persist.get(key)</code>,
+          <code>set(key, value)</code> and <code>clear(key)</code> hold JSON under
+          the same keys — which the React kit's <code>usePersistedState</code>
+          shares, so the two can hand over.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-segmented" data-b-persist="docs.view">
+            <button class="b-segmented__item is-active">List</button>
+            <button class="b-segmented__item">Board</button>
+            <button class="b-segmented__item">Timeline</button>
+          </div>
+          <details class="b-disclosure" data-b-persist="docs.details">
+            <summary>Delivery details</summary>
+            <div class="b-disclosure__body">Open this, reload, and it is still open.</div>
+          </details>
+        </div>
+      </section>
+
     </main>
 
     <aside class="docs-toc" aria-label="On this page"></aside>

@@ -45,7 +45,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 835,
+  "classCount": 838,
   "classes": [
     "b-accordion",
     "b-account",
@@ -105,6 +105,7 @@
     "b-axis",
     "b-axis--y",
     "b-back-btn",
+    "b-backplate",
     "b-badge",
     "b-badge--accent",
     "b-badge--count",
@@ -686,7 +687,9 @@
     "b-scroll-area--fade",
     "b-scroll-area--x",
     "b-scroll-area--y",
+    "b-scroll-condense",
     "b-scroll-edge",
+    "b-scroll-progress",
     "b-search",
     "b-search-result",
     "b-search-result__path",
@@ -941,6 +944,7 @@
     "b-axis",
     "b-axis--y",
     "b-back-btn",
+    "b-backplate",
     "b-badge",
     "b-badge--accent",
     "b-badge--count",
@@ -1452,6 +1456,8 @@
     "b-scatter-svg",
     "b-scroll-area",
     "b-scroll-area--fade",
+    "b-scroll-condense",
+    "b-scroll-progress",
     "b-search",
     "b-search-result",
     "b-search-result__path",
@@ -1676,6 +1682,7 @@
     "--b-poster-ratio",
     "--b-progress",
     "--b-scroll-edge-h",
+    "--b-scroll-progress",
     "--b-slide-w",
     "--b-slider-fill",
     "--b-thumb-size",
@@ -2782,13 +2789,16 @@
           "url": "https://ui.barua.tz/docs/foundations.html#materials",
           "summary": "Five glass thicknesses, from a whisper to nearly opaque. Thinner materials show more of what's behind but hold less legible content \u2014 use ultrathin and thin for hover surfaces, regular for floating toolbars and glass cards, thick for sheets, and chrome for app bars. .b-material-accent adds a Barua-blue tint. Each class pairs its --b-material-*-bg token with the --b-glass backdrop filter and a hairline border.",
           "classes": [
+            "b-backplate",
             "b-callout",
+            "b-caption",
             "b-code",
             "b-code__header",
             "b-flex",
             "b-flex--center",
             "b-footnote",
             "b-gap-2",
+            "b-headline",
             "b-material-chrome",
             "b-material-regular",
             "b-material-thick",
@@ -2813,6 +2823,10 @@
             {
               "id": "baked-glass",
               "title": "Baked glass"
+            },
+            {
+              "id": "backplate",
+              "title": "Backplate"
             }
           ],
           "knobs": [
@@ -4238,7 +4252,8 @@
           "states": [
             "is-active",
             "is-loading",
-            "is-pressed"
+            "is-pressed",
+            "is-scrolled"
           ]
         },
         {
@@ -9922,6 +9937,7 @@
           "states": [
             "is-active",
             "is-down",
+            "is-scrolled",
             "is-up"
           ]
         },
@@ -11178,7 +11194,8 @@
           "states": [
             "is-active",
             "is-loading",
-            "is-pressed"
+            "is-pressed",
+            "is-visible"
           ]
         },
         {
@@ -11262,6 +11279,183 @@
             "is-pressed",
             "is-up"
           ]
+        },
+        {
+          "id": "scroll-geometry",
+          "title": "Scroll geometry",
+          "category": "interaction",
+          "url": "https://ui.barua.tz/docs/interaction.html#scroll-geometry",
+          "summary": "SwiftUI's onScrollGeometryChange . A scroll container carrying data-b-scroll-geometry writes its own position onto itself \u2014 --b-scroll-y , --b-scroll-x and --b-scroll-progress (0 to 1) \u2014 carries .is-scrolled once it has moved, and dispatches b:scroll with the numbers. Put it on <html> for the page. Anything that reads the properties is then pure CSS: the progress line below is a .b-scroll-progress whose width is the distance scrolled, and the title condenses on the browser's own scroll timeline with .b-scroll-condense .",
+          "classes": [
+            "b-caption",
+            "b-card",
+            "b-card__body",
+            "b-footnote",
+            "b-gap-3",
+            "b-large-title",
+            "b-scroll-condense",
+            "b-scroll-progress",
+            "b-stack",
+            "b-tabular-nums",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"docs-scrollbox\" data-b-scroll-geometry id=\"geometry-box\">\n  <div class=\"b-scroll-progress\" aria-hidden=\"true\"></div>\n  <div class=\"b-stack b-gap-3\">\n    <h3 class=\"b-large-title b-scroll-condense\">Inbox</h3>\n    <p class=\"b-caption b-text-secondary\">scrolled <output data-docs-geometry=\"#geometry-box\" class=\"b-tabular-nums\">0%</output></p>\n    <article class=\"b-card\"><div class=\"b-card__body\">The line at the top is the distance scrolled.</div></article>\n    <article class=\"b-card\"><div class=\"b-card__body\">The title above shrinks as the box moves.</div></article>\n    <article class=\"b-card\"><div class=\"b-card__body\">Nothing here listens in JavaScript except the percentage.</div></article>\n    <article class=\"b-card\"><div class=\"b-card__body\">The container carries <code>.is-scrolled</code> now.</div></article>\n    <article class=\"b-card\"><div class=\"b-card__body\">And <code>--b-scroll-progress</code> is 1 at the end.</div></article>\n    <article class=\"b-card\"><div class=\"b-card__body\">Keep going.</div></article>\n    <article class=\"b-card\"><div class=\"b-card__body\">Nearly there.</div></article>\n  </div>\n</div>",
+          "react": {
+            "import": "import { Card, CardBody, CountUp } from \"barua-ui\";",
+            "components": [
+              "Card",
+              "CardBody",
+              "CountUp"
+            ],
+            "root": "Card",
+            "jsx": "<div\n  className=\"docs-scrollbox\"\n  data-b-scroll-geometry=\"\"\n  id=\"geometry-box\"\n>\n  <div className=\"b-scroll-progress\" aria-hidden=\"true\"></div>\n  <div className=\"b-stack b-gap-3\">\n    <h3 className=\"b-large-title b-scroll-condense\">Inbox</h3>\n    <p className=\"b-caption b-text-secondary\">\n      scrolled\n      <CountUp data-docs-geometry=\"#geometry-box\">0%</CountUp>\n    </p>\n    <Card>\n      <CardBody>The line at the top is the distance scrolled.</CardBody>\n    </Card>\n    <Card>\n      <CardBody>The title above shrinks as the box moves.</CardBody>\n    </Card>\n    <Card>\n      <CardBody>Nothing here listens in JavaScript except the percentage.</CardBody>\n    </Card>\n    <Card>\n      <CardBody>\n        The container carries\n        <code>.is-scrolled</code>\n        now.\n      </CardBody>\n    </Card>\n    <Card>\n      <CardBody>\n        And\n        <code>--b-scroll-progress</code>\n        is 1 at the end.\n      </CardBody>\n    </Card>\n    <Card>\n      <CardBody>Keep going.</CardBody>\n    </Card>\n    <Card>\n      <CardBody>Nearly there.</CardBody>\n    </Card>\n  </div>\n</div>"
+          },
+          "knobs": [
+            "--b-gap",
+            "--b-lg-border",
+            "--b-lg-pane",
+            "--b-scroll-progress"
+          ]
+        },
+        {
+          "id": "scroll-visibility",
+          "title": "Scroll visibility",
+          "category": "interaction",
+          "url": "https://ui.barua.tz/docs/interaction.html#scroll-visibility",
+          "summary": "SwiftUI's onScrollVisibilityChange(threshold:) . An element carrying data-b-visible \u2014 optionally the fraction of itself that counts, data-b-visible=\"0.8\" \u2014 gains .is-visible as it crosses that much into the viewport, loses it on the way out, and dispatches b:visible with { visible, ratio } . It is also the entrance for browsers without a view timeline: .b-reveal with data-b-visible reveals on the class where it cannot on the timeline.",
+          "classes": [
+            "b-badge",
+            "b-card",
+            "b-card__body",
+            "b-footnote",
+            "b-gap-2",
+            "b-gap-3",
+            "b-hstack",
+            "b-reveal",
+            "b-stack",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"docs-scrollbox\" id=\"visible-box\">\n  <div class=\"docs-scrollbox__spacer\">scroll down \u2193</div>\n  <div class=\"b-stack b-gap-3\">\n    <article class=\"b-card b-reveal\" data-b-visible=\"0.5\"><div class=\"b-card__body b-hstack b-gap-2\">Half in view <span class=\"b-badge docs-visible-badge\">off screen</span></div></article>\n    <article class=\"b-card b-reveal\" data-b-visible=\"0.9\"><div class=\"b-card__body b-hstack b-gap-2\">Almost all in view <span class=\"b-badge docs-visible-badge\">off screen</span></div></article>\n    <article class=\"b-card b-reveal\" data-b-visible=\"0.5\"><div class=\"b-card__body b-hstack b-gap-2\">Half in view <span class=\"b-badge docs-visible-badge\">off screen</span></div></article>\n  </div>\n  <div class=\"docs-scrollbox__spacer\">scroll back up \u2191</div>\n</div>",
+          "react": {
+            "import": "import { Badge, CardBody, Reveal } from \"barua-ui\";",
+            "components": [
+              "Badge",
+              "CardBody",
+              "Reveal"
+            ],
+            "root": "Badge",
+            "jsx": "<div className=\"docs-scrollbox\" id=\"visible-box\">\n  <div className=\"docs-scrollbox__spacer\">scroll down \u2193</div>\n  <div className=\"b-stack b-gap-3\">\n    <Reveal className=\"b-card\" data-b-visible=\"0.5\">\n      <CardBody className=\"b-hstack b-gap-2\">\n        Half in view\n        <Badge className=\"docs-visible-badge\">off screen</Badge>\n      </CardBody>\n    </Reveal>\n    <Reveal className=\"b-card\" data-b-visible=\"0.9\">\n      <CardBody className=\"b-hstack b-gap-2\">\n        Almost all in view\n        <Badge className=\"docs-visible-badge\">off screen</Badge>\n      </CardBody>\n    </Reveal>\n    <Reveal className=\"b-card\" data-b-visible=\"0.5\">\n      <CardBody className=\"b-hstack b-gap-2\">\n        Half in view\n        <Badge className=\"docs-visible-badge\">off screen</Badge>\n      </CardBody>\n    </Reveal>\n  </div>\n  <div className=\"docs-scrollbox__spacer\">scroll back up \u2191</div>\n</div>"
+          },
+          "knobs": [
+            "--b-gap",
+            "--b-lg-border",
+            "--b-lg-pane"
+          ],
+          "states": [
+            "is-visible"
+          ]
+        },
+        {
+          "id": "scroll-position",
+          "title": "Scroll position",
+          "category": "interaction",
+          "url": "https://ui.barua.tz/docs/interaction.html#scroll-position",
+          "summary": "SwiftUI's scrollPosition(id:) . A snapping container with data-b-snap names the child in view: data-b-snap-current on itself, .is-current on the child, .is-active on the matching dot in a data-b-snap-dots=\"#id\" strip, and b:snapchange with { id, index, element } . The browser's own scrollsnapchange event drives it where that exists; elsewhere the nearest child after the scroll settles. Barua.snap.to(box, idOrIndex) goes there.",
+          "classes": [
+            "b-caption",
+            "b-card",
+            "b-card-rail",
+            "b-card__body",
+            "b-carousel__dots",
+            "b-gap-1",
+            "b-headline",
+            "b-stack",
+            "b-tabular-nums",
+            "b-text-secondary"
+          ],
+          "markup": "<div class=\"b-card-rail\" data-b-snap id=\"snap-rail\" style=\"grid-auto-columns: 70%\">\n  <article class=\"b-card\" id=\"snap-dar\"><div class=\"b-card__body b-stack b-gap-1\"><span class=\"b-headline\">Dar es Salaam</span><span class=\"b-caption b-text-secondary\">id=\"snap-dar\"</span></div></article>\n  <article class=\"b-card\" id=\"snap-arusha\"><div class=\"b-card__body b-stack b-gap-1\"><span class=\"b-headline\">Arusha</span><span class=\"b-caption b-text-secondary\">id=\"snap-arusha\"</span></div></article>\n  <article class=\"b-card\" id=\"snap-zanzibar\"><div class=\"b-card__body b-stack b-gap-1\"><span class=\"b-headline\">Zanzibar</span><span class=\"b-caption b-text-secondary\">id=\"snap-zanzibar\"</span></div></article>\n  <article class=\"b-card\" id=\"snap-mwanza\"><div class=\"b-card__body b-stack b-gap-1\"><span class=\"b-headline\">Mwanza</span><span class=\"b-caption b-text-secondary\">id=\"snap-mwanza\"</span></div></article>\n</div>\n<div class=\"b-carousel__dots\" data-b-snap-dots=\"#snap-rail\">\n  <button class=\"is-active\" aria-label=\"Dar es Salaam\"></button>\n  <button aria-label=\"Arusha\"></button>\n  <button aria-label=\"Zanzibar\"></button>\n  <button aria-label=\"Mwanza\"></button>\n</div>\n<p class=\"b-caption b-text-secondary\">in view: <output data-docs-snap=\"#snap-rail\" class=\"b-tabular-nums\">snap-dar</output></p>",
+          "react": {
+            "import": "import { Card, CardBody, CardRail, CarouselDots, CountUp } from \"barua-ui\";",
+            "components": [
+              "Card",
+              "CardBody",
+              "CardRail",
+              "CarouselDots",
+              "CountUp"
+            ],
+            "root": "CardRail",
+            "jsx": "<CardRail data-b-snap=\"\" id=\"snap-rail\" style={{ gridAutoColumns: \"70%\" }}>\n  <Card id=\"snap-dar\">\n    <CardBody className=\"b-stack b-gap-1\">\n      <span className=\"b-headline\">Dar es Salaam</span>\n      <span className=\"b-caption b-text-secondary\">id=\"snap-dar\"</span>\n    </CardBody>\n  </Card>\n  <Card id=\"snap-arusha\">\n    <CardBody className=\"b-stack b-gap-1\">\n      <span className=\"b-headline\">Arusha</span>\n      <span className=\"b-caption b-text-secondary\">id=\"snap-arusha\"</span>\n    </CardBody>\n  </Card>\n  <Card id=\"snap-zanzibar\">\n    <CardBody className=\"b-stack b-gap-1\">\n      <span className=\"b-headline\">Zanzibar</span>\n      <span className=\"b-caption b-text-secondary\">id=\"snap-zanzibar\"</span>\n    </CardBody>\n  </Card>\n  <Card id=\"snap-mwanza\">\n    <CardBody className=\"b-stack b-gap-1\">\n      <span className=\"b-headline\">Mwanza</span>\n      <span className=\"b-caption b-text-secondary\">id=\"snap-mwanza\"</span>\n    </CardBody>\n  </Card>\n</CardRail>\n<CarouselDots data-b-snap-dots=\"#snap-rail\">\n  <button className=\"is-active\" aria-label=\"Dar es Salaam\"></button>\n  <button aria-label=\"Arusha\"></button>\n  <button aria-label=\"Zanzibar\"></button>\n  <button aria-label=\"Mwanza\"></button>\n</CarouselDots>\n<p className=\"b-caption b-text-secondary\">\n  in view:\n  <CountUp data-docs-snap=\"#snap-rail\">snap-dar</CountUp>\n</p>"
+          },
+          "knobs": [
+            "--b-gap",
+            "--b-lg-border",
+            "--b-lg-pane"
+          ],
+          "states": [
+            "is-active"
+          ]
+        },
+        {
+          "id": "haptics",
+          "title": "Haptics",
+          "category": "interaction",
+          "url": "https://ui.barua.tz/docs/interaction.html#haptics",
+          "summary": "SwiftUI's sensoryFeedback . data-b-haptic on anything clickable \u2014 selection , impact , success , warning , error \u2014 plays a vibration on click; Barua.haptic(kind) does the same from code and returns whether anything could be felt. The web is honest about its limits here: Android phones vibrate; an iPhone has no vibration API, but Safari plays the system haptic when a switch toggles, so one is toggled off screen; a desktop feels nothing and says nothing.",
+          "classes": [
+            "b-btn",
+            "b-btn--danger-tinted",
+            "b-btn--outline",
+            "b-btn--tinted"
+          ],
+          "markup": "<button class=\"b-btn\" data-b-haptic=\"selection\">Selection</button>\n<button class=\"b-btn\" data-b-haptic=\"impact\">Impact</button>\n<button class=\"b-btn b-btn--tinted\" data-b-haptic=\"success\">Success</button>\n<button class=\"b-btn b-btn--outline\" data-b-haptic=\"warning\">Warning</button>\n<button class=\"b-btn b-btn--danger-tinted\" data-b-haptic=\"error\">Error</button>",
+          "react": {
+            "import": "import { Button } from \"barua-ui\";",
+            "components": [
+              "Button"
+            ],
+            "root": "Button",
+            "jsx": "<Button data-b-haptic=\"selection\">Selection</Button>\n<Button data-b-haptic=\"impact\">Impact</Button>\n<Button variant=\"tinted\" data-b-haptic=\"success\">Success</Button>\n<Button variant=\"outline\" data-b-haptic=\"warning\">Warning</Button>\n<Button variant=\"danger-tinted\" data-b-haptic=\"error\">Error</Button>"
+          },
+          "knobs": [
+            "--b-lg-border",
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong"
+          ],
+          "states": [
+            "is-active",
+            "is-loading",
+            "is-pressed"
+          ]
+        },
+        {
+          "id": "persistence",
+          "title": "Persistence",
+          "category": "interaction",
+          "url": "https://ui.barua.tz/docs/interaction.html#persistence",
+          "summary": "SwiftUI's customizationID . data-b-persist=\"key\" keeps a piece of interface state across reloads with no code: a <details> stays open or shut, a segmented control or tab strip keeps its choice, a scroll area keeps its place, a field keeps its value. Change the two below, reload the page, and they are as you left them. For anything else, Barua.persist.get(key) , set(key, value) and clear(key) hold JSON under the same keys \u2014 which the React kit's usePersistedState shares, so the two can hand over.",
+          "classes": [
+            "b-disclosure",
+            "b-disclosure__body",
+            "b-segmented",
+            "b-segmented__item"
+          ],
+          "markup": "<div class=\"b-segmented\" data-b-persist=\"docs.view\">\n  <button class=\"b-segmented__item is-active\">List</button>\n  <button class=\"b-segmented__item\">Board</button>\n  <button class=\"b-segmented__item\">Timeline</button>\n</div>\n<details class=\"b-disclosure\" data-b-persist=\"docs.details\">\n  <summary>Delivery details</summary>\n  <div class=\"b-disclosure__body\">Open this, reload, and it is still open.</div>\n</details>",
+          "react": {
+            "import": "import { Disclosure, Segmented } from \"barua-ui\";",
+            "components": [
+              "Disclosure",
+              "Segmented"
+            ],
+            "root": "Segmented",
+            "jsx": "<Segmented data-b-persist=\"docs.view\">\n  <button className=\"b-segmented__item is-active\">List</button>\n  <button className=\"b-segmented__item\">Board</button>\n  <button className=\"b-segmented__item\">Timeline</button>\n</Segmented>\n<Disclosure data-b-persist=\"docs.details\">\n  <summary>Delivery details</summary>\n  <div className=\"b-disclosure__body\">Open this, reload, and it is still open.</div>\n</Disclosure>"
+          },
+          "knobs": [
+            "--b-lg-inset"
+          ],
+          "states": [
+            "is-active"
+          ]
         }
       ]
     },
@@ -11314,7 +11508,8 @@
             "is-active",
             "is-collapsed",
             "is-loading",
-            "is-pressed"
+            "is-pressed",
+            "is-scrolled"
           ]
         },
         {
@@ -11615,7 +11810,8 @@
             "jsx": "<header\n  className=\"b-mobile-header\"\n  data-b-collapse=\"\"\n  style={{ position: \"sticky\" }}\n>\n  <div className=\"b-mobile-header__bar\">\n    <span className=\"b-mobile-header__title\">Inbox</span>\n  </div>\n  <h1 className=\"b-mobile-header__large-title\">Inbox</h1>\n</header>\n<div style={{ padding: \"var(--b-space-4)\" }}>\n  <p className=\"b-subheadline b-text-secondary\">Scroll this panel \u2014 the large title collapses into the bar.</p>\n  <div style={{ height: \"30rem\" }}></div>\n  <Footnote className=\"b-text-tertiary\">The end.</Footnote>\n</div>"
           },
           "states": [
-            "is-collapsed"
+            "is-collapsed",
+            "is-scrolled"
           ]
         }
       ]
@@ -11660,7 +11856,8 @@
           "states": [
             "is-active",
             "is-loading",
-            "is-pressed"
+            "is-pressed",
+            "is-scrolled"
           ]
         },
         {
