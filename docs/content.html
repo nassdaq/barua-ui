@@ -421,7 +421,55 @@
           <code>&lt;li&gt;</code>; the chevron is decorative and stays
           <code>aria-hidden</code>.</div>
         </div>
-      </section>
+      
+        <h3 id="list-item-rows">Rows that do something</h3>
+        <p>
+          A row that navigates is an <code>&lt;a&gt;</code>; a row that acts is
+          a <code>&lt;button&gt;</code>. <code>.b-list-item</code> resets the
+          browser's button chrome itself — the face, the border, the centred
+          text — so a list of actions does not render as a column of grey
+          slabs. Nothing to state at the call site.
+        </p>
+        <p>
+          <code>.b-list-item--top</code> is for rows taller than one line: it
+          lifts the leading mark and the trailing stack up beside the first
+          line instead of centring them against three. A mail row is the case
+          it was drawn for.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <ul class="b-list b-list--plain b-list--inset-divider">
+            <li>
+              <a class="b-list-item b-list-item--interactive b-list-item--top is-selected" href="#list-item-rows">
+                <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">AM</span></span>
+                <span class="b-list-item__content">
+                  <span class="b-list-item__title">Amina Mushi</span>
+                  <span class="b-list-item__subtitle">Container quote, Dar es Salaam → Mwanza</span>
+                  <span class="b-list-item__subtitle b-text-tertiary">Habari — the Friday slot is still open, and the rate holds if we…</span>
+                </span>
+                <span class="b-list-item__trailing">
+                  <time>09:41</time>
+                  <span class="b-badge b-tabular-nums">3</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <button type="button" class="b-list-item b-list-item--interactive b-list-item--top">
+                <span class="b-list-item__leading"><span class="b-avatar b-avatar--sm">BC</span></span>
+                <span class="b-list-item__content">
+                  <span class="b-list-item__title">Baraka Chacha</span>
+                  <span class="b-list-item__subtitle">Kariakoo stall photos</span>
+                  <span class="b-list-item__subtitle b-text-tertiary">Attached the updated stock sheet for September as well.</span>
+                </span>
+                <span class="b-list-item__trailing"><time>09:12</time></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <p class="b-footnote b-text-secondary">
+          The second row is a real <code>&lt;button&gt;</code>. It is
+          indistinguishable from the anchor above it, which is the point.
+        </p>
+</section>
 
       <section class="docs-section" id="list-captions">
         <h2>List Header &amp; Footer</h2>

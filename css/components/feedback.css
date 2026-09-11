@@ -35,6 +35,15 @@
   }
   .b-alert__close:hover { color: var(--b-text); }
 
+  /* No opinion. The default alert is info-tinted, which turns a plain
+     "still working on it" strip blue and gives it a meaning it does not
+     have. This is the same anatomy on the neutral surface. */
+  .b-alert--neutral {
+    background: var(--b-fill-quaternary);
+    border-color: var(--b-border);
+  }
+  .b-alert--neutral .b-alert__icon { color: var(--b-text-secondary); }
+
   .b-alert--success {
     background: var(--b-color-success-soft);
     border-color: color-mix(in srgb, var(--b-color-success) 30%, transparent);

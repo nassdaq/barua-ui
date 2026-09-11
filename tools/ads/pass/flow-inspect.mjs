@@ -1,0 +1,17 @@
+import { chromium } from "playwright-core";
+const [email, password] = process.argv.slice(2);
+const browser = await chromium.launch({ channel: "chrome", headless: true });
+const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+await page.goto("https://barua.tz/login", { waitUntil: "domcontentloaded" });
+await page.fill('input[name="email"]', email);
+await page.fill('input[name="password"]', password);
+await page.locator('form button[type="submit"]').first().click();
+await page.waitForTimeout(4000);
+console.log("after login:", page.url());
+await page.goto("https://barua.tz/start/movies", { waitUntil: "domcontentloaded" });
+console.log("after /start/movies:", page.url());
+await page.goto("https://barua.tz/setup", { waitUntil: "domcontentloaded" });
+console.log("setup url:", page.url(), "| h1:", await page.locator("h1").first().innerText().catch(() => "?"));
+const hidden = await page.locator('form input[type="hidden"]').evaluateAll((els) => els.map((e) => `${e.name}=${e.value}`));
+console.log("hidden inputs:", hidden.join(" | ").slice(0, 300));
+await browser.close();

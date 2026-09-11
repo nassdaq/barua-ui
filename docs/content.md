@@ -54,7 +54,7 @@ import { Button, Card, CardBody, CardFooter, CardHeader, CardSubtitle, CardTitle
 iOS-style grouped list. Each .b-list-item slots a leading icon, a content column with title and subtitle, trailing detail text and an optional chevron. Add .b-list-item--interactive for hover feedback and .is-selected for the accent wash.
 
 - Documentation: https://ui.barua.tz/docs/content.html#list
-- Classes: `b-badge` `b-badge--accent` `b-badge--count` `b-list` `b-list--inset-divider` `b-list-item` `b-list-item--interactive` `b-list-item__chevron` `b-list-item__content` `b-list-item__leading` `b-list-item__subtitle` `b-list-item__title` `b-list-item__trailing`
+- Classes: `b-avatar` `b-avatar--sm` `b-badge` `b-badge--accent` `b-badge--count` `b-footnote` `b-list` `b-list--inset-divider` `b-list--plain` `b-list-item` `b-list-item--interactive` `b-list-item--top` `b-list-item__chevron` `b-list-item__content` `b-list-item__leading` `b-list-item__subtitle` `b-list-item__title` `b-list-item__trailing` `b-tabular-nums` `b-text-secondary` `b-text-tertiary`
 
 ```html
 <ul class="b-list" style="max-width: 26rem">

@@ -158,6 +158,23 @@
     .b-sheet[open] { translate: 100% 0; }
   }
   .b-sheet::backdrop { background: var(--b-scrim); }
+
+  /* The scrim, as a class rather than a pseudo-element.
+     `::backdrop` is drawn by the browser for a top-layer element — a native
+     <dialog> or a [popover] — and nothing else. An overlay that portals a
+     plain <div> instead, to keep a focus trap the top layer cannot give it,
+     has no backdrop to style, and every such component was repeating these
+     six declarations inline. Opacity is left to the caller, because only it
+     knows whether the overlay is arriving or leaving. */
+  .b-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: var(--b-z-modal);
+    background: var(--b-scrim);
+    -webkit-backdrop-filter: blur(var(--b-blur-xs));
+    backdrop-filter: blur(var(--b-blur-xs));
+    transition: opacity var(--b-duration-normal) var(--b-ease-out);
+  }
   .b-sheet__header {
     display: flex;
     align-items: center;

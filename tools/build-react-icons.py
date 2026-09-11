@@ -59,7 +59,7 @@ lines += [
     "export interface IconProps extends Omit<SVGProps<SVGSVGElement>, \"name\"> {",
     "  name: IconName;",
     "  /** Matches the .b-icon size scale. */",
-    '  size?: "sm" | "md" | "lg" | "xl";',
+    '  size?: "xs" | "sm" | "md" | "lg" | "xl";',
     "  /** Give the icon a label when it carries meaning on its own. */",
     "  title?: string;",
     "}",
