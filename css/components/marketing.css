@@ -197,28 +197,54 @@
 
   /* ---- Marquee: a row that keeps moving ------------------------------------
      For a line of marks too long to stand still: logos, integrations, the
-     names a product works with. The track holds the list TWICE and travels
-     exactly half its width, which is what makes the loop seamless; with one
-     copy it visibly snaps. It pauses under the pointer so a name can be read,
-     and it stops entirely for anyone who asked for less motion, where it
-     becomes an ordinary scrolling row instead. --b-marquee-time is the pace. */
+     names a product works with.
+
+     The track holds the list TWICE inside two .b-marquee__group elements and
+     travels exactly half its width, which puts group two where group one
+     started: that is what makes the loop seamless, and with one copy it
+     visibly snaps.
+
+     The groups exist because "twice" is not enough on its own. Half the track
+     is one group, so the loop is only seamless if a group is at least as wide
+     as the rail; seven short names in a 1280px row leave the second copy
+     ending early and a hole travelling along behind it. Each group is
+     therefore floored at the rail's own width and spaces its contents out to
+     fill it, so the belt is solid at any width with any number of names, and
+     when the list IS wider than the rail max-content wins and nothing changes.
+
+     It pauses under the pointer so a name can be read, and it stops entirely
+     for anyone who asked for less motion, where it becomes an ordinary
+     scrolling row instead. --b-marquee-time is the pace. */
   .b-marquee {
     overflow: hidden;
+    /* The floor a group measures itself against. */
+    container-type: inline-size;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   }
   .b-marquee__track {
     display: flex;
     align-items: center;
-    gap: clamp(var(--b-space-6), 5vw, var(--b-space-12));
     width: max-content;
     animation: b-marquee var(--b-marquee-time, 40s) linear infinite;
+  }
+  .b-marquee__group {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: space-around;
+    gap: clamp(var(--b-space-6), 5vw, var(--b-space-12));
+    min-width: 100cqi;
+    /* Half the gap on each end, so the seam between the two groups is spaced
+       exactly like the gaps inside one. */
+    padding-inline: clamp(var(--b-space-3), 2.5vw, var(--b-space-6));
   }
   .b-marquee:hover .b-marquee__track { animation-play-state: paused; }
   @keyframes b-marquee { to { translate: -50% 0; } }
   @media (prefers-reduced-motion: reduce) {
     .b-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
     .b-marquee__track { animation: none; }
+    .b-marquee__group { min-width: 0; }
   }
 
   /* ---- Quote card: a number, a sentence, and who said it -------------------

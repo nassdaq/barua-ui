@@ -45,7 +45,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 906,
+  "classCount": 907,
   "classes": [
     "b-absolute",
     "b-accordion",
@@ -552,6 +552,7 @@
     "b-marketing-nav__brand",
     "b-marketing-nav__links",
     "b-marquee",
+    "b-marquee__group",
     "b-marquee__track",
     "b-masonry",
     "b-master-detail",
@@ -1396,6 +1397,7 @@
     "b-marketing-nav__brand",
     "b-marketing-nav__links",
     "b-marquee",
+    "b-marquee__group",
     "b-marquee__track",
     "b-masonry",
     "b-master-detail",
@@ -12133,8 +12135,10 @@
             "b-btn--pill",
             "b-grid",
             "b-grid--3",
+            "b-logo-wall",
             "b-logo-wall__logo",
             "b-marquee",
+            "b-marquee__group",
             "b-marquee__track",
             "b-quote-card",
             "b-quote-card__head",
@@ -12150,16 +12154,17 @@
             "b-resource-card__title",
             "b-resource-card__type"
           ],
-          "markup": "<div class=\"b-marquee\" aria-label=\"Partners\">\n  <div class=\"b-marquee__track\">\n    <span class=\"b-logo-wall__logo\">Vodacom</span>\n    <span class=\"b-logo-wall__logo\">CRDB</span>\n    <span class=\"b-logo-wall__logo\">Serengeti</span>\n    <span class=\"b-logo-wall__logo\">Azam</span>\n    <span class=\"b-logo-wall__logo\">Precision Air</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Vodacom</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">CRDB</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Serengeti</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Azam</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Precision Air</span>\n  </div>\n</div>",
+          "markup": "<div class=\"b-marquee\" aria-label=\"Partners\">\n  <div class=\"b-marquee__track\">\n    <div class=\"b-marquee__group b-logo-wall\">\n      <span class=\"b-logo-wall__logo\">Vodacom</span>\n      <span class=\"b-logo-wall__logo\">CRDB</span>\n      <span class=\"b-logo-wall__logo\">Serengeti</span>\n      <span class=\"b-logo-wall__logo\">Azam</span>\n      <span class=\"b-logo-wall__logo\">Precision Air</span>\n    </div>\n    <div class=\"b-marquee__group b-logo-wall\" aria-hidden=\"true\">\n      <span class=\"b-logo-wall__logo\">Vodacom</span>\n      <span class=\"b-logo-wall__logo\">CRDB</span>\n      <span class=\"b-logo-wall__logo\">Serengeti</span>\n      <span class=\"b-logo-wall__logo\">Azam</span>\n      <span class=\"b-logo-wall__logo\">Precision Air</span>\n    </div>\n  </div>\n</div>",
           "react": {
-            "import": "import { LogoWallLogo, Marquee, MarqueeTrack } from \"barua-ui\";",
+            "import": "import { LogoWall, LogoWallLogo, Marquee, MarqueeTrack } from \"barua-ui\";",
             "components": [
+              "LogoWall",
               "LogoWallLogo",
               "Marquee",
               "MarqueeTrack"
             ],
             "root": "Marquee",
-            "jsx": "<Marquee aria-label=\"Partners\">\n  <MarqueeTrack>\n    <LogoWallLogo>Vodacom</LogoWallLogo>\n    <LogoWallLogo>CRDB</LogoWallLogo>\n    <LogoWallLogo>Serengeti</LogoWallLogo>\n    <LogoWallLogo>Azam</LogoWallLogo>\n    <LogoWallLogo>Precision Air</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Vodacom</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">CRDB</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Serengeti</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Azam</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Precision Air</LogoWallLogo>\n  </MarqueeTrack>\n</Marquee>"
+            "jsx": "<Marquee aria-label=\"Partners\">\n  <MarqueeTrack>\n    <LogoWall className=\"b-marquee__group\">\n      <LogoWallLogo>Vodacom</LogoWallLogo>\n      <LogoWallLogo>CRDB</LogoWallLogo>\n      <LogoWallLogo>Serengeti</LogoWallLogo>\n      <LogoWallLogo>Azam</LogoWallLogo>\n      <LogoWallLogo>Precision Air</LogoWallLogo>\n    </LogoWall>\n    <LogoWall className=\"b-marquee__group\" aria-hidden=\"true\">\n      <LogoWallLogo>Vodacom</LogoWallLogo>\n      <LogoWallLogo>CRDB</LogoWallLogo>\n      <LogoWallLogo>Serengeti</LogoWallLogo>\n      <LogoWallLogo>Azam</LogoWallLogo>\n      <LogoWallLogo>Precision Air</LogoWallLogo>\n    </LogoWall>\n  </MarqueeTrack>\n</Marquee>"
           },
           "variants": [
             {

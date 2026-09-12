@@ -98,40 +98,48 @@ import { Announce, AnnounceGo, Icon } from "barua-ui";
 Three shapes a product page reaches for once it has something to show: a row of names too long to stand still, a case study, and a card that sends somebody off to read.
 
 - Documentation: https://ui.barua.tz/docs/marketing.html#proof
-- Classes: `b-badge` `b-btn` `b-btn--glass` `b-btn--pill` `b-grid` `b-grid--3` `b-logo-wall__logo` `b-marquee` `b-marquee__track` `b-quote-card` `b-quote-card__head` `b-quote-card__name` `b-quote-card__quote` `b-quote-card__role` `b-quote-card__stat` `b-quote-card__stat-label` `b-resource-card` `b-resource-card__body` `b-resource-card__excerpt` `b-resource-card__poster` `b-resource-card__title` `b-resource-card__type`
+- Classes: `b-badge` `b-btn` `b-btn--glass` `b-btn--pill` `b-grid` `b-grid--3` `b-logo-wall` `b-logo-wall__logo` `b-marquee` `b-marquee__group` `b-marquee__track` `b-quote-card` `b-quote-card__head` `b-quote-card__name` `b-quote-card__quote` `b-quote-card__role` `b-quote-card__stat` `b-quote-card__stat-label` `b-resource-card` `b-resource-card__body` `b-resource-card__excerpt` `b-resource-card__poster` `b-resource-card__title` `b-resource-card__type`
 
 ```html
 <div class="b-marquee" aria-label="Partners">
   <div class="b-marquee__track">
-    <span class="b-logo-wall__logo">Vodacom</span>
-    <span class="b-logo-wall__logo">CRDB</span>
-    <span class="b-logo-wall__logo">Serengeti</span>
-    <span class="b-logo-wall__logo">Azam</span>
-    <span class="b-logo-wall__logo">Precision Air</span>
-    <span class="b-logo-wall__logo" aria-hidden="true">Vodacom</span>
-    <span class="b-logo-wall__logo" aria-hidden="true">CRDB</span>
-    <span class="b-logo-wall__logo" aria-hidden="true">Serengeti</span>
-    <span class="b-logo-wall__logo" aria-hidden="true">Azam</span>
-    <span class="b-logo-wall__logo" aria-hidden="true">Precision Air</span>
+    <div class="b-marquee__group b-logo-wall">
+      <span class="b-logo-wall__logo">Vodacom</span>
+      <span class="b-logo-wall__logo">CRDB</span>
+      <span class="b-logo-wall__logo">Serengeti</span>
+      <span class="b-logo-wall__logo">Azam</span>
+      <span class="b-logo-wall__logo">Precision Air</span>
+    </div>
+    <div class="b-marquee__group b-logo-wall" aria-hidden="true">
+      <span class="b-logo-wall__logo">Vodacom</span>
+      <span class="b-logo-wall__logo">CRDB</span>
+      <span class="b-logo-wall__logo">Serengeti</span>
+      <span class="b-logo-wall__logo">Azam</span>
+      <span class="b-logo-wall__logo">Precision Air</span>
+    </div>
   </div>
 </div>
 ```
 
 ```tsx
-import { LogoWallLogo, Marquee, MarqueeTrack } from "barua-ui";
+import { LogoWall, LogoWallLogo, Marquee, MarqueeTrack } from "barua-ui";
 
 <Marquee aria-label="Partners">
   <MarqueeTrack>
-    <LogoWallLogo>Vodacom</LogoWallLogo>
-    <LogoWallLogo>CRDB</LogoWallLogo>
-    <LogoWallLogo>Serengeti</LogoWallLogo>
-    <LogoWallLogo>Azam</LogoWallLogo>
-    <LogoWallLogo>Precision Air</LogoWallLogo>
-    <LogoWallLogo aria-hidden="true">Vodacom</LogoWallLogo>
-    <LogoWallLogo aria-hidden="true">CRDB</LogoWallLogo>
-    <LogoWallLogo aria-hidden="true">Serengeti</LogoWallLogo>
-    <LogoWallLogo aria-hidden="true">Azam</LogoWallLogo>
-    <LogoWallLogo aria-hidden="true">Precision Air</LogoWallLogo>
+    <LogoWall className="b-marquee__group">
+      <LogoWallLogo>Vodacom</LogoWallLogo>
+      <LogoWallLogo>CRDB</LogoWallLogo>
+      <LogoWallLogo>Serengeti</LogoWallLogo>
+      <LogoWallLogo>Azam</LogoWallLogo>
+      <LogoWallLogo>Precision Air</LogoWallLogo>
+    </LogoWall>
+    <LogoWall className="b-marquee__group" aria-hidden="true">
+      <LogoWallLogo>Vodacom</LogoWallLogo>
+      <LogoWallLogo>CRDB</LogoWallLogo>
+      <LogoWallLogo>Serengeti</LogoWallLogo>
+      <LogoWallLogo>Azam</LogoWallLogo>
+      <LogoWallLogo>Precision Air</LogoWallLogo>
+    </LogoWall>
   </MarqueeTrack>
 </Marquee>
 ```

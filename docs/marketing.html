@@ -266,19 +266,35 @@
           asked for less motion it stops and becomes an ordinary scrolling row.
           <code>--b-marquee-time</code> is the pace.
         </p>
+        <p>
+          The list goes in twice, each copy in its own
+          <code>.b-marquee__group</code>, and the track travels half its width
+          so group two lands where group one started. The group is not
+          decoration: half the track is one group, so the loop only closes if a
+          group is at least as wide as the rail. Five short names in a wide row
+          leave the second copy ending early and a hole travelling along behind
+          it. Each group is floored at the rail's own width and spaces its
+          contents out to fill it, so the belt is solid at any width with any
+          number of names; when the list is genuinely wider than the rail,
+          <code>max-content</code> wins and nothing changes.
+        </p>
         <div class="docs-demo docs-demo--stack">
           <div class="b-marquee" aria-label="Partners">
             <div class="b-marquee__track">
-              <span class="b-logo-wall__logo">Vodacom</span>
-              <span class="b-logo-wall__logo">CRDB</span>
-              <span class="b-logo-wall__logo">Serengeti</span>
-              <span class="b-logo-wall__logo">Azam</span>
-              <span class="b-logo-wall__logo">Precision Air</span>
-              <span class="b-logo-wall__logo" aria-hidden="true">Vodacom</span>
-              <span class="b-logo-wall__logo" aria-hidden="true">CRDB</span>
-              <span class="b-logo-wall__logo" aria-hidden="true">Serengeti</span>
-              <span class="b-logo-wall__logo" aria-hidden="true">Azam</span>
-              <span class="b-logo-wall__logo" aria-hidden="true">Precision Air</span>
+              <div class="b-marquee__group b-logo-wall">
+                <span class="b-logo-wall__logo">Vodacom</span>
+                <span class="b-logo-wall__logo">CRDB</span>
+                <span class="b-logo-wall__logo">Serengeti</span>
+                <span class="b-logo-wall__logo">Azam</span>
+                <span class="b-logo-wall__logo">Precision Air</span>
+              </div>
+              <div class="b-marquee__group b-logo-wall" aria-hidden="true">
+                <span class="b-logo-wall__logo">Vodacom</span>
+                <span class="b-logo-wall__logo">CRDB</span>
+                <span class="b-logo-wall__logo">Serengeti</span>
+                <span class="b-logo-wall__logo">Azam</span>
+                <span class="b-logo-wall__logo">Precision Air</span>
+              </div>
             </div>
           </div>
         </div>
