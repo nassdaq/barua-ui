@@ -278,6 +278,16 @@
           number of names; when the list is genuinely wider than the rail,
           <code>max-content</code> wins and nothing changes.
         </p>
+        <p>
+          A group almost always carries a row class as well, usually
+          <code>.b-logo-wall</code>, and those are defined later in this layer,
+          so the three properties that make a marquee a marquee are pinned at a
+          specificity a row cannot reach: it is not a row's business whether a
+          belt wraps or how its copies fill the rail. The rhythm still is. Set
+          <code>--b-marquee-gap</code> and the end padding follows it
+          automatically, at exactly half, which is what keeps the space across
+          the seam equal to every other space in the belt.
+        </p>
         <div class="docs-demo docs-demo--stack">
           <div class="b-marquee" aria-label="Partners">
             <div class="b-marquee__track">

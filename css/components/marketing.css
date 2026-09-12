@@ -228,23 +228,34 @@
     width: max-content;
     animation: b-marquee var(--b-marquee-time, 40s) linear infinite;
   }
-  .b-marquee__group {
+  /* Named twice on purpose. A group almost always carries a row class as well
+     (.b-logo-wall is the usual one), and those are defined later in this layer,
+     so at equal specificity they were winning: the wall's justify-content
+     centred each group inside its floored width and the two dead ends met at
+     the seam as one wide hole, which is the bug the group was added to fix.
+     The three properties that make a marquee a marquee are not the row's to
+     decide. The rhythm still is: set --b-marquee-gap. */
+  .b-marquee .b-marquee__group {
+    --b-marquee-gap: clamp(var(--b-space-6), 5vw, var(--b-space-12));
     display: flex;
     flex: none;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-around;
-    gap: clamp(var(--b-space-6), 5vw, var(--b-space-12));
+    gap: var(--b-marquee-gap);
     min-width: 100cqi;
-    /* Half the gap on each end, so the seam between the two groups is spaced
-       exactly like the gaps inside one. */
-    padding-inline: clamp(var(--b-space-3), 2.5vw, var(--b-space-6));
+    /* space-around leaves half a share at each end, so a seam is already half
+       plus half. The gap is a separate, fixed minimum that only applies BETWEEN
+       items, so without this the seam came up exactly one gap short of every
+       other space in the belt. Half at each end restores it. */
+    padding-inline: calc(var(--b-marquee-gap) / 2);
   }
   .b-marquee:hover .b-marquee__track { animation-play-state: paused; }
   @keyframes b-marquee { to { translate: -50% 0; } }
   @media (prefers-reduced-motion: reduce) {
     .b-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
     .b-marquee__track { animation: none; }
-    .b-marquee__group { min-width: 0; }
+    .b-marquee .b-marquee__group { min-width: 0; }
   }
 
   /* ---- Quote card: a number, a sentence, and who said it -------------------

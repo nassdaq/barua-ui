@@ -1786,6 +1786,7 @@
     "--b-liquid-color",
     "--b-logo-h",
     "--b-mark-ground",
+    "--b-marquee-gap",
     "--b-marquee-time",
     "--b-masonry-cols",
     "--b-pie",
@@ -8885,7 +8886,8 @@
             "jsx": "<Log style={{ maxWidth: \"40rem\" }}>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__actor\">Amina Hassan</span>\n    <span className=\"b-log__action\">\n      uploaded\n      <code>invoice-q3.pdf</code>\n      to Finance / Invoices\n    </span>\n    <time className=\"b-log__time\">2 min ago</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__actor\">Baraka Otieno</span>\n    <span className=\"b-log__action\">\n      approved purchase order\n      <code>PO-2214</code>\n    </span>\n    <time className=\"b-log__time\">38 min ago</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__actor\">Neema Mushi</span>\n    <span className=\"b-log__action\">\n      renamed\n      <code>port-fees-draft.xlsx</code>\n      to\n      <code>port-fees.xlsx</code>\n    </span>\n    <time className=\"b-log__time\">Yesterday</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__actor\">Juma Kibwana</span>\n    <span className=\"b-log__action\">\n      shared\n      <code>tender-brief.docx</code>\n      with the Mwanza depot\n    </span>\n    <time className=\"b-log__time\">Mon 09:12</time>\n  </div>\n</Log>"
           },
           "knobs": [
-            "--b-logo-h"
+            "--b-logo-h",
+            "--b-marquee-gap"
           ]
         },
         {
@@ -8913,7 +8915,8 @@
             "jsx": "<Log className=\"b-log--audit\">\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__ip\">197.250.14.62</span>\n    <span className=\"b-log__actor\">amina</span>\n    <span className=\"b-log__action\">\n      signed in with\n      <code>passkey</code>\n    </span>\n    <time className=\"b-log__time\">2026-08-26 09:14</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__ip\">197.250.14.62</span>\n    <span className=\"b-log__actor\">amina</span>\n    <span className=\"b-log__action\">\n      exported\n      <code>invoice-q3.pdf</code>\n    </span>\n    <time className=\"b-log__time\">2026-08-26 09:21</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__ip\">41.222.180.7</span>\n    <span className=\"b-log__actor\">baraka</span>\n    <span className=\"b-log__action\">\n      changed role of\n      <code>@juma</code>\n      to\n      <code>editor</code>\n    </span>\n    <time className=\"b-log__time\">2026-08-25 17:03</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__ip\">196.249.5.118</span>\n    <span className=\"b-log__actor\">system</span>\n    <span className=\"b-log__action\">\n      rotated API key\n      <code>brk_live_\u20269f2</code>\n    </span>\n    <time className=\"b-log__time\">2026-08-25 02:00</time>\n  </div>\n</Log>"
           },
           "knobs": [
-            "--b-logo-h"
+            "--b-logo-h",
+            "--b-marquee-gap"
           ]
         }
       ]
@@ -12114,6 +12117,7 @@
           "knobs": [
             "--b-chapter-gap",
             "--b-logo-h",
+            "--b-marquee-gap",
             "--b-tile",
             "--b-tile-ground",
             "--b-tile-ink"
@@ -12189,6 +12193,7 @@
             "--b-lg-pane",
             "--b-lg-pane-strong",
             "--b-logo-h",
+            "--b-marquee-gap",
             "--b-marquee-time"
           ],
           "states": [
@@ -12390,7 +12395,8 @@
             "--b-lg-pane",
             "--b-lg-pane-strong",
             "--b-logo-h",
-            "--b-mark-ground"
+            "--b-mark-ground",
+            "--b-marquee-gap"
           ],
           "states": [
             "is-active",
