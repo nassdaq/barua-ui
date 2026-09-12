@@ -109,7 +109,10 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    --b-tile: 5.5rem;
+    /* The cell scales with the viewport. Held at a fixed size it kept its
+       pixel grain while the hero got narrow, so on a phone the whisper of a
+       pattern became grey blocks sitting behind the headline. */
+    --b-tile: clamp(2.25rem, 5.5vw, 5.5rem);
     /* The field paints its own ground, a shade off the page, and the squares
        sit *lighter* on it — which is the only way the pattern is visible on a
        white page and still barely there on a dark one. Two knobs, both
@@ -129,6 +132,14 @@
     /* Nothing in the middle, where the words are. */
     -webkit-mask-image: radial-gradient(120% 85% at 50% 0%, #000 0%, transparent 72%);
     mask-image: radial-gradient(120% 85% at 50% 0%, #000 0%, transparent 72%);
+  }
+  /* A hero on a phone is a different shape: tall and narrow, with the words
+     starting much higher up. The field has to be done before they get there. */
+  @media (max-width: 40rem) {
+    .b-tile-field {
+      -webkit-mask-image: radial-gradient(150% 52% at 50% 0%, #000 0%, transparent 70%);
+      mask-image: radial-gradient(150% 52% at 50% 0%, #000 0%, transparent 70%);
+    }
   }
   /* Anything that has to sit on top of it says so once. */
   .b-tile-field ~ * { position: relative; z-index: 1; }
