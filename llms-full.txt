@@ -1987,8 +1987,8 @@ Classes: b-error b-field b-help b-input b-label
 
 ### Card  (https://ui.barua.tz/docs/content.html#card)
 A bordered surface with optional .b-card__header , .b-card__body and .b-card__footer regions. Title and subtitle classes keep the type ramp consistent across products.
-Variants: Variants, Media card, Story card (App Store style), Icon card, Grouped list card (iOS Settings), Icon tile colors, App card
-Classes: b-badge b-badge--success b-btn b-btn--ghost b-btn--pill b-btn--primary b-btn--sm b-btn--tinted b-card b-card--accent b-card--compact b-card--elevated b-card--flush b-card--glass b-card--icon b-card--interactive b-card--media-overlay b-card--neutral b-card__art b-card__body b-card__eyebrow b-card__footer b-card__header b-card__media b-card__overlay b-card__subtitle b-card__title b-gap-3 b-grow b-hstack b-icon-tile b-icon-tile--gray b-icon-tile--green b-icon-tile--indigo b-icon-tile--orange b-icon-tile--purple b-icon-tile--red b-icon-tile--sm b-icon-tile--solid b-icon-tile--teal b-list b-list--inset-divider b-list--plain b-list-item b-list-item--interactive b-list-item__chevron b-list-item__content b-list-item__leading b-list-item__title b-list-item__trailing b-wallpaper-scope
+Variants: Variants, Media card, Story card (App Store style), Icon card, Grouped list card (iOS Settings), Cards that end level, Icon tile colors, App card
+Classes: b-badge b-badge--success b-btn b-btn--block b-btn--ghost b-btn--glass b-btn--pill b-btn--primary b-btn--sm b-btn--tinted b-card b-card--accent b-card--compact b-card--elevated b-card--fill b-card--flush b-card--glass b-card--icon b-card--interactive b-card--media-overlay b-card--neutral b-card__art b-card__body b-card__eyebrow b-card__footer b-card__header b-card__media b-card__overlay b-card__subtitle b-card__title b-gap-3 b-grid b-grid--3 b-grow b-hstack b-icon-tile b-icon-tile--gray b-icon-tile--green b-icon-tile--indigo b-icon-tile--orange b-icon-tile--purple b-icon-tile--red b-icon-tile--sm b-icon-tile--solid b-icon-tile--teal b-list b-list--inset-divider b-list--plain b-list-item b-list-item--interactive b-list-item__chevron b-list-item__content b-list-item__leading b-list-item__title b-list-item__trailing b-spacer b-stack b-subheadline b-text-secondary b-title3 b-wallpaper-scope
 
 ```html
 <article class="b-card" style="max-width: 26rem">
@@ -5732,14 +5732,21 @@ Classes: b-spec-strip b-spec__label b-spec__value b-tabular-nums
 ```
 
 ### Dark chapter  (https://ui.barua.tz/docs/marketing.html#dark-chapter)
-Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working.
-Classes: b-chapter b-chapter--dark b-chapter--tight b-chapter__eyebrow b-chapter__lede b-chapter__title
+Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working. It is one of the three selectors the token block is declared on, alongside :root and [data-theme] — a chapter that inverts is a themed subtree, and flipping the scheme without re-declaring the tokens leaves them resolved against the page around it, which reads as a dark band that came out light.
+Classes: b-caption b-card b-card__body b-chapter b-chapter--dark b-chapter--tight b-chapter__eyebrow b-chapter__lede b-chapter__media b-chapter__title b-container b-container--xl b-gap-2 b-grid b-grid--3 b-headline b-stack b-text-secondary
 
 ```html
 <div class="b-chapter b-chapter--dark b-chapter--tight" style="border-radius: var(--b-radius-xl)">
   <p class="b-chapter__eyebrow">Barua for business</p>
   <h2 class="b-chapter__title">Work that arrives.</h2>
   <p class="b-chapter__lede">The same chapter, on the other ground.</p>
+  <div class="b-container b-container--xl b-chapter__media">
+    <div class="b-grid b-grid--3">
+      <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Storage</p><p class="b-caption b-text-secondary">Files shared with a link that expires.</p></div></article>
+      <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Domains</p><p class="b-caption b-text-secondary">Buy the name, records written for you.</p></div></article>
+      <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Hosting</p><p class="b-caption b-text-secondary">A site with nothing to look after.</p></div></article>
+    </div>
+  </div>
 </div>
 ```
 

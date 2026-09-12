@@ -45,7 +45,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 889,
+  "classCount": 891,
   "classes": [
     "b-absolute",
     "b-accordion",
@@ -190,6 +190,7 @@
     "b-card--accent",
     "b-card--compact",
     "b-card--elevated",
+    "b-card--fill",
     "b-card--flat",
     "b-card--flush",
     "b-card--glass",
@@ -244,6 +245,7 @@
     "b-chapter__actions",
     "b-chapter__eyebrow",
     "b-chapter__lede",
+    "b-chapter__media",
     "b-chapter__title",
     "b-chart",
     "b-chart-tip",
@@ -1072,6 +1074,7 @@
     "b-card--accent",
     "b-card--compact",
     "b-card--elevated",
+    "b-card--fill",
     "b-card--flat",
     "b-card--flush",
     "b-card--glass",
@@ -1121,6 +1124,7 @@
     "b-chapter__actions",
     "b-chapter__eyebrow",
     "b-chapter__lede",
+    "b-chapter__media",
     "b-chapter__title",
     "b-chart",
     "b-chart-tip",
@@ -5517,7 +5521,9 @@
             "b-badge",
             "b-badge--success",
             "b-btn",
+            "b-btn--block",
             "b-btn--ghost",
+            "b-btn--glass",
             "b-btn--pill",
             "b-btn--primary",
             "b-btn--sm",
@@ -5526,6 +5532,7 @@
             "b-card--accent",
             "b-card--compact",
             "b-card--elevated",
+            "b-card--fill",
             "b-card--flush",
             "b-card--glass",
             "b-card--icon",
@@ -5542,6 +5549,8 @@
             "b-card__subtitle",
             "b-card__title",
             "b-gap-3",
+            "b-grid",
+            "b-grid--3",
             "b-grow",
             "b-hstack",
             "b-icon-tile",
@@ -5564,6 +5573,11 @@
             "b-list-item__leading",
             "b-list-item__title",
             "b-list-item__trailing",
+            "b-spacer",
+            "b-stack",
+            "b-subheadline",
+            "b-text-secondary",
+            "b-title3",
             "b-wallpaper-scope"
           ],
           "markup": "<article class=\"b-card\" style=\"max-width: 26rem\">\n  <header class=\"b-card__header\">\n    <div>\n      <div class=\"b-card__title\">Safari itinerary</div>\n      <div class=\"b-card__subtitle\">Serengeti &amp; Ngorongoro \u00b7 5 days</div>\n    </div>\n    <button class=\"b-btn b-btn--ghost b-btn--sm\">Edit</button>\n  </header>\n  <div class=\"b-card__body\">\n    Depart Arusha at dawn, overnight in Seronera, then descend into the\n    crater on day four. Amina Hassan is confirmed as your guide.\n  </div>\n  <footer class=\"b-card__footer\">\n    <button class=\"b-btn b-btn--primary b-btn--sm\">Book trip</button>\n    <button class=\"b-btn b-btn--ghost b-btn--sm\">Share</button>\n  </footer>\n</article>",
@@ -5603,6 +5617,10 @@
               "title": "Grouped list card (iOS Settings)"
             },
             {
+              "id": "card-fill",
+              "title": "Cards that end level"
+            },
+            {
               "id": "icon-tile-colors",
               "title": "Icon tile colors"
             },
@@ -5612,6 +5630,8 @@
             }
           ],
           "knobs": [
+            "--b-col-min",
+            "--b-cols",
             "--b-gap",
             "--b-lg-border",
             "--b-lg-inset",
@@ -12104,12 +12124,14 @@
           ],
           "markup": "<div class=\"b-marquee\" aria-label=\"Partners\">\n  <div class=\"b-marquee__track\">\n    <span class=\"b-logo-wall__logo\">Vodacom</span>\n    <span class=\"b-logo-wall__logo\">CRDB</span>\n    <span class=\"b-logo-wall__logo\">Serengeti</span>\n    <span class=\"b-logo-wall__logo\">Azam</span>\n    <span class=\"b-logo-wall__logo\">Precision Air</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Vodacom</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">CRDB</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Serengeti</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Azam</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Precision Air</span>\n  </div>\n</div>",
           "react": {
-            "import": "import { LogoWallLogo } from \"barua-ui\";",
+            "import": "import { LogoWallLogo, Marquee, MarqueeTrack } from \"barua-ui\";",
             "components": [
-              "LogoWallLogo"
+              "LogoWallLogo",
+              "Marquee",
+              "MarqueeTrack"
             ],
-            "root": "LogoWallLogo",
-            "jsx": "<div className=\"b-marquee\" aria-label=\"Partners\">\n  <div className=\"b-marquee__track\">\n    <LogoWallLogo>Vodacom</LogoWallLogo>\n    <LogoWallLogo>CRDB</LogoWallLogo>\n    <LogoWallLogo>Serengeti</LogoWallLogo>\n    <LogoWallLogo>Azam</LogoWallLogo>\n    <LogoWallLogo>Precision Air</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Vodacom</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">CRDB</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Serengeti</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Azam</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Precision Air</LogoWallLogo>\n  </div>\n</div>"
+            "root": "Marquee",
+            "jsx": "<Marquee aria-label=\"Partners\">\n  <MarqueeTrack>\n    <LogoWallLogo>Vodacom</LogoWallLogo>\n    <LogoWallLogo>CRDB</LogoWallLogo>\n    <LogoWallLogo>Serengeti</LogoWallLogo>\n    <LogoWallLogo>Azam</LogoWallLogo>\n    <LogoWallLogo>Precision Air</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Vodacom</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">CRDB</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Serengeti</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Azam</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Precision Air</LogoWallLogo>\n  </MarqueeTrack>\n</Marquee>"
           },
           "variants": [
             {
@@ -12253,26 +12275,48 @@
           "title": "Dark chapter",
           "category": "marketing",
           "url": "https://ui.barua.tz/docs/marketing.html#dark-chapter",
-          "summary": "Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working.",
+          "summary": "Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working. It is one of the three selectors the token block is declared on, alongside :root and [data-theme] \u2014 a chapter that inverts is a themed subtree, and flipping the scheme without re-declaring the tokens leaves them resolved against the page around it, which reads as a dark band that came out light.",
           "classes": [
+            "b-caption",
+            "b-card",
+            "b-card__body",
             "b-chapter",
             "b-chapter--dark",
             "b-chapter--tight",
             "b-chapter__eyebrow",
             "b-chapter__lede",
-            "b-chapter__title"
+            "b-chapter__media",
+            "b-chapter__title",
+            "b-container",
+            "b-container--xl",
+            "b-gap-2",
+            "b-grid",
+            "b-grid--3",
+            "b-headline",
+            "b-stack",
+            "b-text-secondary"
           ],
-          "markup": "<div class=\"b-chapter b-chapter--dark b-chapter--tight\" style=\"border-radius: var(--b-radius-xl)\">\n  <p class=\"b-chapter__eyebrow\">Barua for business</p>\n  <h2 class=\"b-chapter__title\">Work that arrives.</h2>\n  <p class=\"b-chapter__lede\">The same chapter, on the other ground.</p>\n</div>",
+          "markup": "<div class=\"b-chapter b-chapter--dark b-chapter--tight\" style=\"border-radius: var(--b-radius-xl)\">\n  <p class=\"b-chapter__eyebrow\">Barua for business</p>\n  <h2 class=\"b-chapter__title\">Work that arrives.</h2>\n  <p class=\"b-chapter__lede\">The same chapter, on the other ground.</p>\n  <div class=\"b-container b-container--xl b-chapter__media\">\n    <div class=\"b-grid b-grid--3\">\n      <article class=\"b-card\"><div class=\"b-card__body b-stack b-gap-2\"><p class=\"b-headline\">Storage</p><p class=\"b-caption b-text-secondary\">Files shared with a link that expires.</p></div></article>\n      <article class=\"b-card\"><div class=\"b-card__body b-stack b-gap-2\"><p class=\"b-headline\">Domains</p><p class=\"b-caption b-text-secondary\">Buy the name, records written for you.</p></div></article>\n      <article class=\"b-card\"><div class=\"b-card__body b-stack b-gap-2\"><p class=\"b-headline\">Hosting</p><p class=\"b-caption b-text-secondary\">A site with nothing to look after.</p></div></article>\n    </div>\n  </div>\n</div>",
           "react": {
-            "import": "import { Chapter } from \"barua-ui\";",
+            "import": "import { Card, CardBody, Chapter, Container, Grid } from \"barua-ui\";",
             "components": [
-              "Chapter"
+              "Card",
+              "CardBody",
+              "Chapter",
+              "Container",
+              "Grid"
             ],
             "root": "Chapter",
-            "jsx": "<Chapter dark tight style={{ borderRadius: \"var(--b-radius-xl)\" }}>\n  <p className=\"b-chapter__eyebrow\">Barua for business</p>\n  <h2 className=\"b-chapter__title\">Work that arrives.</h2>\n  <p className=\"b-chapter__lede\">The same chapter, on the other ground.</p>\n</Chapter>"
+            "jsx": "<Chapter dark tight style={{ borderRadius: \"var(--b-radius-xl)\" }}>\n  <p className=\"b-chapter__eyebrow\">Barua for business</p>\n  <h2 className=\"b-chapter__title\">Work that arrives.</h2>\n  <p className=\"b-chapter__lede\">The same chapter, on the other ground.</p>\n  <Container size=\"xl\" className=\"b-chapter__media\">\n    <Grid cols={3}>\n      <Card>\n        <CardBody className=\"b-stack b-gap-2\">\n          <p className=\"b-headline\">Storage</p>\n          <p className=\"b-caption b-text-secondary\">Files shared with a link that expires.</p>\n        </CardBody>\n      </Card>\n      <Card>\n        <CardBody className=\"b-stack b-gap-2\">\n          <p className=\"b-headline\">Domains</p>\n          <p className=\"b-caption b-text-secondary\">Buy the name, records written for you.</p>\n        </CardBody>\n      </Card>\n      <Card>\n        <CardBody className=\"b-stack b-gap-2\">\n          <p className=\"b-headline\">Hosting</p>\n          <p className=\"b-caption b-text-secondary\">A site with nothing to look after.</p>\n        </CardBody>\n      </Card>\n    </Grid>\n  </Container>\n</Chapter>"
           },
           "knobs": [
-            "--b-chapter-gap"
+            "--b-billboard-h",
+            "--b-chapter-gap",
+            "--b-col-min",
+            "--b-cols",
+            "--b-gap",
+            "--b-lg-border",
+            "--b-lg-pane"
           ]
         },
         {

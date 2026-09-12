@@ -118,10 +118,10 @@ Three shapes a product page reaches for once it has something to show: a row of 
 ```
 
 ```tsx
-import { LogoWallLogo } from "barua-ui";
+import { LogoWallLogo, Marquee, MarqueeTrack } from "barua-ui";
 
-<div className="b-marquee" aria-label="Partners">
-  <div className="b-marquee__track">
+<Marquee aria-label="Partners">
+  <MarqueeTrack>
     <LogoWallLogo>Vodacom</LogoWallLogo>
     <LogoWallLogo>CRDB</LogoWallLogo>
     <LogoWallLogo>Serengeti</LogoWallLogo>
@@ -132,8 +132,8 @@ import { LogoWallLogo } from "barua-ui";
     <LogoWallLogo aria-hidden="true">Serengeti</LogoWallLogo>
     <LogoWallLogo aria-hidden="true">Azam</LogoWallLogo>
     <LogoWallLogo aria-hidden="true">Precision Air</LogoWallLogo>
-  </div>
-</div>
+  </MarqueeTrack>
+</Marquee>
 ```
 
 ## Figure
@@ -290,26 +290,55 @@ import { CountUp, SpecStrip } from "barua-ui";
 
 ## Dark chapter
 
-Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working.
+Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working. It is one of the three selectors the token block is declared on, alongside :root and [data-theme] — a chapter that inverts is a themed subtree, and flipping the scheme without re-declaring the tokens leaves them resolved against the page around it, which reads as a dark band that came out light.
 
 - Documentation: https://ui.barua.tz/docs/marketing.html#dark-chapter
-- Classes: `b-chapter` `b-chapter--dark` `b-chapter--tight` `b-chapter__eyebrow` `b-chapter__lede` `b-chapter__title`
+- Classes: `b-caption` `b-card` `b-card__body` `b-chapter` `b-chapter--dark` `b-chapter--tight` `b-chapter__eyebrow` `b-chapter__lede` `b-chapter__media` `b-chapter__title` `b-container` `b-container--xl` `b-gap-2` `b-grid` `b-grid--3` `b-headline` `b-stack` `b-text-secondary`
 
 ```html
 <div class="b-chapter b-chapter--dark b-chapter--tight" style="border-radius: var(--b-radius-xl)">
   <p class="b-chapter__eyebrow">Barua for business</p>
   <h2 class="b-chapter__title">Work that arrives.</h2>
   <p class="b-chapter__lede">The same chapter, on the other ground.</p>
+  <div class="b-container b-container--xl b-chapter__media">
+    <div class="b-grid b-grid--3">
+      <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Storage</p><p class="b-caption b-text-secondary">Files shared with a link that expires.</p></div></article>
+      <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Domains</p><p class="b-caption b-text-secondary">Buy the name, records written for you.</p></div></article>
+      <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Hosting</p><p class="b-caption b-text-secondary">A site with nothing to look after.</p></div></article>
+    </div>
+  </div>
 </div>
 ```
 
 ```tsx
-import { Chapter } from "barua-ui";
+import { Card, CardBody, Chapter, Container, Grid } from "barua-ui";
 
 <Chapter dark tight style={{ borderRadius: "var(--b-radius-xl)" }}>
   <p className="b-chapter__eyebrow">Barua for business</p>
   <h2 className="b-chapter__title">Work that arrives.</h2>
   <p className="b-chapter__lede">The same chapter, on the other ground.</p>
+  <Container size="xl" className="b-chapter__media">
+    <Grid cols={3}>
+      <Card>
+        <CardBody className="b-stack b-gap-2">
+          <p className="b-headline">Storage</p>
+          <p className="b-caption b-text-secondary">Files shared with a link that expires.</p>
+        </CardBody>
+      </Card>
+      <Card>
+        <CardBody className="b-stack b-gap-2">
+          <p className="b-headline">Domains</p>
+          <p className="b-caption b-text-secondary">Buy the name, records written for you.</p>
+        </CardBody>
+      </Card>
+      <Card>
+        <CardBody className="b-stack b-gap-2">
+          <p className="b-headline">Hosting</p>
+          <p className="b-caption b-text-secondary">A site with nothing to look after.</p>
+        </CardBody>
+      </Card>
+    </Grid>
+  </Container>
 </Chapter>
 ```
 

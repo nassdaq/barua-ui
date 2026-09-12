@@ -81,6 +81,10 @@
     justify-content: center;
     margin-block-start: var(--b-space-6);
   }
+  /* What a chapter shows under its words: a rail of cards, a grid, a picture.
+     Same standoff as the actions row, so a chapter with cards and a chapter
+     with buttons breathe alike. */
+  .b-chapter__media { margin-block-start: var(--b-space-8); text-align: start; }
   .b-chapter--start .b-chapter__actions { justify-content: flex-start; }
   .b-feature-row .b-chapter__actions { justify-content: flex-start; margin-block-start: var(--b-space-5); }
 
@@ -263,7 +267,17 @@
     overflow: hidden;
     background: color-mix(in srgb, var(--b-color-accent) 14%, var(--b-fill-tertiary));
   }
-  .b-resource-card__poster :is(img, svg) { width: 100%; height: 100%; object-fit: cover; }
+  /* A picture fills the plate. A glyph is not a picture: stretched to the same
+     rule it became a two-hundred-pixel sparkle, which is how a stand-in ends up
+     louder than the thing it stands in for. It keeps a glyph's size and the
+     plate's quieter ink instead. */
+  .b-resource-card__poster > img { width: 100%; height: 100%; object-fit: cover; }
+  .b-resource-card__poster > svg,
+  .b-resource-card__poster > :not(img):not(.b-resource-card__type) svg {
+    width: var(--b-space-12);
+    height: var(--b-space-12);
+    color: color-mix(in srgb, var(--b-color-accent) 55%, var(--b-text-tertiary));
+  }
   .b-resource-card__type {
     position: absolute;
     inset-block-start: var(--b-space-3);

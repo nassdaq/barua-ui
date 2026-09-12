@@ -446,15 +446,34 @@
           page has chapters you can feel while scrolling.
           <code>.b-chapter--dark</code> flips <code>color-scheme</code> rather
           than hardcoding colours, so every token inside resolves for the dark
-          ground and any component dropped in keeps working.
+          ground and any component dropped in keeps working. It is one of the
+          three selectors the token block is declared on, alongside
+          <code>:root</code> and <code>[data-theme]</code> — a chapter that
+          inverts is a themed subtree, and flipping the scheme without
+          re-declaring the tokens leaves them resolved against the page around
+          it, which reads as a dark band that came out light.
         </p>
         <div class="docs-demo">
           <div class="b-chapter b-chapter--dark b-chapter--tight" style="border-radius: var(--b-radius-xl)">
             <p class="b-chapter__eyebrow">Barua for business</p>
             <h2 class="b-chapter__title">Work that arrives.</h2>
             <p class="b-chapter__lede">The same chapter, on the other ground.</p>
+            <div class="b-container b-container--xl b-chapter__media">
+              <div class="b-grid b-grid--3">
+                <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Storage</p><p class="b-caption b-text-secondary">Files shared with a link that expires.</p></div></article>
+                <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Domains</p><p class="b-caption b-text-secondary">Buy the name, records written for you.</p></div></article>
+                <article class="b-card"><div class="b-card__body b-stack b-gap-2"><p class="b-headline">Hosting</p><p class="b-caption b-text-secondary">A site with nothing to look after.</p></div></article>
+              </div>
+            </div>
           </div>
         </div>
+        <p>
+          <code>.b-chapter__media</code> is what a chapter shows under its
+          words — a rail, a grid, a picture. It takes the same standoff as
+          <code>.b-chapter__actions</code>, so a chapter with cards and a
+          chapter with buttons breathe alike, and it sets the text back to
+          start alignment because cards are not headlines.
+        </p>
       </section>
 
       <section class="docs-section" id="pill-nav">

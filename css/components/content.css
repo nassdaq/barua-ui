@@ -117,6 +117,14 @@
   .b-card--flush .b-card__body { padding: 0; }
   .b-card--flush .b-list { border: none; border-radius: 0; box-shadow: none; }
 
+  /* A card in a grid already stretches to the row's height; its body does not,
+     so a stack inside stops where its content stops and the button at the end
+     lands wherever the copy above happened to finish. Three prices with three
+     different feature lists gave three different buttons. --fill hands the
+     height down, so a .b-spacer inside pins the last row to the floor. */
+  .b-card--fill { display: flex; flex-direction: column; }
+  .b-card--fill > .b-card__body { flex: 1 1 auto; }
+
   .b-card__art {
     width: 4rem;
     height: 4rem;
