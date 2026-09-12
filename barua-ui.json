@@ -45,7 +45,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 872,
+  "classCount": 874,
   "classes": [
     "b-absolute",
     "b-accordion",
@@ -352,6 +352,7 @@
     "b-fieldset",
     "b-figure",
     "b-figure--bleed",
+    "b-figure--fade",
     "b-figure__caption",
     "b-figure__frame",
     "b-file-browser",
@@ -421,6 +422,7 @@
     "b-grow",
     "b-grow-0",
     "b-h-full",
+    "b-has-tiles",
     "b-has-wallpaper",
     "b-headline",
     "b-heatmap",
@@ -1251,6 +1253,7 @@
     "b-groupbox",
     "b-groupbox__label",
     "b-grow",
+    "b-has-tiles",
     "b-has-wallpaper",
     "b-headline",
     "b-heatmap",
@@ -1699,6 +1702,7 @@
     "--b-datagrid-h",
     "--b-disabled-pointer",
     "--b-donut-hole",
+    "--b-fade-from",
     "--b-fit-max",
     "--b-fit-min",
     "--b-fit-scale",
@@ -6107,7 +6111,10 @@
             ],
             "root": "Figure",
             "jsx": "<div\n  className=\"b-img\"\n  style={{ width: \"14rem\", aspectRatio: \"4/3\", background: \"linear-gradient(135deg,var(--b-color-accent),var(--b-color-indigo))\" }}\n></div>\n<Figure style={{ maxWidth: \"16rem\" }}>\n  <div\n    className=\"b-img b-img--framed\"\n    style={{ aspectRatio: \"16/10\", background: \"linear-gradient(160deg,var(--b-color-teal),var(--b-color-accent))\" }}\n  ></div>\n  <figcaption>Forodhani Gardens at dusk, Zanzibar.</figcaption>\n</Figure>"
-          }
+          },
+          "knobs": [
+            "--b-fade-from"
+          ]
         },
         {
           "id": "code-block",
@@ -11986,6 +11993,7 @@
             "b-chapter--tight",
             "b-chapter__lede",
             "b-chapter__title",
+            "b-has-tiles",
             "b-icon",
             "b-logo-wall",
             "b-logo-wall__logo",
@@ -12038,7 +12046,7 @@
           "title": "Figure",
           "category": "marketing",
           "url": "https://ui.barua.tz/docs/marketing.html#figure",
-          "summary": "A picture is furniture, so it has a shape: .b-figure__frame clips it to the large radius, lifts it on the elevation scale, and fills any gap with a surface rather than white. .b-figure--bleed lets it run to the edges of the page, which is how a chapter ends when the image is the argument.",
+          "summary": "A picture is furniture, so it has a shape: .b-figure__frame clips it to the large radius, lifts it on the elevation scale, and fills any gap with a surface rather than white. .b-figure--bleed lets it run to the edges of the page, which is how a chapter ends when the image is the argument. .b-figure--fade dissolves the bottom of the frame into the page instead of ending it, which is what a product shot under a hero wants: a window into the thing rather than a photograph with an edge. --b-fade-from is where the fade begins.",
           "classes": [
             "b-figure",
             "b-figure__caption",
@@ -12052,7 +12060,10 @@
             ],
             "root": "Figure",
             "jsx": "<Figure style={{ maxWidth: \"26rem\" }}>\n  <div className=\"b-figure__frame\">\n    <img src=\"../examples/assets/landing-domains.svg\" alt=\"Domain records verifying\" width=\"1200\" height=\"900\" loading=\"lazy\" />\n  </div>\n  <figcaption className=\"b-figure__caption\">Every record checked against public resolvers.</figcaption>\n</Figure>"
-          }
+          },
+          "knobs": [
+            "--b-fade-from"
+          ]
         },
         {
           "id": "feature-row",
@@ -12080,7 +12091,10 @@
             ],
             "root": "FeatureRow",
             "jsx": "<FeatureRow>\n  <Figure>\n    <div className=\"b-figure__frame\">\n      <img src=\"../examples/assets/landing-mail.svg\" alt=\"Threads and labels\" width=\"1200\" height=\"900\" loading=\"lazy\" />\n    </div>\n  </Figure>\n  <div>\n    <p className=\"b-chapter__eyebrow\">Mail</p>\n    <h3 className=\"b-feature-row__title\">An inbox that behaves like an application.</h3>\n    <p className=\"b-feature-row__body\">Threads, labels, and search that reads the whole message \u2014 one keystroke away.</p>\n    <p className=\"b-chapter__actions\">\n      <Link href=\"#feature-row\">Open an inbox \u203a</Link>\n    </p>\n  </div>\n</FeatureRow>"
-          }
+          },
+          "knobs": [
+            "--b-fade-from"
+          ]
         },
         {
           "id": "bento",
@@ -12205,7 +12219,10 @@
             ],
             "root": "CardRail",
             "jsx": "<CardRail>\n  <article>\n    <Figure>\n      <div className=\"b-figure__frame\">\n        <img src=\"../examples/assets/media/team.jpg\" alt=\"A small team meeting\" width=\"1500\" height=\"1000\" loading=\"lazy\" />\n      </div>\n    </Figure>\n    <div className=\"b-rail-card__body\">\n      <div className=\"b-rail-card__title\">Shared mailboxes</div>\n      <p className=\"b-rail-card__text\">sales@ and support@ belong to the team.</p>\n    </div>\n  </article>\n  <article>\n    <Figure>\n      <div className=\"b-figure__frame\">\n        <img src=\"../examples/assets/media/desk.jpg\" alt=\"Files on a desk\" width=\"1500\" height=\"1000\" loading=\"lazy\" />\n      </div>\n    </Figure>\n    <div className=\"b-rail-card__body\">\n      <div className=\"b-rail-card__title\">Files where the mail is</div>\n      <p className=\"b-rail-card__text\">Storage sits beside the mailbox.</p>\n    </div>\n  </article>\n  <article>\n    <Figure>\n      <div className=\"b-figure__frame\">\n        <img src=\"../examples/assets/media/city.jpg\" alt=\"The coast\" width=\"1500\" height=\"1000\" loading=\"lazy\" />\n      </div>\n    </Figure>\n    <div className=\"b-rail-card__body\">\n      <div className=\"b-rail-card__title\">Paid in shillings</div>\n      <p className=\"b-rail-card__text\">Mobile money or card, one balance.</p>\n    </div>\n  </article>\n</CardRail>"
-          }
+          },
+          "knobs": [
+            "--b-fade-from"
+          ]
         },
         {
           "id": "moving-media",
@@ -12226,7 +12243,10 @@
             ],
             "root": "Figure",
             "jsx": "<Figure style={{ maxWidth: \"30rem\" }}>\n  <div className=\"b-figure__frame\">\n    <video\n      src=\"../examples/assets/media/typing.mp4\"\n      autoplay\n      muted\n      loop\n      playsInline\n      preload=\"metadata\"\n      aria-label=\"Someone typing at a desk\"\n    ></video>\n  </div>\n  <figcaption className=\"b-figure__caption\">Ten seconds on loop, under a megabyte.</figcaption>\n</Figure>"
-          }
+          },
+          "knobs": [
+            "--b-fade-from"
+          ]
         },
         {
           "id": "promo-band",

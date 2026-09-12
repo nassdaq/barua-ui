@@ -213,6 +213,21 @@
   }
   .b-figure--bleed { margin-inline: calc(var(--b-space-6) * -1); }
   .b-figure--bleed .b-figure__frame { border-radius: 0; }
+  /* A picture that dissolves into the page instead of ending.
+
+     The product shot under a hero is not a photograph with a bottom edge; it
+     is a window into the thing, and a hard edge with a shadow under it asks
+     the reader to look at the frame rather than through it. The mask fades the
+     last stretch to nothing, so the screen appears to continue past the fold.
+     --b-fade-from is where the fade begins. The shadow and the bottom corners
+     go with it: both would draw the cut the mask is there to hide. */
+  .b-figure--fade .b-figure__frame {
+    -webkit-mask-image: linear-gradient(to bottom, #000 var(--b-fade-from, 55%), transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 var(--b-fade-from, 55%), transparent 100%);
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+    box-shadow: none;
+  }
 
   /* ---- Alternating rows: picture beside prose ------------------------------ */
   .b-feature-row {

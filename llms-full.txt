@@ -5635,7 +5635,7 @@ Classes: b-btn b-btn--lg b-btn--primary b-chapter b-chapter--tight b-chapter__ac
 ### Hero furniture  (https://ui.barua.tz/docs/marketing.html#hero-furniture)
 The three marks that sit around a headline on almost every product page: the news above it, the credibility under it, and the ground it all stands on. Each is small enough that every team rebuilds it slightly differently, which is exactly why they belong here.
 Variants: Announcement, Rating, Logo wall, Tile field
-Classes: b-announce b-announce__go b-chapter b-chapter--tight b-chapter__lede b-chapter__title b-icon b-logo-wall b-logo-wall__logo b-rating b-rating__stars b-tile-field
+Classes: b-announce b-announce__go b-chapter b-chapter--tight b-chapter__lede b-chapter__title b-has-tiles b-icon b-logo-wall b-logo-wall__logo b-rating b-rating__stars b-tile-field
 
 ```html
 <a class="b-announce" href="#announce">
@@ -5646,7 +5646,7 @@ Classes: b-announce b-announce__go b-chapter b-chapter--tight b-chapter__lede b-
 ```
 
 ### Figure  (https://ui.barua.tz/docs/marketing.html#figure)
-A picture is furniture, so it has a shape: .b-figure__frame clips it to the large radius, lifts it on the elevation scale, and fills any gap with a surface rather than white. .b-figure--bleed lets it run to the edges of the page, which is how a chapter ends when the image is the argument.
+A picture is furniture, so it has a shape: .b-figure__frame clips it to the large radius, lifts it on the elevation scale, and fills any gap with a surface rather than white. .b-figure--bleed lets it run to the edges of the page, which is how a chapter ends when the image is the argument. .b-figure--fade dissolves the bottom of the frame into the page instead of ending it, which is what a product shot under a hero wants: a window into the thing rather than a photograph with an edge. --b-fade-from is where the fade begins.
 Classes: b-figure b-figure__caption b-figure__frame
 
 ```html
