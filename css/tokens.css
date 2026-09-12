@@ -6,7 +6,13 @@
    ========================================================================== */
 
 @layer tokens {
-  :root {
+  /* The tokens are declared for the document and for any element that names a
+     theme. light-dark() resolves against the color-scheme of the element the
+     declaration sits on, so re-declaring them here is what lets a subtree be
+     light inside a dark page — a marketing page in a dark product, a preview
+     pane, a customer's site. Without it, data-theme on anything but the root
+     only changed color-scheme and the tokens stayed as the root resolved them. */
+  :root, [data-theme] {
     color-scheme: light dark;
 
     /* ------------------------------------------------------------------ *

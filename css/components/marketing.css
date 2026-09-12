@@ -13,6 +13,13 @@
     --b-chapter-gap: clamp(4.5rem, 9vw, 8.5rem);
     display: flex;
     flex-direction: column;
+    /* The wrapper paints the page. A marketing page is often a different
+       scheme from the product around it — light pages for a dark tool — and
+       with data-theme on this element the tokens resolve here, so the page
+       takes its own background rather than the application's. */
+    min-height: 100dvh;
+    background: var(--b-bg);
+    color: var(--b-text);
   }
 
   /* ---- Slim marketing bar: quieter than an app's chrome -------------------- */
