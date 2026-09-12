@@ -3421,7 +3421,7 @@
           "title": "Grid",
           "category": "layout",
           "url": "https://ui.barua.tz/docs/layout.html#grid",
-          "summary": ".b-grid is a 12-column grid by default \u2014 set --b-cols (or a .b-grid--2/3/4/6 preset) and place children with .b-col-span-* classes.",
+          "summary": ".b-grid is a 12-column grid by default: set --b-cols (or a .b-grid--2/3/4/6 preset) and place children with .b-col-span-* classes.",
           "classes": [
             "b-card__body",
             "b-col-span-4",

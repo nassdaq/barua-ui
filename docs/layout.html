@@ -230,9 +230,19 @@
       <section class="docs-section" id="grid">
         <h2>Grid</h2>
         <p>
-          <code>.b-grid</code> is a 12-column grid by default — set
+          <code>.b-grid</code> is a 12-column grid by default: set
           <code>--b-cols</code> (or a <code>.b-grid--2/3/4/6</code> preset)
           and place children with <code>.b-col-span-*</code> classes.
+        </p>
+        <p>
+          The presets are responsive, and the base 12 is not. A row of N equal
+          cards is a desktop shape: three pricing cards on a 390px phone came
+          out 110px wide with one word per line, so
+          <code>.b-grid--2/3/4/6</code> start at one column and earn more at
+          36rem and 62rem. The 12-column base is an explicit layout you placed
+          by hand, so it is left alone; anything that genuinely wants a fixed
+          count at every width sets <code>--b-cols</code> itself, which is what
+          the presets are written in terms of.
         </p>
         <div class="docs-demo">
           <div class="b-grid">

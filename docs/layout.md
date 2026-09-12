@@ -166,7 +166,7 @@ import { CardBody } from "barua-ui";
 
 ## Grid
 
-.b-grid is a 12-column grid by default — set --b-cols (or a .b-grid--2/3/4/6 preset) and place children with .b-col-span-* classes.
+.b-grid is a 12-column grid by default: set --b-cols (or a .b-grid--2/3/4/6 preset) and place children with .b-col-span-* classes.
 
 - Documentation: https://ui.barua.tz/docs/layout.html#grid
 - Classes: `b-card__body` `b-col-span-4` `b-col-span-6` `b-col-span-full` `b-grid` `b-grid--auto`

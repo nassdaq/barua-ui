@@ -108,10 +108,27 @@
     gap: var(--b-gap, var(--b-space-4));
     grid-template-columns: repeat(var(--b-cols, 12), minmax(0, 1fr));
   }
-  .b-grid--2  { --b-cols: 2; }
-  .b-grid--3  { --b-cols: 3; }
-  .b-grid--4  { --b-cols: 4; }
-  .b-grid--6  { --b-cols: 6; }
+  /* N equal cards side by side is a desktop shape, and these modifiers held N
+     at every width: three pricing cards on a 390px phone came out 110px wide
+     with one word per line, and every page in the system that used them looked
+     like that on the device most people arrive on. They start at one column
+     and earn more. Anything that genuinely wants a fixed count at every size
+     sets --b-cols itself, which is what these are written in terms of. */
+  .b-grid--2,
+  .b-grid--3,
+  .b-grid--4,
+  .b-grid--6  { --b-cols: 1; }
+  @media (min-width: 36rem) {
+    .b-grid--2 { --b-cols: 2; }
+    .b-grid--3 { --b-cols: 2; }
+    .b-grid--4 { --b-cols: 2; }
+    .b-grid--6 { --b-cols: 3; }
+  }
+  @media (min-width: 62rem) {
+    .b-grid--3 { --b-cols: 3; }
+    .b-grid--4 { --b-cols: 4; }
+    .b-grid--6 { --b-cols: 6; }
+  }
   .b-grid--auto {
     grid-template-columns: repeat(auto-fill, minmax(var(--b-col-min, 16rem), 1fr));
   }

@@ -60,9 +60,18 @@
   /* ---- Chapter: one idea, centred, with room around it --------------------- */
   .b-chapter {
     padding-block: var(--b-chapter-gap);
-    padding-inline: var(--b-space-6);
+    /* The page's margin, and now the only one: it is a sixth of a phone's width
+       at 390 and sixty pixels on a desktop, where before the chapter and the
+       container each took their own and the phone paid for both. */
+    padding-inline: clamp(var(--b-space-4), 4.5vw, var(--b-space-16));
     text-align: center;
   }
+  /* Padding stacks, and nobody notices on a desktop. A chapter pads, a
+     container inside it pads again, and a list row inside that pads a third
+     time: on a 390px phone that left 236px for the words, which is under thirty
+     characters a line. The chapter already holds the page's margins, so a
+     container inside one does not repeat them. */
+  .b-chapter > .b-container { padding-inline: 0; }
   .b-chapter--tight { padding-block: calc(var(--b-chapter-gap) * 0.55); }
   .b-chapter--start { text-align: start; }
   .b-chapter__eyebrow {
@@ -340,6 +349,18 @@
     height: var(--b-space-12);
     color: color-mix(in srgb, var(--b-color-accent) 55%, var(--b-text-tertiary));
   }
+  /* Stacked one per phone screen, a 16:9 plate is nearly two hundred pixels of
+     nothing but a glyph, three times over. It becomes a banner instead: the
+     type badge still reads, the card still has a face, and the section stops
+     costing half a screen per card. */
+  @media (max-width: 40rem) {
+    .b-resource-card__poster { aspect-ratio: 4 / 1; }
+    .b-resource-card__poster > svg,
+    .b-resource-card__poster > :not(img):not(.b-resource-card__type) svg {
+      width: var(--b-space-8);
+      height: var(--b-space-8);
+    }
+  }
   .b-resource-card__type {
     position: absolute;
     inset-block-start: var(--b-space-3);
@@ -433,6 +454,10 @@
      middle of a tall column and stops looking like the title of what is next
      to it. --top puts both columns on the same line. */
   .b-feature-row--top { align-items: start; }
+  /* Same argument one level down: a list that IS a column of the row has the
+     row's margins already, and indenting every row inside it pushes the text
+     off the page's grid for no gain. */
+  .b-feature-row > .b-list--plain > .b-list-item { padding-inline: 0; }
   .b-feature-row__title {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: var(--b-weight-semibold);

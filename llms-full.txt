@@ -824,7 +824,7 @@ Classes: b-badge b-badge--accent b-btn b-btn--sm b-btn--tinted b-card__body b-ga
 ```
 
 ### Grid  (https://ui.barua.tz/docs/layout.html#grid)
-.b-grid is a 12-column grid by default — set --b-cols (or a .b-grid--2/3/4/6 preset) and place children with .b-col-span-* classes.
+.b-grid is a 12-column grid by default: set --b-cols (or a .b-grid--2/3/4/6 preset) and place children with .b-col-span-* classes.
 Variants: Auto-fit
 Classes: b-card__body b-col-span-4 b-col-span-6 b-col-span-full b-grid b-grid--auto
 
