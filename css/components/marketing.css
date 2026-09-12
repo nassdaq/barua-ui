@@ -39,6 +39,20 @@
     border-block-end: 1px solid var(--b-hairline);
   }
   .b-marketing-nav__brand { font-weight: var(--b-weight-semibold); font-size: var(--b-text-subheadline); }
+  /* The confident bar. A 2.75rem strip of caption type is right above an
+     application, where the chrome should get out of the way; on a front page
+     it reads as a browser toolbar somebody forgot to style. --lg gives it the
+     height, the type size and the room that say this is the top of a company,
+     and the action on the right is a filled pill rather than a link. */
+  .b-marketing-nav--lg {
+    height: 4rem;
+    gap: var(--b-space-6);
+    padding-inline: clamp(var(--b-space-4), 3vw, var(--b-space-10));
+    font-size: var(--b-text-subheadline);
+  }
+  .b-marketing-nav--lg .b-marketing-nav__brand { font-size: var(--b-text-title3); }
+  .b-marketing-nav--lg .b-marketing-nav__links { gap: clamp(var(--b-space-4), 2.4vw, var(--b-space-8)); }
+  .b-marketing-nav--lg a { font-weight: var(--b-weight-medium); }
   .b-marketing-nav__links { display: flex; gap: var(--b-space-5); margin-inline: auto; }
   .b-marketing-nav a { color: var(--b-text-secondary); text-decoration: none; }
   .b-marketing-nav a:hover { color: var(--b-text); }
@@ -377,17 +391,186 @@
     .b-feature-row { grid-template-columns: 1fr 1fr; }
     .b-feature-row--flip > :first-child { order: 2; }
   }
+  /* Centred is right when the row is a picture beside prose, and wrong when it
+     is a headline beside a list of ten things: the headline drifts to the
+     middle of a tall column and stops looking like the title of what is next
+     to it. --top puts both columns on the same line. */
+  .b-feature-row--top { align-items: start; }
   .b-feature-row__title {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: var(--b-weight-semibold);
     line-height: var(--b-leading-tight);
     letter-spacing: var(--b-tracking-tight);
   }
+  /* A feature row's headline at section scale. The base size is a subhead for
+     a row of three; when the row IS the chapter, it carries the chapter's
+     weight. */
+  .b-feature-row__title--lg {
+    font-size: clamp(2.25rem, 4.6vw, 3.5rem);
+    font-weight: var(--b-weight-bold);
+    line-height: 1.06;
+  }
   .b-feature-row__body {
     margin-block-start: var(--b-space-3);
     color: var(--b-text-secondary);
     line-height: var(--b-leading-body);
   }
+
+  /* ---- The marketing page's louder half ------------------------------------
+     Everything above this line is the quiet version of a product page. What
+     follows is the confident one: type that is large enough to be read across
+     a room, a ground that changes between chapters so the page has floors, and
+     an accent used at full strength instead of apologetically. A landing page
+     is not an application, and the restraint that makes a toolbar good makes a
+     front page forgettable. */
+
+  /* Highlight marker.
+     The one word in a headline that carries the sentence, on a block of
+     accent. It sits behind the letters rather than around them: a box-shadow
+     spread gives the marker its bleed without the inline padding that would
+     break the line's rhythm, and box-decoration-break keeps it whole when the
+     phrase wraps to a second line. */
+  .b-mark {
+    color: var(--b-text);
+    /* --b-color-accent-soft is a component's fill and reads as almost nothing
+       at headline size; a marker has to be visible from across the room. */
+    --b-mark-ground: color-mix(in srgb, var(--b-color-accent) 24%, var(--b-bg));
+    background: var(--b-mark-ground);
+    box-shadow: 0.24em 0 0 var(--b-mark-ground), -0.24em 0 0 var(--b-mark-ground);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    border-radius: 0.08em;
+  }
+
+  /* A chapter on a tinted ground.
+     Alternating white and a wash of the accent is what gives a long page
+     floors you can feel without a single rule or border. The wash is mixed
+     from the accent so it follows a brand colour, and it is deliberately
+     weaker than --b-color-accent-soft, which is a component's fill, not a
+     room's paint. */
+  .b-chapter--tint { background: color-mix(in srgb, var(--b-color-accent) 7%, var(--b-bg)); }
+
+  /* Showcase: the product on a panel, not on the page.
+     A screenshot dropped on white reads as a document. Inside a large rounded
+     panel of colour it reads as a product, because the panel gives it an edge
+     and a shadow to sit against, and the page gets one block of brand at the
+     point a visitor is deciding whether to keep reading. */
+  .b-showcase {
+    position: relative;
+    display: grid;
+    gap: var(--b-space-6);
+    padding: clamp(var(--b-space-6), 4vw, var(--b-space-10));
+    background: linear-gradient(135deg,
+      var(--b-color-accent),
+      color-mix(in srgb, var(--b-color-accent) 78%, var(--b-color-indigo, #4f46e5)));
+    border-radius: clamp(var(--b-radius-lg), 2.5vw, 2rem);
+    overflow: hidden;
+  }
+  /* The faint diamonds that stop a large flat panel from looking like a
+     rectangle of paint. Two rotated gradients, nothing to load. */
+  .b-showcase::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background:
+      linear-gradient(135deg, transparent 38%, rgba(255, 255, 255, 0.07) 38% 62%, transparent 62%),
+      linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.05) 40% 60%, transparent 60%);
+    background-size: 46% 46%, 62% 62%;
+    pointer-events: none;
+  }
+  .b-showcase > * { position: relative; }
+  .b-showcase__shot {
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-shadow-lg);
+    overflow: hidden;
+  }
+  .b-showcase__shot img { display: block; width: 100%; }
+  @media (min-width: 900px) {
+    /* Wide, the panel becomes a stage: the product takes the room and the card
+       overlaps its right edge, which is the whole reason the panel is bigger
+       than the picture it holds. */
+    .b-showcase { grid-template-columns: minmax(0, 1.55fr) minmax(16rem, 0.85fr); align-items: center; }
+  }
+
+  /* The card that floats on the showcase: three numbers and what they mean. */
+  .b-stat-card {
+    padding: clamp(var(--b-space-5), 2.5vw, var(--b-space-8));
+    background: var(--b-surface);
+    border-radius: var(--b-radius-lg);
+    box-shadow: var(--b-shadow-lg);
+  }
+  .b-stat-card__title {
+    font-size: clamp(1.6rem, 2.6vw, 2.25rem);
+    font-weight: var(--b-weight-bold);
+    line-height: 1.1;
+    letter-spacing: var(--b-tracking-tight);
+  }
+  .b-stat-card__rows { display: flex; flex-direction: column; margin-block-start: var(--b-space-5); }
+  .b-stat-card__row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--b-space-4);
+    padding-block: var(--b-space-4);
+  }
+  .b-stat-card__row + .b-stat-card__row { border-block-start: 1px solid var(--b-separator); }
+  .b-stat-card__figure {
+    display: block;
+    font-size: var(--b-text-title2);
+    font-weight: var(--b-weight-bold);
+    letter-spacing: var(--b-tracking-tight);
+    line-height: 1.1;
+  }
+  .b-stat-card__label { display: block; font-size: var(--b-text-footnote); color: var(--b-text-secondary); }
+
+  /* Logos on cards.
+     A bare row of wordmarks reads as text. On individual white plates they
+     read as the companies they stand for, which is the whole point of showing
+     them. Same wall, one modifier. */
+  .b-logo-wall--cards { gap: var(--b-space-4); }
+  .b-logo-wall--cards .b-logo-wall__logo {
+    height: auto;
+    padding: var(--b-space-4) var(--b-space-6);
+    font-size: var(--b-text-callout);
+    color: var(--b-text);
+    background: var(--b-surface);
+    border-radius: var(--b-radius-md);
+    box-shadow: var(--b-shadow-sm);
+    opacity: 1;
+  }
+
+  /* An accordion with no box around it.
+     The card version belongs in an application, where a group needs an edge to
+     separate it from the rest of the screen. On a marketing page the questions
+     are the only thing in their column, so the chrome is noise: hairlines
+     between rows, a circled mark on the right, and the open row lifted onto a
+     quiet fill so you can see where you are. */
+  .b-accordion--plain { background: none; border: 0; border-radius: 0; overflow: visible; }
+  .b-accordion--plain > .b-disclosure { border-block-end: 1px solid var(--b-separator); }
+  .b-accordion--plain > .b-disclosure + .b-disclosure { border-top: 0; }
+  .b-accordion--plain > .b-disclosure > summary {
+    padding-inline: 0;
+    padding-block: var(--b-space-5);
+    font-size: var(--b-text-callout);
+    font-weight: var(--b-weight-semibold);
+    align-items: flex-start;
+  }
+  .b-accordion--plain > .b-disclosure > summary:hover { background: none; color: var(--b-color-accent-text); }
+  .b-accordion--plain > .b-disclosure > summary::after {
+    content: "+";
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: var(--b-text-callout);
+    font-weight: var(--b-weight-medium);
+    color: var(--b-color-accent-text);
+    border: 1px solid color-mix(in srgb, var(--b-color-accent) 40%, transparent);
+    border-radius: var(--b-radius-full);
+    rotate: none;
+  }
+  .b-accordion--plain > .b-disclosure[open] > summary::after { content: "\2212"; }
+  .b-accordion--plain > .b-disclosure > :not(summary) { padding-inline: 0; padding-block-end: var(--b-space-5); }
 
   /* ---- Bento: tiles of unequal weight, one grid ---------------------------- */
   .b-bento {

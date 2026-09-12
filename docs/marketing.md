@@ -288,6 +288,17 @@ import { CountUp, SpecStrip } from "barua-ui";
 </SpecStrip>
 ```
 
+## The louder half
+
+Everything above is the quiet version of a product page, and the restraint that makes a toolbar good makes a front page forgettable. A landing page is not an application: the type has to be readable from across a room, the ground has to change between chapters so the page has floors, and the accent has to be used at full strength rather than apologetically. These are the pieces that do that.
+
+- Documentation: https://ui.barua.tz/docs/marketing.html#louder
+- Classes: `b-accordion` `b-accordion--plain` `b-btn` `b-btn--block` `b-btn--ghost` `b-btn--lg` `b-btn--pill` `b-btn--primary` `b-btn--sm` `b-card` `b-card--flush` `b-card__body` `b-chapter__title` `b-disclosure` `b-disclosure__body` `b-icon-tile` `b-icon-tile--sm` `b-list` `b-list--inset-divider` `b-list--plain` `b-list-item` `b-list-item__content` `b-list-item__subtitle` `b-list-item__title` `b-list-item__trailing` `b-logo-wall` `b-logo-wall--cards` `b-logo-wall__logo` `b-mark` `b-marketing-nav` `b-marketing-nav--lg` `b-marketing-nav__brand` `b-marketing-nav__links` `b-showcase` `b-showcase__shot` `b-spacer` `b-stat-card` `b-stat-card__figure` `b-stat-card__label` `b-stat-card__row` `b-stat-card__rows` `b-stat-card__title`
+
+```html
+<h2 class="b-chapter__title">Email at <span class="b-mark">your own name</span></h2>
+```
+
 ## Dark chapter
 
 Product pages alternate light and dark full-bleed sections so the page has chapters you can feel while scrolling. .b-chapter--dark flips color-scheme rather than hardcoding colours, so every token inside resolves for the dark ground and any component dropped in keeps working. It is one of the three selectors the token block is declared on, alongside :root and [data-theme] — a chapter that inverts is a themed subtree, and flipping the scheme without re-declaring the tokens leaves them resolved against the page around it, which reads as a dark band that came out light.

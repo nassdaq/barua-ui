@@ -397,7 +397,10 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: var(--b-img-placeholder) center / cover no-repeat;
+    /* The knob is set per instance; without a fallback an unset --b-img-placeholder
+       makes the whole shorthand invalid and the layer disappears rather than
+       degrading to a plain tint. */
+    background: var(--b-img-placeholder, linear-gradient(var(--b-fill-tertiary), var(--b-fill-tertiary))) center / cover no-repeat;
     /* Scaled up because a blur samples past the edges and would otherwise
        leave a soft border all the way round. */
     filter: blur(14px);

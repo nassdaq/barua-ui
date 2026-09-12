@@ -439,6 +439,151 @@
         </div>
       </section>
 
+      <section class="docs-section" id="louder">
+        <h2>The louder half</h2>
+        <p>
+          Everything above is the quiet version of a product page, and the
+          restraint that makes a toolbar good makes a front page forgettable. A
+          landing page is not an application: the type has to be readable from
+          across a room, the ground has to change between chapters so the page
+          has floors, and the accent has to be used at full strength rather
+          than apologetically. These are the pieces that do that.
+        </p>
+
+        <h3 id="mark">Highlight marker</h3>
+        <p>
+          The one phrase in a headline that carries the sentence, on a block of
+          accent. <code>.b-mark</code> sits behind the letters rather than
+          around them: the bleed comes from a box-shadow spread instead of
+          inline padding, which would break the line's rhythm, and
+          <code>box-decoration-break</code> keeps it whole when the phrase
+          wraps. Set <code>--b-mark-ground</code> for a different colour.
+        </p>
+        <div class="docs-demo">
+          <h2 class="b-chapter__title">Email at <span class="b-mark">your own name</span></h2>
+        </div>
+
+        <h3 id="chapter-tint">Tinted chapter</h3>
+        <p>
+          <code>.b-chapter--tint</code> puts a chapter on a wash of the accent.
+          Alternating it with the plain ground is what gives a long page floors
+          you can feel without a single rule or border, and because the wash is
+          mixed from the accent it follows a brand colour. It is deliberately
+          weaker than <code>--b-color-accent-soft</code>, which is a
+          component's fill, not a room's paint.
+        </p>
+
+        <h3 id="nav-lg">The confident bar</h3>
+        <p>
+          <code>.b-marketing-nav--lg</code> is the same bar at the height, type
+          size and spacing a front page needs, with the action on the right as
+          a filled pill rather than a link. The base
+          <code>.b-marketing-nav</code> is right above an application, where
+          the chrome should get out of the way; on a front page it reads as a
+          browser toolbar somebody forgot to style.
+        </p>
+        <div class="docs-demo">
+          <header class="b-marketing-nav b-marketing-nav--lg" style="position: static">
+            <span class="b-marketing-nav__brand">Barua</span>
+            <nav class="b-marketing-nav__links"><a href="#nav-lg">Features</a><a href="#nav-lg">Pricing</a><a href="#nav-lg">Docs</a></nav>
+            <span class="b-spacer"></span>
+            <a class="b-btn b-btn--ghost b-btn--sm" href="#nav-lg">Sign in</a>
+            <a class="b-btn b-btn--primary b-btn--pill" href="#nav-lg">Start free</a>
+          </header>
+        </div>
+
+        <h3 id="showcase">Showcase</h3>
+        <p>
+          A screenshot dropped on white reads as a document. Inside
+          <code>.b-showcase</code>, a large rounded panel of colour, it reads as
+          a product: the panel gives it an edge and a shadow to sit against, and
+          the page gets one block of brand at the point a visitor is deciding
+          whether to keep reading. Put the picture in
+          <code>.b-showcase__shot</code>. Wide, the panel becomes a stage and a
+          second child, usually a <code>.b-stat-card</code>, takes the column
+          beside it, which is the whole reason the panel is bigger than the
+          picture it holds.
+        </p>
+        <div class="docs-demo">
+          <div class="b-showcase">
+            <div class="b-showcase__shot">
+              <div class="b-card b-card--flush">
+                <div class="b-card__body">
+                  <ul class="b-list b-list--plain b-list--inset-divider">
+                    <li class="b-list-item"><span class="b-list-item__content"><span class="b-list-item__title">Amina Mushi</span><span class="b-list-item__subtitle">Container quote, Dar to Mwanza</span></span><span class="b-list-item__trailing">09:41</span></li>
+                    <li class="b-list-item"><span class="b-list-item__content"><span class="b-list-item__title">Baraka Chacha</span><span class="b-list-item__subtitle">Kariakoo stall photos</span></span><span class="b-list-item__trailing">09:12</span></li>
+                    <li class="b-list-item"><span class="b-list-item__content"><span class="b-list-item__title">Neema Kileo</span><span class="b-list-item__subtitle">Invoice 1042, paid</span></span><span class="b-list-item__trailing">Thu</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <aside class="b-stat-card">
+              <p class="b-stat-card__title">One month free</p>
+              <div class="b-stat-card__rows">
+                <div class="b-stat-card__row">
+                  <span class="b-icon-tile b-icon-tile--sm"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+                  <span><span class="b-stat-card__figure">Your domain</span><span class="b-stat-card__label">We register it, and it stays yours</span></span>
+                </div>
+                <div class="b-stat-card__row">
+                  <span class="b-icon-tile b-icon-tile--sm"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+                  <span><span class="b-stat-card__figure">TSh 3,000</span><span class="b-stat-card__label">Per mailbox, per month, after that</span></span>
+                </div>
+              </div>
+              <a class="b-btn b-btn--primary b-btn--lg b-btn--pill b-btn--block" href="#showcase">Start your free month</a>
+            </aside>
+          </div>
+        </div>
+
+        <h3 id="logo-wall-cards">Logos on cards</h3>
+        <p>
+          A bare row of wordmarks reads as text.
+          <code>.b-logo-wall--cards</code> puts each one on its own white
+          plate, where they read as the companies they stand for, which is the
+          whole point of showing them. Same wall, one modifier, and it works
+          inside <code>.b-marquee</code>.
+        </p>
+        <div class="docs-demo">
+          <div class="b-logo-wall b-logo-wall--cards">
+            <span class="b-logo-wall__logo">Gmail</span><span class="b-logo-wall__logo">iPhone &amp; Mac</span><span class="b-logo-wall__logo">Outlook</span><span class="b-logo-wall__logo">Thunderbird</span>
+          </div>
+        </div>
+
+        <h3 id="accordion-plain">Accordion without the box</h3>
+        <p>
+          <code>.b-accordion--plain</code> drops the card around a group of
+          questions. The boxed version belongs in an application, where a group
+          needs an edge to separate it from the rest of the screen; on a
+          marketing page the questions are the only thing in their column, so
+          the chrome is noise. Hairlines between rows, a circled mark on the
+          right that becomes a minus when open.
+        </p>
+        <div class="docs-demo">
+          <div class="b-accordion b-accordion--plain">
+            <details class="b-disclosure" open>
+              <summary>What does the free month include?</summary>
+              <div class="b-disclosure__body">A month of the plan you pick, on your own domain, with your real mailboxes and your real mail.</div>
+            </details>
+            <details class="b-disclosure">
+              <summary>I do not have a domain yet.</summary>
+              <div class="b-disclosure__body">Then we register one for you, and it stays your property.</div>
+            </details>
+          </div>
+        </div>
+
+        <h3 id="feature-row-top">Headline beside the substance</h3>
+        <p>
+          A page reads as a sequence of arguments rather than a stack of
+          announcements when each chapter puts its headline on the left and the
+          substance next to it. <code>.b-feature-row--top</code> aligns the two
+          columns to the same line, which centring does not: centred is right
+          when the row is a picture beside prose, and wrong when it is a
+          headline beside a list of ten things, where the headline drifts to
+          the middle of a tall column and stops looking like the title of what
+          is next to it. <code>.b-feature-row__title--lg</code> gives that
+          headline the chapter's weight.
+        </p>
+      </section>
+
       <section class="docs-section" id="dark-chapter">
         <h2>Dark chapter</h2>
         <p>

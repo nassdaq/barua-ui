@@ -151,13 +151,43 @@ def check(path: pathlib.Path, known: set[str], knobs: set[str]) -> list[str]:
     return problems
 
 
+def dead_tokens() -> list[str]:
+    """
+    A var() with no fallback that names a property nothing declares.
+
+    CSS does not fail loudly here: the substitution makes the declaration
+    invalid at computed-value time and the browser drops the whole thing, so a
+    padding silently becomes zero and the only evidence is a screenshot that
+    looks slightly wrong. `clamp(var(--b-space-5), 2.5vw, var(--b-space-7))`
+    cost a live page its card padding, because the scale has no 7.
+
+    A var() WITH a fallback is fine and is how a component knob is meant to be
+    written, so only the bare form is reported.
+    """
+    declared: set[str] = set()
+    for path in css_files():
+        declared |= set(re.findall(r"(--b-[a-z0-9-]+)\s*:", path.read_text()))
+
+    problems: list[str] = []
+    for path in css_files():
+        for number, line in enumerate(path.read_text().splitlines(), 1):
+            for match in re.finditer(r"var\(\s*(--b-[a-z0-9-]+)\s*\)", line):
+                name = match.group(1)
+                if name not in declared:
+                    problems.append(
+                        f"{path}:{number}: var({name}) has no fallback and nothing "
+                        f"declares it, so this declaration is dropped"
+                    )
+    return problems
+
+
 def main() -> None:
     targets = [pathlib.Path(a) for a in sys.argv[1:]]
     if not targets:
         sys.exit(__doc__)
     known = known_classes()
     knobs = system_knobs()
-    problems: list[str] = []
+    problems: list[str] = dead_tokens()
     for path in targets:
         if path.is_dir():
             for child in sorted(path.rglob("*")):
