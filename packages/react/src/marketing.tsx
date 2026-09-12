@@ -158,3 +158,23 @@ export const RatingStars = block("span", "b-rating__stars", "RatingStars");
 
 export const LogoWall = block("div", "b-logo-wall", "LogoWall");
 export const LogoWallLogo = block("span", "b-logo-wall__logo", "LogoWallLogo");
+
+/* ---- Proof and pointers -------------------------------------------------- */
+
+/** A row that keeps moving. The track must hold the list twice; it travels half its width. */
+export const Marquee = block("div", "b-marquee", "Marquee");
+export const MarqueeTrack = block("div", "b-marquee__track", "MarqueeTrack");
+
+export const QuoteCard = block("article", "b-quote-card", "QuoteCard");
+export const QuoteCardHead = block("div", "b-quote-card__head", "QuoteCardHead");
+export const QuoteCardStat = block("p", "b-quote-card__stat", "QuoteCardStat");
+export const QuoteCardStatLabel = block("p", "b-quote-card__stat-label", "QuoteCardStatLabel");
+export const QuoteCardQuote = block("blockquote", "b-quote-card__quote", "QuoteCardQuote");
+export const QuoteCardName = block("p", "b-quote-card__name", "QuoteCardName");
+export const QuoteCardRole = block("p", "b-quote-card__role", "QuoteCardRole");
+
+export const ResourceCard = block("a", "b-resource-card", "ResourceCard");
+export const ResourceCardPoster = block("div", "b-resource-card__poster", "ResourceCardPoster");
+export const ResourceCardBody = block("div", "b-resource-card__body", "ResourceCardBody");
+export const ResourceCardTitle = block("p", "b-resource-card__title", "ResourceCardTitle");
+export const ResourceCardExcerpt = block("p", "b-resource-card__excerpt", "ResourceCardExcerpt");

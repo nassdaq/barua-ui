@@ -93,6 +93,49 @@ import { Announce, AnnounceGo, Icon } from "barua-ui";
 </Announce>
 ```
 
+## Proof and pointers
+
+Three shapes a product page reaches for once it has something to show: a row of names too long to stand still, a case study, and a card that sends somebody off to read.
+
+- Documentation: https://ui.barua.tz/docs/marketing.html#proof
+- Classes: `b-badge` `b-btn` `b-btn--glass` `b-btn--pill` `b-grid` `b-grid--3` `b-logo-wall__logo` `b-marquee` `b-marquee__track` `b-quote-card` `b-quote-card__head` `b-quote-card__name` `b-quote-card__quote` `b-quote-card__role` `b-quote-card__stat` `b-quote-card__stat-label` `b-resource-card` `b-resource-card__body` `b-resource-card__excerpt` `b-resource-card__poster` `b-resource-card__title` `b-resource-card__type`
+
+```html
+<div class="b-marquee" aria-label="Partners">
+  <div class="b-marquee__track">
+    <span class="b-logo-wall__logo">Vodacom</span>
+    <span class="b-logo-wall__logo">CRDB</span>
+    <span class="b-logo-wall__logo">Serengeti</span>
+    <span class="b-logo-wall__logo">Azam</span>
+    <span class="b-logo-wall__logo">Precision Air</span>
+    <span class="b-logo-wall__logo" aria-hidden="true">Vodacom</span>
+    <span class="b-logo-wall__logo" aria-hidden="true">CRDB</span>
+    <span class="b-logo-wall__logo" aria-hidden="true">Serengeti</span>
+    <span class="b-logo-wall__logo" aria-hidden="true">Azam</span>
+    <span class="b-logo-wall__logo" aria-hidden="true">Precision Air</span>
+  </div>
+</div>
+```
+
+```tsx
+import { LogoWallLogo } from "barua-ui";
+
+<div className="b-marquee" aria-label="Partners">
+  <div className="b-marquee__track">
+    <LogoWallLogo>Vodacom</LogoWallLogo>
+    <LogoWallLogo>CRDB</LogoWallLogo>
+    <LogoWallLogo>Serengeti</LogoWallLogo>
+    <LogoWallLogo>Azam</LogoWallLogo>
+    <LogoWallLogo>Precision Air</LogoWallLogo>
+    <LogoWallLogo aria-hidden="true">Vodacom</LogoWallLogo>
+    <LogoWallLogo aria-hidden="true">CRDB</LogoWallLogo>
+    <LogoWallLogo aria-hidden="true">Serengeti</LogoWallLogo>
+    <LogoWallLogo aria-hidden="true">Azam</LogoWallLogo>
+    <LogoWallLogo aria-hidden="true">Precision Air</LogoWallLogo>
+  </div>
+</div>
+```
+
 ## Figure
 
 A picture is furniture, so it has a shape: .b-figure__frame clips it to the large radius, lifts it on the elevation scale, and fills any gap with a surface rather than white. .b-figure--bleed lets it run to the edges of the page, which is how a chapter ends when the image is the argument. .b-figure--fade dissolves the bottom of the frame into the page instead of ending it, which is what a product shot under a hero wants: a window into the thing rather than a photograph with an edge. --b-fade-from is where the fade begins.

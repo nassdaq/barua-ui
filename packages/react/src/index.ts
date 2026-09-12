@@ -80,6 +80,9 @@ export {
   Landing, Chapter, Hero, Figure, FeatureRow, PromoBand, SpecStrip, CardRail,
   SiteFooter, SiteFooterGroups, SiteFooterGroup, SiteFooterHeading, SiteFooterLegal,
   TileField, Announce, AnnounceGo, Rating, RatingStars, LogoWall, LogoWallLogo,
+  Marquee, MarqueeTrack,
+  QuoteCard, QuoteCardHead, QuoteCardStat, QuoteCardStatLabel, QuoteCardQuote, QuoteCardName, QuoteCardRole,
+  ResourceCard, ResourceCardPoster, ResourceCardBody, ResourceCardTitle, ResourceCardExcerpt,
 } from "./marketing";
 export type { ChapterProps, HeroProps, FigureProps, FeatureRowProps, PromoBandProps } from "./marketing";
 

@@ -249,6 +249,108 @@
         </div>
       </section>
 
+      <section class="docs-section" id="proof">
+        <h2>Proof and pointers</h2>
+        <p>
+          Three shapes a product page reaches for once it has something to show:
+          a row of names too long to stand still, a case study, and a card that
+          sends somebody off to read.
+        </p>
+
+        <h3 id="marquee">Marquee</h3>
+        <p>
+          For a line of marks that will not fit standing still. The track holds
+          the list <strong>twice</strong> and travels exactly half its width,
+          which is what makes the loop seamless; with one copy it visibly snaps.
+          It pauses under the pointer so a name can be read, and for anyone who
+          asked for less motion it stops and becomes an ordinary scrolling row.
+          <code>--b-marquee-time</code> is the pace.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-marquee" aria-label="Partners">
+            <div class="b-marquee__track">
+              <span class="b-logo-wall__logo">Vodacom</span>
+              <span class="b-logo-wall__logo">CRDB</span>
+              <span class="b-logo-wall__logo">Serengeti</span>
+              <span class="b-logo-wall__logo">Azam</span>
+              <span class="b-logo-wall__logo">Precision Air</span>
+              <span class="b-logo-wall__logo" aria-hidden="true">Vodacom</span>
+              <span class="b-logo-wall__logo" aria-hidden="true">CRDB</span>
+              <span class="b-logo-wall__logo" aria-hidden="true">Serengeti</span>
+              <span class="b-logo-wall__logo" aria-hidden="true">Azam</span>
+              <span class="b-logo-wall__logo" aria-hidden="true">Precision Air</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="quote-card">Quote card</h3>
+        <p>
+          The shape a case study takes. The figure leads because it is what gets
+          remembered, the sentence earns it, and the name is what makes either
+          believable. It sits on the accent, because this is the one card on a
+          page meant to interrupt.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <article class="b-quote-card">
+            <div class="b-quote-card__head">
+              <div>
+                <p class="b-quote-card__stat">41&times;</p>
+                <p class="b-quote-card__stat-label">return on spend, first quarter</p>
+              </div>
+              <a class="b-btn b-btn--glass b-btn--pill" href="#quote-card">Read the case study</a>
+            </div>
+            <blockquote class="b-quote-card__quote">
+              The level of performance in such a short time was impressive. Implementation was
+              fast, and support has been good throughout.
+            </blockquote>
+            <div>
+              <p class="b-quote-card__name">Amina Mushi</p>
+              <p class="b-quote-card__role">Head of Marketing, Galacha</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 id="resource-card">Resource card</h3>
+        <p>
+          A picture, what kind of thing it is, and enough of the first line to
+          decide. The whole card is the link, and the plate stands in when there
+          is no picture, so a row of three never has a hole in it.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-grid b-grid--3">
+            <a class="b-resource-card" href="#resource-card">
+              <div class="b-resource-card__poster">
+                <span class="b-badge b-resource-card__type">Blog</span>
+                <img src="img/posters/night-coast.jpg" alt="">
+              </div>
+              <div class="b-resource-card__body">
+                <p class="b-resource-card__title">What a composition engine is</p>
+                <p class="b-resource-card__excerpt">How the pieces fit, and why it matters on a slow connection.</p>
+              </div>
+            </a>
+            <a class="b-resource-card" href="#resource-card">
+              <div class="b-resource-card__poster">
+                <span class="b-badge b-resource-card__type">Docs</span>
+                <img src="img/posters/dune-light.jpg" alt="">
+              </div>
+              <div class="b-resource-card__body">
+                <p class="b-resource-card__title">Getting started</p>
+                <p class="b-resource-card__excerpt">Install, the tokens, and your first screen.</p>
+              </div>
+            </a>
+            <a class="b-resource-card" href="#resource-card">
+              <div class="b-resource-card__poster">
+                <span class="b-badge b-resource-card__type">Case study</span>
+              </div>
+              <div class="b-resource-card__body">
+                <p class="b-resource-card__title">A card with no picture</p>
+                <p class="b-resource-card__excerpt">The plate takes the accent, so the row keeps its rhythm.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section class="docs-section" id="figure">
         <h2>Figure</h2>
         <p>

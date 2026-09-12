@@ -166,6 +166,118 @@
   .b-rating__stars .b-icon { width: 0.95rem; height: 0.95rem; fill: currentColor; }
   .b-rating__stars .is-empty { color: var(--b-fill); }
 
+  /* ---- Marquee: a row that keeps moving ------------------------------------
+     For a line of marks too long to stand still: logos, integrations, the
+     names a product works with. The track holds the list TWICE and travels
+     exactly half its width, which is what makes the loop seamless; with one
+     copy it visibly snaps. It pauses under the pointer so a name can be read,
+     and it stops entirely for anyone who asked for less motion, where it
+     becomes an ordinary scrolling row instead. --b-marquee-time is the pace. */
+  .b-marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .b-marquee__track {
+    display: flex;
+    align-items: center;
+    gap: clamp(var(--b-space-6), 5vw, var(--b-space-12));
+    width: max-content;
+    animation: b-marquee var(--b-marquee-time, 40s) linear infinite;
+  }
+  .b-marquee:hover .b-marquee__track { animation-play-state: paused; }
+  @keyframes b-marquee { to { translate: -50% 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .b-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    .b-marquee__track { animation: none; }
+  }
+
+  /* ---- Quote card: a number, a sentence, and who said it -------------------
+     The shape a case study takes on a product page. The figure leads because
+     it is what gets remembered, the sentence earns it, and the name is what
+     makes either believable. On the accent by default, because this is the
+     one card on the page that is meant to interrupt. */
+  .b-quote-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-6);
+    padding: clamp(var(--b-space-6), 4vw, var(--b-space-10));
+    color: var(--b-color-on-accent);
+    background: var(--b-color-accent);
+    border-radius: var(--b-radius-2xl);
+    color-scheme: dark;
+  }
+  .b-quote-card__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--b-space-4);
+  }
+  .b-quote-card__stat {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: var(--b-weight-bold);
+    letter-spacing: var(--b-tracking-tight);
+    line-height: 1;
+  }
+  .b-quote-card__stat-label { font-size: var(--b-text-footnote); opacity: 0.75; }
+  .b-quote-card__quote {
+    /* The base layer gives every blockquote a quieter ink and a rule, which is
+       right in prose and wrong here: on the accent it renders as dark text on
+       a saturated field. The card owns its own colour, so the quote takes it. */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: var(--b-leading-snug);
+    text-wrap: pretty;
+  }
+  .b-quote-card__name { font-weight: var(--b-weight-semibold); }
+  .b-quote-card__role { font-size: var(--b-text-footnote); opacity: 0.75; }
+
+  /* ---- Resource card: something to go and read ----------------------------
+     A picture, what kind of thing it is, and enough of the first line to
+     decide. The whole card is the link, and the plate stands in when there is
+     no picture, so a row of three never has a hole in it. */
+  .b-resource-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    background: var(--b-surface);
+    border: 1px solid var(--b-separator);
+    border-radius: var(--b-radius-xl);
+    transition: translate var(--b-duration-normal) var(--b-ease-out), box-shadow var(--b-duration-normal);
+  }
+  .b-resource-card:hover { text-decoration: none; }
+  @media (hover: hover) {
+    .b-resource-card:hover { translate: 0 -2px; box-shadow: var(--b-elevation-3); }
+  }
+  .b-resource-card__poster {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--b-color-accent) 14%, var(--b-fill-tertiary));
+  }
+  .b-resource-card__poster :is(img, svg) { width: 100%; height: 100%; object-fit: cover; }
+  .b-resource-card__type {
+    position: absolute;
+    inset-block-start: var(--b-space-3);
+    inset-inline-start: var(--b-space-3);
+  }
+  .b-resource-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--b-space-2);
+    padding: var(--b-space-4);
+  }
+  .b-resource-card__title { font-weight: var(--b-weight-semibold); line-height: var(--b-leading-snug); }
+  .b-resource-card__excerpt { font-size: var(--b-text-footnote); color: var(--b-text-secondary); }
+
   /* ---- Logo wall: the companies already here ------------------------------- */
   /* A quiet row, evenly spaced, every mark the same height whatever its
      proportions — which is the only way a wall of logos looks deliberate

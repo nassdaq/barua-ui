@@ -45,7 +45,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 874,
+  "classCount": 889,
   "classes": [
     "b-absolute",
     "b-accordion",
@@ -542,6 +542,8 @@
     "b-marketing-nav",
     "b-marketing-nav__brand",
     "b-marketing-nav__links",
+    "b-marquee",
+    "b-marquee__track",
     "b-masonry",
     "b-master-detail",
     "b-master-detail__detail",
@@ -671,6 +673,13 @@
     "b-ptr",
     "b-ptr__arrow",
     "b-quote",
+    "b-quote-card",
+    "b-quote-card__head",
+    "b-quote-card__name",
+    "b-quote-card__quote",
+    "b-quote-card__role",
+    "b-quote-card__stat",
+    "b-quote-card__stat-label",
     "b-radar-svg",
     "b-radio",
     "b-radius-full",
@@ -693,6 +702,12 @@
     "b-resizable",
     "b-resizable--vertical",
     "b-resize-handle",
+    "b-resource-card",
+    "b-resource-card__body",
+    "b-resource-card__excerpt",
+    "b-resource-card__poster",
+    "b-resource-card__title",
+    "b-resource-card__type",
     "b-result",
     "b-result--confirm",
     "b-result--error",
@@ -1357,6 +1372,8 @@
     "b-marketing-nav",
     "b-marketing-nav__brand",
     "b-marketing-nav__links",
+    "b-marquee",
+    "b-marquee__track",
     "b-masonry",
     "b-master-detail",
     "b-master-detail__detail",
@@ -1462,6 +1479,13 @@
     "b-props__row",
     "b-ptr",
     "b-quote",
+    "b-quote-card",
+    "b-quote-card__head",
+    "b-quote-card__name",
+    "b-quote-card__quote",
+    "b-quote-card__role",
+    "b-quote-card__stat",
+    "b-quote-card__stat-label",
     "b-radar-svg",
     "b-radio",
     "b-radius-lg",
@@ -1479,6 +1503,12 @@
     "b-resizable",
     "b-resizable--vertical",
     "b-resize-handle",
+    "b-resource-card",
+    "b-resource-card__body",
+    "b-resource-card__excerpt",
+    "b-resource-card__poster",
+    "b-resource-card__title",
+    "b-resource-card__type",
     "b-result",
     "b-result--confirm",
     "b-result--error",
@@ -1722,6 +1752,7 @@
     "--b-liquid-bar-w",
     "--b-liquid-color",
     "--b-logo-h",
+    "--b-marquee-time",
     "--b-masonry-cols",
     "--b-pie",
     "--b-pie-size",
@@ -12039,6 +12070,76 @@
           ],
           "states": [
             "is-empty"
+          ]
+        },
+        {
+          "id": "proof",
+          "title": "Proof and pointers",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#proof",
+          "summary": "Three shapes a product page reaches for once it has something to show: a row of names too long to stand still, a case study, and a card that sends somebody off to read.",
+          "classes": [
+            "b-badge",
+            "b-btn",
+            "b-btn--glass",
+            "b-btn--pill",
+            "b-grid",
+            "b-grid--3",
+            "b-logo-wall__logo",
+            "b-marquee",
+            "b-marquee__track",
+            "b-quote-card",
+            "b-quote-card__head",
+            "b-quote-card__name",
+            "b-quote-card__quote",
+            "b-quote-card__role",
+            "b-quote-card__stat",
+            "b-quote-card__stat-label",
+            "b-resource-card",
+            "b-resource-card__body",
+            "b-resource-card__excerpt",
+            "b-resource-card__poster",
+            "b-resource-card__title",
+            "b-resource-card__type"
+          ],
+          "markup": "<div class=\"b-marquee\" aria-label=\"Partners\">\n  <div class=\"b-marquee__track\">\n    <span class=\"b-logo-wall__logo\">Vodacom</span>\n    <span class=\"b-logo-wall__logo\">CRDB</span>\n    <span class=\"b-logo-wall__logo\">Serengeti</span>\n    <span class=\"b-logo-wall__logo\">Azam</span>\n    <span class=\"b-logo-wall__logo\">Precision Air</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Vodacom</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">CRDB</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Serengeti</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Azam</span>\n    <span class=\"b-logo-wall__logo\" aria-hidden=\"true\">Precision Air</span>\n  </div>\n</div>",
+          "react": {
+            "import": "import { LogoWallLogo } from \"barua-ui\";",
+            "components": [
+              "LogoWallLogo"
+            ],
+            "root": "LogoWallLogo",
+            "jsx": "<div className=\"b-marquee\" aria-label=\"Partners\">\n  <div className=\"b-marquee__track\">\n    <LogoWallLogo>Vodacom</LogoWallLogo>\n    <LogoWallLogo>CRDB</LogoWallLogo>\n    <LogoWallLogo>Serengeti</LogoWallLogo>\n    <LogoWallLogo>Azam</LogoWallLogo>\n    <LogoWallLogo>Precision Air</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Vodacom</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">CRDB</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Serengeti</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Azam</LogoWallLogo>\n    <LogoWallLogo aria-hidden=\"true\">Precision Air</LogoWallLogo>\n  </div>\n</div>"
+          },
+          "variants": [
+            {
+              "id": "marquee",
+              "title": "Marquee"
+            },
+            {
+              "id": "quote-card",
+              "title": "Quote card"
+            },
+            {
+              "id": "resource-card",
+              "title": "Resource card"
+            }
+          ],
+          "knobs": [
+            "--b-col-min",
+            "--b-cols",
+            "--b-gap",
+            "--b-lg-border",
+            "--b-lg-inset",
+            "--b-lg-pane",
+            "--b-lg-pane-strong",
+            "--b-logo-h",
+            "--b-marquee-time"
+          ],
+          "states": [
+            "is-active",
+            "is-loading",
+            "is-pressed"
           ]
         },
         {
