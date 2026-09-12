@@ -82,6 +82,114 @@
   .b-hero__title { font-size: clamp(2.5rem, 7vw, 4.75rem); }
   .b-hero__media { margin-block-start: clamp(2.5rem, 5vw, 4rem); }
 
+  /* The tile field a hero stands on.
+
+     A flat page makes a centred headline look like it is floating in milk.
+     This is the quietest possible ground: three checkerboards at different
+     scales, each barely there, masked so the pattern dissolves before it
+     reaches the text. It is drawn entirely from gradients — no image, no
+     element per square — so it costs nothing and re-tints with the theme.
+     --b-tile is the cell; --b-tile-ink is how loud the squares are. */
+  /* The tile field is absolute, so whatever holds it has to be positioned and
+     has to clip. Saying it here means no page has to remember. */
+  .b-has-tiles { position: relative; overflow: hidden; }
+  .b-tile-field {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    --b-tile: 5.5rem;
+    /* The field paints its own ground, a shade off the page, and the squares
+       sit *lighter* on it — which is the only way the pattern is visible on a
+       white page and still barely there on a dark one. Two knobs, both
+       translucent, so whatever surface it lands on shows through. */
+    --b-tile-ground: light-dark(rgba(20, 24, 38, 0.045), rgba(255, 255, 255, 0.014));
+    --b-tile-ink: light-dark(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.03));
+    background-color: var(--b-tile-ground);
+    background-image:
+      repeating-conic-gradient(var(--b-tile-ink) 0% 25%, transparent 0% 50%),
+      repeating-conic-gradient(var(--b-tile-ink) 0% 25%, transparent 0% 50%),
+      repeating-conic-gradient(var(--b-tile-ink) 0% 25%, transparent 0% 50%);
+    background-size:
+      var(--b-tile) var(--b-tile),
+      calc(var(--b-tile) * 1.62) calc(var(--b-tile) * 1.62),
+      calc(var(--b-tile) * 2.71) calc(var(--b-tile) * 2.71);
+    background-position: 0 0, calc(var(--b-tile) * 0.5) calc(var(--b-tile) * 0.8), calc(var(--b-tile) * -0.7) calc(var(--b-tile) * 0.3);
+    /* Nothing in the middle, where the words are. */
+    -webkit-mask-image: radial-gradient(120% 85% at 50% 0%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(120% 85% at 50% 0%, #000 0%, transparent 72%);
+  }
+  /* Anything that has to sit on top of it says so once. */
+  .b-tile-field ~ * { position: relative; z-index: 1; }
+
+  /* ---- Announcement: one line of news above a headline --------------------- */
+  /* The pill every product page opens with — a release, a launch, a price
+     change. It is a link, so it is an <a>; the arrow is a text mark, not an
+     icon, and it steps forward on hover the way a link should suggest travel. */
+  .b-announce {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    padding: var(--b-space-1) var(--b-space-3);
+    font-size: var(--b-text-footnote);
+    font-weight: var(--b-weight-medium);
+    color: var(--b-color-accent-text);
+    background: var(--b-color-accent-soft);
+    border: 1px solid color-mix(in srgb, var(--b-color-accent) 22%, transparent);
+    border-radius: var(--b-radius-full);
+    text-decoration: none;
+  }
+  .b-announce:hover { text-decoration: none; background: color-mix(in srgb, var(--b-color-accent) 18%, transparent); }
+  .b-announce .b-icon { width: 1rem; height: 1rem; }
+  .b-announce__go { transition: translate var(--b-duration-fast) var(--b-ease-out); }
+  .b-announce:hover .b-announce__go { translate: 2px 0; }
+
+  /* ---- Rating: borrowed credibility, stated plainly ------------------------ */
+  /* Five marks and who is vouching. The stars are the library's own star at
+     caption size; a star that was not earned carries .is-empty rather than
+     being left out, so the row is always five wide and reads as a score. */
+  .b-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    font-size: var(--b-text-footnote);
+    color: var(--b-text-secondary);
+  }
+  .b-rating__stars { display: inline-flex; gap: 0.125rem; color: var(--b-color-yellow); }
+  .b-rating__stars .b-icon { width: 0.95rem; height: 0.95rem; fill: currentColor; }
+  .b-rating__stars .is-empty { color: var(--b-fill); }
+
+  /* ---- Logo wall: the companies already here ------------------------------- */
+  /* A quiet row, evenly spaced, every mark the same height whatever its
+     proportions — which is the only way a wall of logos looks deliberate
+     rather than pasted. Inline SVG on currentColor is the intended form: it
+     inherits the wall's ink and therefore survives the dark theme. Raster
+     logos get greyed instead, because a PNG cannot follow the text colour. */
+  .b-logo-wall {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(var(--b-space-6), 5vw, var(--b-space-12));
+    padding-block: var(--b-space-8);
+    color: var(--b-text-secondary);
+  }
+  .b-logo-wall__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--b-space-2);
+    height: var(--b-logo-h, 1.5rem);
+    font-size: var(--b-text-title3);
+    font-weight: var(--b-weight-semibold);
+    letter-spacing: var(--b-tracking-tight);
+    white-space: nowrap;
+    opacity: 0.7;
+    transition: opacity var(--b-duration-fast);
+  }
+  .b-logo-wall__logo:hover { opacity: 1; }
+  .b-logo-wall__logo :is(svg, img) { height: 100%; width: auto; }
+  .b-logo-wall__logo img { filter: grayscale(1); }
+
   /* ---- Figures: a picture is furniture, so it has a shape ------------------ */
   .b-figure { margin: 0; }
   .b-figure__frame {

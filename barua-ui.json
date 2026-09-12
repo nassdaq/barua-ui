@@ -45,7 +45,7 @@
     "Every interactive element states its accessible name, keyboard behaviour and state through ARIA; .is-* classes are for looks, ARIA is for meaning.",
     "Vary composition deliberately: the same three cards in a row is not a design. Choose a layout archetype that fits the content, then vary density, span rhythm and material within the system."
   ],
-  "classCount": 864,
+  "classCount": 872,
   "classes": [
     "b-absolute",
     "b-accordion",
@@ -74,6 +74,8 @@
     "b-alert__desc",
     "b-alert__icon",
     "b-alert__title",
+    "b-announce",
+    "b-announce__go",
     "b-app-grid",
     "b-app-tile",
     "b-app-tile__hint",
@@ -197,6 +199,7 @@
     "b-card--interactive",
     "b-card--media-overlay",
     "b-card--neutral",
+    "b-card--thick",
     "b-card-grid",
     "b-card-rail",
     "b-card__art",
@@ -532,6 +535,8 @@
     "b-log__entry",
     "b-log__ip",
     "b-log__time",
+    "b-logo-wall",
+    "b-logo-wall__logo",
     "b-marketing-nav",
     "b-marketing-nav__brand",
     "b-marketing-nav__links",
@@ -678,6 +683,8 @@
     "b-rail__item",
     "b-range",
     "b-range__fill",
+    "b-rating",
+    "b-rating__stars",
     "b-redacted",
     "b-refract",
     "b-relative",
@@ -851,6 +858,7 @@
     "b-thumb",
     "b-thumb--video",
     "b-thumb__duration",
+    "b-tile-field",
     "b-timeline",
     "b-timeline__body",
     "b-timeline__time",
@@ -938,6 +946,8 @@
     "b-alert__desc",
     "b-alert__icon",
     "b-alert__title",
+    "b-announce",
+    "b-announce__go",
     "b-app-grid",
     "b-app-tile",
     "b-app-tile__hint",
@@ -1339,6 +1349,8 @@
     "b-log__entry",
     "b-log__ip",
     "b-log__time",
+    "b-logo-wall",
+    "b-logo-wall__logo",
     "b-marketing-nav",
     "b-marketing-nav__brand",
     "b-marketing-nav__links",
@@ -1457,6 +1469,8 @@
     "b-rail__item",
     "b-range",
     "b-range__fill",
+    "b-rating",
+    "b-rating__stars",
     "b-redacted",
     "b-relative",
     "b-resizable",
@@ -1602,6 +1616,7 @@
     "b-thumb",
     "b-thumb--video",
     "b-thumb__duration",
+    "b-tile-field",
     "b-timeline",
     "b-timeline__body",
     "b-timeline__time",
@@ -1702,6 +1717,7 @@
     "--b-lg-pane-strong",
     "--b-liquid-bar-w",
     "--b-liquid-color",
+    "--b-logo-h",
     "--b-masonry-cols",
     "--b-pie",
     "--b-pie-size",
@@ -1713,6 +1729,9 @@
     "--b-slide-w",
     "--b-slider-fill",
     "--b-thumb-size",
+    "--b-tile",
+    "--b-tile-ground",
+    "--b-tile-ink",
     "--b-wall-blur",
     "--b-wall-ground",
     "--b-wall-image",
@@ -8776,7 +8795,10 @@
             ],
             "root": "Log",
             "jsx": "<Log style={{ maxWidth: \"40rem\" }}>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__actor\">Amina Hassan</span>\n    <span className=\"b-log__action\">\n      uploaded\n      <code>invoice-q3.pdf</code>\n      to Finance / Invoices\n    </span>\n    <time className=\"b-log__time\">2 min ago</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__actor\">Baraka Otieno</span>\n    <span className=\"b-log__action\">\n      approved purchase order\n      <code>PO-2214</code>\n    </span>\n    <time className=\"b-log__time\">38 min ago</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__actor\">Neema Mushi</span>\n    <span className=\"b-log__action\">\n      renamed\n      <code>port-fees-draft.xlsx</code>\n      to\n      <code>port-fees.xlsx</code>\n    </span>\n    <time className=\"b-log__time\">Yesterday</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__actor\">Juma Kibwana</span>\n    <span className=\"b-log__action\">\n      shared\n      <code>tender-brief.docx</code>\n      with the Mwanza depot\n    </span>\n    <time className=\"b-log__time\">Mon 09:12</time>\n  </div>\n</Log>"
-          }
+          },
+          "knobs": [
+            "--b-logo-h"
+          ]
         },
         {
           "id": "audit-log",
@@ -8801,7 +8823,10 @@
             ],
             "root": "Log",
             "jsx": "<Log className=\"b-log--audit\">\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__ip\">197.250.14.62</span>\n    <span className=\"b-log__actor\">amina</span>\n    <span className=\"b-log__action\">\n      signed in with\n      <code>passkey</code>\n    </span>\n    <time className=\"b-log__time\">2026-08-26 09:14</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__ip\">197.250.14.62</span>\n    <span className=\"b-log__actor\">amina</span>\n    <span className=\"b-log__action\">\n      exported\n      <code>invoice-q3.pdf</code>\n    </span>\n    <time className=\"b-log__time\">2026-08-26 09:21</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__ip\">41.222.180.7</span>\n    <span className=\"b-log__actor\">baraka</span>\n    <span className=\"b-log__action\">\n      changed role of\n      <code>@juma</code>\n      to\n      <code>editor</code>\n    </span>\n    <time className=\"b-log__time\">2026-08-25 17:03</time>\n  </div>\n  <div className=\"b-log__entry\">\n    <span className=\"b-log__ip\">196.249.5.118</span>\n    <span className=\"b-log__actor\">system</span>\n    <span className=\"b-log__action\">\n      rotated API key\n      <code>brk_live_\u20269f2</code>\n    </span>\n    <time className=\"b-log__time\">2026-08-25 02:00</time>\n  </div>\n</Log>"
-          }
+          },
+          "knobs": [
+            "--b-logo-h"
+          ]
         }
       ]
     },
@@ -11946,6 +11971,66 @@
             "is-active",
             "is-loading",
             "is-pressed"
+          ]
+        },
+        {
+          "id": "hero-furniture",
+          "title": "Hero furniture",
+          "category": "marketing",
+          "url": "https://ui.barua.tz/docs/marketing.html#hero-furniture",
+          "summary": "The three marks that sit around a headline on almost every product page: the news above it, the credibility under it, and the ground it all stands on. Each is small enough that every team rebuilds it slightly differently, which is exactly why they belong here.",
+          "classes": [
+            "b-announce",
+            "b-announce__go",
+            "b-chapter",
+            "b-chapter--tight",
+            "b-chapter__lede",
+            "b-chapter__title",
+            "b-icon",
+            "b-logo-wall",
+            "b-logo-wall__logo",
+            "b-rating",
+            "b-rating__stars",
+            "b-tile-field"
+          ],
+          "markup": "<a class=\"b-announce\" href=\"#announce\">\n  <svg class=\"b-icon\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/><path d=\"m14.8 11.5.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linejoin=\"round\"/></svg>\n  Barua UI 0.6 has shipped\n  <span class=\"b-announce__go\" aria-hidden=\"true\">\u2192</span>\n</a>",
+          "react": {
+            "import": "import { Announce, AnnounceGo, Icon } from \"barua-ui\";",
+            "components": [
+              "Announce",
+              "AnnounceGo",
+              "Icon"
+            ],
+            "root": "Announce",
+            "jsx": "<Announce href=\"#announce\">\n  <Icon viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\">\n    <path d=\"M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinejoin=\"round\" />\n    <path d=\"m14.8 11.5.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z\" stroke=\"currentColor\" strokeWidth=\"1.3\" strokeLinejoin=\"round\" />\n  </Icon>\n  Barua UI 0.6 has shipped\n  <AnnounceGo aria-hidden=\"true\">\u2192</AnnounceGo>\n</Announce>"
+          },
+          "variants": [
+            {
+              "id": "announce",
+              "title": "Announcement"
+            },
+            {
+              "id": "rating",
+              "title": "Rating"
+            },
+            {
+              "id": "logo-wall",
+              "title": "Logo wall"
+            },
+            {
+              "id": "tile-field",
+              "title": "Tile field"
+            }
+          ],
+          "knobs": [
+            "--b-chapter-gap",
+            "--b-logo-h",
+            "--b-tile",
+            "--b-tile-ground",
+            "--b-tile-ink"
+          ],
+          "states": [
+            "is-empty"
           ]
         },
         {

@@ -78,6 +78,7 @@ the first place.
 |---|---|
 | `rounded-lg border bg-card p-4` | `b-card` + `b-card__body` (`b-card--compact`, `--glass`, `--flat` as needed) |
 | `bg-panel` / `bg-muted` box | `b-card b-card--flat` or `b-card--neutral` |
+| a glass panel carrying data or a form | add `b-card--thick` to `b-card--glass` — the denser veil, so a customer's wallpaper cannot compete with the ink |
 | `border-b` divider rows | `b-list b-list--inset-divider` + `b-list-item` |
 | `<Skeleton className="h-4 w-…" />` | `<span className="b-skeleton b-skeleton--text" style={{ width }} />` (`--title`, `--circle`, `--card`) |
 | `<Badge variant=…>` | `<span className="b-badge b-badge--success|--danger|--warning|--accent|--solid">` |

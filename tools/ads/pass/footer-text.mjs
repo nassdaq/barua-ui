@@ -1,0 +1,14 @@
+import { chromium } from "playwright-core";
+const [email, password] = process.argv.slice(2);
+const browser = await chromium.launch({ channel: "chrome", headless: true });
+const page = await browser.newPage();
+await page.goto("https://barua.tz/login", { waitUntil: "networkidle" });
+await page.waitForTimeout(1500);
+await page.fill('input[name="email"]', email);
+await page.fill('input[name="password"]', password);
+await page.locator('form button[type="submit"]').first().click();
+await page.waitForURL((u) => !u.pathname.startsWith("/login"), { timeout: 30000 });
+await page.goto("https://barua.tz/admin/senders", { waitUntil: "networkidle" });
+const t = await page.locator(".b-card__footer").first().innerHTML();
+console.log(JSON.stringify(t.replace(/\s+/g, " ").slice(80, 220)));
+await browser.close();

@@ -79,6 +79,7 @@ export type { KanbanColumnProps, TaskProps, TreeItemProps, TimelineProps, Timeli
 export {
   Landing, Chapter, Hero, Figure, FeatureRow, PromoBand, SpecStrip, CardRail,
   SiteFooter, SiteFooterGroups, SiteFooterGroup, SiteFooterHeading, SiteFooterLegal,
+  TileField, Announce, AnnounceGo, Rating, RatingStars, LogoWall, LogoWallLogo,
 } from "./marketing";
 export type { ChapterProps, HeroProps, FigureProps, FeatureRowProps, PromoBandProps } from "./marketing";
 

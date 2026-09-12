@@ -141,3 +141,20 @@ export const PromoBand = forwardRef<HTMLElement, PromoBandProps>(function PromoB
     </section>
   );
 });
+
+/* ---- Hero furniture ------------------------------------------------------ */
+
+/** The ground a hero stands on. Absolute, so give the parent `position: relative`. */
+export const TileField = block("div", "b-tile-field", "TileField");
+
+/** One line of news above a headline. It is a link, so it renders an <a>. */
+export const Announce = block("a", "b-announce", "Announce");
+/** The arrow inside an Announce. A text mark, not an icon. */
+export const AnnounceGo = block("span", "b-announce__go", "AnnounceGo");
+
+export const Rating = block("p", "b-rating", "Rating");
+/** Always five wide; mark the unearned ones `is-empty`. */
+export const RatingStars = block("span", "b-rating__stars", "RatingStars");
+
+export const LogoWall = block("div", "b-logo-wall", "LogoWall");
+export const LogoWallLogo = block("span", "b-logo-wall__logo", "LogoWallLogo");

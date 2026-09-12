@@ -65,6 +65,34 @@ import { ButtonLink, Chapter, Link } from "barua-ui";
 </Chapter>
 ```
 
+## Hero furniture
+
+The three marks that sit around a headline on almost every product page: the news above it, the credibility under it, and the ground it all stands on. Each is small enough that every team rebuilds it slightly differently, which is exactly why they belong here.
+
+- Documentation: https://ui.barua.tz/docs/marketing.html#hero-furniture
+- Classes: `b-announce` `b-announce__go` `b-chapter` `b-chapter--tight` `b-chapter__lede` `b-chapter__title` `b-icon` `b-logo-wall` `b-logo-wall__logo` `b-rating` `b-rating__stars` `b-tile-field`
+
+```html
+<a class="b-announce" href="#announce">
+  <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m14.8 11.5.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+  Barua UI 0.6 has shipped
+  <span class="b-announce__go" aria-hidden="true">→</span>
+</a>
+```
+
+```tsx
+import { Announce, AnnounceGo, Icon } from "barua-ui";
+
+<Announce href="#announce">
+  <Icon viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="m14.8 11.5.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+  </Icon>
+  Barua UI 0.6 has shipped
+  <AnnounceGo aria-hidden="true">→</AnnounceGo>
+</Announce>
+```
+
 ## Figure
 
 A picture is furniture, so it has a shape: .b-figure__frame clips it to the large radius, lifts it on the elevation scale, and fills any gap with a surface rather than white. .b-figure--bleed lets it run to the edges of the page, which is how a chapter ends when the image is the argument.

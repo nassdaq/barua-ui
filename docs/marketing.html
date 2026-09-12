@@ -160,6 +160,95 @@
         </p>
       </section>
 
+      <section class="docs-section" id="hero-furniture">
+        <h2>Hero furniture</h2>
+        <p>
+          The three marks that sit around a headline on almost every product
+          page: the news above it, the credibility under it, and the ground it
+          all stands on. Each is small enough that every team rebuilds it
+          slightly differently, which is exactly why they belong here.
+        </p>
+
+        <h3 id="announce">Announcement</h3>
+        <p>
+          One line of news above the title — a release, a launch, a price
+          change. It is a link, so it is an <code>&lt;a&gt;</code>. The arrow is
+          a text mark rather than an icon and steps forward on hover, the way a
+          link should suggest travel.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <a class="b-announce" href="#announce">
+            <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3l1.2 3.3 3.3 1.2-3.3 1.2L10 12 8.8 8.7 5.5 7.5l3.3-1.2L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m14.8 11.5.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            Barua UI 0.6 has shipped
+            <span class="b-announce__go" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <h3 id="rating">Rating</h3>
+        <p>
+          Borrowed credibility, stated plainly: five marks and who is vouching.
+          A star that was not earned carries <code>.is-empty</code> rather than
+          being left out, so the row is always five wide and reads as a score
+          instead of a count. Put the real number in the
+          <code>aria-label</code> — five shapes mean nothing to a screen reader.
+        </p>
+        <div class="docs-demo docs-demo--center">
+          <p class="b-rating">
+            <span class="b-rating__stars" role="img" aria-label="Rated 4.8 out of 5">
+                <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2 4.4 4.8.5-3.6 3.2 1 4.7L10 13.4l-4.2 2.4 1-4.7L3.2 7.9 8 7.4 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2 4.4 4.8.5-3.6 3.2 1 4.7L10 13.4l-4.2 2.4 1-4.7L3.2 7.9 8 7.4 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2 4.4 4.8.5-3.6 3.2 1 4.7L10 13.4l-4.2 2.4 1-4.7L3.2 7.9 8 7.4 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                <svg class="b-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2 4.4 4.8.5-3.6 3.2 1 4.7L10 13.4l-4.2 2.4 1-4.7L3.2 7.9 8 7.4 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                <svg class="b-icon is-empty" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3 2 4.4 4.8.5-3.6 3.2 1 4.7L10 13.4l-4.2 2.4 1-4.7L3.2 7.9 8 7.4 10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </span>
+            4.8 from 312 reviews
+          </p>
+        </div>
+
+        <h3 id="logo-wall">Logo wall</h3>
+        <p>
+          The companies already here. Every mark sits at the same height
+          whatever its proportions — <code>--b-logo-h</code> — which is the only
+          thing that makes a row of logos look deliberate rather than pasted.
+          Inline SVG on <code>currentColor</code> is the intended form: it
+          inherits the wall's ink and therefore survives the dark theme. A
+          raster logo is greyed instead, because a PNG cannot follow the text
+          colour.
+        </p>
+        <div class="docs-demo docs-demo--stack">
+          <div class="b-logo-wall">
+            <span class="b-logo-wall__logo">Vodacom</span>
+            <span class="b-logo-wall__logo">CRDB</span>
+            <span class="b-logo-wall__logo">Serengeti</span>
+            <span class="b-logo-wall__logo">Azam</span>
+            <span class="b-logo-wall__logo">Precision Air</span>
+          </div>
+        </div>
+
+        <h3 id="tile-field">Tile field</h3>
+        <p>
+          The ground a hero stands on. A flat page makes a centred headline look
+          like it is floating in milk; this is the quietest possible answer —
+          three checkerboards at different scales, each barely there, masked so
+          the pattern dissolves before it reaches the words. It is drawn
+          entirely from gradients, so it costs no image and no element per
+          square, and it re-tints with the theme.
+          <code>--b-tile</code> is the cell size.
+        </p>
+        <p>
+          It is positioned <code>absolute</code>, so whatever holds it carries
+          <code>.b-has-tiles</code> — positioned and clipping, so no page has to
+          remember. Everything after it is lifted above it automatically.
+        </p>
+        <div class="docs-demo docs-demo--stack b-has-tiles">
+          <div class="b-tile-field" aria-hidden="true"></div>
+          <div class="b-chapter b-chapter--tight">
+            <h2 class="b-chapter__title">A headline with ground under it</h2>
+            <p class="b-chapter__lede">The squares stop before they reach this sentence.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="docs-section" id="figure">
         <h2>Figure</h2>
         <p>
